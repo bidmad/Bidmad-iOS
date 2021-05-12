@@ -1,0 +1,110 @@
+PODS:
+  - AppLovinSDK (10.0.1)
+  - BidmadSDK (2.6.3):
+    - FBAudienceNetwork (= 6.3.0)
+    - FBSDKCoreKit (= 9.1.0)
+    - Flutter
+    - Google-Mobile-Ads-SDK (= 8.3.0)
+    - GoogleMobileAdsMediationAppLovin (= 10.0.1.0)
+    - GoogleMobileAdsMediationFacebook (= 6.3.0.0)
+    - TapjoySDK (= 12.8.0)
+    - UnityAds (= 3.7.0)
+  - FBAudienceNetwork (6.3.0):
+    - FBSDKCoreKit/Basics (>= 7.0.1)
+  - FBSDKCoreKit (9.1.0):
+    - FBSDKCoreKit/Basics (= 9.1.0)
+    - FBSDKCoreKit/Core (= 9.1.0)
+  - FBSDKCoreKit/Basics (9.1.0)
+  - FBSDKCoreKit/Core (9.1.0):
+    - FBSDKCoreKit/Basics
+  - Flutter (2.0.0)
+  - Google-Mobile-Ads-SDK (8.3.0):
+    - GoogleAppMeasurement (~> 7.0)
+    - GoogleUserMessagingPlatform (>= 1.1)
+  - GoogleAppMeasurement (7.11.0):
+    - GoogleAppMeasurement/AdIdSupport (= 7.11.0)
+    - GoogleUtilities/AppDelegateSwizzler (~> 7.0)
+    - GoogleUtilities/MethodSwizzler (~> 7.0)
+    - GoogleUtilities/Network (~> 7.0)
+    - "GoogleUtilities/NSData+zlib (~> 7.0)"
+    - nanopb (~> 2.30908.0)
+  - GoogleAppMeasurement/AdIdSupport (7.11.0):
+    - GoogleUtilities/AppDelegateSwizzler (~> 7.0)
+    - GoogleUtilities/MethodSwizzler (~> 7.0)
+    - GoogleUtilities/Network (~> 7.0)
+    - "GoogleUtilities/NSData+zlib (~> 7.0)"
+    - nanopb (~> 2.30908.0)
+  - GoogleMobileAdsMediationAppLovin (10.0.1.0):
+    - AppLovinSDK (= 10.0.1)
+    - Google-Mobile-Ads-SDK (>= 8.2.0)
+  - GoogleMobileAdsMediationFacebook (6.3.0.0):
+    - FBAudienceNetwork (= 6.3.0)
+    - Google-Mobile-Ads-SDK (>= 8.1.0)
+  - GoogleUserMessagingPlatform (2.0.0)
+  - GoogleUtilities/AppDelegateSwizzler (7.4.1):
+    - GoogleUtilities/Environment
+    - GoogleUtilities/Logger
+    - GoogleUtilities/Network
+  - GoogleUtilities/Environment (7.4.1):
+    - PromisesObjC (~> 1.2)
+  - GoogleUtilities/Logger (7.4.1):
+    - GoogleUtilities/Environment
+  - GoogleUtilities/MethodSwizzler (7.4.1):
+    - GoogleUtilities/Logger
+  - GoogleUtilities/Network (7.4.1):
+    - GoogleUtilities/Logger
+    - "GoogleUtilities/NSData+zlib"
+    - GoogleUtilities/Reachability
+  - "GoogleUtilities/NSData+zlib (7.4.1)"
+  - GoogleUtilities/Reachability (7.4.1):
+    - GoogleUtilities/Logger
+  - nanopb (2.30908.0):
+    - nanopb/decode (= 2.30908.0)
+    - nanopb/encode (= 2.30908.0)
+  - nanopb/decode (2.30908.0)
+  - nanopb/encode (2.30908.0)
+  - PromisesObjC (1.2.12)
+  - TapjoySDK (12.8.0)
+  - UnityAds (3.7.0)
+
+DEPENDENCIES:
+  - BidmadSDK
+
+SPEC REPOS:
+  trunk:
+    - AppLovinSDK
+    - BidmadSDK
+    - FBAudienceNetwork
+    - FBSDKCoreKit
+    - Flutter
+    - Google-Mobile-Ads-SDK
+    - GoogleAppMeasurement
+    - GoogleMobileAdsMediationAppLovin
+    - GoogleMobileAdsMediationFacebook
+    - GoogleUserMessagingPlatform
+    - GoogleUtilities
+    - nanopb
+    - PromisesObjC
+    - TapjoySDK
+    - UnityAds
+
+SPEC CHECKSUMS:
+  AppLovinSDK: f0c36aca5e8be14ee6c95f7646a4a120752b0f4a
+  BidmadSDK: c7a7464cf88d007b39508f6c86ace03b3b861e78
+  FBAudienceNetwork: 58b4d0f2359783e5bc9ee59f138b4fda43173ac4
+  FBSDKCoreKit: a00fe2efd780c195a5e09201bf51c56106245b40
+  Flutter: 1c17b7bc8cd10f9f85f9dbc56caee3074756daad
+  Google-Mobile-Ads-SDK: c14f5a63db1414b4ca0ee1539c9f3d700ace96c2
+  GoogleAppMeasurement: fd19169c3034975cb934e865e5667bfdce59df7f
+  GoogleMobileAdsMediationAppLovin: fa9e545ad14d134d586e01304a83eec40748794b
+  GoogleMobileAdsMediationFacebook: 5bfa4914d1130031b227af13c5f9f4b123371837
+  GoogleUserMessagingPlatform: ab890ce5f6620f293a21b6bdd82e416a2c73aeca
+  GoogleUtilities: f8a43108b38a68eebe8b3540e1f4f2d28843ce20
+  nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
+  PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
+  TapjoySDK: eee3e1c96945a75028cc7572993a645a5f10adbe
+  UnityAds: cc929eb40aefa1e8dca8f0d271e6f4c13c8ed9e4
+
+PODFILE CHECKSUM: 1bfd45403505f26032dfa822925daf4c8ec3c52a
+
+COCOAPODS: 1.10.1
