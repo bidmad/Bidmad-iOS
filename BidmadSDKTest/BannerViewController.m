@@ -31,7 +31,7 @@
     
     [BIDMADSetting sharedInstance].isDebug = YES;
     banner = [[BIDMADBanner alloc] initWithParentViewController:self rootView:self.BannerContainer bannerSize:banner_320_50];
-    [banner setZoneID:@"1c3e3085-333f-45af-8427-2810c26a72fc"];
+    [banner setZoneID:@"2ecb6177-2a6a-4e13-b10f-4f2d804c491f"];
     [banner setDelegate:self];
     [banner setRefreshInterval:60];
 //    [banner setTestDevice:@"b763d82d5e9bed4d0d235b490e6b81e6"];

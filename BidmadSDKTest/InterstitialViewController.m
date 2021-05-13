@@ -36,7 +36,7 @@
     [[BIDMADSetting sharedInstance] setIsDebug:YES];
     self.interstitial = [[BIDMADInterstitial alloc] init];
     [self.interstitial setParentViewController:self];
-    [self.interstitial setZoneID:@"228b95a9-6f42-46d8-a40d-60f17f751eb1"];
+    [self.interstitial setZoneID:@"75f67c11-899f-4970-9b8c-592ee9c82546"];
     [self.interstitial setDelegate:self];
     
 //    [self.interstitial setTestDevice:@"b763d82d5e9bed4d0d235b490e6b81e6"];
