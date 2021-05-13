@@ -100,7 +100,7 @@
 
 - (void)viewDidLoad {
     ...
-    // "bannerSize"는 "banner_320_50" 고정값만 전달해주십시오
+    // Please set the "bannerSize" to "banner_320_50" only.
     banner = [[BIDMADBanner alloc] initWithParentViewController:self rootView:self.BannerContainer bannerSize:banner_320_50];
     [banner setZoneID:@"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"];
     [banner setDelegate:self];
