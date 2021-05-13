@@ -599,14 +599,18 @@ BIDMADSetting.sharedInstance().testDeviceId = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 
 </details>
 
-### Other Interfaces
+### References
 
 </details>
 <details markdown="1">
 <summary>List</summary>
 <br>
 
-1. App Tracking Transparency and iOS14: [bidmad/SDK](https://github.com/bidmad/SDK/wiki/Preparing-for-iOS-14%5BKOR%5D)
-2. GDPR for Google and Non-Google Ad Networks: [bidmad/SDK](https://github.com/bidmad/SDK/wiki/iOS-GDPR-Guide-%5BKOR%5D)
+- [Class Reference for BidmadSDK-iOS](https://github.com/bidmad/Bidmad-iOS/blob/main/README-Pages/README-ClassReference.md)
+- [BidmadSDK - Get Started [ENG]](https://github.com/bidmad/Bidmad-iOS/blob/main/README-Pages/README(ENG).md))
+- OpenBiddingHelper - Get Started ([KOR](https://github.com/bidmad/Bidmad-iOS/blob/main/README-Pages/README(OBH-KOR).md)|[ENG](https://github.com/bidmad/Bidmad-iOS/blob/main/README-Pages/README(OBH-ENG).md))
+- iOS GDPR Guide ([KOR](https://github.com/bidmad/Bidmad-iOS/blob/main/README-Pages/iOS-GDPR-Guide-%5BKOR%5D.md)|[ENG](https://github.com/bidmad/Bidmad-iOS/blob/main/README-Pages/iOS-GDPR-Guide-%5BENG%5D.md))
+- Apple Privacy Survey[ENG](https://github.com/bidmad/Bidmad-iOS/blob/main/README-Pages/Apple-privacy-survey%5BENG%5D.md)[KOR](https://github.com/bidmad/Bidmad-iOS/blob/main/README-Pages/Apple-privacy-survey%5BKOR%5D.md)
+
 </details>
 
