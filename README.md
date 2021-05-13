@@ -83,6 +83,10 @@
     </dict>
     ...
     ```
+    
+5. iOS 14 관련 셋업
+    - iOS 14 업데이트 이후, App Tracking Transparency 세팅 및 SKAdNetwork info.plist 세팅이 필요하게 되었습니다. 다음 가이드로 참조하시어, 셋업을 진행해주세요.
+    - [Preparing for iOS 14](https://github.com/bidmad/Bidmad-iOS/wiki/Preparing-for-iOS-14%5BKOR%5D)
 
 ## BidmadSDK Interface Guide
 
