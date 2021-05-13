@@ -3,7 +3,7 @@
 
 - 개요
     - BidmadSDK는 배너 · 전면 · 리워드 영상 · 오퍼월 광고 타입을 제공합니다. 이 문서는 BidmadSDK를 통한 구현 가이드를 제공합니다.
-    - 현재 적용되어 있는 애드 네트워크 플랫폼은 다음과 같습니다
+    - 현재 적용되어 있는 애드 네트워크 플랫폼은 다음과 같습니다.
         <details markdown="1">
         <summary>애드 네트워크 리스트</summary>
         <br>
@@ -92,16 +92,21 @@
 <summary>ObjC</summary>
 <br>
 
+1. 배너를 노출시킬 UIView를 UIViewController 상에 추가합니다 (UIView bannerContainer).
+2. 배너 Initialize / ZoneID / Delegate 세팅 후, RequestBannerView를 호출해 배너를 로드 및 노출시킵니다. 
 ```
 @interface BannerViewController : UIViewController<BIDMADBannerDelegate>
 ...
 @end
+...
+__weak IBOutlet UIView *bannerContainer;
+...
 @implementation BannerViewController
 
 - (void)viewDidLoad {
     ...
     // "bannerSize"는 "banner_320_50" 고정값만 전달해주십시오
-    banner = [[BIDMADBanner alloc] initWithParentViewController:self rootView:self.BannerContainer bannerSize:banner_320_50];
+    banner = [[BIDMADBanner alloc] initWithParentViewController:self rootView:bannerContainer bannerSize:banner_320_50];
     [banner setZoneID:@"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"];
     [banner setDelegate:self];
     [banner setRefreshInterval:60];
@@ -119,9 +124,12 @@
 <summary>Swift</summary>
 <br>
 
+1. 배너를 노출시킬 UIView를 UIViewController 상에 추가합니다 (UIView bannerContainer).
+2. 배너 Initialize / ZoneID / Delegate 세팅 후, requestView를 호출해 배너를 로드 및 노출시킵니다. 
 ```
 class BannerController: UIViewController, BIDMADBannerDelegate {
   var banner: BIDMADBanner
+  var bannerContainer: UIView
 
   override func viewDidLoad() {
     ...
