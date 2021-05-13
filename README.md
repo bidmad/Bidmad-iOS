@@ -1,17 +1,22 @@
 # BidmadSDK iOS
 ## 퍼블리셔의 모바일 앱 기반 광고 수익 최적화를 위한 통합 앱수익화 솔루션
 
-1. 개요
-    - Bidmad SDK IOS 버전을 프로젝트에 적용하는 Guide 문서. 현재 적용 되어 있는 광고 플랫폼은 다음과 같다.
-        - GoogleManager (Banner, Interstitial, Reward)
-        - GoogleAdmob (Banner, Interstitial, RewardVideo)
-        - AppLovin (RewardVideo)
-        - UnityAds (RewardVideo, Banner)
-        - Facebook Audience Network (Banner, Interstitial, Reward)
-        - ADOPAtom (Interstitial, RewardVideo)
+- 개요
+    - BidmadSDK는 배너 · 전면 · 리워드 영상 · 오퍼월 광고 타입을 제공합니다. 이 문서는 BidmadSDK를 통한 구현 가이드를 제공합니다.
+    - 현재 적용되어 있는 애드 네트워크 플랫폼은 다음과 같습니다
+        <details markdown="1">
+        <summary>애드 네트워크 리스트</summary>
+        <br>
+        
+        - GoogleManager (Banner, Interstitial, Reward Video)
+        - GoogleAdmob (Banner, Interstitial, Reward Video)
+        - AppLovin (Reward Video)
+        - UnityAds (Reward Video, Banner)
+        - Facebook Audience Network (Banner, Interstitial, Reward Video)
+        - ADOPAtom (Interstitial, Reward Video)
         - Tapjoy (Offerwall)
-    - BIDMAD SDK IOS버전은 띠배너 <320Ⅹ50, 300Ⅹ250> 와 전면광고, 보상형 비디오 광고, 오퍼월 광고를 제공한다.
-
+        </details>
+        
 ## BidmadSDK Installation Guide
 
 1. 개발 환경
@@ -21,21 +26,21 @@
 2. SDK설치 방법
     - **(추천)** CocoaPods를 사용한 설치 방법
 
-        Podfile 내부에 다음 코드 추가
+        1. Podfile 내부에 다음 코드 추가
 
-        ```
-        platform :ios, "10.0"
+            ```
+            platform :ios, "10.0"
 
-        target "Runner" do
-         use_frameworks!
-         pod "BidmadSDK", "2.6.3"
-        ```
+            target "Runner" do
+             use_frameworks!
+             pod "BidmadSDK", "2.6.3"
+            ```
 
-        Terminal에서 다음 커맨드 입력
+        2. Terminal에서 다음 커맨드 입력
 
-        ```
-        pod install
-        ```
+            ```
+            pod install
+            ```
 
     - **(비추천)** 수동적인 Framework 추가 방법
         1. 프레임워크 및 번들을 아래 첨부 그림과 같이 프로젝트에 추가
@@ -44,7 +49,14 @@
 
         2. Embedded Binaries에 BidmadSDK.framework 추가
         3. 아래 항목을 Build Phases 탭에 있는 Copy Bundle Resources에 "bidmad_asset.bundle" 추가
-3. info.plist 내용 설정
+3. Build Settings 
+    1. CocoaPods
+        - Enable Bitcode 를 No로 설정
+    2. Manual Framework Import
+        - Enable Bitcode 를 No로 설정
+        - Other Linker Flag 에 -ObjC Flag 추가
+        - Allow Non-Modular Includes In Framework Modules 를 Yes로 설정
+4. info.plist 내용 설정
 
     ```
     ...
@@ -72,436 +84,531 @@
     ...
     ```
 
-4. Build Settings 
-    1. CocoaPods
-        - Enable Bitcode 를 No로 설정
-    2. Manual Framework Import
-        - Enable Bitcode 를 No로 설정
-        - Other Linker Flag 에 -ObjC Flag 추가
-        - Allow Non-Modular Includes In Framework Modules 를 Yes로 설정
-
 ## BidmadSDK Interface Guide
 
-1. 배너 광고
+### 배너 광고 로드
 
-    ObjC Example
+<details markdown="1">
+<summary>ObjC</summary>
+<br>
 
-    ```
-    @interface BannerViewController : UIViewController<BIDMADBannerDelegate>
+```
+@interface BannerViewController : UIViewController<BIDMADBannerDelegate>
+...
+@end
+@implementation BannerViewController
+
+- (void)viewDidLoad {
     ...
+    // "bannerSize"는 "banner_320_50" 고정값만 전달해주십시오
     banner = [[BIDMADBanner alloc] initWithParentViewController:self rootView:self.BannerContainer bannerSize:banner_320_50];
-    [banner setZoneID:@"Your Zone Id"];
+    [banner setZoneID:@"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"];
     [banner setDelegate:self];
     [banner setRefreshInterval:60];
-    [banner requestBannerView]; // Request to load and view the banner
     ...
+    [banner requestBannerView]; // Request to load and view the banner
+}
+...
+- (void)removeAds {
     [banner removeAds] // Remove Banner from UIView
-    ```
+}
+```
+</details>
 
-    Swift Example
+<details markdown="1">
+<summary>Swift</summary>
+<br>
 
-    ```
-    class BannerController: UIViewController, BIDMADBannerDelegate {
-      var banner: BIDMADBanner
+```
+class BannerController: UIViewController, BIDMADBannerDelegate {
+  var banner: BIDMADBanner
 
-      override func viewDidLoad() {
-        let banner = BIDMADBanner(parentViewController: self, rootView: bannerContainer, bannerSize: banner_320_50)!
-        banner.zoneID = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
-        banner.refreshInterval = 60
-        banner.delegate = self
-        banner.requestView() // Request to load and view the banner
-      }
+  override func viewDidLoad() {
+    ...
+    // "bannerSize"는 "banner_320_50" 고정값만 전달해주십시오
+    let banner = BIDMADBanner(parentViewController: self, rootView: bannerContainer, bannerSize: banner_320_50)!
+    banner.zoneID = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+    banner.refreshInterval = 60
+    banner.delegate = self
+    ...
+    banner.requestView() // Request to load and view the banner
+  }
 
-      func removeBanner() {
-        banner.removeAds() // Remove Banner from UIView
-      }
-      ...
-    }
-    ```
+  func removeBanner() {
+    banner.removeAds() // Remove Banner from UIView
+  }
+  ...
+}
+```
+</details>
 
-2. 전면 광고
+### 배너 콜백 구현
 
-    ObjC Example
+<details markdown="1">
+<summary>ObjC</summary>
+<br>
 
-    ```
-    @interface InterstitialViewController : UIViewController<BIDMADInterstitialDelegate>
+```
+- (void)BIDMADBannerLoad:(BIDMADBanner *)core {
+    NSLog(@"BIDMADBannerLoad");
+}
+
+- (void)BIDMADBannerClosed:(BIDMADBanner *)core {
+    NSLog(@"BIDMADBannerClosed");
+}
+
+- (void)BIDMADBannerAllFail:(BIDMADBanner *)core {
+    NSLog(@"BIDMADBannerAllFail");
+}
+```
+</details>
+
+<details markdown="1">
+<summary>Swift</summary>
+<br>
+
+```
+func bidmadBannerLoad(_ core: BIDMADBanner!) {
+    print("bidmadBannerLoad");
+}
+
+func bidmadBannerClosed(_ core: BIDMADBanner!) {
+    print("bidmadBannerClosed");
+}
+
+func bidmadBannerAllFail(_ core: BIDMADBanner!) {
+    print("bidmadBannerAllFail");
+}
+```
+</details>
+
+### 전면 광고 로드
+
+<details markdown="1">
+<summary>ObjC</summary>
+<br>
+
+```
+@interface InterstitialViewController : UIViewController<BIDMADInterstitialDelegate>
+...
+@end
+...
+@implementation InterstitialViewController
+- (void)viewDidLoad {
     ...
     interstitial = [[BIDMADInterstitial alloc] init];
     [interstitial setParentViewController:self];
     [interstitial setZoneID:@"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"];
     [interstitial setDelegate:self];
-    ...
+}
+...
+-(void)loadAd {
     [interstitial loadInterstitialView];
-    ...
+   
+}
+...
+-(void)showAd {
     if([interstitial isLoaded]){
-      [interstitial showInterstitialView];
+        [interstitial showInterstitialView];
     }
-    ```
+}
+```
+</details>
 
-    Swift Example
+<details markdown="1">
+<summary>Swift</summary>
+<br>
 
-    ```
-    class InterstitialController: UIViewController, BIDMADInterstitialDelegate {
-      var interstitial: BIDMADInterstitial
-       
-      override func viewDidLoad() {
-        interstitial = BIDMADInterstitial()!
-        interstitial.zoneID = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
-        interstitial.delegate = self
-        interstitial.parentViewController = self
-        interstitial.loadView()
-      }
+```
+class InterstitialController: UIViewController, BIDMADInterstitialDelegate {
+  var interstitial: BIDMADInterstitial
+   
+  override func viewDidLoad() {
+    interstitial = BIDMADInterstitial()!
+    interstitial.zoneID = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+    interstitial.delegate = self
+    interstitial.parentViewController = self
+    interstitial.loadView()
+  }
 
-      func showAd() {
-        if (interstitial.isLoaded) {
-          interstitial.showView()
-        }
-      }
-      ...
+  func showAd() {
+    if (interstitial.isLoaded) {
+      interstitial.showView()
     }
-    ```
+  }
+  ...
+}
+```
+</details>
 
-3. 보상형 비디오 광고
+### 전면 광고 콜백 구현
 
-    ObjC Example
+<details markdown="1">
+<summary>ObjC</summary>
+<br>
 
-    ```
-    @interface RewardViewController : UIViewController<BIDMADOpenBiddingRewardVideoDelegate>
+```
+- (void)BIDMADInterstitialClose:(BIDMADInterstitial *)core {
+    NSLog(@"BIDMADInterstitialClose");
+}
+
+- (void)BIDMADInterstitialShow:(BIDMADInterstitial *)core {
+    NSLog(@"BIDMADInterstitialShow");
+}
+
+- (void)BIDMADInterstitialLoad:(BIDMADInterstitial *)core {
+    NSLog(@"BIDMADInterstitialLoad");
+}
+- (void)BIDMADInterstitialAllFail:(BIDMADInterstitial *)core {
+    NSLog(@"BIDMADInterstitialAllFail");
+}
+```
+</details>
+
+<details markdown="1">
+<summary>Swift</summary>
+<br>
+
+```
+func bidmadInterstitialClose(_ core: BIDMADInterstitial!) {
+    print("bidmadInterstitialClose");
+}
+
+func bidmadInterstitialShow(_ core: BIDMADInterstitial!) {
+    print("bidmadInterstitialShow");
+}
+
+func bidmadInterstitialLoad(_ core: BIDMADInterstitial!) {
+    print("bidmadInterstitialLoad");
+}
+
+func bidmadInterstitialAllFail(_ core: BIDMADInterstitial!) {
+    print("bidmadInterstitialAllFail");
+}
+```
+</details>
+
+### 보상형 비디오 광고 로드
+
+<details markdown="1">
+<summary>ObjC</summary>
+<br>
+
+```
+@interface RewardViewController : UIViewController<BIDMADRewardVideoDelegate>
+...
+@end
+...
+@implementation RewardViewController
+
+- (void)viewDidLoad {
     ...
     rewardVideo = [[BIDMADRewardVideo alloc]init];
     [rewardVideo setZoneID:@"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"];
     [rewardVideo setParentViewController:self];
     [rewardVideo setDelegate:self];
-    ...
-    [rewardVideo loadRewardVideo];
-    ...
-    if ([rewardVideo isLoaded]) {
-      [rewardVideo showRewardVideo];
+}
+...
+-(void)loadReward {
+    [reward loadRewardVideo];
+}
+   
+...
+-(void)showReward {
+    if([reward isLoaded]){
+        [reward showRewardVideo];
     }
-    ```
+}
+```
+</details>
 
-    Swift Example
+<details markdown="1">
+<summary>Swift</summary>
+<br>
 
-    ```
-    class RewardVideoController: UIViewController, BIDMADRewardVideoDelegate {
-      var rewardVideo: BIDMADRewardVideo
+```
+class RewardVideoController: UIViewController, BIDMADRewardVideoDelegate {
+  var rewardVideo: BIDMADRewardVideo
 
-      override func viewDidLoad() {
-        rewardVideo = BIDMADRewardVideo()!
-        rewardVideo.zoneID = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
-        rewardVideo.delegate = self
-        rewardVideo.parentViewController = self
-        rewardVideo.load()
-      }
+  override func viewDidLoad() {
+    rewardVideo = BIDMADRewardVideo()!
+    rewardVideo.zoneID = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+    rewardVideo.delegate = self
+    rewardVideo.parentViewController = self
+    rewardVideo.load()
+  }
 
-      func showAd() {
-        if (rewardVideo.isLoaded) {
-          rewardVideo.show()
-        }
-      }
-      ...
+  func showAd() {
+    if (rewardVideo.isLoaded) {
+      rewardVideo.show()
     }
-    ```
+  }
+  ...
+}
+```
+</details>
 
-4. Offerwall 광고
+### 보상형 비디오 콜백 구현
 
-    ObjC Example
+<details markdown="1">
+<summary>ObjC</summary>
+<br>
 
-    ```
-    @interface OfferwallController : UIViewController<BIDMADOfferwallDelegate>
-    ...
-    offerwall = [[BIDMADOfferwall alloc]initWithZoneId:@"Your Zone Id"];
-    [offerwall setParentViewController:self];
-    [offerwall setDelegate:self];
-    ...
+```
+- (void)BIDMADRewardVideoLoad:(BIDMADRewardVideo *)core {
+    NSLog(@"BIDMADRewardVideoLoad");
+}
+
+- (void)BIDMADRewardVideoAllFail:(BIDMADRewardVideo *)core {
+    NSLog(@"BIDMADRewardVideoAllFail");
+}
+
+- (void)BIDMADRewardVideoShow:(BIDMADRewardVideo *)core {
+    NSLog(@"BIDMADRewardVideoShow");
+}
+
+- (void)BIDMADRewardVideoClose:(BIDMADRewardVideo *)core {
+    NSLog(@"BIDMADRewardVideoClose");
+}
+
+- (void)BIDMADRewardVideoSucceed:(BIDMADRewardVideo *)core {
+    NSLog(@"BIDMADRewardVideoSucceed");
+}
+```
+</details>
+
+<details markdown="1">
+<summary>Swift</summary>
+<br>
+
+```
+func bidmadRewardVideoLoad(_ core: BIDMADRewardVideo!) {
+    NSLog(@"bidmadRewardVideoLoad");
+}
+
+func bidmadRewardVideoAllFail(_ core: BIDMADRewardVideo!) {
+    NSLog(@"bidmadRewardVideoAllFail");
+}
+
+func bidmadRewardVideoShow(_ core: BIDMADRewardVideo!) {
+    NSLog(@"bidmadRewardVideoShow");
+}
+
+func bidmadRewardVideoClose(_ core: BIDMADRewardVideo!) {
+    NSLog(@"bidmadRewardVideoClose");
+}
+
+func bidmadRewardVideoSucceed(_ core: BIDMADRewardVideo!) {
+    NSLog(@"bidmadRewardVideoSucceed");
+}
+```
+</details>
+
+### 오퍼월 광고 로드 및 화폐 로드
+
+<details markdown="1">
+<summary>ObjC</summary>
+<br>
+
+```
+@interface OfferwallController : UIViewController<BIDMADOfferwallDelegate>
+...
+@end
+...
+- (void)viewDidLoad {
+    
+    [super viewDidLoad];
+    
+    NSLog(@"AppUI isSDKInit %d", [BIDMADOfferwall isSDKInit]);
+    
+    self.offerwall = [[BIDMADOfferwall alloc]initWithZoneId:@"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"];
+    [self.offerwall setParentViewController:self];
+    [self.offerwall setDelegate:self];
+}
+...
+-(void)loadOfferwall {
     [offerwall loadOfferwall];
-    ...
+}
+...
+-(void)showOfferwall {
     if ([offerwall isLoaded]) {
       [offerwall showOfferwall];
     }
-    ...
+}
+...
+-(void)getCurrency {
     [offerwall getCurrencyBalance];
-    ...
+   
+}
+...
+-(void)spendCurrency:(int)amount {
     [offerwall spendCurrency:amount];
-    ```
+}
+...
+```
+</details>
 
-    Swift Example
+<details markdown="1">
+<summary>Swift</summary>
+<br>
 
-    ```
-    class bannerController: UIViewController, BIDMADBannerDelegate, BIDMADOfferwallDelegate {
-      var offerwall: BIDMADOfferwall
-      
-      override func viewDidLoad() {
+```
+class OfferwallController: UIViewController, BIDMADOfferwallDelegate {
+    var offerwall: BIDMADOfferwall
+
+    override func viewDidLoad() {
         offerwall = BIDMADOfferwall(zoneId: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx")!
         offerwall.parentViewController = self
         offerwall.delegate = self
         offerwall.load();
-
-      }
-        
-      func showAd() {
-        if (offerwall.isLoaded) {
-          offerwall.show()
-        }
-      }
-
-      func currencyAction() {
-        let spenditureAmount = 2
-        offerwall.getCurrencyBalance()
-        ...
-        offerwall.spendCurrency(Int32(spenditureAmount))
-      }
     }
-    ```
 
-5. Class Reference
-    1. BIDMADBanner
+    func showAd() {
+        if (offerwall.isLoaded) {
+            offerwall.show()
+        }
+    }
+
+    func getCurrency() {
+        offerwall.getCurrencyBalance()
+    }
+
+    func spendCurrency(amount: Int) {
+        offerwall.spendCurrency(Int32(amount))
+    }
+}
+```
+</details>
+
+### Offerwall 콜백 구현
+
+<details markdown="1">
+<summary>ObjC</summary>
+<br>
+
+```
+- (void)BIDMADOfferwallInitSuccess:(BIDMADOfferwall *)core {
+    NSLog(@"BIDMADOfferwallInitSuccess");
+}
+
+- (void)BIDMADOfferwallInitFail:(BIDMADOfferwall *)core error:(NSString *)error {
+    NSLog(@"BIDMADOfferwallInitFail");
+}
+
+- (void)BIDMADOfferwallLoadAd:(BIDMADOfferwall *)core {
+    NSLog(@"BIDMADOfferwallLoadAd");
+}
+
+- (void)BIDMADOfferwallShowAd:(BIDMADOfferwall *)core {
+    NSLog(@"BIDMADOfferwallShowAd");
+}
+
+- (void)BIDMADOfferwallFailedAd:(BIDMADOfferwall *)core {
+    NSLog(@"BIDMADOfferwallFailedAd");
+}
+
+- (void)BIDMADOfferwallCloseAd:(BIDMADOfferwall *)core {
+    NSLog(@"BIDMADOfferwallCloseAd");
+}
+
+- (void)BIDMADOfferwallGetCurrencyBalanceSuccess:(BIDMADOfferwall *)core currencyName:(NSString *)currencyName balance:(int)balance {
+    NSLog(@"BIDMADOfferwallGetCurrencyBalanceSuccess");    
+}
+
+- (void)BIDMADOfferwallGetCurrencyBalanceFail:(BIDMADOfferwall *)core error:(NSString *)error {
+    NSLog(@"BIDMADOfferwallGetCurrencyBalanceFail");    
+}
+
+- (void)BIDMADOfferwallSpendCurrencySuccess:(BIDMADOfferwall *)core currencyName:(NSString *)currencyName balance:(int)balance {
+    NSLog(@"BIDMADOfferwallSpendCurrencySuccess");    
+}
+
+- (void)BIDMADOfferwallSpendCurrencyFail:(BIDMADOfferwall *)core error:(NSString *)error {
+    NSLog(@"BIDMADOfferwallSpendCurrencyFail");    
+}
+```
+</details>
+
+<details markdown="1">
+<summary>Swift</summary>
+<br>
+
+```
+func bidmadOfferwallInitSuccess(_ core: BIDMADOfferwall!) {
+    print("bidmadOfferwallInitSuccess");
+}
+
+func bidmadOfferwallInitFail(_ core: BIDMADOfferwall!, error: String!) {
+    print("bidmadOfferwallInitFail");
+}
+
+func bidmadOfferwallLoadAd(_ core: BIDMADOfferwall!) {
+    print("bidmadOfferwallLoadAd");
+}
+
+func bidmadOfferwallShowAd(_ core: BIDMADOfferwall!) {
+    print("bidmadOfferwallShowAd");
+}
+
+func bidmadOfferwallFailedAd(_ core: BIDMADOfferwall!) {
+    print("bidmadOfferwallFailedAd");
+}
+
+func bidmadOfferwallCloseAd(_ core: BIDMADOfferwall!) {
+    print("bidmadOfferwallCloseAd");
+}
+
+func bidmadOfferwallGetCurrencyBalanceSuccess(_ core: BIDMADOfferwall!, currencyName: String!, balance: Int32) {
+    print("bidmadOfferwallGetCurrencyBalanceSuccess");
+}
+
+func bidmadOfferwallGetCurrencyBalanceFail(_ core: BIDMADOfferwall!, error: String!) {
+    print("bidmadOfferwallGetCurrencyBalanceFail");
+}
+
+func bidmadOfferwallSpendCurrencySuccess(_ core: BIDMADOfferwall!, currencyName: String!, balance: Int32) {
+    print("bidmadOfferwallSpendCurrencySuccess");
+}
+
+func "bidmadOfferwallSpendCurrencyFail(_ core: BIDMADOfferwall!, error: String!) {
+    print("bidmadOfferwallSpendCurrencyFail");
+}
+```
+</details>
+
+### 구글 애드네트워크 테스트 디바이스 설정
+</details>
+<details markdown="1">
+<summary>세부사항</summary>
+<br>
+
+구글 애드네트워크를 위한 테스트 디바이스 설정은 다음과 같은 과정이 필요합니다.  
+
+광고 통합 앱을 로드하고 광고를 요청합니다.
+콘솔에서 다음과 같은 메시지를 확인합니다.
+
+```
+<Google> To get test ads on this device, set: GADMobileAds.sharedInstance.requestConfiguration.testDeviceIdentifiers = @[ @"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" ];
+```
+콘솔에 기록된 테스트 디바이스 ID를 다음 코드를 통해 세팅하십시오.
+```
+// ObjC
+[BIDMADSetting.sharedInstance setTestDeviceId:"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"];
+
+// Swift
+BIDMADSetting.sharedInstance().testDeviceId = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+```
+
+</details>
+
+### 기타 인터페이스
+
+</details>
+<details markdown="1">
+<summary>리스트</summary>
+<br>
+
+1. App Tracking Transparency and iOS14: [bidmad/SDK](https://github.com/bidmad/SDK/wiki/Preparing-for-iOS-14%5BKOR%5D)
+2. GDPR for Google and Non-Google Ad Networks: [bidmad/SDK](https://github.com/bidmad/SDK/wiki/iOS-GDPR-Guide-%5BKOR%5D)
+</details>
 
-        — (id)initWithParentViewController:(UIViewController *)parentVC rootView:(UIView *)view bannerSize:(bannerSizeType) bannerTypeParam;
-
-        - 배너 광고 초기화 함수
-
-        — (void)requestBannerView;
-
-        - 배너 광고 요청 함수
-
-        — (void)removeAds;
-
-        - 배너 광고 삭제 함수
-
-        @property (nonatomic) bannerSizeType bannerType;
-
-        - 배너광고 사이즈 타입
-        - banner_320_50
-        - banner_300_250
-
-        @property (nonatomic, strong) NSString* zoneID;
-
-        - 배너 ZoneId
-    2. BIDMADBannerDelegate
-
-        — (void)BIDMADBannerAllFail:(BIDMADBanner *)core;
-
-        - 배너 광고 에러 시, 호출
-
-        — (void)BIDMADBannerLoad:(BIDMADBanner *)core;
-
-        - 배너 광고 나올 시, 호출
-
-        — (void)BIDMADBannerClick:(BIDMADBanner*) core;
-
-        - 배너 광고 클릭 시, 호출
-    3. BIDMADInterstitial
-
-        — (id)init;
-
-        - 전면 광고 초기화 함수
-
-        — (void)loadInterstitialView;
-
-        - 전면 광고 요청 함수
-
-        — (void)showInterstitialView;
-
-        - 요청된 전면 광고 보여주는 함수
-
-        @property (nonatomic, strong) UIViewController* parentViewController;
-
-        - 유저 뷰 컨트롤러 설정 프로퍼티
-
-        @property (nonatomic, strong) NSString* zoneID;
-
-        - 전면 ZONE ID
-    4. BIDMADInterstitialDelegate
-
-        — (void)BIDMADInterstitialAllFail:(BIDMADInterstitial *)core;
-
-        - 전면 광고 에러 시, 호출
-
-        — (void)BIDMADInterstitialLoad:(BIDMADInterstitial *)core;
-
-        - 전면 광고 요청 완료 될 시, 호출
-
-        — (void)BIDMADInterstitialClose:(BIDMADInterstitial *)core;
-
-        - 전면 광고 보여줄 시, 호출
-
-        — (void)BIDMADInterstitialShow:(BIDMADInterstitial *)core;
-
-        - 전면 광고 닫힐 시, 호출
-    5. BIDMADReward
-
-        — (id)init;
-
-        - 보상형 광고 초기화 함수
-
-        — (void)loadRewardVideo;
-
-        - 보상형 광고 요청 함수
-
-        — (void)showRewardVideo;
-
-        - 요청된 보상형 광고 보여주는 함수
-
-        @property (nonatomic, strong) UIViewController* parentViewController;
-
-        - 유저 뷰 컨트롤러 설정 프로퍼티
-
-        @property (nonatomic, strong) NSString* zoneID;
-
-        - 보상형 ZONE ID
-    6. BIDMADRewardVideoDelegate
-
-        — (void)BIDMADRewardVideoAllFail:(BIDMADRewardVideo *)core;
-
-        - 보상 광고 에러 시, 호출
-
-        — (void)BIDMADRewardVideoLoad:(BIDMADRewardVideo *)core;
-
-        - 보상 광고 요청 후, 광고가 성공적으로 로드됐을 경우,호출
-
-        — (void)BIDMADRewardVideoShow:(BIDMADRewardVideo *)core;
-
-        - 보상 광고 보여줄 시, 호출
-
-        — (void)BIDMADRewardVideoClose:(BIDMADRewardVideo *)core;
-
-        - 보상 광고 닫힐 시, 호출
-
-        — (void)BIDMADRewardVideoSucceed:(BIDMADRewardVideo *)core;
-
-        - 보상 완료되었을 경우, 호출
-
-        — (void)BIDMADRewardSkipped:(BIDMADRewardVideo *) core;
-
-        - 보상 조건을 만족하지 않은 경우, 호출
-    7. BIDMADOfferwall
-
-        — (id)initWithZoneId:(NSString *)zoneId;
-
-        - Offerwall 광고 초기화 함수
-
-        + (BOOL)isSDKInit;
-
-        - Offerwall 광고 초기화 여부 확인 함수
-
-        — (void)loadOfferwall;
-
-        - Offerwall 광고 요청 함수
-
-        — (void)showOfferwall;
-
-        - 요청된 Offerwall 광고 보여주는 함수
-
-        — (void)getCurrencyBalance;
-
-        - 지급된 Offerwall 재화 확인함수
-
-        — (void)spendCurrency:(int)amount;
-
-        - Offerwall 재화 소모 함수
-
-        @property (nonatomic, strong) UIViewController* parentViewController;
-
-        - 유저 뷰 컨트롤러 설정 프로퍼티
-
-        @property (nonatomic, strong) NSString* zoneID;
-
-        - Offerwall ZONE ID
-    8. BIDMADOfferwallDelegate
-
-        — (void)BIDMADOfferwallInitSuccess:(BIDMADOfferwall *)core;
-
-        - Offerwall 광고 SDK 초기화 성공 시, 호출
-
-        — (void)BIDMADOfferwallInitFail:(BIDMADOfferwall *)core error:(NSString *)error;
-
-        - Offerwall 광고 SDK 초기화 실패 시, 호출
-
-        — (void)BIDMADOfferwallLoadAd:(BIDMADOfferwall *)core;
-
-        - Offerwall 광고 로드 성공 시, 호출
-
-        — (void)BIDMADOfferwallShowAd:(BIDMADOfferwall *)core;
-
-        - 로드한 Offerwall 광고를 Show 했을 시, 호출
-
-        — (void)BIDMADOfferwallFailedAd:(BIDMADOfferwall *)core;
-
-        - Offerwall 광고 로드 실패 시, 호출
-
-        — (void)BIDMADOfferwallCloseAd:(BIDMADOfferwall *)core;
-
-        - Offerwall 광고를 닫을 시, 호출
-
-        — (void)BIDMADOfferwallGetCurrencyBalanceSuccess:(BIDMADOfferwall *)core currencyName:(NSString *)currencyName balance:(int)balance;
-
-        - 지급된 Offerwall 광고 재화 조회 성공 시, 호출
-
-        — (void)BIDMADOfferwallGetCurrencyBalanceFail:(BIDMADOfferwall *)core error:(NSString *)error;
-
-        - 지급된 Offerwall 광고 재화 조회 실패 시, 호출
-
-        — (void)BIDMADOfferwallSpendCurrencySuccess:(BIDMADOfferwall *)core currencyName:(NSString *)currencyName balance:(int)balance;
-
-        - 지급된 Offerwall 광고 재화 소모 성공 시, 호출
-
-        — (void)BIDMADOfferwallSpendCurrencyFail:(BIDMADOfferwall *)core error:(NSString *)error;
-
-        - 지급된 Offerwall 광고 재화 소모 실패 시, 호출
-6. 유의 사항
-    1. 배너 광고와 전면 광고 구현 할 시, Delegate(광고의 상태를 자동으로 호출)를 구현 하여 광고 상태를 참조 할 것.
-    2. 배너 광고 최소 요청 주기 10초이상.
-    3. BIDMADSetting의 초기 설정값
-        - age = 20;
-        - gender = “ ”;
-        - keyword = “ ”;
-        - longtitude = 0;
-        - latitude = 0;
-        - refreshInterval = 60;
-7. 기타
-    1. App Tracking Transparency and iOS14
-
-        [bidmad/SDK](https://github.com/bidmad/SDK/wiki/Preparing-for-iOS-14%5BKOR%5D)
-
-    2. Setting Test Device ID for Google Ad Networks
-
-        ```
-        // ObjC
-        [BIDMADSetting.sharedInstance setTestDeviceId:"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"];
-
-        // Swift
-        BIDMADSetting.sharedInstance().testDeviceId = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-        ```
-
-    3. GDPR for Google and Non-Google Ad Networks
-
-        [bidmad/SDK](https://github.com/bidmad/SDK/wiki/iOS-GDPR-Guide-%5BKOR%5D)
-
-8. Change Logs
-    1. 2019.07.11
-        - ARPM 추가
-    2. 2020.02.18
-        - Admob mediation 추가
-    3. 2020.05.13
-        - MoPub 추가
-    4. 4. 2020.05.18
-        - 네트워크리스트 수정 편집
-    5. 2020.05.25
-        - 테스트 디바이스 추가
-    6. 2020.09.09
-        - IronSource 추가
-        - 국가별 미디에이션 기능 추가
-    7. 2020.09.15
-        - BIDMADBanner 인터페이스 변경
-    8. 2020.09.22
-        - iOS 14.0 대비 SDK 최신화작업
-    9. 2020.11.09
-        - AdFit, UnityAds, AdColony 배너추가
-    10. 2020.11.23
-        - 최소 iOS 버전 11.0으로 상향
-    11. 2021.02.16
-        - BidmadSetting에서 지원하는 일부 인터페이스 Deprecate
-        - Offerwall 광고 타입 지원
-    12. 2021.05.12
-        - BidmadSDK CocoaPods 지원
