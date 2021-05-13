@@ -599,18 +599,16 @@ BIDMADSetting.sharedInstance().testDeviceId = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 
 </details>
 
-### References
+### 참고사항
 
 </details>
 <details markdown="1">
-<summary>List</summary>
+<summary>리스트</summary>
 <br>
 
-- [Class Reference for BidmadSDK-iOS](https://github.com/bidmad/Bidmad-iOS/blob/main/README-Pages/README-ClassReference.md)
-- [BidmadSDK - Get Started [ENG]](https://github.com/bidmad/Bidmad-iOS/blob/main/README-Pages/README(ENG).md))
-- OpenBiddingHelper - Get Started ([KOR](https://github.com/bidmad/Bidmad-iOS/blob/main/README-Pages/README(OBH-KOR).md)|[ENG](https://github.com/bidmad/Bidmad-iOS/blob/main/README-Pages/README(OBH-ENG).md))
-- iOS GDPR Guide ([KOR](https://github.com/bidmad/Bidmad-iOS/blob/main/README-Pages/iOS-GDPR-Guide-%5BKOR%5D.md)|[ENG](https://github.com/bidmad/Bidmad-iOS/blob/main/README-Pages/iOS-GDPR-Guide-%5BENG%5D.md))
-- Apple Privacy Survey[ENG](https://github.com/bidmad/Bidmad-iOS/blob/main/README-Pages/Apple-privacy-survey%5BENG%5D.md)[KOR](https://github.com/bidmad/Bidmad-iOS/blob/main/README-Pages/Apple-privacy-survey%5BKOR%5D.md)
+- [Class Reference for BidmadSDK-iOS](https://github.com/bidmad/Bidmad-iOS/wiki/README-ClassReference)
+- Apple privacy survey ([[ENG]](https://github.com/bidmad/Bidmad-iOS/wiki/Apple-privacy-survey%5BENG%5D) | [[KOR]](https://github.com/bidmad/Bidmad-iOS/wiki/Apple-privacy-survey%5BKOR%5D))
+- iOS GDPR Guide ([[ENG]](https://github.com/bidmad/Bidmad-iOS/wiki/iOS-GDPR-Guide-%5BENG%5D) | [[KOR]](https://github.com/bidmad/Bidmad-iOS/wiki/iOS-GDPR-Guide-%5BKOR%5D))
+- Preparing for iOS 14 ([[ENG]](https://github.com/bidmad/Bidmad-iOS/wiki/Preparing-for-iOS-14%5BENG%5D) | [[KOR]](https://github.com/bidmad/Bidmad-iOS/wiki/Preparing-for-iOS-14%5BKOR%5D))
 
 </details>
-
