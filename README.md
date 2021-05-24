@@ -33,7 +33,7 @@
 
             target "Runner" do
              use_frameworks!
-             pod "BidmadSDK", "2.6.3"
+             pod "BidmadSDK", "2.6.4"
             ```
 
         2. Terminal에서 다음 커맨드 입력
@@ -115,6 +115,9 @@ __weak IBOutlet UIView *bannerContainer;
     [banner setDelegate:self];
     [banner setRefreshInterval:60];
     ...
+}
+...
+- (IBAction)loadBanner:(id)sender {
     [banner requestBannerView]; // Request to load and view the banner
 }
 ...
@@ -143,7 +146,10 @@ class BannerController: UIViewController, BIDMADBannerDelegate {
     banner.refreshInterval = 60
     banner.delegate = self
     ...
-    banner.requestView() // Request to load and view the banner
+  }
+  
+  @IBAction func requestAd(_ sender: Any) {
+      banner.requestView() // Request to load and view the banner
   }
 
   func removeBanner() {
