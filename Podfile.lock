@@ -1,6 +1,6 @@
 PODS:
   - AppLovinSDK (10.0.1)
-  - BidmadSDK (2.6.4):
+  - BidmadSDK (2.6.3):
     - FBAudienceNetwork (= 6.3.0)
     - FBSDKCoreKit (= 9.1.0)
     - Flutter
@@ -68,7 +68,7 @@ PODS:
   - UnityAds (3.7.0)
 
 DEPENDENCIES:
-  - BidmadSDK (= 2.6.4)
+  - BidmadSDK
 
 SPEC REPOS:
   trunk:
@@ -90,7 +90,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   AppLovinSDK: f0c36aca5e8be14ee6c95f7646a4a120752b0f4a
-  BidmadSDK: 710780115bcaa4bc1697756382f42c8b4c744cf9
+  BidmadSDK: c7a7464cf88d007b39508f6c86ace03b3b861e78
   FBAudienceNetwork: 58b4d0f2359783e5bc9ee59f138b4fda43173ac4
   FBSDKCoreKit: a00fe2efd780c195a5e09201bf51c56106245b40
   Flutter: 1c17b7bc8cd10f9f85f9dbc56caee3074756daad
@@ -105,6 +105,6 @@ SPEC CHECKSUMS:
   TapjoySDK: eee3e1c96945a75028cc7572993a645a5f10adbe
   UnityAds: cc929eb40aefa1e8dca8f0d271e6f4c13c8ed9e4
 
-PODFILE CHECKSUM: 32c88c5a43d0803a3a3748fcb578a1ad1add8936
+PODFILE CHECKSUM: 1bfd45403505f26032dfa822925daf4c8ec3c52a
 
 COCOAPODS: 1.10.1
