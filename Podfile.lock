@@ -1,15 +1,32 @@
 PODS:
+  - AdColony (4.6.0)
+  - AdFitSDK (3.7.0)
   - AppLovinSDK (10.0.1)
-  - BidmadSDK (2.6.3):
-    - FBAudienceNetwork (= 6.3.0)
+  - BidmadSDK (2.7.5):
+    - BidmadSDK/WithAdFit (= 2.7.5)
+    - FBAudienceNetwork (= 6.3.1)
     - FBSDKCoreKit (= 9.1.0)
     - Flutter
     - Google-Mobile-Ads-SDK (= 8.3.0)
+    - GoogleMobileAdsMediationAdColony (= 4.6.0.0)
     - GoogleMobileAdsMediationAppLovin (= 10.0.1.0)
-    - GoogleMobileAdsMediationFacebook (= 6.3.0.0)
+    - GoogleMobileAdsMediationFacebook (= 6.3.1.0)
+    - GoogleMobileAdsMediationUnity (= 3.6.2.0)
     - TapjoySDK (= 12.8.0)
-    - UnityAds (= 3.7.0)
-  - FBAudienceNetwork (6.3.0):
+    - UnityAds (= 3.6.2)
+  - BidmadSDK/WithAdFit (2.7.5):
+    - AdFitSDK (= 3.7.0)
+    - FBAudienceNetwork (= 6.3.1)
+    - FBSDKCoreKit (= 9.1.0)
+    - Flutter
+    - Google-Mobile-Ads-SDK (= 8.3.0)
+    - GoogleMobileAdsMediationAdColony (= 4.6.0.0)
+    - GoogleMobileAdsMediationAppLovin (= 10.0.1.0)
+    - GoogleMobileAdsMediationFacebook (= 6.3.1.0)
+    - GoogleMobileAdsMediationUnity (= 3.6.2.0)
+    - TapjoySDK (= 12.8.0)
+    - UnityAds (= 3.6.2)
+  - FBAudienceNetwork (6.3.1):
     - FBSDKCoreKit/Basics (>= 7.0.1)
   - FBSDKCoreKit (9.1.0):
     - FBSDKCoreKit/Basics (= 9.1.0)
@@ -34,12 +51,18 @@ PODS:
     - GoogleUtilities/Network (~> 7.0)
     - "GoogleUtilities/NSData+zlib (~> 7.0)"
     - nanopb (~> 2.30908.0)
+  - GoogleMobileAdsMediationAdColony (4.6.0.0):
+    - AdColony (= 4.6.0.0)
+    - Google-Mobile-Ads-SDK (>= 8.3.0)
   - GoogleMobileAdsMediationAppLovin (10.0.1.0):
     - AppLovinSDK (= 10.0.1)
     - Google-Mobile-Ads-SDK (>= 8.2.0)
-  - GoogleMobileAdsMediationFacebook (6.3.0.0):
-    - FBAudienceNetwork (= 6.3.0)
-    - Google-Mobile-Ads-SDK (>= 8.1.0)
+  - GoogleMobileAdsMediationFacebook (6.3.1.0):
+    - FBAudienceNetwork (= 6.3.1)
+    - Google-Mobile-Ads-SDK (>= 8.2.0)
+  - GoogleMobileAdsMediationUnity (3.6.2.0):
+    - Google-Mobile-Ads-SDK (>= 8.2.0)
+    - UnityAds (= 3.6.2)
   - GoogleUserMessagingPlatform (2.0.0)
   - GoogleUtilities/AppDelegateSwizzler (7.4.1):
     - GoogleUtilities/Environment
@@ -65,13 +88,15 @@ PODS:
   - nanopb/encode (2.30908.0)
   - PromisesObjC (1.2.12)
   - TapjoySDK (12.8.0)
-  - UnityAds (3.7.0)
+  - UnityAds (3.6.2)
 
 DEPENDENCIES:
-  - BidmadSDK
+  - BidmadSDK (= 2.7.5)
 
 SPEC REPOS:
   trunk:
+    - AdColony
+    - AdFitSDK
     - AppLovinSDK
     - BidmadSDK
     - FBAudienceNetwork
@@ -79,8 +104,10 @@ SPEC REPOS:
     - Flutter
     - Google-Mobile-Ads-SDK
     - GoogleAppMeasurement
+    - GoogleMobileAdsMediationAdColony
     - GoogleMobileAdsMediationAppLovin
     - GoogleMobileAdsMediationFacebook
+    - GoogleMobileAdsMediationUnity
     - GoogleUserMessagingPlatform
     - GoogleUtilities
     - nanopb
@@ -89,22 +116,26 @@ SPEC REPOS:
     - UnityAds
 
 SPEC CHECKSUMS:
+  AdColony: a79d5e46d893a94f35edadfde3d08f5d8ae55bf9
+  AdFitSDK: a922cc8104d5ffc5b8af96226842928a2e3b5c23
   AppLovinSDK: f0c36aca5e8be14ee6c95f7646a4a120752b0f4a
-  BidmadSDK: c7a7464cf88d007b39508f6c86ace03b3b861e78
-  FBAudienceNetwork: 58b4d0f2359783e5bc9ee59f138b4fda43173ac4
+  BidmadSDK: 2577236f14a7c1de03b2afc048e8518e6f30b354
+  FBAudienceNetwork: 443e9c5e717e2d80c0253535a57e2681d34d9571
   FBSDKCoreKit: a00fe2efd780c195a5e09201bf51c56106245b40
   Flutter: 1c17b7bc8cd10f9f85f9dbc56caee3074756daad
   Google-Mobile-Ads-SDK: c14f5a63db1414b4ca0ee1539c9f3d700ace96c2
   GoogleAppMeasurement: fd19169c3034975cb934e865e5667bfdce59df7f
+  GoogleMobileAdsMediationAdColony: 18efcf750fd77c9578daee791b55d4064043dc39
   GoogleMobileAdsMediationAppLovin: fa9e545ad14d134d586e01304a83eec40748794b
-  GoogleMobileAdsMediationFacebook: 5bfa4914d1130031b227af13c5f9f4b123371837
+  GoogleMobileAdsMediationFacebook: ede1b57a00d79d04655a6bea56939b5f56153ced
+  GoogleMobileAdsMediationUnity: 44a0a7612eb47b42c9e22a71d7dae5ec88952d0c
   GoogleUserMessagingPlatform: ab890ce5f6620f293a21b6bdd82e416a2c73aeca
   GoogleUtilities: f8a43108b38a68eebe8b3540e1f4f2d28843ce20
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
   TapjoySDK: eee3e1c96945a75028cc7572993a645a5f10adbe
-  UnityAds: cc929eb40aefa1e8dca8f0d271e6f4c13c8ed9e4
+  UnityAds: 97a63bddf0e57257956399538019454879847c1a
 
-PODFILE CHECKSUM: 1bfd45403505f26032dfa822925daf4c8ec3c52a
+PODFILE CHECKSUM: 91e545be707292052f8bb6df051ec80b265c0487
 
 COCOAPODS: 1.10.1
