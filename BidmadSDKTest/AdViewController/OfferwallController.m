@@ -37,6 +37,10 @@
     self.textCurrency.text = [NSString stringWithFormat:@"%d",amount];
 }
 
+- (IBAction)backButtonPressed:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:^{}];
+}
+
 #pragma mark Offerwall Delegate
 - (void)BIDMADOfferwallInitSuccess:(BIDMADOfferwall *)core
 {

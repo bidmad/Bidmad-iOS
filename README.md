@@ -8,8 +8,9 @@
         <summary>애드 네트워크 리스트</summary>
         <br>
         
-        - GoogleManager (Banner, Interstitial, Reward Video)
-        - GoogleAdmob (Banner, Interstitial, Reward Video)
+        - Google Manager (Banner, Interstitial, Reward Video)
+        - Google Admob (Banner, Interstitial, Reward Video, Rewarded Interstitial, App Open)
+        - Pangle (Banner, Interstitial, Reward Video)
         - AppLovin (Reward Video)
         - UnityAds (Reward Video, Banner)
         - Facebook Audience Network (Banner, Interstitial, Reward Video)
@@ -29,11 +30,11 @@
         1. Podfile 내부에 다음 코드 추가
 
             ```
-            platform :ios, "10.0"
+            platform :ios, "11.0"
 
             target "Runner" do
              use_frameworks!
-             pod "BidmadSDK", "2.7.5"
+             pod "BidmadSDK", "2.8.0"
             ```
 
         2. Terminal에서 다음 커맨드 입력
@@ -42,20 +43,24 @@
             pod install
             ```
 
-    - **(비추천)** 수동적인 Framework 추가 방법
-        1. 프레임워크 및 번들을 아래 첨부 그림과 같이 프로젝트에 추가
-
-            ![BidmadSDK%20Interface%20Guide%200fab5e4337eb4ee291be98969dbc7a78/Screenshot_of_Xcode_(2021-05-12_3-10-19_PM).png](https://drive.google.com/uc?export=view&id=1t63jauRPErG2Nf5MUM_mcf1KFpp4ecC_)
-
-        2. Embedded Binaries에 BidmadSDK.framework 추가
-        3. 아래 항목을 Build Phases 탭에 있는 Copy Bundle Resources에 "bidmad_asset.bundle" 추가
-3. Build Settings 
-    1. CocoaPods
-        - Enable Bitcode 를 No로 설정
-    2. Manual Framework Import
-        - Enable Bitcode 를 No로 설정
-        - Other Linker Flag 에 -ObjC Flag 추가
-        - Allow Non-Modular Includes In Framework Modules 를 Yes로 설정
+    - **(비추천)** 수동적인 Framework 추가 방법 **( 수동적인 Framework 추가 방법은 Swift를 지원하지 않습니다 )**
+        1. Link Binary With Libraries 세팅에 다음 이미지와 같이 라이브러리 추가 ( Target → Build Phases → Link Binary With Libraries )<br>
+            ![Link_Binary_With_Libraries](https://i.imgur.com/73OTB5n.png) <br>
+        2. 프레임워크 및 번들을 다음 이미지와 같이 프로젝트에 추가 ( Target → General → Frameworks, Libraries, and Embedded Content )<br>
+            ![Frameworks_Libraries_and_Embedded_Content](https://i.imgur.com/rWvmsaN.png)
+        3. Copy Bundle Resources 에 다음 이미지와 같이 번들 리소스 추가 ( Target → Build Phases → Copy Bundle Resources )<br>
+            ![Copy_Bundle_Resources](https://i.imgur.com/hoGfVJB.png)<br>
+3. Build Settings ( Target → Build Settings )
+    1. CocoaPods 사용자를 위한 세팅<br>
+        - Enable Bitcode 를 No로 설정<br>
+            ![Enable_Bitcode](https://i.imgur.com/aXOBmr1.png)<br>
+    2. 수동적인 Framework 추가 방법 사용자를 위한 세팅<br>
+        - Enable Bitcode 를 No로 설정<br>
+            ![Enable_Bitcode](https://i.imgur.com/aXOBmr1.png)<br>
+        - Other Linker Flag 에 -ObjC Flag 추가<br>
+            ![Other_Linker](https://i.imgur.com/feieEZX.png)<br>
+        - Allow Non-Modular Includes In Framework Modules 를 Yes로 설정<br>
+            ![Allow_Non_Modular_Includes_In_Framework_Modules](https://i.imgur.com/ap4RddO.png)
 4. info.plist 내용 설정
 
     ```
@@ -412,6 +417,323 @@ func bidmadRewardVideoClose(_ core: BIDMADRewardVideo!) {
 
 func bidmadRewardVideoSucceed(_ core: BIDMADRewardVideo!) {
     NSLog(@"bidmadRewardVideoSucceed");
+}
+```
+</details>
+
+### 보상형 전면 광고 로드
+
+보상형 전면 광고는 앱 내부 자연스러운 페이지 전환 시 자동으로 게재되는 광고를 통해 리워드를 제공할 수 있는 새로운 보상형 광고 형식입니다.<br>
+보상형 광고와 달리 사용자는 수신 동의하지 않고도 보상형 전면 광고를 볼 수 있습니다.<br>
+광고 시청에 대한 리워드를 공지하고 사용자가 원할 경우 광고 수신 해제할 수 있는 시작 화면이 필요합니다. (BidmadSDK 샘플 앱을 확인해주십시오)<br>
+보상형 전면 광고 단위에는 건너뛸 수 있는 광고만 게재됩니다.<br>
+
+<details markdown="1">
+<summary>ObjC</summary>
+<br>
+
+```
+#import <BidmadSdk/BIDMADRewardInterstitial.h>
+
+@interface RewardInterstitialViewController : UIViewController<BIDMADRewardInterstitialDelegate>
+···
+@end
+
+@implementation RewardInterstitialViewController {
+    BIDMADRewardInterstitial *rewardInterstitial;
+}
+
+- (void)viewDidLoad {
+    rewardInterstitial = [[BIDMADRewardInterstitial alloc] init];
+    rewardInterstitial.zoneID = @"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx";
+    rewardInterstitial.parentViewController = self;
+    rewardInterstitial.delegate = self;
+    [rewardInterstitial requestRewardInterstitial];
+}
+
+- (void)adShow {
+    if (rewardInterstitial.isLoaded) {
+        [rewardInterstitial showRewardInterstitialView];
+    }
+}
+
+- (void)removeAd {
+    [rewardInterstitial removeRewardInterstitialAds];
+    rewardInterstitial = nil;
+}
+···
+@
+```
+</details>
+
+<details markdown="1">
+<summary>Swift</summary>
+<br>
+
+```
+import BidmadSDK
+
+class RewardInterstitialViewControllerSwift: UIViewController {
+    var rewardInterstititial: BIDMADRewardInterstitial!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        rewardInterstititial = BIDMADRewardInterstitial()
+        rewardInterstititial.zoneID = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+        rewardInterstititial.parentViewController = self
+        rewardInterstititial.delegate = self
+        rewardInterstititial.request()
+    }
+    
+    func adShow() {
+        if (rewardInterstititial.isLoaded) {
+            rewardInterstititial.showView()
+        }
+    }
+    
+    func removeAd() {
+        rewardInterstititial.removeAds()
+        rewardInterstititial = nil
+    }
+}
+```
+</details>
+
+### 보상형 전면 광고 콜백 구현<br>
+
+<details markdown="1">
+<summary>ObjC</summary>
+<br>
+
+```
+- (void)BIDMADRewardInterstitialLoad:(BIDMADRewardInterstitial *)core {
+    NSLog(@"BIDMADRewardInterstitialLoad");
+}
+- (void)BIDMADRewardInterstitialShow:(BIDMADRewardInterstitial *)core {
+    NSLog(@"BIDMADRewardInterstitialShow");
+}
+- (void)BIDMADRewardInterstitialClose:(BIDMADRewardInterstitial *)core {
+    NSLog(@"BIDMADRewardInterstitialClose");
+}
+- (void)BIDMADRewardInterstitialSkipped:(BIDMADRewardInterstitial *)core {
+    NSLog(@"BIDMADRewardInterstitialSkipped");
+}
+- (void)BIDMADRewardInterstitialSuccess:(BIDMADRewardInterstitial *)core {
+    NSLog(@"BIDMADRewardInterstitialSuccess");
+}
+- (void)BIDMADRewardInterstitialAllFail:(BIDMADRewardInterstitial *)core {
+    NSLog(@"BIDMADRewardInterstitialAllFail");
+}
+```
+</details>
+
+<details markdown="1">
+<summary>Swift</summary>
+<br>
+
+```
+extension RewardInterstitialViewControllerSwift: BIDMADRewardInterstitialDelegate {
+    func bidmadRewardInterstitialLoad(_ core: BIDMADRewardInterstitial!) {
+        print("bidmadRewardInterstitialLoad")
+    }
+    func bidmadRewardInterstitialShow(_ core: BIDMADRewardInterstitial!) {
+        print("bidmadRewardInterstitialShow")
+    }
+    func bidmadRewardInterstitialClose(_ core: BIDMADRewardInterstitial!) {
+        print("bidmadRewardInterstitialClose")
+    }
+    func bidmadRewardInterstitialSkipped(_ core: BIDMADRewardInterstitial!) {
+        print("bidmadRewardInterstitialSkipped")
+    }
+    func bidmadRewardInterstitialSuccess(_ core: BIDMADRewardInterstitial!) {
+        print("bidmadRewardInterstitialSuccess")
+    }
+    func bidmadRewardInterstitialAllFail(_ core: BIDMADRewardInterstitial!) {
+        print("bidmadRewardInterstitialAllFail")
+    }
+}
+```
+
+</details>
+
+### App Open 광고 로드
+App Open 광고는 사용자가 앱을 포그라운드로 가져올 때, 앱 로드 화면으로 수익을 올리는 광고 형식입니다. <br>
+App Open 광고는 사용자가 해당 앱을 사용 중임을 알 수 있도록 상단에 앱 로고를 표기합니다.<br>
+BidmadSDK는 더 쉬운 App Open 광고 로드를 위해 registerForAppOpenAdForZoneID 메서드를 제공하고 있습니다.<br>
+registerForAppOpenAdForZoneID 메서드는 사용자가 광고를 닫은 이후에도 다시 광고를 로드합니다.<br>
+
+<details markdown="1">
+<summary>ObjC</summary>
+<br>
+
+```
+@interface AppDelegate () <BIDMADAppOpenAdDelegate>
+···
+@end
+
+@implementation AppDelegate {
+    BIDMADAppOpenAd *bidmadAppOpenAd;
+}
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    bidmadAppOpenAd = [[BIDMADAppOpenAd alloc] init];
+    [bidmadAppOpenAd setDelegate: self];
+    [bidmadAppOpenAd registerForAppOpenAdForZoneID: @"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"];
+    
+    return YES;
+}
+
+- (void)cancelAppOpenAd {
+    // If you no longer wish to load App Open ads, please deregister by calling the following method.
+    [bidmadAppOpenAd deregisterForAppOpenAd];
+}
+```
+</details>
+
+<details markdown="1">
+<summary>Swift</summary>
+<br>
+
+```
+class AppDelegate: UIResponder, UIApplicationDelegate {
+    var window: UIWindow?
+    var appOpen: BIDMADAppOpenAd!
+
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        appOpen = BIDMADAppOpenAd()
+        appOpen.delegate = self
+        appOpen.registerForAppOpenAd(forZoneID: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx")
+        
+        return true
+    }
+    
+    func cancelAppOpenAd {
+        // If you no longer wish to load App Open ads, please deregister by calling the following method.
+        appOpen.deregisterForAppOpenAd()
+    }
+}
+```
+</details>
+
+혹은 다음과 같이 수동으로 App Open 광고를 로드할 수 있습니다.
+사용자가 광고를 닫은 이후 다시 광고가 로드되지 않기 때문에 BIDMADAppOpenAdClose 콜백을 받은 이후 다시 requestAppOpenAd 메서드를 호출해주십시오.
+
+<details markdown="1">
+<summary>ObjC</summary>
+<br>
+
+```
+@interface AppDelegate () <BIDMADAppOpenAdDelegate>
+···
+@end
+
+@implementation AppDelegate {
+    BIDMADAppOpenAd *bidmadAppOpenAd;
+}
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    bidmadAppOpenAd = [[BIDMADAppOpenAd alloc] init];
+    bidmadAppOpenAd.zoneID = @"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx";
+    bidmadAppOpenAd.delegate = self;
+    [bidmadAppOpenAd requestAppOpenAd];
+    return YES;
+}
+
+- (void)applicationDidBecomeActive:(UIApplication *)application {
+    if (bidmadAppOpenAd.isLoaded) {
+        [self.bidmadAppOpenAd showAppOpenAd];
+    }
+}
+
+// App Open Close callback, Re-Load the Ad for later use
+- (void)BIDMADAppOpenAdClose:(BIDMADAppOpenAd *)core {
+    NSLog(@"Callback → BIDMADAppOpenAdClose");
+    [bidmadAppOpenAd requestAppOpenAd];
+}
+
+```
+</details>
+
+<details markdown="1">
+<summary>Swift</summary>
+<br>
+
+```
+class AppDelegate: UIResponder, UIApplicationDelegate {
+    var window: UIWindow?
+    var appOpen: BIDMADAppOpenAd!
+
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        appOpen = BIDMADAppOpenAd()
+        appOpen.zoneID = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+        appOpen.delegate = self;
+        appOpen.request()
+        
+        return true
+    }
+    
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        if (appOpen.isLoaded) {
+            self.appOpen.show()
+        }
+    }
+    
+    // App Open Close callback, Re-Load the Ad for later use
+    func bidmadAppOpenAdClose(_ core: BIDMADAppOpenAd!) {
+        print("bidmadAppOpenAdClose")
+        appOpen.request()
+    }
+}
+```
+</details>
+
+### AppOpen 광고 콜백 구현
+
+<details markdown="1">
+<summary>ObjC</summary>
+<br>
+
+```
+- (void)BIDMADAppOpenAdAllFail:(BIDMADAppOpenAd *)core code:(NSString *)error {
+    NSLog(@"BidmadSDK App Open Ad Callback → AllFail");
+}
+
+- (void)BIDMADAppOpenAdLoad:(BIDMADAppOpenAd *)core {
+    NSLog(@"BidmadSDK App Open Ad Callback → Load");
+}
+
+- (void)BIDMADAppOpenAdShow:(BIDMADAppOpenAd *)core {
+    NSLog(@"BidmadSDK App Open Ad Callback → Show");
+}
+
+- (void)BIDMADAppOpenAdClose:(BIDMADAppOpenAd *)core {
+    NSLog(@"BidmadSDK App Open Ad Callback → Close");
+}
+```
+</details>
+
+<details markdown="1">
+<summary>Swift</summary>
+<br>
+
+```
+extension AppDelegate: BIDMADAppOpenAdDelegate {
+    func bidmadAppOpenAdLoad(_ core: BIDMADAppOpenAd!) {
+        print("bidmadAppOpenAdLoad")
+    }
+    
+    func bidmadAppOpenAdShow(_ core: BIDMADAppOpenAd!) {
+        print("bidmadAppOpenAdShow")
+    }
+    
+    func bidmadAppOpenAdClose(_ core: BIDMADAppOpenAd!) {
+        print("bidmadAppOpenAdClose")
+    }
+    
+    func bidmadAppOpenAdAllFail(_ core: BIDMADAppOpenAd!, code error: String!) {
+        print("bidmadAppOpenAdAllFail")
+    }
 }
 ```
 </details>

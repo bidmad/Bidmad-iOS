@@ -8,8 +8,9 @@
         <summary>Ad Network Lists</summary>
         <br>
         
-        - GoogleManager (Banner, Interstitial, Reward Video)
-        - GoogleAdmob (Banner, Interstitial, Reward Video)
+        - Google Manager (Banner, Interstitial, Reward Video)
+        - Google Admob (Banner, Interstitial, Reward Video, Rewarded Interstitial, App Open)
+        - Pangle (Banner, Interstitial, Reward Video)
         - AppLovin (Reward Video)
         - UnityAds (Reward Video, Banner)
         - Facebook Audience Network (Banner, Interstitial, Reward Video)
@@ -29,11 +30,11 @@
         Add the following code in your project Podfile.
 
         ```
-        platform :ios, "10.0"
+        platform :ios, "11.0"
 
         target "Runner" do
          use_frameworks!
-         pod "BidmadSDK", "2.7.5"
+         pod "BidmadSDK", "2.8.0"
         ```
 
         Followed by entering the following command in Terminal.
@@ -42,20 +43,24 @@
         pod install
         ```
 
-    - **(Not Recommeded)** Manual Framework Embedding Method
-        1. Please add the framework and bundle into your project, just as the image below.
-
-            ![BidmadSDK%20Interface%20Guide%200fab5e4337eb4ee291be98969dbc7a78/Screenshot_of_Xcode_(2021-05-12_3-10-19_PM).png](https://drive.google.com/uc?export=view&id=1t63jauRPErG2Nf5MUM_mcf1KFpp4ecC_)
-
-        2. Add BidmadSDK.framework to Embedded Binaries  
-        3. Add "bidmad_asset.bundle" to Copy Bundle Resources under Build Phases tab
-3. Build Settings 
-    1. CocoaPods
-        - Set 'Enable Bitcode' to No
-    2. Manual Framework Import
-        - Set 'Enable Bitcode' to No
-        - Add -ObjC Flag to Other Linker Flag
-        - Set 'Allow Non-Modular Includes In Framework Modules' to Yes
+    - **(Not Recommeded)** Manual Framework Embedding Method **( Manual Framework Embedding Method does not support Swift )**
+        1. Add libraries to "Link Binary With Libraries" settings as shown in the image below ( Target → Build Phases → Link Binary With Libraries )<br>
+            ![Link_Binary_With_Libraries](https://i.imgur.com/73OTB5n.png) <br>
+        2. Add frameworks and bundles to projects as below ( Target → General → Frameworks, Libraries, and Embedded Content )<br>
+            ![Frameworks_Libraries_and_Embedded_Content](https://i.imgur.com/rWvmsaN.png)
+        3. Add Bundle Resources as shown in the following image to "Copy Bundle Resources" ( Target → Build Phases → Copy Bundle Resources )<br>
+            ![Copy_Bundle_Resources](https://i.imgur.com/hoGfVJB.png)<br>
+    3. Build Settings ( Target → Build Settings )
+    1. Build Setting for CocoaPods Users<br>
+        - Set Enable Bitcode to No<br>
+            ![Enable_Bitcode](https://i.imgur.com/aXOBmr1.png)<br>
+    2. Build Settings for Manual Framework Embedding Method Users<br>
+        - Set Enable Bitcode to No<br>
+            ![Enable_Bitcode](https://i.imgur.com/aXOBmr1.png)<br>
+        - Add -ObjC Flag to Other Linker Flag<br>
+            ![Other_Linker](https://i.imgur.com/feieEZX.png)<br>
+        - Set Allow Non-Modular Includes In Framework Modules to Yes<br>
+            ![Allow_Non_Modular_Includes_In_Framework_Modules](https://i.imgur.com/ap4RddO.png)
 4. info.plist Setting
 
     ```
@@ -408,6 +413,322 @@ func bidmadRewardVideoSucceed(_ core: BIDMADRewardVideo!) {
 ```
 </details>
 
+### Reward Interstitial Ad Load
+
+Reward Interstitial is a new reward-type advertising format that can provide rewarded ads when switching between pages in an app.<br>
+Unlike Reward ads, users can view Reward Interstitial ads without user's consent. However,  the developer needs to provide a screen announcing that there will be a reward for watching an ad and the user can cancel watching the ad if he/she wants. (Please check the BidmadSDK sample app)<br>
+Reward Interstitial Ads only offer skippable ads.<br>
+
+<details markdown="1">
+<summary>ObjC</summary>
+<br>
+
+```
+#import <BidmadSdk/BIDMADRewardInterstitial.h>
+
+@interface RewardInterstitialViewController : UIViewController<BIDMADRewardInterstitialDelegate>
+···
+@end
+
+@implementation RewardInterstitialViewController {
+    BIDMADRewardInterstitial *rewardInterstitial;
+}
+
+- (void)viewDidLoad {
+    rewardInterstitial = [[BIDMADRewardInterstitial alloc] init];
+    rewardInterstitial.zoneID = @"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx";
+    rewardInterstitial.parentViewController = self;
+    rewardInterstitial.delegate = self;
+    [rewardInterstitial requestRewardInterstitial];
+}
+
+- (void)adShow {
+    if (rewardInterstitial.isLoaded) {
+        [rewardInterstitial showRewardInterstitialView];
+    }
+}
+
+- (void)removeAd {
+    [rewardInterstitial removeRewardInterstitialAds];
+    rewardInterstitial = nil;
+}
+···
+@
+```
+</details>
+
+<details markdown="1">
+<summary>Swift</summary>
+<br>
+
+```
+import BidmadSDK
+
+class RewardInterstitialViewControllerSwift: UIViewController {
+    var rewardInterstititial: BIDMADRewardInterstitial!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        rewardInterstititial = BIDMADRewardInterstitial()
+        rewardInterstititial.zoneID = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+        rewardInterstititial.parentViewController = self
+        rewardInterstititial.delegate = self
+        rewardInterstititial.request()
+    }
+    
+    func adShow() {
+        if (rewardInterstititial.isLoaded) {
+            rewardInterstititial.showView()
+        }
+    }
+    
+    func removeAd() {
+        rewardInterstititial.removeAds()
+        rewardInterstititial = nil
+    }
+}
+```
+</details>
+
+### Reward Interstitial Ad Callback Implementation<br>
+
+<details markdown="1">
+<summary>ObjC</summary>
+<br>
+
+```
+- (void)BIDMADRewardInterstitialLoad:(BIDMADRewardInterstitial *)core {
+    NSLog(@"BIDMADRewardInterstitialLoad");
+}
+- (void)BIDMADRewardInterstitialShow:(BIDMADRewardInterstitial *)core {
+    NSLog(@"BIDMADRewardInterstitialShow");
+}
+- (void)BIDMADRewardInterstitialClose:(BIDMADRewardInterstitial *)core {
+    NSLog(@"BIDMADRewardInterstitialClose");
+}
+- (void)BIDMADRewardInterstitialSkipped:(BIDMADRewardInterstitial *)core {
+    NSLog(@"BIDMADRewardInterstitialSkipped");
+}
+- (void)BIDMADRewardInterstitialSuccess:(BIDMADRewardInterstitial *)core {
+    NSLog(@"BIDMADRewardInterstitialSuccess");
+}
+- (void)BIDMADRewardInterstitialAllFail:(BIDMADRewardInterstitial *)core {
+    NSLog(@"BIDMADRewardInterstitialAllFail");
+}
+```
+</details>
+
+<details markdown="1">
+<summary>Swift</summary>
+<br>
+
+```
+extension RewardInterstitialViewControllerSwift: BIDMADRewardInterstitialDelegate {
+    func bidmadRewardInterstitialLoad(_ core: BIDMADRewardInterstitial!) {
+        print("bidmadRewardInterstitialLoad")
+    }
+    func bidmadRewardInterstitialShow(_ core: BIDMADRewardInterstitial!) {
+        print("bidmadRewardInterstitialShow")
+    }
+    func bidmadRewardInterstitialClose(_ core: BIDMADRewardInterstitial!) {
+        print("bidmadRewardInterstitialClose")
+    }
+    func bidmadRewardInterstitialSkipped(_ core: BIDMADRewardInterstitial!) {
+        print("bidmadRewardInterstitialSkipped")
+    }
+    func bidmadRewardInterstitialSuccess(_ core: BIDMADRewardInterstitial!) {
+        print("bidmadRewardInterstitialSuccess")
+    }
+    func bidmadRewardInterstitialAllFail(_ core: BIDMADRewardInterstitial!) {
+        print("bidmadRewardInterstitialAllFail")
+    }
+}
+```
+
+</details>
+
+### Loading an App Open Ad
+App Open ads are shown to users when the app is brought to the foreground, monetizing the app loading screen.<br>
+App Open Ads show app-branding on the top of the ad view so that the app users can be notified that they are using your app.<br>
+BidmadSDK provides registerForAppOpenAdForZoneID method for easier App Open ad load.<br>
+The registerForAppOpenAdForZoneID method reloads ads when the user closes the App Open Ad.<br>
+
+<details markdown="1">
+<summary>ObjC</summary>
+<br>
+
+```
+@interface AppDelegate () <BIDMADAppOpenAdDelegate>
+···
+@end
+
+@implementation AppDelegate {
+    BIDMADAppOpenAd *bidmadAppOpenAd;
+}
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    bidmadAppOpenAd = [[BIDMADAppOpenAd alloc] init];
+    [bidmadAppOpenAd setDelegate: self];
+    [bidmadAppOpenAd registerForAppOpenAdForZoneID: @"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"];
+    
+    return YES;
+}
+
+- (void)cancelAppOpenAd {
+    // If you no longer wish to load App Open ads, please deregister by calling the following method.
+    [bidmadAppOpenAd deregisterForAppOpenAd];
+}
+```
+</details>
+
+<details markdown="1">
+<summary>Swift</summary>
+<br>
+
+```
+class AppDelegate: UIResponder, UIApplicationDelegate {
+    var window: UIWindow?
+    var appOpen: BIDMADAppOpenAd!
+
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        appOpen = BIDMADAppOpenAd()
+        appOpen.delegate = self
+        appOpen.registerForAppOpenAd(forZoneID: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx")
+        
+        return true
+    }
+    
+    func cancelAppOpenAd {
+        // If you no longer wish to load App Open ads, please deregister by calling the following method.
+        appOpen.deregisterForAppOpenAd()
+    }
+}
+```
+</details>
+
+Alternatively, you can load App Open ads manually as the code written below.<br>
+Please call the requestAppOpenAd method again after receiving the BIDMADAppOpenAdClose callback as the ad does not load again after the user closes the ad.
+
+<details markdown="1">
+<summary>ObjC</summary>
+<br>
+
+```
+@interface AppDelegate () <BIDMADAppOpenAdDelegate>
+···
+@end
+
+@implementation AppDelegate {
+    BIDMADAppOpenAd *bidmadAppOpenAd;
+}
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    bidmadAppOpenAd = [[BIDMADAppOpenAd alloc] init];
+    bidmadAppOpenAd.zoneID = @"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx";
+    bidmadAppOpenAd.delegate = self;
+    [bidmadAppOpenAd requestAppOpenAd];
+    return YES;
+}
+
+- (void)applicationDidBecomeActive:(UIApplication *)application {
+    if (bidmadAppOpenAd.isLoaded) {
+        [self.bidmadAppOpenAd showAppOpenAd];
+    }
+}
+
+// App Open Close callback, Re-Load the Ad for later use
+- (void)BIDMADAppOpenAdClose:(BIDMADAppOpenAd *)core {
+    NSLog(@"Callback → BIDMADAppOpenAdClose");
+    [bidmadAppOpenAd requestAppOpenAd];
+}
+
+```
+</details>
+
+<details markdown="1">
+<summary>Swift</summary>
+<br>
+
+```
+class AppDelegate: UIResponder, UIApplicationDelegate {
+    var window: UIWindow?
+    var appOpen: BIDMADAppOpenAd!
+
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        appOpen = BIDMADAppOpenAd()
+        appOpen.zoneID = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+        appOpen.delegate = self;
+        appOpen.request()
+        
+        return true
+    }
+    
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        if (appOpen.isLoaded) {
+            self.appOpen.show()
+        }
+    }
+    
+    // App Open Close callback, Re-Load the Ad for later use
+    func bidmadAppOpenAdClose(_ core: BIDMADAppOpenAd!) {
+        print("bidmadAppOpenAdClose")
+        appOpen.request()
+    }
+}
+```
+</details>
+
+### AppOpen Ad Callback Implementation
+
+<details markdown="1">
+<summary>ObjC</summary>
+<br>
+
+```
+- (void)BIDMADAppOpenAdAllFail:(BIDMADAppOpenAd *)core code:(NSString *)error {
+    NSLog(@"BidmadSDK App Open Ad Callback → AllFail");
+}
+
+- (void)BIDMADAppOpenAdLoad:(BIDMADAppOpenAd *)core {
+    NSLog(@"BidmadSDK App Open Ad Callback → Load");
+}
+
+- (void)BIDMADAppOpenAdShow:(BIDMADAppOpenAd *)core {
+    NSLog(@"BidmadSDK App Open Ad Callback → Show");
+}
+
+- (void)BIDMADAppOpenAdClose:(BIDMADAppOpenAd *)core {
+    NSLog(@"BidmadSDK App Open Ad Callback → Close");
+}
+```
+</details>
+
+<details markdown="1">
+<summary>Swift</summary>
+<br>
+
+```
+extension AppDelegate: BIDMADAppOpenAdDelegate {
+    func bidmadAppOpenAdLoad(_ core: BIDMADAppOpenAd!) {
+        print("bidmadAppOpenAdLoad")
+    }
+    
+    func bidmadAppOpenAdShow(_ core: BIDMADAppOpenAd!) {
+        print("bidmadAppOpenAdShow")
+    }
+    
+    func bidmadAppOpenAdClose(_ core: BIDMADAppOpenAd!) {
+        print("bidmadAppOpenAdClose")
+    }
+    
+    func bidmadAppOpenAdAllFail(_ core: BIDMADAppOpenAd!, code error: String!) {
+        print("bidmadAppOpenAdAllFail")
+    }
+}
+```
+</details>
+
 ### Offerwall Ad Load and Currency Load
 
 <details markdown="1">
@@ -603,7 +924,7 @@ BIDMADSetting.sharedInstance().testDeviceId = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 
 </details>
 
-### 참고사항
+### References
 
 </details>
 <details markdown="1">

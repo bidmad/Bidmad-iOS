@@ -8,16 +8,16 @@
 
 #import "AppDelegate.h"
 #import <AppTrackingTransparency/AppTrackingTransparency.h>
-#import <BidmadSDK/BidmadSDK.h>
-
 @import BidmadSDK;
 
 #define DEBUG_MODE
-@interface AppDelegate ()
+@interface AppDelegate () <BIDMADAppOpenAdDelegate>
 
 @end
 
-@implementation AppDelegate
+@implementation AppDelegate {
+    BIDMADAppOpenAd *bidmadAppOpenAd;
+}
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -31,35 +31,88 @@
             NSLog(@" IDFA  iOS 14 이하 버전 ");
         }
     }];
+    
+    [[BIDMADSetting sharedInstance] setIsDebug:YES];
+    bidmadAppOpenAd = [[BIDMADAppOpenAd alloc] init];
+    [bidmadAppOpenAd setDelegate: self];
+    [bidmadAppOpenAd registerForAppOpenAdForZoneID: @"0ddd6401-0f19-49ee-b1f9-63e910f92e77"];
     return YES;
 }
 
-
-- (void)applicationWillResignActive:(UIApplication *)application {
-    // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-    // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
+- (void)cancelAppOpenAd {
+    [bidmadAppOpenAd deregisterForAppOpenAd];
 }
 
-
-- (void)applicationDidEnterBackground:(UIApplication *)application {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+- (void)reloadAppOpenAd {
+    [bidmadAppOpenAd registerForAppOpenAdForZoneID: @"0ddd6401-0f19-49ee-b1f9-63e910f92e77"];
 }
 
-
-- (void)applicationWillEnterForeground:(UIApplication *)application {
-    // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
+- (void)BIDMADAppOpenAdAllFail:(BIDMADAppOpenAd *)core code:(NSString *)error {
+    NSLog(@"BidmadSDK App Open Ad Callback → AllFail");
+    [self callbackLabelViewShow: @"App Open Ad Callback → AllFail"];
 }
 
-
-- (void)applicationDidBecomeActive:(UIApplication *)application {
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+- (void)BIDMADAppOpenAdLoad:(BIDMADAppOpenAd *)core {
+    NSLog(@"BidmadSDK App Open Ad Callback → Load");
+    [self callbackLabelViewShow: @"App Open Ad Callback → Load"];
 }
 
-
-- (void)applicationWillTerminate:(UIApplication *)application {
-    // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+- (void)BIDMADAppOpenAdShow:(BIDMADAppOpenAd *)core {
+    NSLog(@"BidmadSDK App Open Ad Callback → Show");
+    [self callbackLabelViewShow: @"App Open Ad Callback → Show"];
 }
+
+- (void)BIDMADAppOpenAdClose:(BIDMADAppOpenAd *)core {
+    NSLog(@"BidmadSDK App Open Ad Callback → Close");
+    [self callbackLabelViewShow: @"App Open Ad Callback → Close"];
+}
+
+- (void)callbackLabelViewShow: (NSString *)callbackText {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        UIViewController *topVC = self.window.rootViewController;
+        while (topVC.presentedViewController != nil) {
+            topVC = topVC.presentedViewController;
+        }
+        
+        CGFloat notiSizeWidth = 320;
+        CGFloat notiSizeHeight = 50;
+        CGFloat x = ([[topVC view] frame].size.width - notiSizeWidth) / 2;
+        CGFloat y = ([[topVC view] frame].size.height - notiSizeHeight) / 2;
+        UILabel *smallNotificationView = [[UILabel alloc] initWithFrame: CGRectMake(x, y, notiSizeWidth, notiSizeHeight)];
+        [smallNotificationView setAlpha:0.0f];
+        [smallNotificationView setText:callbackText];
+        [smallNotificationView setTextColor: [UIColor systemBlueColor]];
+        [smallNotificationView setAdjustsFontSizeToFitWidth:YES];
+        [smallNotificationView setFont:[UIFont systemFontOfSize:24.0f weight:UIFontWeightBold]];
+        
+        [[topVC view] addSubview:smallNotificationView];
+        [UIView animateWithDuration:1.0f animations:^{
+            [smallNotificationView setAlpha:1.0f];
+        } completion:^(BOOL finished) {
+            dispatch_after(4, dispatch_get_main_queue(), ^{
+                [UIView animateWithDuration:1.0f animations:^{
+                    [smallNotificationView setAlpha:0.0f];
+                } completion:^(BOOL finished) {
+                    [smallNotificationView removeFromSuperview];
+                }];
+            });
+        }];
+    });
+}
+
+- (void)applicationWillResignActive:(UIApplication *)application {}
+
+
+- (void)applicationDidEnterBackground:(UIApplication *)application {}
+
+
+- (void)applicationWillEnterForeground:(UIApplication *)application {}
+
+
+- (void)applicationDidBecomeActive:(UIApplication *)application {}
+
+
+- (void)applicationWillTerminate:(UIApplication *)application {}
 
 
 @end

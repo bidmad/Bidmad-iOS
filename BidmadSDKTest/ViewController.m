@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "AppDelegate.h"
 
 @interface ViewController ()
 
@@ -16,7 +17,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+}
+
+- (IBAction)cancelAppOpenAdButtonPressed:(id)sender {
+    [(AppDelegate *) [[UIApplication sharedApplication] delegate] cancelAppOpenAd];
+}
+
+- (IBAction)reloadAppOpenAdButtonPressed:(id)sender {
+    [(AppDelegate *) [[UIApplication sharedApplication] delegate] reloadAppOpenAd];
 }
 
 - (void)didReceiveMemoryWarning {

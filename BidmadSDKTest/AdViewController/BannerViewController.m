@@ -29,12 +29,14 @@
           GADMobileAds.sharedInstance.requestConfiguration.testDeviceIdentifiers = @[ @"xxxxxx" ] 문구의, xxxxxx(애드몹에서 인식하는 사용자의 폰 ID)  스트링을 복사하여 그대로 setTestDevice 함수의 파라미터로 넣어주시면 됩니다.이때, Simulator에서 실행시에는 kGADSimulatorID를 넣어주시면 됩니다.(아래 코드 참조)
      */
     
+    
+//    [[BIDMADSetting sharedInstance] setTestDeviceId:@"YOUR_TEST_DEVICE_ID"];
+    
     [BIDMADSetting sharedInstance].isDebug = YES;
     banner = [[BIDMADBanner alloc] initWithParentViewController:self rootView:self.BannerContainer bannerSize:banner_320_50];
-    [banner setZoneID:@"2ecb6177-2a6a-4e13-b10f-4f2d804c491f"];
+    [banner setZoneID:@"1c3e3085-333f-45af-8427-2810c26a72fc"];
     [banner setDelegate:self];
     [banner setRefreshInterval:60];
-//    [banner setTestDevice:@"b763d82d5e9bed4d0d235b490e6b81e6"];
 }
 
 - (IBAction)loadBanner:(id)sender {
@@ -66,9 +68,17 @@
 -(void)BIDMADBannerLoad:(BIDMADBanner *)core{
     self.bannerCallbackDisplay.text = @"BIDMADBannerLoad";
     NSLog(@"APPUI BIDMADBannerLoad");
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+//        [banner removeAds];
+//    });
 }
 
 - (IBAction)backBtn:(id)sender {
+    NSLog(@"Back Button Pressed");
+    
     [banner removeAds];     //광고 삭제
+    [self dismissViewControllerAnimated:YES completion:^{
+        // DO NOTHING;
+    }];
 }
 @end

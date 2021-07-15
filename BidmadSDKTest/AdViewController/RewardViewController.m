@@ -43,9 +43,11 @@
       4. 한번 광고를 시청하고나면,첫번째 광고를 다 보고 난 후 Close 버튼을 통해서 아래의 BIDMADRewardVideoClose 콜백함수가 불리게 됩니다. 이때, 미리 다음 광고영상을 loadRewardVideo를 통해서 미리 로드하길 권장합니다.
    */
     
+//    [[BIDMADSetting sharedInstance] setTestDeviceId:@"YOUR_TEST_DEVICE_ID"];
+    
     self.reward = [[BIDMADRewardVideo alloc]init];
     [[BIDMADSetting sharedInstance]setIsDebug:YES];
-    [self.reward setZoneID:@"3cac39be-4069-4bda-9b25-6412ff76e698"];//테스트 존아이디입니다. 프로젝트 적용시 그대로 사용하시면 안됩니다.
+    [self.reward setZoneID:@"29e1ef67-98d2-47b3-9fa2-9192327dd75d"];//테스트 존아이디입니다. 프로젝트 적용시 그대로 사용하시면 안됩니다.
     [self.reward setParentViewController:self];
     [self.reward setDelegate:self];
     
@@ -63,6 +65,18 @@
         [self.reward showRewardVideo];
     }
 }
+- (IBAction)backBtnPressed:(id)sender {
+    NSLog(@"Back Button Pressed");
+    
+    if (self.reward != nil) {
+//        [self.reward removeRewardADS];
+        self.reward = nil;
+    }
+    
+    [self dismissViewControllerAnimated:YES completion:^{
+        // DO NOTHING;
+    }];
+}
 
 #pragma mark Reward Delegate
 - (void)BIDMADRewardVideoLoad:(BIDMADRewardVideo *)core {
@@ -74,6 +88,7 @@
 - (void)BIDMADRewardVideoShow:(BIDMADRewardVideo *)core {
     self.rewardCallbackDisplay.text = @"BIDMADRewardVideoShow";
     NSLog(@"BIDMADRewardVideoShow Reload");
+    
     self.reward = [[BIDMADRewardVideo alloc]init];
     [self.reward setZoneID:core.zoneID];//테스트 존아이디입니다. 프로젝트 적용시 그대로 사용하시면 안됩니다.
     [self.reward setParentViewController:self];
