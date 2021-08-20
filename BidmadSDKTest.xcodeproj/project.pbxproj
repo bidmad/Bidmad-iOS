@@ -13,7 +13,6 @@
 		26B1BE4B2692CE58003119FE /* RewardInterstitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26B1BE4A2692CE58003119FE /* RewardInterstitialViewController.m */; };
 		26B1BE4E2692D1A9003119FE /* SegueInterimAdVIew.m in Sources */ = {isa = PBXBuildFile; fileRef = 26B1BE4D2692D1A9003119FE /* SegueInterimAdVIew.m */; };
 		26B4FEF42694398E0004A818 /* AppOpenAdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26B4FEF32694398E0004A818 /* AppOpenAdViewController.m */; };
-		26B4FEF9269594120004A818 /* BidmadSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26B4FEF8269594120004A818 /* BidmadSDK.framework */; };
 		46AB202B218816CF00A2D82F /* RewardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46AB202A218816CF00A2D82F /* RewardViewController.m */; };
 		46EFA9E01F69047F002B7C96 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 46EFA9DF1F69047F002B7C96 /* AppDelegate.m */; };
 		46EFA9E31F69047F002B7C96 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46EFA9E21F69047F002B7C96 /* ViewController.m */; };
@@ -48,7 +47,6 @@
 		26B1BE4D2692D1A9003119FE /* SegueInterimAdVIew.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SegueInterimAdVIew.m; sourceTree = "<group>"; };
 		26B4FEF22694398E0004A818 /* AppOpenAdViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppOpenAdViewController.h; sourceTree = "<group>"; };
 		26B4FEF32694398E0004A818 /* AppOpenAdViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppOpenAdViewController.m; sourceTree = "<group>"; };
-		26B4FEF8269594120004A818 /* BidmadSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BidmadSDK.framework; sourceTree = "<group>"; };
 		46AB2029218816CF00A2D82F /* RewardViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RewardViewController.h; sourceTree = "<group>"; };
 		46AB202A218816CF00A2D82F /* RewardViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RewardViewController.m; sourceTree = "<group>"; };
 		46BFAB23221EAB6800C2AC3D /* BidmadSDKTest.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BidmadSDKTest.entitlements; sourceTree = "<group>"; };
@@ -77,7 +75,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				26B4FEF9269594120004A818 /* BidmadSDK.framework in Frameworks */,
 				148A307F691CE2547AFE7C46 /* Pods_BidmadSDKTest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -129,7 +126,6 @@
 		46EFA9DA1F69047F002B7C96 /* BidmadSDKTest */ = {
 			isa = PBXGroup;
 			children = (
-				26B4FEF8269594120004A818 /* BidmadSDK.framework */,
 				46BFAB23221EAB6800C2AC3D /* BidmadSDKTest.entitlements */,
 				265E6470264BB3720006C750 /* main.m */,
 				46EFA9DE1F69047F002B7C96 /* AppDelegate.h */,
@@ -300,7 +296,6 @@
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/Flutter/Flutter.framework/Flutter",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -309,7 +304,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Flutter.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
