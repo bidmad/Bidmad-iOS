@@ -34,7 +34,7 @@
 
             target "Runner" do
              use_frameworks!
-             pod "BidmadSDK", "2.8.0"
+             pod "BidmadSDK", "2.9.0"
             ```
 
         2. Terminal에서 다음 커맨드 입력
