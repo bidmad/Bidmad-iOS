@@ -23,7 +23,7 @@
 ## BidmadSDK Installation Guide
 
 1. 개발 환경
-    - Xcode 12.0 버전
+    - Xcode 13.2 버전
     - BASE SDK : iOS
     - iOS Deployment Target : 11.0
 2. SDK설치 방법
