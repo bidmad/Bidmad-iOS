@@ -7,11 +7,12 @@
 //
 
 #import "AppOpenAdViewController.h"
-#import <BidmadSDK/BIDMADAppOpenAd.h>
+@import OpenBiddingHelper;
 
-@interface AppOpenAdViewController () <BIDMADAppOpenAdDelegate>
+@interface AppOpenAdViewController () <OpenBiddingAppOpenAdDelegate> {
+    BidmadAppOpenAd *appOpenAd;
+}
 @property (weak, nonatomic) IBOutlet UILabel *callbackLabel;
-@property (strong, nonatomic) BIDMADAppOpenAd *bidmadAppOpenAd;
 @end
 
 @implementation AppOpenAdViewController
@@ -22,17 +23,24 @@
     
     [[BIDMADSetting sharedInstance] setIsDebug:YES];
     
-    self.bidmadAppOpenAd = [[BIDMADAppOpenAd alloc] init];
-    self.bidmadAppOpenAd.zoneID = @"0ddd6401-0f19-49ee-b1f9-63e910f92e77";
-    self.bidmadAppOpenAd.delegate = self;
+    self->appOpenAd = [[BidmadAppOpenAd alloc] initWith:self zoneID:@"0ddd6401-0f19-49ee-b1f9-63e910f92e77"];
+    [self->appOpenAd setDelegate: self];
+    
+    // Bidmad AppOpenAd Ads can be set with Custom Unique ID with the following method.
+    [self->appOpenAd setCUID:@"YOUR ENCRYPTED ID"];
+    [self->appOpenAd setCUID:@""];
 }
 
 - (IBAction)buttonPressAction:(UIButton *)sender {
     if ([sender.titleLabel.text isEqualToString:@"Load"]) {
-        [self.bidmadAppOpenAd requestAppOpenAd];
+        [self->appOpenAd load];
     } else if ([sender.titleLabel.text isEqualToString:@"Show"]) {
-        if (self.bidmadAppOpenAd.isLoaded) {
-            [self.bidmadAppOpenAd showAppOpenAd];
+        if ([self->appOpenAd isLoaded]) {
+            [self->appOpenAd show];
+        }
+    } else if ([sender.titleLabel.text isEqualToString:@"Deregister"]) {
+        if (self->appOpenAd != nil) {
+            [self->appOpenAd deregisterForAppOpenAd];
         }
     }
 }
@@ -41,33 +49,31 @@
     [self dismissViewControllerAnimated:YES completion:^{}];
 }
 
-- (void)BIDMADAppOpenAdClose:(BIDMADAppOpenAd *)core {
-    NSLog(@"Callback → BIDMADAppOpenAdClose");
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self.callbackLabel setText:@"Close"];
-    });
+#pragma mark AppOpenAd Delegate Methods
+
+- (void)OpenBiddingAppOpenAdLoad:(OpenBiddingAppOpenAd *)core {
+    NSLog(@"Bidmad Sample App AppOpenAd Load");
+    [self.callbackLabel setText:@"Load"];
 }
 
-- (void)BIDMADAppOpenAdLoad:(BIDMADAppOpenAd *)core {
-    NSLog(@"Callback → BIDMADAppOpenAdLoad");
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self.callbackLabel setText:@"Load"];
-    });
-    
+- (void)OpenBiddingAppOpenAdShow:(OpenBiddingAppOpenAd *)core {
+    NSLog(@"Bidmad Sample App AppOpenAd Show");
+    [self.callbackLabel setText:@"Show"];
 }
 
-- (void)BIDMADAppOpenAdShow:(BIDMADAppOpenAd *)core {
-    NSLog(@"Callback → BIDMADAppOpenAdShow");
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self.callbackLabel setText:@"Show"];
-    });
+- (void)OpenBiddingAppOpenAdClick:(OpenBiddingAppOpenAd *)core {
+    NSLog(@"Bidmad Sample App AppOpenAd Click");
+    [self.callbackLabel setText:@"Click"];
 }
 
-- (void)BIDMADAppOpenAdAllFail:(BIDMADAppOpenAd *)core code:(NSString *)error {
-    NSLog(@"Callback → BIDMADAppOpenAdAllFail");
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self.callbackLabel setText:@"Fail"];
-    });
+- (void)OpenBiddingAppOpenAdClose:(OpenBiddingAppOpenAd *)core {
+    NSLog(@"Bidmad Sample App AppOpenAd Close");
+    [self.callbackLabel setText:@"Close"];
+}
+
+- (void)OpenBiddingAppOpenAdAllFail:(OpenBiddingAppOpenAd *)core code:(NSString *)error {
+    NSLog(@"Bidmad Sample App AppOpenAd All Fail");
+    [self.callbackLabel setText:@"All Fail"];
 }
 
 @end

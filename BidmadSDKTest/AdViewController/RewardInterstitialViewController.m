@@ -7,15 +7,15 @@
 //
 
 #import "RewardInterstitialViewController.h"
-#import <BidmadSDK/BIDMADSetting.h>
-@import GoogleMobileAds;
+@import OpenBiddingHelper;
 
-@interface RewardInterstitialViewController ()
+@interface RewardInterstitialViewController () <OpenBiddingRewardInterstitialDelegate>
 
 @end
 
 @implementation RewardInterstitialViewController {
-    BIDMADRewardInterstitial *rewardInterstitial;
+    BidmadRewardInterstitialAd *rewardInterstitialAd;
+    
     SegueInterimAdVIew *adView;
     UIButton *reloadButton;
     UILabel *callbackLabelView;
@@ -32,38 +32,41 @@
     adView = [[SegueInterimAdVIew alloc] init];
     CGRect viewControllerBoundaries = [[self view] bounds];
     
-    reloadButton = [[UIButton alloc] initWithFrame:CGRectMake((viewControllerBoundaries.size.width - 150) / 2,
-                                                              (viewControllerBoundaries.size.height - 50) / 2,
-                                                              150,
-                                                              50)];
-    [reloadButton setTitle:@"RELOAD AD" forState:UIControlStateNormal];
-    [reloadButton addTarget:self action:@selector(reloadButtonPressed) forControlEvents:UIControlEventTouchUpInside];
-    [reloadButton setBackgroundColor: UIColor.systemGreenColor];
-    [reloadButton.layer setCornerRadius: 10];
-    [reloadButton.layer setShadowRadius: 3];
-    [reloadButton.layer setShadowColor: UIColor.grayColor.CGColor];
-    [reloadButton.layer setShadowOpacity: 0.4];
-    [reloadButton.layer setShadowOffset:CGSizeMake(0, 2)];
-    [[self view] addSubview: reloadButton];
+    // MAKE RELOAD BUTTON
+        reloadButton = [[UIButton alloc] initWithFrame:CGRectMake((viewControllerBoundaries.size.width - 150) / 2,
+                                                                  (viewControllerBoundaries.size.height - 50) / 2,
+                                                                  150, 50)];
+        [reloadButton setTitle:@"RELOAD AD" forState:UIControlStateNormal];
+        [reloadButton addTarget:self action:@selector(reloadButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+        [reloadButton setBackgroundColor: UIColor.systemGreenColor];
+        [reloadButton.layer setCornerRadius: 10];
+        [reloadButton.layer setShadowRadius: 3];
+        [reloadButton.layer setShadowColor: UIColor.grayColor.CGColor];
+        [reloadButton.layer setShadowOpacity: 0.4];
+        [reloadButton.layer setShadowOffset:CGSizeMake(0, 2)];
+        [[self view] addSubview: reloadButton];
+        
+        [adView setFrame:CGRectMake((viewControllerBoundaries.size.width - [adView frame].size.width) / 2,
+                                    (viewControllerBoundaries.size.height - [adView frame].size.height) / 2,
+                                    [adView frame].size.width,
+                                    [adView frame].size.height)];
+        [[self view] addSubview: adView];
+        
+        callbackLabelView = [[UILabel alloc] initWithFrame:CGRectMake((viewControllerBoundaries.size.width - 320) / 2,
+                                                                      (viewControllerBoundaries.size.height - 100) / 4,
+                                                                      320, 100)];
+        [adView setAdAvailableDelegate: self];
     
-    [adView setFrame:CGRectMake((viewControllerBoundaries.size.width - [adView frame].size.width) / 2,
-                                (viewControllerBoundaries.size.height - [adView frame].size.height) / 2,
-                                [adView frame].size.width,
-                                [adView frame].size.height)];
-    [[self view] addSubview: adView];
-    
-    callbackLabelView = [[UILabel alloc] initWithFrame:CGRectMake((viewControllerBoundaries.size.width - 320) / 2,
-                                                                  (viewControllerBoundaries.size.height - 100) / 4,
-                                                                  320, 100)];
-    [callbackLabelView setText: @"No Callback Yet"];
-    [callbackLabelView setTextAlignment:NSTextAlignmentCenter];
-    [callbackLabelView setFont:[UIFont systemFontOfSize:22]];
-    [[self view] addSubview: callbackLabelView];
-    [adView setAdAvailableDelegate: self];
+    // Set Callback Text and Delegate
+        [callbackLabelView setText: @"No Callback Yet"];
+        [callbackLabelView setTextAlignment:NSTextAlignmentCenter];
+        [callbackLabelView setFont:[UIFont systemFontOfSize:22]];
+        [[self view] addSubview: callbackLabelView];
 }
 
 - (void)reloadButtonPressed {
-    [self setupRewardInterstitial];
+    if (![rewardInterstitialAd isLoaded])
+        [self setupRewardInterstitial];
     
     CGRect viewControllerBoundaries = [[self view] bounds];
     adView = nil;
@@ -77,25 +80,24 @@
 }
 
 - (void)setupRewardInterstitial {
-    rewardInterstitial = nil;
-    rewardInterstitial = [[BIDMADRewardInterstitial alloc] init];
-    rewardInterstitial.zoneID = @"ee6e601d-2232-421b-a429-2e7163a8b41f";
-    rewardInterstitial.parentViewController = self;
-    rewardInterstitial.delegate = self;
-    [rewardInterstitial requestRewardInterstitial];
+    rewardInterstitialAd = [[BidmadRewardInterstitialAd alloc] initWith:self zoneID:@"ee6e601d-2232-421b-a429-2e7163a8b41f"];
+    rewardInterstitialAd.delegate = self;
+    [rewardInterstitialAd load];
+    
+    // Ads can be set with Custom Unique ID with the following method.
+    [rewardInterstitialAd setCUID:@"YOUR ENCRYPTED ID"];
 }
 
 - (void)adAvailable {
     NSLog(@"Ad is available");
-    if (rewardInterstitial.isLoaded) {
-        [rewardInterstitial showRewardInterstitialView];
+    if (rewardInterstitialAd.isLoaded) {
+        [rewardInterstitialAd show];
     }
 }
 
 - (void)adShowCancelled {
     NSLog(@"User cancelled showing the ad");
-    [rewardInterstitial removeRewardInterstitialAds];
-    rewardInterstitial = nil;
+    rewardInterstitialAd = nil;
     adView = nil;
 }
 
@@ -112,10 +114,9 @@
 }
 
 - (void)removeAll {
-    if (rewardInterstitial != nil) {
+    if (rewardInterstitialAd != nil) {
         NSLog(@"Removing Reward Interstitial Ads");
-        [rewardInterstitial removeRewardInterstitialAds];
-        rewardInterstitial = nil;
+        rewardInterstitialAd = nil;
     }
     
     if (adView != nil) {
@@ -130,60 +131,42 @@
     }];
 }
 
-- (void)BIDMADRewardInterstitialLoad:(BIDMADRewardInterstitial *)core {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self->callbackLabelView setText: @"Load"];
-    });
-    NSLog(@"BIDMADRewardInterstitialLoad");
+- (void)OpenBiddingRewardInterstitialLoad:(OpenBiddingRewardInterstitial *)core {
+    NSLog(@"Bidmad Sample App RewardInterstitial Load");
+    [self->callbackLabelView setText:@"Load"];
 }
 
-- (void)BIDMADRewardInterstitialShow:(BIDMADRewardInterstitial *)core {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self->callbackLabelView setText: @"Show"];
-    });
-    NSLog(@"BIDMADRewardInterstitialShow");
+- (void)OpenBiddingRewardInterstitialShow:(OpenBiddingRewardInterstitial *)core {
+    NSLog(@"Bidmad Sample App RewardInterstitial Show");
+    [self->callbackLabelView setText:@"Show"];
+    
+    [self->rewardInterstitialAd load];
 }
 
-- (void)BIDMADRewardInterstitialClick:(BIDMADRewardInterstitial *)core {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self->callbackLabelView setText: @"Click"];
-    });
-    NSLog(@"BIDMADRewardInterstitialClick");
+- (void)OpenBiddingRewardInterstitialClick:(OpenBiddingRewardInterstitial *)core {
+    NSLog(@"Bidmad Sample App RewardInterstitial Click");
+    [self->callbackLabelView setText:@"Click"];
 }
 
-- (void)BIDMADRewardInterstitialClose:(BIDMADRewardInterstitial *)core {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self->callbackLabelView setText: @"Close"];
-    });
-    NSLog(@"BIDMADRewardInterstitialClose");
+- (void)OpenBiddingRewardInterstitialClose:(OpenBiddingRewardInterstitial *)core {
+    NSLog(@"Bidmad Sample App RewardInterstitial Close");
+    [self->callbackLabelView setText:@"Close"];
 }
 
-- (void)BIDMADRewardInterstitialSkipped:(BIDMADRewardInterstitial *)core {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self->callbackLabelView setText: @"Skipped"];
-    });
-    NSLog(@"BIDMADRewardInterstitialSkipped");
+- (void)OpenBiddingRewardInterstitialSkipped:(OpenBiddingRewardInterstitial *)core {
+    NSLog(@"Bidmad Sample App RewardInterstitial Skipped");
+    [self->callbackLabelView setText:@"Skipped"];
 }
 
-- (void)BIDMADRewardInterstitialSuccess:(BIDMADRewardInterstitial *)core {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self->callbackLabelView setText: @"Success"];
-    });
-    NSLog(@"BIDMADRewardInterstitialSuccess");
+- (void)OpenBiddingRewardInterstitialSuccess:(OpenBiddingRewardInterstitial *)core {
+    NSLog(@"Bidmad Sample App RewardInterstitial Success");
+    [self->callbackLabelView setText:@"Success"];
 }
 
-- (void)BIDMADRewardInterstitialComplete:(BIDMADRewardInterstitial *)core {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self->callbackLabelView setText: @"Complete"];
-    });
-    NSLog(@"BIDMADRewardInterstitialComplete");
+- (void)OpenBiddingRewardInterstitialAllFail:(OpenBiddingRewardInterstitial *)core {
+    NSLog(@"Bidmad Sample App RewardInterstitial All Fail");
+    [self->callbackLabelView setText:@"All Fail"];
 }
 
-- (void)BIDMADRewardInterstitialAllFail:(BIDMADRewardInterstitial *)core {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self->callbackLabelView setText: @"AllFail"];
-    });
-    NSLog(@"BIDMADRewardInterstitialAllFail");
-}
 
 @end

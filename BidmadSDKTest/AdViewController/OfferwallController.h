@@ -12,8 +12,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface OfferwallController : UIViewController<BIDMADOfferwallDelegate>
-@property BIDMADOfferwall * offerwall;
+@interface OfferwallController : UIViewController
+
 @property (weak, nonatomic) IBOutlet UIButton* load;
 @property (weak, nonatomic) IBOutlet UIButton* show;
 @property (weak, nonatomic) IBOutlet UIButton* getCurrency;

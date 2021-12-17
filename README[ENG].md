@@ -14,7 +14,9 @@
         - AppLovin (Reward Video)
         - UnityAds (Reward Video, Banner)
         - Facebook Audience Network (Banner, Interstitial, Reward Video)
+        - AdColony (Banner, Interstitial, Reward Video)
         - ADOPAtom (Interstitial, Reward Video)
+        - AdFit (Banner)
         - Tapjoy (Offerwall)
         </details>
         
@@ -34,7 +36,10 @@
 
         target "Runner" do
          use_frameworks!
-         pod "BidmadSDK", "2.8.0"
+         pod 'BidmadSDK', '4.1.0.0'
+         pod 'OpenBiddingHelper', '4.1.0.0'
+         pod 'BidmadAdapterFC', '4.1.0.0'
+         pod 'BidmadAdapterFNC', '4.1.0.0'
         ```
 
         Followed by entering the following command in Terminal.
@@ -95,6 +100,33 @@
 
 ## BidmadSDK Interface Guide
 
+### Calling InitializeSDK Method
+At the starting point of your app, please call initializeSdk() method. <br>
+Without initializeSdk method called, SDK will initialize itself when loading the first ad, subsequently resulting in delay. <br>
+
+<details markdown="1">
+<summary>ObjC</summary>
+<br>
+ 
+```
+[BidmadCommon initializeSdk];
+```
+</details>
+
+<details markdown="1">
+<summary>Swift</summary>
+<br>
+
+```
+BidmadCommon.initializeSdk()
+```
+</details>
+
+For interstitial and rewarded ads (including rewardInterstitial ads), <br>
+at the starting point of your app, load the ad, instead of calling initializeSdk(). <br>
+Refer to the guides below for loading the interstitial or rewarded ads and show the ad at the point of your choice.
+
+
 ### Banner Ad Load
 
 <details markdown="1">
@@ -102,24 +134,25 @@
 <br>
 
 ```
-@interface BannerViewController : UIViewController<BIDMADBannerDelegate>
-...
+@import OpenBiddingHelper;
+
+@interface BannerViewController : UIViewController<BIDMADOpenBiddingBannerDelegate> {
+    BidmadBannerAd *bannerAd;
+}
+__weak IBOutlet UIView *bannerContainer;
 @end
+
 @implementation BannerViewController
 
 - (void)viewDidLoad {
-    ...
-    // Please set the "bannerSize" to "banner_320_50" only.
-    banner = [[BIDMADBanner alloc] initWithParentViewController:self rootView:self.BannerContainer bannerSize:banner_320_50];
-    [banner setZoneID:@"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"];
-    [banner setDelegate:self];
-    [banner setRefreshInterval:60];
-    ...
-    [banner requestBannerView]; // Request to load and view the banner
-}
-...
-- (void)removeAds {
-    [banner removeAds] // Remove Banner from UIView
+
+    // Please set the Zone ID before calling a banner ad.
+    NSString *zoneID = @"XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX";
+    bannerAd = [[BidmadBannerAd alloc] initWith:self containerView:self.BannerContainer zoneID:zoneID];
+    bannerAd.delegate = self;
+    [bannerAd setRefreshInterval:[@60 integerValue]];
+    
+    [bannerAd load];
 }
 ```
 </details>
@@ -129,24 +162,21 @@
 <br>
 
 ```
-class BannerController: UIViewController, BIDMADBannerDelegate {
-  var banner: BIDMADBanner
+import OpenBiddingHelper
+
+class BannerController: UIViewController, BIDMADOpenBiddingBannerDelegate {
+  var banner: BidmadBannerAd
+  var bannerContainer: UIView
 
   override func viewDidLoad() {
-    ...
-    // "bannerSize"는 "banner_320_50" 고정값만 전달해주십시오
-    let banner = BIDMADBanner(parentViewController: self, rootView: bannerContainer, bannerSize: banner_320_50)!
-    banner.zoneID = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
-    banner.refreshInterval = 60
+  
+    let zoneID = "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
+    let banner = BidmadBannerAd(with: self, containerView: bannerContainer, zoneID: zoneID)
     banner.delegate = self
-    ...
-    banner.requestView() // Request to load and view the banner
+    banner.setRefreshInterval(60)
+    
+    banner.load()
   }
-
-  func removeBanner() {
-    banner.removeAds() // Remove Banner from UIView
-  }
-  ...
 }
 ```
 </details>
@@ -158,16 +188,20 @@ class BannerController: UIViewController, BIDMADBannerDelegate {
 <br>
 
 ```
-- (void)BIDMADBannerLoad:(BIDMADBanner *)core {
-    NSLog(@"BIDMADBannerLoad");
+- (void)BIDMADOpenBiddingBannerLoad:(OpenBiddingBanner *)core {
+    NSLog(@"Load");
 }
 
-- (void)BIDMADBannerClosed:(BIDMADBanner *)core {
-    NSLog(@"BIDMADBannerClosed");
+- (void)BIDMADOpenBiddingBannerClick:(OpenBiddingBanner *)core {
+    NSLog(@"Click");
 }
 
-- (void)BIDMADBannerAllFail:(BIDMADBanner *)core {
-    NSLog(@"BIDMADBannerAllFail");
+- (void)BIDMADOpenBiddingBannerAllFail:(OpenBiddingBanner *)core {
+    NSLog(@"All Fail");
+}
+
+- (void)BIDMADOpenBiddingBannerClosed:(OpenBiddingBanner *)core {
+    NSLog(@"Closed");
 }
 ```
 </details>
@@ -177,16 +211,20 @@ class BannerController: UIViewController, BIDMADBannerDelegate {
 <br>
 
 ```
-func bidmadBannerLoad(_ core: BIDMADBanner!) {
-    print("bidmadBannerLoad");
+public func bidmadOpenBiddingBannerLoad(_ core: OpenBiddingBanner!) {
+    print("Load")
 }
 
-func bidmadBannerClosed(_ core: BIDMADBanner!) {
-    print("bidmadBannerClosed");
+public func bidmadOpenBiddingBannerClick(_ core: OpenBiddingBanner!) {
+    print("Click")
 }
 
-func bidmadBannerAllFail(_ core: BIDMADBanner!) {
-    print("bidmadBannerAllFail");
+public func bidmadOpenBiddingBannerClosed(_ core: OpenBiddingBanner!) {
+    print("Closed")
+}
+
+public func bidmadOpenBiddingBannerAllFail(_ core: OpenBiddingBanner!) {
+    print("AllFail")
 }
 ```
 </details>
@@ -198,28 +236,29 @@ func bidmadBannerAllFail(_ core: BIDMADBanner!) {
 <br>
 
 ```
-@interface InterstitialViewController : UIViewController<BIDMADInterstitialDelegate>
-...
+@import OpenBiddingHelper;
+
+@interface InterstitialViewController () <BIDMADOpenBiddingInterstitialDelegate> {
+    BidmadInterstitialAd *interstitialAd;
+}
 @end
-...
+
 @implementation InterstitialViewController
 - (void)viewDidLoad {
-    ...
-    interstitial = [[BIDMADInterstitial alloc] init];
-    [interstitial setParentViewController:self];
-    [interstitial setZoneID:@"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"];
-    [interstitial setDelegate:self];
+    
+    NSString *zoneID = @"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx";
+    interstitialAd = [[BidmadInterstitialAd alloc] initWith:self zoneID:zoneID];
+    [interstitialAd setDelegate: self];
 }
-...
+
 -(void)loadAd {
-    [interstitial loadInterstitialView];
+    [interstitialAd load];
    
 }
 ...
 -(void)showAd {
-    if([interstitial isLoaded]){
-        [interstitial showInterstitialView];
-    }
+    if ([interstitialAd isLoaded])
+        [interstitialAd show];
 }
 ```
 </details>
@@ -229,23 +268,26 @@ func bidmadBannerAllFail(_ core: BIDMADBanner!) {
 <br>
 
 ```
-class InterstitialController: UIViewController, BIDMADInterstitialDelegate {
-  var interstitial: BIDMADInterstitial
+import OpenBiddingHelper
+
+class InterstitialController: UIViewController, BIDMADOpenBiddingInterstitialDelegate {
+  var interstitialAd: BidmadInterstitialAd
    
   override func viewDidLoad() {
-    interstitial = BIDMADInterstitial()!
-    interstitial.zoneID = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
-    interstitial.delegate = self
-    interstitial.parentViewController = self
-    interstitial.loadView()
+    let zoneID = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+    interstitialAd = BidmadInterstitialAd(with: self, zoneID: zoneID)
+    interstitialAd.delegate = self
+  }
+  
+  func loadAd() {
+      interstitialAd.load()
   }
 
   func showAd() {
-    if (interstitial.isLoaded) {
-      interstitial.showView()
+    if interstitialAd.isLoaded() {
+        interstitialAd.show()
     }
   }
-  ...
 }
 ```
 </details>
@@ -257,19 +299,20 @@ class InterstitialController: UIViewController, BIDMADInterstitialDelegate {
 <br>
 
 ```
-- (void)BIDMADInterstitialClose:(BIDMADInterstitial *)core {
-    NSLog(@"BIDMADInterstitialClose");
+- (void)BIDMADOpenBiddingInterstitialLoad:(OpenBiddingInterstitial *)core {
+    NSLog(@"Load");
 }
 
-- (void)BIDMADInterstitialShow:(BIDMADInterstitial *)core {
-    NSLog(@"BIDMADInterstitialShow");
+- (void)BIDMADOpenBiddingInterstitialShow:(OpenBiddingInterstitial *)core {
+    NSLog(@"Show");
 }
 
-- (void)BIDMADInterstitialLoad:(BIDMADInterstitial *)core {
-    NSLog(@"BIDMADInterstitialLoad");
+- (void)BIDMADOpenBiddingInterstitialClose:(OpenBiddingInterstitial *)core {
+    NSLog(@"Close");
 }
-- (void)BIDMADInterstitialAllFail:(BIDMADInterstitial *)core {
-    NSLog(@"BIDMADInterstitialAllFail");
+
+- (void)BIDMADOpenBiddingInterstitialAllFail:(OpenBiddingInterstitial *)core {
+    NSLog(@"AllFail");
 }
 ```
 </details>
@@ -279,20 +322,20 @@ class InterstitialController: UIViewController, BIDMADInterstitialDelegate {
 <br>
 
 ```
-func bidmadInterstitialClose(_ core: BIDMADInterstitial!) {
-    print("bidmadInterstitialClose");
+public func bidmadOpenBiddingInterstitialLoad(_ core: OpenBiddingInterstitial!) {
+    print("Load")
 }
 
-func bidmadInterstitialShow(_ core: BIDMADInterstitial!) {
-    print("bidmadInterstitialShow");
+public func bidmadOpenBiddingInterstitialShow(_ core: OpenBiddingInterstitial!) {
+    print("Show")
 }
 
-func bidmadInterstitialLoad(_ core: BIDMADInterstitial!) {
-    print("bidmadInterstitialLoad");
+public func bidmadOpenBiddingInterstitialClose(_ core: OpenBiddingInterstitial!) {
+    print("Close")
 }
 
-func bidmadInterstitialAllFail(_ core: BIDMADInterstitial!) {
-    print("bidmadInterstitialAllFail");
+public func bidmadOpenBiddingInterstitialAllFail(_ core: OpenBiddingInterstitial!) {
+    print("AllFail")
 }
 ```
 </details>
@@ -304,29 +347,30 @@ func bidmadInterstitialAllFail(_ core: BIDMADInterstitial!) {
 <br>
 
 ```
-@interface RewardViewController : UIViewController<BIDMADRewardVideoDelegate>
-...
+@import OpenBiddingHelper;
+
+@interface RewardViewController () <BIDMADOpenBiddingRewardVideoDelegate> {
+    BidmadRewardAd *rewardAd;
+}
 @end
-...
+
 @implementation RewardViewController
 
 - (void)viewDidLoad {
-    ...
-    rewardVideo = [[BIDMADRewardVideo alloc]init];
-    [rewardVideo setZoneID:@"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"];
-    [rewardVideo setParentViewController:self];
-    [rewardVideo setDelegate:self];
+    
+    NSString *zoneID = @"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx";
+    rewardAd = [[BidmadRewardAd alloc] initWith:self zoneID:zoneID];
+    rewardAd.delegate = self;
 }
-...
+
 -(void)loadReward {
-    [reward loadRewardVideo];
+    [rewardAd load];
 }
    
-...
+
 -(void)showReward {
-    if([reward isLoaded]){
-        [reward showRewardVideo];
-    }
+    if ([rewardAd isLoaded])
+        [rewardAd show];
 }
 ```
 </details>
@@ -336,20 +380,24 @@ func bidmadInterstitialAllFail(_ core: BIDMADInterstitial!) {
 <br>
 
 ```
-class RewardVideoController: UIViewController, BIDMADRewardVideoDelegate {
-  var rewardVideo: BIDMADRewardVideo
+import OpenBiddingHelper
+
+class RewardVideoController: UIViewController, BIDMADOpenBiddingRewardVideoDelegate {
+  var rewardAd: BidmadRewardAd
 
   override func viewDidLoad() {
-    rewardVideo = BIDMADRewardVideo()!
-    rewardVideo.zoneID = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
-    rewardVideo.delegate = self
-    rewardVideo.parentViewController = self
-    rewardVideo.load()
+    let zoneID = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+    rewardAd = BidmadRewardAd(with: self, zoneID: zoneID)
+    rewardAd.delegate = self
+  }
+  
+  func loadAd() {
+    rewardAd.load()
   }
 
   func showAd() {
-    if (rewardVideo.isLoaded) {
-      rewardVideo.show()
+    if rewardAd.isLoaded() {
+        rewardAd.show()
     }
   }
   ...
@@ -364,24 +412,32 @@ class RewardVideoController: UIViewController, BIDMADRewardVideoDelegate {
 <br>
 
 ```
-- (void)BIDMADRewardVideoLoad:(BIDMADRewardVideo *)core {
-    NSLog(@"BIDMADRewardVideoLoad");
+- (void)BIDMADOpenBiddingRewardSkipped:(OpenBiddingRewardVideo *)core {
+    NSLog(@"Skipped");
 }
 
-- (void)BIDMADRewardVideoAllFail:(BIDMADRewardVideo *)core {
-    NSLog(@"BIDMADRewardVideoAllFail");
+- (void)BIDMADOpenBiddingRewardVideoLoad:(OpenBiddingRewardVideo *)core {
+    NSLog(@"Load");
 }
 
-- (void)BIDMADRewardVideoShow:(BIDMADRewardVideo *)core {
-    NSLog(@"BIDMADRewardVideoShow");
+- (void)BIDMADOpenBiddingRewardVideoShow:(OpenBiddingRewardVideo *)core {
+    NSLog(@"Show");
 }
 
-- (void)BIDMADRewardVideoClose:(BIDMADRewardVideo *)core {
-    NSLog(@"BIDMADRewardVideoClose");
+- (void)BIDMADOpenBiddingRewardVideoClick:(OpenBiddingRewardVideo *)core {
+    NSLog(@"Click");
 }
 
-- (void)BIDMADRewardVideoSucceed:(BIDMADRewardVideo *)core {
-    NSLog(@"BIDMADRewardVideoSucceed");
+- (void)BIDMADOpenBiddingRewardVideoClose:(OpenBiddingRewardVideo *)core {
+    NSLog(@"Close");
+}
+
+- (void)BIDMADOpenBiddingRewardVideoSucceed:(OpenBiddingRewardVideo *)core {
+    NSLog(@"Success");
+}
+
+- (void)BIDMADOpenBiddingRewardVideoAllFail:(OpenBiddingRewardVideo *)core {
+    NSLog(@"All Fail");
 }
 ```
 </details>
@@ -391,24 +447,32 @@ class RewardVideoController: UIViewController, BIDMADRewardVideoDelegate {
 <br>
 
 ```
-func bidmadRewardVideoLoad(_ core: BIDMADRewardVideo!) {
-    NSLog(@"bidmadRewardVideoLoad");
+public func bidmadOpenBiddingRewardSkipped(_ core: OpenBiddingRewardVideo!) {
+    print("Skipped")
 }
 
-func bidmadRewardVideoAllFail(_ core: BIDMADRewardVideo!) {
-    NSLog(@"bidmadRewardVideoAllFail");
+public func bidmadOpenBiddingRewardVideoLoad(_ core: OpenBiddingRewardVideo!) {
+    print("VideoLoad")
 }
 
-func bidmadRewardVideoShow(_ core: BIDMADRewardVideo!) {
-    NSLog(@"bidmadRewardVideoShow");
+public func bidmadOpenBiddingRewardVideoShow(_ core: OpenBiddingRewardVideo!) {
+    print("VideoShow")
 }
 
-func bidmadRewardVideoClose(_ core: BIDMADRewardVideo!) {
-    NSLog(@"bidmadRewardVideoClose");
+public func bidmadOpenBiddingRewardVideoClick(_ core: OpenBiddingRewardVideo!) {
+    print("VideoClick")
 }
 
-func bidmadRewardVideoSucceed(_ core: BIDMADRewardVideo!) {
-    NSLog(@"bidmadRewardVideoSucceed");
+public func bidmadOpenBiddingRewardVideoClose(_ core: OpenBiddingRewardVideo!) {
+    print("VideoClose")
+}
+
+public func bidmadOpenBiddingRewardVideoSucceed(_ core: OpenBiddingRewardVideo!) {
+    print("VideoSucceed")
+}
+
+public func bidmadOpenBiddingRewardVideoAllFail(_ core: OpenBiddingRewardVideo!) {
+    print("VideoAllFail")
 }
 ```
 </details>
@@ -424,33 +488,26 @@ Reward Interstitial Ads only offer skippable ads.<br>
 <br>
 
 ```
-#import <BidmadSdk/BIDMADRewardInterstitial.h>
+@import OpenBiddingHelper;
 
 @interface RewardInterstitialViewController : UIViewController<BIDMADRewardInterstitialDelegate>
 ···
 @end
 
 @implementation RewardInterstitialViewController {
-    BIDMADRewardInterstitial *rewardInterstitial;
+    BidmadRewardInterstitialAd *rewardInterstitialAd;
 }
 
 - (void)viewDidLoad {
-    rewardInterstitial = [[BIDMADRewardInterstitial alloc] init];
-    rewardInterstitial.zoneID = @"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx";
-    rewardInterstitial.parentViewController = self;
-    rewardInterstitial.delegate = self;
-    [rewardInterstitial requestRewardInterstitial];
+    rewardInterstitialAd = [[BidmadRewardInterstitialAd alloc] initWith:self zoneID:@"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"];
+    rewardInterstitialAd.delegate = self;
+    [rewardInterstitialAd load];
 }
 
 - (void)adShow {
-    if (rewardInterstitial.isLoaded) {
-        [rewardInterstitial showRewardInterstitialView];
+    if (rewardInterstitialAd.isLoaded) {
+        [rewardInterstitialAd show];
     }
-}
-
-- (void)removeAd {
-    [rewardInterstitial removeRewardInterstitialAds];
-    rewardInterstitial = nil;
 }
 ···
 @
@@ -462,30 +519,24 @@ Reward Interstitial Ads only offer skippable ads.<br>
 <br>
 
 ```
-import BidmadSDK
+import OpenBiddingHelper
 
-class RewardInterstitialViewControllerSwift: UIViewController {
-    var rewardInterstititial: BIDMADRewardInterstitial!
+class RewardInterstitialViewController: UIViewController, OpenBiddingRewardInterstitialDelegate {
+    var rewardInterstititial: BidmadRewardInterstitialAd!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        rewardInterstititial = BIDMADRewardInterstitial()
-        rewardInterstititial.zoneID = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
-        rewardInterstititial.parentViewController = self
-        rewardInterstititial.delegate = self
-        rewardInterstititial.request()
+        let zoneID = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+        rewardInterstitialAd = BidmadRewardInterstitialAd(with: self, zoneID: zoneID)
+        rewardInterstitialAd.delegate = self
+        rewardInterstitialAd.load()
     }
     
     func adShow() {
-        if (rewardInterstititial.isLoaded) {
-            rewardInterstititial.showView()
+        if rewardInterstitialAd.isLoaded() {
+            rewardInterstitialAd.show()
         }
-    }
-    
-    func removeAd() {
-        rewardInterstititial.removeAds()
-        rewardInterstititial = nil
     }
 }
 ```
@@ -498,23 +549,32 @@ class RewardInterstitialViewControllerSwift: UIViewController {
 <br>
 
 ```
-- (void)BIDMADRewardInterstitialLoad:(BIDMADRewardInterstitial *)core {
-    NSLog(@"BIDMADRewardInterstitialLoad");
+- (void)OpenBiddingRewardInterstitialLoad:(OpenBiddingRewardInterstitial *)core {
+    NSLog(@"Load");
 }
-- (void)BIDMADRewardInterstitialShow:(BIDMADRewardInterstitial *)core {
-    NSLog(@"BIDMADRewardInterstitialShow");
+
+- (void)OpenBiddingRewardInterstitialShow:(OpenBiddingRewardInterstitial *)core {
+    NSLog(@"Show");
 }
-- (void)BIDMADRewardInterstitialClose:(BIDMADRewardInterstitial *)core {
-    NSLog(@"BIDMADRewardInterstitialClose");
+
+- (void)OpenBiddingRewardInterstitialClick:(OpenBiddingRewardInterstitial *)core {
+    NSLog(@"Click");
 }
-- (void)BIDMADRewardInterstitialSkipped:(BIDMADRewardInterstitial *)core {
-    NSLog(@"BIDMADRewardInterstitialSkipped");
+
+- (void)OpenBiddingRewardInterstitialClose:(OpenBiddingRewardInterstitial *)core {
+    NSLog(@"Close");
 }
-- (void)BIDMADRewardInterstitialSuccess:(BIDMADRewardInterstitial *)core {
-    NSLog(@"BIDMADRewardInterstitialSuccess");
+
+- (void)OpenBiddingRewardInterstitialSkipped:(OpenBiddingRewardInterstitial *)core {
+    NSLog(@"Skipped");
 }
-- (void)BIDMADRewardInterstitialAllFail:(BIDMADRewardInterstitial *)core {
-    NSLog(@"BIDMADRewardInterstitialAllFail");
+
+- (void)OpenBiddingRewardInterstitialSuccess:(OpenBiddingRewardInterstitial *)core {
+    NSLog(@"Success");
+}
+
+- (void)OpenBiddingRewardInterstitialAllFail:(OpenBiddingRewardInterstitial *)core {
+    NSLog(@"All Fail");
 }
 ```
 </details>
@@ -524,25 +584,32 @@ class RewardInterstitialViewControllerSwift: UIViewController {
 <br>
 
 ```
-extension RewardInterstitialViewControllerSwift: BIDMADRewardInterstitialDelegate {
-    func bidmadRewardInterstitialLoad(_ core: BIDMADRewardInterstitial!) {
-        print("bidmadRewardInterstitialLoad")
-    }
-    func bidmadRewardInterstitialShow(_ core: BIDMADRewardInterstitial!) {
-        print("bidmadRewardInterstitialShow")
-    }
-    func bidmadRewardInterstitialClose(_ core: BIDMADRewardInterstitial!) {
-        print("bidmadRewardInterstitialClose")
-    }
-    func bidmadRewardInterstitialSkipped(_ core: BIDMADRewardInterstitial!) {
-        print("bidmadRewardInterstitialSkipped")
-    }
-    func bidmadRewardInterstitialSuccess(_ core: BIDMADRewardInterstitial!) {
-        print("bidmadRewardInterstitialSuccess")
-    }
-    func bidmadRewardInterstitialAllFail(_ core: BIDMADRewardInterstitial!) {
-        print("bidmadRewardInterstitialAllFail")
-    }
+public func openBiddingRewardInterstitialLoad(_ core: OpenBiddingRewardInterstitial!) {
+    print("Load")
+}
+
+public func openBiddingRewardInterstitialShow(_ core: OpenBiddingRewardInterstitial!) {
+    print("Show")
+}
+
+public func openBiddingRewardInterstitialClick(_ core: OpenBiddingRewardInterstitial!) {
+    print("Click")
+}
+
+public func openBiddingRewardInterstitialClose(_ core: OpenBiddingRewardInterstitial!) {
+    print("Close")
+}
+
+public func openBiddingRewardInterstitialSkipped(_ core: OpenBiddingRewardInterstitial!) {
+    print("Skipped")
+}
+
+public func openBiddingRewardInterstitialSuccess(_ core: OpenBiddingRewardInterstitial!) {
+    print("Success")
+}
+
+public func openBiddingRewardInterstitialAllFail(_ core: OpenBiddingRewardInterstitial!) {
+    print("AllFail")
 }
 ```
 
@@ -559,25 +626,28 @@ The registerForAppOpenAdForZoneID method reloads ads when the user closes the Ap
 <br>
 
 ```
-@interface AppDelegate () <BIDMADAppOpenAdDelegate>
+@import OpenBiddingHelper;
+
+@interface AppDelegate () <OpenBiddingAppOpenAdDelegate>
 ···
 @end
 
 @implementation AppDelegate {
-    BIDMADAppOpenAd *bidmadAppOpenAd;
+    BidmadAppOpenAd *appOpenAd;
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    bidmadAppOpenAd = [[BIDMADAppOpenAd alloc] init];
-    [bidmadAppOpenAd setDelegate: self];
-    [bidmadAppOpenAd registerForAppOpenAdForZoneID: @"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"];
+    self->appOpenAd = [[BidmadAppOpenAd alloc] initWith:self.window.rootViewController zoneID:@"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"];
+    [self->appOpenAd setDelegate: self];
     
     return YES;
 }
 
 - (void)cancelAppOpenAd {
     // If you no longer wish to load App Open ads, please deregister by calling the following method.
-    [bidmadAppOpenAd deregisterForAppOpenAd];
+    if (self->appOpenAd != nil) {
+        [self->appOpenAd deregisterForAppOpenAd];
+    }
 }
 ```
 </details>
@@ -587,21 +657,22 @@ The registerForAppOpenAdForZoneID method reloads ads when the user closes the Ap
 <br>
 
 ```
-class AppDelegate: UIResponder, UIApplicationDelegate {
+import OpenBiddingHelper
+
+class AppDelegate: UIResponder, UIApplicationDelegate, OpenBiddingAppOpenAdDelegate {
     var window: UIWindow?
-    var appOpen: BIDMADAppOpenAd!
+    var appOpenAd: BidmadAppOpenAd!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        appOpen = BIDMADAppOpenAd()
-        appOpen.delegate = self
-        appOpen.registerForAppOpenAd(forZoneID: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx")
+        appOpenAd = BidmadAppOpenAd(with: self.window.rootViewController, zoneID: zoneID)
+        appOpenAd.delegate = self
         
         return true
     }
     
     func cancelAppOpenAd {
         // If you no longer wish to load App Open ads, please deregister by calling the following method.
-        appOpen.deregisterForAppOpenAd()
+        appOpenAd.deregisterForAppOpenAd()
     }
 }
 ```
@@ -615,32 +686,38 @@ Please call the requestAppOpenAd method again after receiving the BIDMADAppOpenA
 <br>
 
 ```
-@interface AppDelegate () <BIDMADAppOpenAdDelegate>
+@import OpenBiddingHelper;
+
+@interface AppDelegate () <OpenBiddingAppOpenAdDelegate>
 ···
 @end
 
 @implementation AppDelegate {
-    BIDMADAppOpenAd *bidmadAppOpenAd;
+    BidmadAppOpenAd *appOpenAd;
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    bidmadAppOpenAd = [[BIDMADAppOpenAd alloc] init];
-    bidmadAppOpenAd.zoneID = @"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx";
-    bidmadAppOpenAd.delegate = self;
-    [bidmadAppOpenAd requestAppOpenAd];
+
+    // Because init method automatically registers ad display, 
+    // if you wish to load the ad manually, you MUST call deregisterForAppOpenAd method.
+    self->appOpenAd = [[BidmadAppOpenAd alloc] initWith:self.window.rootViewController zoneID:@"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"];
+    [self->appOpenAd deregisterForAppOpenAd];
+    [self->appOpenAd setDelegate: self];
+    
+    [self->appOpenAd load];
+    
     return YES;
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-    if (bidmadAppOpenAd.isLoaded) {
-        [self.bidmadAppOpenAd showAppOpenAd];
-    }
+    if ([self->appOpenAd isLoaded])
+        [self->appOpenAd show];
 }
 
-// App Open Close callback, Re-Load the Ad for later use
-- (void)BIDMADAppOpenAdClose:(BIDMADAppOpenAd *)core {
-    NSLog(@"Callback → BIDMADAppOpenAdClose");
-    [bidmadAppOpenAd requestAppOpenAd];
+// App Open Show callback, Re-Load the Ad for later use
+- (void)OpenBiddingAppOpenAdShow:(OpenBiddingAppOpenAd *)core {
+    NSLog(@"Show");
+    [self->appOpenAd load];
 }
 
 ```
@@ -651,29 +728,34 @@ Please call the requestAppOpenAd method again after receiving the BIDMADAppOpenA
 <br>
 
 ```
-class AppDelegate: UIResponder, UIApplicationDelegate {
+import OpenBiddingHelper
+
+class AppDelegate: UIResponder, UIApplicationDelegate, OpenBiddingAppOpenAdDelegate {
     var window: UIWindow?
-    var appOpen: BIDMADAppOpenAd!
+    var appOpenAd: BIDMADAppOpenAd!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        appOpen = BIDMADAppOpenAd()
-        appOpen.zoneID = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
-        appOpen.delegate = self;
-        appOpen.request()
+    
+        // Because init method automatically registers ad display, 
+        // if you wish to load the ad manually, you MUST call deregisterForAppOpenAd method.
+        let zoneID = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+        appOpenAd = BidmadAppOpenAd(with: self.window.rootViewController, zoneID: zoneID)
+        appOpenAd.deregisterForAppOpenAd()
+        appOpenAd.delegate = self
+        appOpenAd.load()
         
         return true
     }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
-        if (appOpen.isLoaded) {
-            self.appOpen.show()
+        if appOpenAd.isLoaded() {
+            appOpenAd.show()
         }
     }
     
     // App Open Close callback, Re-Load the Ad for later use
-    func bidmadAppOpenAdClose(_ core: BIDMADAppOpenAd!) {
-        print("bidmadAppOpenAdClose")
-        appOpen.request()
+    public func openBiddingAppOpenAdShow(_ core: OpenBiddingAppOpenAd!) {
+        offerwallAd.load()
     }
 }
 ```
@@ -686,20 +768,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 <br>
 
 ```
-- (void)BIDMADAppOpenAdAllFail:(BIDMADAppOpenAd *)core code:(NSString *)error {
-    NSLog(@"BidmadSDK App Open Ad Callback → AllFail");
+- (void)OpenBiddingAppOpenAdLoad:(OpenBiddingAppOpenAd *)core {
+    NSLog(@"Load");
 }
 
-- (void)BIDMADAppOpenAdLoad:(BIDMADAppOpenAd *)core {
-    NSLog(@"BidmadSDK App Open Ad Callback → Load");
+- (void)OpenBiddingAppOpenAdShow:(OpenBiddingAppOpenAd *)core {
+    NSLog(@"Show");
 }
 
-- (void)BIDMADAppOpenAdShow:(BIDMADAppOpenAd *)core {
-    NSLog(@"BidmadSDK App Open Ad Callback → Show");
+- (void)OpenBiddingAppOpenAdClick:(OpenBiddingAppOpenAd *)core {
+    NSLog(@"Click");
 }
 
-- (void)BIDMADAppOpenAdClose:(BIDMADAppOpenAd *)core {
-    NSLog(@"BidmadSDK App Open Ad Callback → Close");
+- (void)OpenBiddingAppOpenAdClose:(OpenBiddingAppOpenAd *)core {
+    NSLog(@"Close");
+}
+
+- (void)OpenBiddingAppOpenAdAllFail:(OpenBiddingAppOpenAd *)core code:(NSString *)error {
+    NSLog(@"All Fail");
 }
 ```
 </details>
@@ -709,22 +795,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 <br>
 
 ```
-extension AppDelegate: BIDMADAppOpenAdDelegate {
-    func bidmadAppOpenAdLoad(_ core: BIDMADAppOpenAd!) {
-        print("bidmadAppOpenAdLoad")
-    }
-    
-    func bidmadAppOpenAdShow(_ core: BIDMADAppOpenAd!) {
-        print("bidmadAppOpenAdShow")
-    }
-    
-    func bidmadAppOpenAdClose(_ core: BIDMADAppOpenAd!) {
-        print("bidmadAppOpenAdClose")
-    }
-    
-    func bidmadAppOpenAdAllFail(_ core: BIDMADAppOpenAd!, code error: String!) {
-        print("bidmadAppOpenAdAllFail")
-    }
+public func openBiddingAppOpenAdLoad(_ core: OpenBiddingAppOpenAd!) {
+    print("Load")
+}
+
+public func openBiddingAppOpenAdShow(_ core: OpenBiddingAppOpenAd!) {
+    print("Show")
+}
+
+public func openBiddingAppOpenAdClick(_ core: OpenBiddingAppOpenAd!) {
+    print("Click")
+}
+
+public func openBiddingAppOpenAdClose(_ core: OpenBiddingAppOpenAd!) {
+    print("Close")
+}
+
+public func openBiddingAppOpenAdAllFail(_ core: OpenBiddingAppOpenAd!, code error: String!) {
+    print("AllFail")
 }
 ```
 </details>
@@ -736,40 +824,62 @@ extension AppDelegate: BIDMADAppOpenAdDelegate {
 <br>
 
 ```
-@interface OfferwallController : UIViewController<BIDMADOfferwallDelegate>
-...
+@import OpenBiddingHelper;
+
+@interface OfferwallController : UIViewController<BIDMADOfferwallDelegate> {
+    BidmadOfferwallAd *offerwallAd;
+}
 @end
-...
+
 - (void)viewDidLoad {
     
     [super viewDidLoad];
     
     NSLog(@"AppUI isSDKInit %d", [BIDMADOfferwall isSDKInit]);
     
-    self.offerwall = [[BIDMADOfferwall alloc]initWithZoneId:@"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"];
-    [self.offerwall setParentViewController:self];
-    [self.offerwall setDelegate:self];
+    self->offerwallAd = [[BidmadOfferwallAd alloc] initWith:self zoneID:@"fb5d83af-9ef3-443e-8d8f-b97f63066683"];
+    [self->offerwallAd setDelegate: self];
 }
-...
+
 -(void)loadOfferwall {
-    [offerwall loadOfferwall];
+    [self->offerwallAd load];
 }
-...
+
 -(void)showOfferwall {
-    if ([offerwall isLoaded]) {
-      [offerwall showOfferwall];
-    }
+    if ([self->offerwallAd isLoaded])
+        [self->offerwallAd show];
 }
-...
+
 -(void)getCurrency {
-    [offerwall getCurrencyBalance];
-   
+    [self->offerwallAd getCurrencyWithCurrencyReceivalCompletion:^(BOOL isSuccess, NSInteger currencyAmount) {
+        if (!isSuccess) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                NSLog(@"Currency Receival Failed");
+                [self.offerwallCallbackDisplay setText:@"Currency Receival Failed"];
+            });
+            return;
+        }
+        
+        NSLog(@"Currency Receival Success");
+        [self.offerwallCallbackDisplay setText:@"Currency Receival Success"];
+        [self.textCurrency setText:[NSString stringWithFormat:@"%@", [NSNumber numberWithInteger:currencyAmount]]];
+    }];
 }
-...
+
 -(void)spendCurrency:(int)amount {
-    [offerwall spendCurrency:amount];
+    [self->offerwallAd spendCurrency:[[NSNumber numberWithInt:amount] integerValue] currencySpenditureCompletion:^(BOOL isSuccess, NSInteger currencyAmount) {
+        if (!isSuccess) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                NSLog(@"Currency Spenditure Failed");
+                [self.offerwallCallbackDisplay setText:@"Currency Spenditure Failed"];
+            });
+        }
+        
+        NSLog(@"Currency Spenditure Success");
+        [self.offerwallCallbackDisplay setText:@"Currency Spenditure Success"];
+        [self.textCurrency setText:[NSString stringWithFormat:@"%@", [NSNumber numberWithInteger:currencyAmount]]];
+    }];
 }
-...
 ```
 </details>
 
@@ -778,28 +888,39 @@ extension AppDelegate: BIDMADAppOpenAdDelegate {
 <br>
 
 ```
+import OpenBiddingHelper
+
 class OfferwallController: UIViewController, BIDMADOfferwallDelegate {
-    var offerwall: BIDMADOfferwall
+    var offerwallAd: BidmadOfferwallAd
 
     override func viewDidLoad() {
-        offerwall = BIDMADOfferwall(zoneId: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx")!
-        offerwall.parentViewController = self
-        offerwall.delegate = self
-        offerwall.load();
+        let zoneID = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+        offerwallAd = BidmadOfferwallAd(with: self, zoneID: zoneID)
+        offerwallAd.delegate = self
+        offerwallAd.load()
     }
 
     func showAd() {
-        if (offerwall.isLoaded) {
-            offerwall.show()
+        if offerwallAd.isLoaded() {
+            offerwallAd.show()
         }
     }
 
     func getCurrency() {
-        offerwall.getCurrencyBalance()
+        offerwallAd.getCurrency { isSuccess, currencyAmount in
+            if isSuccess {
+                self.userCurrencyAmount = currencyAmount
+            }
+        }
     }
 
     func spendCurrency(amount: Int) {
-        offerwall.spendCurrency(Int32(amount))
+        let spenditure = 3
+        offerwallAd.spendCurrency(spenditure) { isSuccess, currencyAmount in
+            if isSuccess {
+                self.userCurrencyAmount = currencyAmount
+            }
+        }
     }
 }
 ```
@@ -812,44 +933,28 @@ class OfferwallController: UIViewController, BIDMADOfferwallDelegate {
 <br>
 
 ```
-- (void)BIDMADOfferwallInitSuccess:(BIDMADOfferwall *)core {
-    NSLog(@"BIDMADOfferwallInitSuccess");
-}
-
-- (void)BIDMADOfferwallInitFail:(BIDMADOfferwall *)core error:(NSString *)error {
-    NSLog(@"BIDMADOfferwallInitFail");
-}
-
 - (void)BIDMADOfferwallLoadAd:(BIDMADOfferwall *)core {
-    NSLog(@"BIDMADOfferwallLoadAd");
+    NSLog(@"Load");
 }
 
 - (void)BIDMADOfferwallShowAd:(BIDMADOfferwall *)core {
-    NSLog(@"BIDMADOfferwallShowAd");
-}
-
-- (void)BIDMADOfferwallFailedAd:(BIDMADOfferwall *)core {
-    NSLog(@"BIDMADOfferwallFailedAd");
+    NSLog(@"Show");
 }
 
 - (void)BIDMADOfferwallCloseAd:(BIDMADOfferwall *)core {
-    NSLog(@"BIDMADOfferwallCloseAd");
+    NSLog(@"Close");
 }
 
-- (void)BIDMADOfferwallGetCurrencyBalanceSuccess:(BIDMADOfferwall *)core currencyName:(NSString *)currencyName balance:(int)balance {
-    NSLog(@"BIDMADOfferwallGetCurrencyBalanceSuccess");    
+- (void)BIDMADOfferwallFailedAd:(BIDMADOfferwall *)core {
+    NSLog(@"Failed");
 }
 
-- (void)BIDMADOfferwallGetCurrencyBalanceFail:(BIDMADOfferwall *)core error:(NSString *)error {
-    NSLog(@"BIDMADOfferwallGetCurrencyBalanceFail");    
+- (void)BIDMADOfferwallInitSuccess:(BIDMADOfferwall *)core {
+    NSLog(@"Init Success");
 }
 
-- (void)BIDMADOfferwallSpendCurrencySuccess:(BIDMADOfferwall *)core currencyName:(NSString *)currencyName balance:(int)balance {
-    NSLog(@"BIDMADOfferwallSpendCurrencySuccess");    
-}
-
-- (void)BIDMADOfferwallSpendCurrencyFail:(BIDMADOfferwall *)core error:(NSString *)error {
-    NSLog(@"BIDMADOfferwallSpendCurrencyFail");    
+- (void)BIDMADOfferwallInitFail:(BIDMADOfferwall *)core error:(NSString *)error {
+    NSLog(@"Init Failed");
 }
 ```
 </details>
@@ -859,44 +964,28 @@ class OfferwallController: UIViewController, BIDMADOfferwallDelegate {
 <br>
 
 ```
-func bidmadOfferwallInitSuccess(_ core: BIDMADOfferwall!) {
-    print("bidmadOfferwallInitSuccess");
+public func bidmadOfferwallLoadAd(_ core: BIDMADOfferwall!) {
+    print("Load")
 }
 
-func bidmadOfferwallInitFail(_ core: BIDMADOfferwall!, error: String!) {
-    print("bidmadOfferwallInitFail");
+public func bidmadOfferwallShowAd(_ core: BIDMADOfferwall!) {
+    print("Show")
 }
 
-func bidmadOfferwallLoadAd(_ core: BIDMADOfferwall!) {
-    print("bidmadOfferwallLoadAd");
+public func bidmadOfferwallCloseAd(_ core: BIDMADOfferwall!) {
+    print("Close")
 }
 
-func bidmadOfferwallShowAd(_ core: BIDMADOfferwall!) {
-    print("bidmadOfferwallShowAd");
+public func bidmadOfferwallFailedAd(_ core: BIDMADOfferwall!) {
+    print("Failed")
 }
 
-func bidmadOfferwallFailedAd(_ core: BIDMADOfferwall!) {
-    print("bidmadOfferwallFailedAd");
+public func bidmadOfferwallInitSuccess(_ core: BIDMADOfferwall!) {
+    print("InitSuccess")
 }
 
-func bidmadOfferwallCloseAd(_ core: BIDMADOfferwall!) {
-    print("bidmadOfferwallCloseAd");
-}
-
-func bidmadOfferwallGetCurrencyBalanceSuccess(_ core: BIDMADOfferwall!, currencyName: String!, balance: Int32) {
-    print("bidmadOfferwallGetCurrencyBalanceSuccess");
-}
-
-func bidmadOfferwallGetCurrencyBalanceFail(_ core: BIDMADOfferwall!, error: String!) {
-    print("bidmadOfferwallGetCurrencyBalanceFail");
-}
-
-func bidmadOfferwallSpendCurrencySuccess(_ core: BIDMADOfferwall!, currencyName: String!, balance: Int32) {
-    print("bidmadOfferwallSpendCurrencySuccess");
-}
-
-func "bidmadOfferwallSpendCurrencyFail(_ core: BIDMADOfferwall!, error: String!) {
-    print("bidmadOfferwallSpendCurrencyFail");
+public func bidmadOfferwallInitFail(_ core: BIDMADOfferwall!, error: String!) {
+    print("InitFail")
 }
 ```
 </details>
@@ -916,10 +1005,10 @@ First, request an ad to Google, and you will be seeing the log on your console.
 Copy the test device ID on console and set it to the following code.
 ```
 // ObjC
-[BIDMADSetting.sharedInstance setTestDeviceId:"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"];
+[BidmadCommon setTestDeviceId:@"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"];
 
 // Swift
-BIDMADSetting.sharedInstance().testDeviceId = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+BidmadCommon.setTestDeviceId("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
 ```
 
 </details>

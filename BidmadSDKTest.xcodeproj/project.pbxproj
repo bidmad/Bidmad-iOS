@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		148A307F691CE2547AFE7C46 /* Pods_BidmadSDKTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD79908517C0A4FDFC190860 /* Pods_BidmadSDKTest.framework */; };
-		261FF6FA269EB55800014635 /* RewardInterstitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261FF6F9269EB55700014635 /* RewardInterstitialViewController.swift */; };
 		265E6471264BB3720006C750 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 265E6470264BB3720006C750 /* main.m */; };
 		26B1BE4B2692CE58003119FE /* RewardInterstitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26B1BE4A2692CE58003119FE /* RewardInterstitialViewController.m */; };
 		26B1BE4E2692D1A9003119FE /* SegueInterimAdVIew.m in Sources */ = {isa = PBXBuildFile; fileRef = 26B1BE4D2692D1A9003119FE /* SegueInterimAdVIew.m */; };
@@ -21,6 +19,7 @@
 		46EFA9EB1F69047F002B7C96 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46EFA9E91F69047F002B7C96 /* LaunchScreen.storyboard */; };
 		46EFA9FD1F6908FB002B7C96 /* BannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46EFA9FC1F6908FB002B7C96 /* BannerViewController.m */; };
 		46EFAA001F690920002B7C96 /* InterstitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46EFA9FF1F690920002B7C96 /* InterstitialViewController.m */; };
+		8F82A132A6603C26679203E3 /* Pods_BidmadSDKTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF86958DD44FB459AC2DBA2E /* Pods_BidmadSDKTest.framework */; };
 		9FD8587125D37178008D3A3E /* OfferwallController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD8587025D37178008D3A3E /* OfferwallController.m */; };
 /* End PBXBuildFile section */
 
@@ -38,8 +37,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		21FF91E35B990ADE89D70579 /* Pods-BidmadSDKTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BidmadSDKTest.release.xcconfig"; path = "Target Support Files/Pods-BidmadSDKTest/Pods-BidmadSDKTest.release.xcconfig"; sourceTree = "<group>"; };
 		261FF6F8269EB55700014635 /* BidmadSDKTest-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BidmadSDKTest-Bridging-Header.h"; sourceTree = "<group>"; };
-		261FF6F9269EB55700014635 /* RewardInterstitialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RewardInterstitialViewController.swift; sourceTree = "<group>"; };
 		265E6470264BB3720006C750 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		26B1BE492692CE58003119FE /* RewardInterstitialViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RewardInterstitialViewController.h; sourceTree = "<group>"; };
 		26B1BE4A2692CE58003119FE /* RewardInterstitialViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RewardInterstitialViewController.m; sourceTree = "<group>"; };
@@ -47,6 +46,7 @@
 		26B1BE4D2692D1A9003119FE /* SegueInterimAdVIew.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SegueInterimAdVIew.m; sourceTree = "<group>"; };
 		26B4FEF22694398E0004A818 /* AppOpenAdViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppOpenAdViewController.h; sourceTree = "<group>"; };
 		26B4FEF32694398E0004A818 /* AppOpenAdViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppOpenAdViewController.m; sourceTree = "<group>"; };
+		26CB246E27574E0C00AD8A11 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		46AB2029218816CF00A2D82F /* RewardViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RewardViewController.h; sourceTree = "<group>"; };
 		46AB202A218816CF00A2D82F /* RewardViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RewardViewController.m; sourceTree = "<group>"; };
 		46BFAB23221EAB6800C2AC3D /* BidmadSDKTest.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BidmadSDKTest.entitlements; sourceTree = "<group>"; };
@@ -65,9 +65,8 @@
 		46EFA9FF1F690920002B7C96 /* InterstitialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InterstitialViewController.m; sourceTree = "<group>"; };
 		9FD8586F25D37178008D3A3E /* OfferwallController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfferwallController.h; sourceTree = "<group>"; };
 		9FD8587025D37178008D3A3E /* OfferwallController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfferwallController.m; sourceTree = "<group>"; };
-		AA61C5ADB6DFD09384D386B0 /* Pods-BidmadSDKTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BidmadSDKTest.release.xcconfig"; path = "Target Support Files/Pods-BidmadSDKTest/Pods-BidmadSDKTest.release.xcconfig"; sourceTree = "<group>"; };
-		C6DFB0E79FEFF5A0FB22B6DA /* Pods-BidmadSDKTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BidmadSDKTest.debug.xcconfig"; path = "Target Support Files/Pods-BidmadSDKTest/Pods-BidmadSDKTest.debug.xcconfig"; sourceTree = "<group>"; };
-		CD79908517C0A4FDFC190860 /* Pods_BidmadSDKTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BidmadSDKTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BF86958DD44FB459AC2DBA2E /* Pods_BidmadSDKTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BidmadSDKTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F1842760F31FF5CA27D7AB1C /* Pods-BidmadSDKTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BidmadSDKTest.debug.xcconfig"; path = "Target Support Files/Pods-BidmadSDKTest/Pods-BidmadSDKTest.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,7 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				148A307F691CE2547AFE7C46 /* Pods_BidmadSDKTest.framework in Frameworks */,
+				8F82A132A6603C26679203E3 /* Pods_BidmadSDKTest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -93,7 +92,6 @@
 				46AB202A218816CF00A2D82F /* RewardViewController.m */,
 				26B1BE492692CE58003119FE /* RewardInterstitialViewController.h */,
 				26B1BE4A2692CE58003119FE /* RewardInterstitialViewController.m */,
-				261FF6F9269EB55700014635 /* RewardInterstitialViewController.swift */,
 				26B1BE4C2692D1A9003119FE /* SegueInterimAdVIew.h */,
 				26B1BE4D2692D1A9003119FE /* SegueInterimAdVIew.m */,
 				9FD8586F25D37178008D3A3E /* OfferwallController.h */,
@@ -111,7 +109,7 @@
 				46EFA9DA1F69047F002B7C96 /* BidmadSDKTest */,
 				46EFA9D91F69047F002B7C96 /* Products */,
 				8AB48504F218BF3D84ED609A /* Pods */,
-				CC1A5BBCFE3A45083528C64C /* Frameworks */,
+				7633A81FB781E80D8F02FF90 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -141,21 +139,22 @@
 			path = BidmadSDKTest;
 			sourceTree = "<group>";
 		};
+		7633A81FB781E80D8F02FF90 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				26CB246E27574E0C00AD8A11 /* AVFoundation.framework */,
+				BF86958DD44FB459AC2DBA2E /* Pods_BidmadSDKTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		8AB48504F218BF3D84ED609A /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				C6DFB0E79FEFF5A0FB22B6DA /* Pods-BidmadSDKTest.debug.xcconfig */,
-				AA61C5ADB6DFD09384D386B0 /* Pods-BidmadSDKTest.release.xcconfig */,
+				F1842760F31FF5CA27D7AB1C /* Pods-BidmadSDKTest.debug.xcconfig */,
+				21FF91E35B990ADE89D70579 /* Pods-BidmadSDKTest.release.xcconfig */,
 			);
 			path = Pods;
-			sourceTree = "<group>";
-		};
-		CC1A5BBCFE3A45083528C64C /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				CD79908517C0A4FDFC190860 /* Pods_BidmadSDKTest.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -165,14 +164,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 46EFA9EF1F69047F002B7C96 /* Build configuration list for PBXNativeTarget "BidmadSDKTest" */;
 			buildPhases = (
-				CCD4CECDEACBAB3724B1E157 /* [CP] Check Pods Manifest.lock */,
+				F33F2C4541066AFE9A1399ED /* [CP] Check Pods Manifest.lock */,
 				46EFA9D41F69047F002B7C96 /* Sources */,
 				46EFA9D51F69047F002B7C96 /* Frameworks */,
 				46EFA9D61F69047F002B7C96 /* Resources */,
 				47BCF8792553A69800A06CBB /* ShellScript */,
 				9FC8DBAB25DF9FA10070D200 /* Embed Frameworks */,
-				4CB59E499B72E3A7C94D59CA /* [CP] Copy Pods Resources */,
-				B4255581CADC386ECBB307BB /* [CP] Embed Pods Frameworks */,
+				86D90AE42B9877CDF600377C /* [CP] Embed Pods Frameworks */,
+				7AE7D42C43C692D31021CC8C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -260,7 +259,7 @@
 			shellPath = /bin/sh;
 			shellScript = "bash \"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/AdFitSDK.framework/strip-frameworks.sh\"\n";
 		};
-		4CB59E499B72E3A7C94D59CA /* [CP] Copy Pods Resources */ = {
+		7AE7D42C43C692D31021CC8C /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -269,7 +268,7 @@
 				"${PODS_ROOT}/Target Support Files/Pods-BidmadSDKTest/Pods-BidmadSDKTest-resources.sh",
 				"${PODS_ROOT}/Ads-Global/PangleSDK/LICENSE",
 				"${PODS_ROOT}/Ads-Global/PangleSDK/BUAdSDK.bundle",
-				"${PODS_ROOT}/AppLovinSDK/applovin-ios-sdk-10.0.1/AppLovinSDKResources.bundle",
+				"${PODS_ROOT}/AppLovinSDK/applovin-ios-sdk-10.3.6/AppLovinSDKResources.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/BidmadSDK/bidmad_asset.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
@@ -284,7 +283,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BidmadSDKTest/Pods-BidmadSDKTest-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		B4255581CADC386ECBB307BB /* [CP] Embed Pods Frameworks */ = {
+		86D90AE42B9877CDF600377C /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -310,7 +309,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BidmadSDKTest/Pods-BidmadSDKTest-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		CCD4CECDEACBAB3724B1E157 /* [CP] Check Pods Manifest.lock */ = {
+		F33F2C4541066AFE9A1399ED /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -339,7 +338,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				261FF6FA269EB55800014635 /* RewardInterstitialViewController.swift in Sources */,
 				46EFA9E31F69047F002B7C96 /* ViewController.m in Sources */,
 				26B4FEF42694398E0004A818 /* AppOpenAdViewController.m in Sources */,
 				26B1BE4B2692CE58003119FE /* RewardInterstitialViewController.m in Sources */,
@@ -494,8 +492,9 @@
 		};
 		46EFA9F01F69047F002B7C96 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C6DFB0E79FEFF5A0FB22B6DA /* Pods-BidmadSDKTest.debug.xcconfig */;
+			baseConfigurationReference = F1842760F31FF5CA27D7AB1C /* Pods-BidmadSDKTest.debug.xcconfig */;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
@@ -504,22 +503,24 @@
 				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = MWF8UC94P5;
 				ENABLE_BITCODE = NO;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)$(LOCAL_LIBRARY_DIR)",
 					"$(PROJECT_DIR)$(LOCAL_LIBRARY_DIR)/Tapjoy.embeddedframework",
 					"$(PROJECT_DIR)/BidmadSDKTest",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = BidmadSDKTest/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 1.0;
-				ONLY_ACTIVE_ARCH = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.adop.mnctest;
+				PRODUCT_BUNDLE_IDENTIFIER = com.adop.BidmadSDKSample;
 				PRODUCT_NAME = BidmadSimTest;
-				PROVISIONING_PROFILE_SPECIFIER = MNCTEST_DEV;
+				PROVISIONING_PROFILE_SPECIFIER = test;
 				SWIFT_OBJC_BRIDGING_HEADER = "BidmadSDKTest/AdViewController/BidmadSDKTest-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -531,8 +532,9 @@
 		};
 		46EFA9F11F69047F002B7C96 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AA61C5ADB6DFD09384D386B0 /* Pods-BidmadSDKTest.release.xcconfig */;
+			baseConfigurationReference = 21FF91E35B990ADE89D70579 /* Pods-BidmadSDKTest.release.xcconfig */;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
@@ -541,22 +543,24 @@
 				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = MWF8UC94P5;
 				ENABLE_BITCODE = NO;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)$(LOCAL_LIBRARY_DIR)",
 					"$(PROJECT_DIR)$(LOCAL_LIBRARY_DIR)/Tapjoy.embeddedframework",
 					"$(PROJECT_DIR)/BidmadSDKTest",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = BidmadSDKTest/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 1.0;
-				ONLY_ACTIVE_ARCH = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.adop.mnctest;
+				PRODUCT_BUNDLE_IDENTIFIER = com.adop.BidmadSDKSample;
 				PRODUCT_NAME = BidmadSimTest;
-				PROVISIONING_PROFILE_SPECIFIER = MNCTEST_DEV;
+				PROVISIONING_PROFILE_SPECIFIER = test;
 				SWIFT_OBJC_BRIDGING_HEADER = "BidmadSDKTest/AdViewController/BidmadSDKTest-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VALID_ARCHS = "$(inherited)";

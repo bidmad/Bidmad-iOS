@@ -1,4 +1,12 @@
 #import "OfferwallController.h"
+@import OpenBiddingHelper;
+@import BidmadAdapterFNC;
+
+@interface OfferwallController() <BIDMADOfferwallDelegate> {
+    BidmadOfferwallAd *offerwallAd;
+}
+
+@end
 
 @implementation OfferwallController
 
@@ -6,31 +14,54 @@
     
     [super viewDidLoad];
     
-    NSLog(@"AppUI isSDKInit %d", [BIDMADOfferwall isSDKInit]);
-    
     [[BIDMADSetting sharedInstance]setIsDebug:YES];
-    self.offerwall = [[BIDMADOfferwall alloc]initWithZoneId:@"5ede71e1-07b4-4987-9bc0-e8a3c62e6548"];
-    [self.offerwall setParentViewController:self];
-    [self.offerwall setDelegate:self];
+    self->offerwallAd = [[BidmadOfferwallAd alloc] initWith:self zoneID:@"5ede71e1-07b4-4987-9bc0-e8a3c62e6548"];
+    [self->offerwallAd setDelegate: self];
+    
+    // Bidmad Offerwall Ads can be set with Custom Unique ID with the following method.
+    [self->offerwallAd setCUID:@"YOUR ENCRYPTED ID"];
 }
 
 -(IBAction)loadOfferwall:(UIButton*)sender{
-    [self.offerwall loadOfferwall];
+    [self->offerwallAd load];
    
 }
 
 -(IBAction)showOfferwall:(UIButton*)sender{
-    [self.offerwall showOfferwall];
+    [self->offerwallAd show];
 }
 
 -(IBAction)getCurrncy:(UIButton*)sender{
-    [self.offerwall getCurrencyBalance];
+    [self->offerwallAd getCurrencyWithCurrencyReceivalCompletion:^(BOOL isSuccess, NSInteger currencyAmount) {
+        if (!isSuccess) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                NSLog(@"Currency Receival Failed");
+                [self.offerwallCallbackDisplay setText:@"Currency Receival Failed"];
+            });
+            return;
+        }
+        
+        NSLog(@"Currency Receival Success");
+        [self.offerwallCallbackDisplay setText:@"Currency Receival Success"];
+        [self.textCurrency setText:[NSString stringWithFormat:@"%@", [NSNumber numberWithInteger:currencyAmount]]];
+    }];
    
 }
 
 -(IBAction)spendCurrncy:(UIButton*)sender{
     NSString* inputAmount = self.inputSpendCurrency.text;
-    [self.offerwall spendCurrency:[inputAmount intValue]];
+    [self->offerwallAd spendCurrency:[inputAmount integerValue] currencySpenditureCompletion:^(BOOL isSuccess, NSInteger currencyAmount) {
+        if (!isSuccess) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                NSLog(@"Currency Spenditure Failed");
+                [self.offerwallCallbackDisplay setText:@"Currency Spenditure Failed"];
+            });
+        }
+        
+        NSLog(@"Currency Spenditure Success");
+        [self.offerwallCallbackDisplay setText:@"Currency Spenditure Success"];
+        [self.textCurrency setText:[NSString stringWithFormat:@"%@", [NSNumber numberWithInteger:currencyAmount]]];
+    }];
 }
 
 -(void)renewBalance:(int)amount{
@@ -42,51 +73,36 @@
 }
 
 #pragma mark Offerwall Delegate
-- (void)BIDMADOfferwallInitSuccess:(BIDMADOfferwall *)core
-{
-    self.offerwallCallbackDisplay.text = @"BIDMADOfferwallInitSuccess";
-}
-- (void)BIDMADOfferwallInitFail:(BIDMADOfferwall *)core error:(NSString *)error
-{
-    self.offerwallCallbackDisplay.text = @"BIDMADOfferwallInitFail";
-}
-- (void)BIDMADOfferwallLoadAd:(BIDMADOfferwall *)core
-{
-    self.offerwallCallbackDisplay.text = @"BIDMADOfferwallLoadAd";
-}
-- (void)BIDMADOfferwallShowAd:(BIDMADOfferwall *)core
-{
-    self.offerwallCallbackDisplay.text = @"BIDMADOfferwallShowAd";
-}
-- (void)BIDMADOfferwallFailedAd:(BIDMADOfferwall *)core
-{
-    self.offerwallCallbackDisplay.text = @"BIDMADOfferwallFailedAd";
-}
-- (void)BIDMADOfferwallCloseAd:(BIDMADOfferwall *)core
-{
-    self.offerwallCallbackDisplay.text = @"BIDMADOfferwallCloseAd";
+- (void)BIDMADOfferwallLoadAd:(BIDMADOfferwall *)core {
+    NSLog(@"Bidmad Sample App Offerwall Load");
+    [self.offerwallCallbackDisplay setText:@"Load"];
 }
 
-- (void)BIDMADOfferwallGetCurrencyBalanceSuccess:(BIDMADOfferwall *)core currencyName:(NSString *)currencyName balance:(int)balance
-{
-    NSLog(@"BIDMADOfferwallGetCurrencyBalanceSuccess %@, %d", currencyName, balance);
-    self.offerwallCallbackDisplay.text = @"BIDMADOfferwallGetCurrencyBalanceSuccess";
-    [self renewBalance:balance];
+- (void)BIDMADOfferwallShowAd:(BIDMADOfferwall *)core {
+    NSLog(@"Bidmad Sample App Offerwall Show");
+    [self.offerwallCallbackDisplay setText:@"Show"];
+    
+    [self->offerwallAd load];
 }
-- (void)BIDMADOfferwallGetCurrencyBalanceFail:(BIDMADOfferwall *)core error:(NSString *)error
-{
-    NSLog(@"BIDMADOfferwallGetCurrencyBalanceFail %@", error);
-    self.offerwallCallbackDisplay.text = @"BIDMADOfferwallGetCurrencyBalanceFail";
+
+- (void)BIDMADOfferwallCloseAd:(BIDMADOfferwall *)core {
+    NSLog(@"Bidmad Sample App Offerwall Close");
+    [self.offerwallCallbackDisplay setText:@"Close"];
 }
-- (void)BIDMADOfferwallSpendCurrencySuccess:(BIDMADOfferwall *)core currencyName:(NSString *)currencyName balance:(int)balance
-{
-    NSLog(@"BIDMADOfferwallSpendCurrencySuccess %@, %d", currencyName, balance);
-    self.offerwallCallbackDisplay.text = @"BIDMADOfferwallSpendCurrencySuccess";
+
+- (void)BIDMADOfferwallFailedAd:(BIDMADOfferwall *)core {
+    NSLog(@"Bidmad Sample App Offerwall Failed");
+    [self.offerwallCallbackDisplay setText:@"Fail"];
 }
-- (void)BIDMADOfferwallSpendCurrencyFail:(BIDMADOfferwall *)core error:(NSString *)error
-{
-    NSLog(@"BIDMADOfferwallSpendCurrencyFail %@", error);
-    self.offerwallCallbackDisplay.text = @"BIDMADOfferwallSpendCurrencyFail";
+
+- (void)BIDMADOfferwallInitSuccess:(BIDMADOfferwall *)core {
+    NSLog(@"Bidmad Sample App Offerwall Init Success");
+    [self.offerwallCallbackDisplay setText:@"Init Success"];
+}
+
+- (void)BIDMADOfferwallInitFail:(BIDMADOfferwall *)core error:(NSString *)error {
+    NSLog(@"Bidmad Sample App Offerwall Init Failed");
+    [self.offerwallCallbackDisplay setText:@"Init Failed"];
 }
 
 @end

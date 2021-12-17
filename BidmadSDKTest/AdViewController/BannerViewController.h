@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
+#import <OpenBiddingHelper/OpenBiddingBanner.h>
 
 @import BidmadSDK;
-@interface BannerViewController : UIViewController<BIDMADBannerDelegate, BIDMADRewardVideoDelegate>
+@interface BannerViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UIView *BannerContainer;
 @property (weak, nonatomic) IBOutlet UIButton* load;
 @property (weak, nonatomic) IBOutlet UILabel* bannerCallbackDisplay;

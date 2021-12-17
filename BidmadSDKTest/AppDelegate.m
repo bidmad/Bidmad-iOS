@@ -8,35 +8,83 @@
 
 #import "AppDelegate.h"
 #import <AppTrackingTransparency/AppTrackingTransparency.h>
+@import OpenBiddingHelper;
 @import BidmadSDK;
 
 #define DEBUG_MODE
-@interface AppDelegate () <BIDMADAppOpenAdDelegate>
+@interface AppDelegate () <BIDMADGDPRforGoogleProtocol, OpenBiddingAppOpenAdDelegate>
 
 @end
 
 @implementation AppDelegate {
-    BIDMADAppOpenAd *bidmadAppOpenAd;
+    BidmadAppOpenAd *bidmadAppOpenAd;
+    BIDMADGDPRforGoogle *gdpr;
 }
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
-    [[BIDMADSetting sharedInstance] reqAdTrackingAuthorizationWithCompletionHandler:^(BidmadTrackingAuthorizationStatus status) {
+    [BidmadCommon initializeSdk];
+    
+    [BidmadCommon reqAdTrackingAuthorizationWith:^(BidmadTrackingAuthorizationStatus status) {
         if(status == BidmadAuthorizationStatusAuthorized){
-            NSLog(@" IDFA  수집 동의 ");
+            NSLog(@"Bidmad Sample App: IDFA Authorized");
         }else if(status == BidmadAuthorizationStatusDenied) {
-            NSLog(@" IDFA  수집 거부 ");
+            NSLog(@"Bidmad Sample App: IDFA Unauthorized");
         }else if(status == BidmadAuthorizationStatusLessThaniOS14) {
-            NSLog(@" IDFA  iOS 14 이하 버전 ");
+            NSLog(@"Bidmad Sample App: iOS Version lower than iOS 14");
         }
     }];
     
-    [[BIDMADSetting sharedInstance] setIsDebug:YES];
-    bidmadAppOpenAd = [[BIDMADAppOpenAd alloc] init];
-    [bidmadAppOpenAd setDelegate: self];
-    [bidmadAppOpenAd registerForAppOpenAdForZoneID: @"0ddd6401-0f19-49ee-b1f9-63e910f92e77"];
+    bidmadAppOpenAd = [[BidmadAppOpenAd alloc] initWith:self.window.rootViewController zoneID:@"0ddd6401-0f19-49ee-b1f9-63e910f92e77"];
+    [bidmadAppOpenAd setDelegate:self];
+    
+    [BidmadCommon setIsChildDirectedAds:YES];
+    [BidmadCommon setUserConsentStatusForCCPACompliance:YES];
+    
+    [BidmadCommon setIsDebug:YES];
+    NSLog(@"Bidmad Sample App: [BidmadCommon isDebug] is %@", [NSNumber numberWithBool:[BidmadCommon isDebug]]);
+    NSLog(@"Bidmad Sample App: [BidmadCommon bidmadVersion] is %@", [BidmadCommon bidmadVersion]);
+    
+    NSLog(@"Bidmad Sample App: [BidmadCommon isChildDirectedTreament] is %@", [BidmadCommon isChildDirectedTreament]);
+    NSLog(@"Bidmad Sample App: [BidmadCommon isUserConsentCCPA] is %@", [BidmadCommon isUserConsentCCPA]);
+    
+    [BidmadCommon setTestDeviceId:@"0772a1fad2e99786a321e67ac9de4a0f"];
+    NSLog(@"Bidmad Sample App: [BidmadCommon testDeviceId] is %@", [BidmadCommon testDeviceId]);
+    
     return YES;
+}
+
+- (void)requestGDPR {
+    gdpr = [[BIDMADGDPRforGoogle alloc] initWith:[[[[UIApplication sharedApplication] windows] firstObject] rootViewController]];
+    gdpr.consentStatusDelegate = self;
+    [gdpr setDebug:@"D701554C-B328-4581-B7D0-B7B509ABFB84" isTestEurope:YES];
+    [gdpr reset];
+    [gdpr requestConsentInfoUpdate];
+}
+
+- (void)onConsentFormLoadSuccess {
+    NSLog(@"Consent Form Load Success");
+    [gdpr showForm];
+}
+
+- (void)onConsentFormLoadFailure:(NSError *)formError {
+    NSLog(@"Consent Form Load Failed");
+}
+
+- (void)onConsentInfoUpdateSuccess {
+    NSLog(@"Info Update");
+    [gdpr loadForm];
+}
+
+- (void)onConsentInfoUpdateFailure:(NSError *)formError {
+    NSLog(@"Info Update Fail");
+}
+
+- (void)onConsentFormDismissed:(NSError *)formError {
+    NSLog(@"Consent Form Dismissed");
+    if (formError != nil) {
+        NSLog(@"Receiving Consent Failed");
+    }
 }
 
 - (void)cancelAppOpenAd {
@@ -44,7 +92,7 @@
 }
 
 - (void)reloadAppOpenAd {
-    [bidmadAppOpenAd registerForAppOpenAdForZoneID: @"0ddd6401-0f19-49ee-b1f9-63e910f92e77"];
+    bidmadAppOpenAd = [[BidmadAppOpenAd alloc] initWith:self.window.rootViewController zoneID:@"0ddd6401-0f19-49ee-b1f9-63e910f92e77"];
 }
 
 - (void)BIDMADAppOpenAdAllFail:(BIDMADAppOpenAd *)core code:(NSString *)error {
@@ -52,19 +100,29 @@
     [self callbackLabelViewShow: @"App Open Ad Callback → AllFail"];
 }
 
-- (void)BIDMADAppOpenAdLoad:(BIDMADAppOpenAd *)core {
+- (void)OpenBiddingAppOpenAdLoad:(OpenBiddingAppOpenAd *)core {
     NSLog(@"BidmadSDK App Open Ad Callback → Load");
     [self callbackLabelViewShow: @"App Open Ad Callback → Load"];
 }
 
-- (void)BIDMADAppOpenAdShow:(BIDMADAppOpenAd *)core {
+- (void)OpenBiddingAppOpenAdShow:(OpenBiddingAppOpenAd *)core {
     NSLog(@"BidmadSDK App Open Ad Callback → Show");
     [self callbackLabelViewShow: @"App Open Ad Callback → Show"];
 }
 
-- (void)BIDMADAppOpenAdClose:(BIDMADAppOpenAd *)core {
+- (void)OpenBiddingAppOpenAdClick:(OpenBiddingAppOpenAd *)core {
+    NSLog(@"BidmadSDK App Open Ad Callback → Click");
+    [self callbackLabelViewShow: @"App Open Ad Callback → Click"];
+}
+
+- (void)OpenBiddingAppOpenAdClose:(OpenBiddingAppOpenAd *)core {
     NSLog(@"BidmadSDK App Open Ad Callback → Close");
     [self callbackLabelViewShow: @"App Open Ad Callback → Close"];
+}
+
+- (void)OpenBiddingAppOpenAdAllFail:(OpenBiddingAppOpenAd *)core code:(NSString *)error {
+    NSLog(@"BidmadSDK App Open Ad Callback → All Fail");
+    [self callbackLabelViewShow: @"App Open Ad Callback → All Fail"];
 }
 
 - (void)callbackLabelViewShow: (NSString *)callbackText {
