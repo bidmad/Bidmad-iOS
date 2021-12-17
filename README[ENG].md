@@ -23,13 +23,11 @@
 ## BidmadSDK Installation Guide
 
 1. Development Environment
-    - Xcode 12.0
+    - Xcode 13.2
     - BASE SDK : iOS
     - iOS Deployment Target : 11.0
-2. SDK Installation Methods
-    - **(Highly Recommended)** Installation through CocoaPods
-
-        Add the following code in your project Podfile.
+2. SDK Installation Methods<br>
+    1. Add the following code in your project Podfile.
 
         ```
         platform :ios, "11.0"
@@ -42,30 +40,15 @@
          pod 'BidmadAdapterFNC', '4.1.0.0'
         ```
 
-        Followed by entering the following command in Terminal.
+    2. Followed by entering the following command in Terminal.
 
         ```
         pod install
         ```
 
-    - **(Not Recommeded)** Manual Framework Embedding Method **( Manual Framework Embedding Method does not support Swift )**
-        1. Add libraries to "Link Binary With Libraries" settings as shown in the image below ( Target → Build Phases → Link Binary With Libraries )<br>
-            ![Link_Binary_With_Libraries](https://i.imgur.com/73OTB5n.png) <br>
-        2. Add frameworks and bundles to projects as below ( Target → General → Frameworks, Libraries, and Embedded Content )<br>
-            ![Frameworks_Libraries_and_Embedded_Content](https://i.imgur.com/rWvmsaN.png)
-        3. Add Bundle Resources as shown in the following image to "Copy Bundle Resources" ( Target → Build Phases → Copy Bundle Resources )<br>
-            ![Copy_Bundle_Resources](https://i.imgur.com/hoGfVJB.png)<br>
-    3. Build Settings ( Target → Build Settings )
-    1. Build Setting for CocoaPods Users<br>
-        - Set Enable Bitcode to No<br>
-            ![Enable_Bitcode](https://i.imgur.com/aXOBmr1.png)<br>
-    2. Build Settings for Manual Framework Embedding Method Users<br>
-        - Set Enable Bitcode to No<br>
-            ![Enable_Bitcode](https://i.imgur.com/aXOBmr1.png)<br>
-        - Add -ObjC Flag to Other Linker Flag<br>
-            ![Other_Linker](https://i.imgur.com/feieEZX.png)<br>
-        - Set Allow Non-Modular Includes In Framework Modules to Yes<br>
-            ![Allow_Non_Modular_Includes_In_Framework_Modules](https://i.imgur.com/ap4RddO.png)
+3. Build Settings ( Target → Build Settings )<br>
+    - Set Enable Bitcode to No<br>
+        ![Enable_Bitcode](https://i.imgur.com/aXOBmr1.png)<br>
 4. info.plist Setting
 
     ```

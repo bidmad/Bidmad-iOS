@@ -26,46 +26,29 @@
     - Xcode 13.2 버전
     - BASE SDK : iOS
     - iOS Deployment Target : 11.0
-2. SDK설치 방법
-    - **(추천)** CocoaPods를 사용한 설치 방법
+2. SDK설치 방법 <br>
+    1. Podfile 내부에 다음 코드 추가
 
-        1. Podfile 내부에 다음 코드 추가
+        ```
+        platform :ios, "11.0"
 
-            ```
-            platform :ios, "11.0"
+        target "Runner" do
+         use_frameworks!
+         pod 'BidmadSDK', '4.1.0.0'
+         pod 'OpenBiddingHelper', '4.1.0.0'
+         pod 'BidmadAdapterFC', '4.1.0.0'
+         pod 'BidmadAdapterFNC', '4.1.0.0'
+        ```
 
-            target "Runner" do
-             use_frameworks!
-             pod 'BidmadSDK', '4.1.0.0'
-             pod 'OpenBiddingHelper', '4.1.0.0'
-             pod 'BidmadAdapterFC', '4.1.0.0'
-             pod 'BidmadAdapterFNC', '4.1.0.0'
-            ```
+    2. Terminal에서 다음 커맨드 입력
 
-        2. Terminal에서 다음 커맨드 입력
-
-            ```
-            pod install
-            ```
-
-    - **(비추천)** 수동적인 Framework 추가 방법 **( 수동적인 Framework 추가 방법은 Swift를 지원하지 않습니다 )**
-        1. Link Binary With Libraries 세팅에 다음 이미지와 같이 라이브러리 추가 ( Target → Build Phases → Link Binary With Libraries )<br>
-            ![Link_Binary_With_Libraries](https://i.imgur.com/73OTB5n.png) <br>
-        2. 프레임워크 및 번들을 다음 이미지와 같이 프로젝트에 추가 ( Target → General → Frameworks, Libraries, and Embedded Content )<br>
-            ![Frameworks_Libraries_and_Embedded_Content](https://i.imgur.com/rWvmsaN.png)
-        3. Copy Bundle Resources 에 다음 이미지와 같이 번들 리소스 추가 ( Target → Build Phases → Copy Bundle Resources )<br>
-            ![Copy_Bundle_Resources](https://i.imgur.com/hoGfVJB.png)<br>
-3. Build Settings ( Target → Build Settings )
-    1. CocoaPods 사용자를 위한 세팅<br>
-        - Enable Bitcode 를 No로 설정<br>
-            ![Enable_Bitcode](https://i.imgur.com/aXOBmr1.png)<br>
-    2. 수동적인 Framework 추가 방법 사용자를 위한 세팅<br>
-        - Enable Bitcode 를 No로 설정<br>
-            ![Enable_Bitcode](https://i.imgur.com/aXOBmr1.png)<br>
-        - Other Linker Flag 에 -ObjC Flag 추가<br>
-            ![Other_Linker](https://i.imgur.com/feieEZX.png)<br>
-        - Allow Non-Modular Includes In Framework Modules 를 Yes로 설정<br>
-            ![Allow_Non_Modular_Includes_In_Framework_Modules](https://i.imgur.com/ap4RddO.png)
+        ```
+        pod install
+        ```
+        
+3. Build Settings ( Target → Build Settings ) <br>
+    - Enable Bitcode 를 No로 설정<br>
+        ![Enable_Bitcode](https://i.imgur.com/aXOBmr1.png)<br>
 4. info.plist 내용 설정
 
     ```
