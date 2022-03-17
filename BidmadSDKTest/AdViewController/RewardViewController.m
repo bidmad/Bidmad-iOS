@@ -26,6 +26,9 @@
     
     // Bidmad Rewarded Ads can be set with Custom Unique ID with the following method.
     [rewardAd setCUID:@"YOUR ENCRYPTED ID"];
+    
+    // Auto Reload feature can be turned on and off with the following method
+    [rewardAd setIsAutoReload:YES]; // Default is YES (Auto Reload turned ON)
 }
 
 -(IBAction)loadReward:(UIButton*)sender{
@@ -59,8 +62,6 @@
 - (void)BIDMADOpenBiddingRewardVideoShow:(OpenBiddingRewardVideo *)core {
     NSLog(@"Bidmad Sample App Reward Show");
     [[self rewardCallbackDisplay] setText:@"Show"];
-    
-    [self->rewardAd load];
 }
 
 - (void)BIDMADOpenBiddingRewardVideoClick:(OpenBiddingRewardVideo *)core {

@@ -18,12 +18,13 @@
         - ADOPAtom (Interstitial, Reward Video)
         - AdFit (Banner)
         - Tapjoy (Offerwall)
+        - Fyber (Banner, Interstitial, Reward Video)
         </details>
         
 ## BidmadSDK Installation Guide
 
 1. 개발 환경
-    - Xcode 13.2 버전
+    - Xcode 13.2 버전 (Xcode 최소 사양 12.2)
     - BASE SDK : iOS
     - iOS Deployment Target : 11.0
 2. SDK설치 방법 <br>
@@ -34,10 +35,10 @@
 
         target "Runner" do
          use_frameworks!
-         pod 'BidmadSDK', '4.1.0.0'
-         pod 'OpenBiddingHelper', '4.1.0.0'
-         pod 'BidmadAdapterFC', '4.1.0.0'
-         pod 'BidmadAdapterFNC', '4.1.0.0'
+         pod 'BidmadSDK', '4.1.1.2'
+         pod 'OpenBiddingHelper', '4.1.1.2'
+         pod 'BidmadAdapterFC', '4.1.1.4'
+         pod 'BidmadAdapterFNC', '4.1.1.4'
         ```
 
     2. Terminal에서 다음 커맨드 입력

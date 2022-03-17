@@ -26,6 +26,9 @@
     
     // Bidmad Interstitial Ads can be set with Custom Unique ID with the following method.
     [interstitialAd setCUID:@"YOUR ENCRYPTED ID"];
+    
+    // Auto Reload feature can be turned on and off with the following method
+    [interstitialAd setIsAutoReload:YES]; // Default is YES (Auto Reload turned ON)
 }
 
 -(IBAction)loadInterstitial:(UIButton*)sender{
@@ -53,8 +56,6 @@
 - (void)BIDMADOpenBiddingInterstitialShow:(OpenBiddingInterstitial *)core {
     NSLog(@"Bidmad Sample App Interstitial Show");
     [[self InterstitialCallbackDisplay] setText:@"Show"];
-    
-    [self->interstitialAd load];
 }
 
 - (void)BIDMADOpenBiddingInterstitialClose:(OpenBiddingInterstitial *)core {

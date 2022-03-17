@@ -19,7 +19,7 @@
 		46EFA9EB1F69047F002B7C96 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46EFA9E91F69047F002B7C96 /* LaunchScreen.storyboard */; };
 		46EFA9FD1F6908FB002B7C96 /* BannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46EFA9FC1F6908FB002B7C96 /* BannerViewController.m */; };
 		46EFAA001F690920002B7C96 /* InterstitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46EFA9FF1F690920002B7C96 /* InterstitialViewController.m */; };
-		8F82A132A6603C26679203E3 /* Pods_BidmadSDKTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF86958DD44FB459AC2DBA2E /* Pods_BidmadSDKTest.framework */; };
+		7DDFEA943F16482A55824FA5 /* Pods_BidmadSDKTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CA11C1D8FCF9B822BBAB498 /* Pods_BidmadSDKTest.framework */; };
 		9FD8587125D37178008D3A3E /* OfferwallController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD8587025D37178008D3A3E /* OfferwallController.m */; };
 /* End PBXBuildFile section */
 
@@ -37,7 +37,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		21FF91E35B990ADE89D70579 /* Pods-BidmadSDKTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BidmadSDKTest.release.xcconfig"; path = "Target Support Files/Pods-BidmadSDKTest/Pods-BidmadSDKTest.release.xcconfig"; sourceTree = "<group>"; };
+		1CA11C1D8FCF9B822BBAB498 /* Pods_BidmadSDKTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BidmadSDKTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		261FF6F8269EB55700014635 /* BidmadSDKTest-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BidmadSDKTest-Bridging-Header.h"; sourceTree = "<group>"; };
 		265E6470264BB3720006C750 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		26B1BE492692CE58003119FE /* RewardInterstitialViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RewardInterstitialViewController.h; sourceTree = "<group>"; };
@@ -63,10 +63,10 @@
 		46EFA9FC1F6908FB002B7C96 /* BannerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BannerViewController.m; sourceTree = "<group>"; };
 		46EFA9FE1F690920002B7C96 /* InterstitialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InterstitialViewController.h; sourceTree = "<group>"; };
 		46EFA9FF1F690920002B7C96 /* InterstitialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InterstitialViewController.m; sourceTree = "<group>"; };
+		5638D5D117BCF243D4E02B8E /* Pods-BidmadSDKTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BidmadSDKTest.debug.xcconfig"; path = "Target Support Files/Pods-BidmadSDKTest/Pods-BidmadSDKTest.debug.xcconfig"; sourceTree = "<group>"; };
 		9FD8586F25D37178008D3A3E /* OfferwallController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfferwallController.h; sourceTree = "<group>"; };
 		9FD8587025D37178008D3A3E /* OfferwallController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfferwallController.m; sourceTree = "<group>"; };
-		BF86958DD44FB459AC2DBA2E /* Pods_BidmadSDKTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BidmadSDKTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F1842760F31FF5CA27D7AB1C /* Pods-BidmadSDKTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BidmadSDKTest.debug.xcconfig"; path = "Target Support Files/Pods-BidmadSDKTest/Pods-BidmadSDKTest.debug.xcconfig"; sourceTree = "<group>"; };
+		BB81E774831757D4CB1BB8D6 /* Pods-BidmadSDKTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BidmadSDKTest.release.xcconfig"; path = "Target Support Files/Pods-BidmadSDKTest/Pods-BidmadSDKTest.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,7 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8F82A132A6603C26679203E3 /* Pods_BidmadSDKTest.framework in Frameworks */,
+				7DDFEA943F16482A55824FA5 /* Pods_BidmadSDKTest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -143,7 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				26CB246E27574E0C00AD8A11 /* AVFoundation.framework */,
-				BF86958DD44FB459AC2DBA2E /* Pods_BidmadSDKTest.framework */,
+				1CA11C1D8FCF9B822BBAB498 /* Pods_BidmadSDKTest.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -151,8 +151,8 @@
 		8AB48504F218BF3D84ED609A /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				F1842760F31FF5CA27D7AB1C /* Pods-BidmadSDKTest.debug.xcconfig */,
-				21FF91E35B990ADE89D70579 /* Pods-BidmadSDKTest.release.xcconfig */,
+				5638D5D117BCF243D4E02B8E /* Pods-BidmadSDKTest.debug.xcconfig */,
+				BB81E774831757D4CB1BB8D6 /* Pods-BidmadSDKTest.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -164,14 +164,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 46EFA9EF1F69047F002B7C96 /* Build configuration list for PBXNativeTarget "BidmadSDKTest" */;
 			buildPhases = (
-				F33F2C4541066AFE9A1399ED /* [CP] Check Pods Manifest.lock */,
+				8B4D60F831CD38B864A52337 /* [CP] Check Pods Manifest.lock */,
 				46EFA9D41F69047F002B7C96 /* Sources */,
 				46EFA9D51F69047F002B7C96 /* Frameworks */,
 				46EFA9D61F69047F002B7C96 /* Resources */,
 				47BCF8792553A69800A06CBB /* ShellScript */,
 				9FC8DBAB25DF9FA10070D200 /* Embed Frameworks */,
-				86D90AE42B9877CDF600377C /* [CP] Embed Pods Frameworks */,
-				7AE7D42C43C692D31021CC8C /* [CP] Copy Pods Resources */,
+				2B2AFC978B9F3B0FBC613D8E /* [CP] Embed Pods Frameworks */,
+				732B1A1C4D4D8F22169D5AD4 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -242,48 +242,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		47BCF8792553A69800A06CBB /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 8;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 1;
-			shellPath = /bin/sh;
-			shellScript = "bash \"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/AdFitSDK.framework/strip-frameworks.sh\"\n";
-		};
-		7AE7D42C43C692D31021CC8C /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-BidmadSDKTest/Pods-BidmadSDKTest-resources.sh",
-				"${PODS_ROOT}/Ads-Global/PangleSDK/LICENSE",
-				"${PODS_ROOT}/Ads-Global/PangleSDK/BUAdSDK.bundle",
-				"${PODS_ROOT}/AppLovinSDK/applovin-ios-sdk-10.3.6/AppLovinSDKResources.bundle",
-				"${PODS_CONFIGURATION_BUILD_DIR}/BidmadSDK/bidmad_asset.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/LICENSE",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/BUAdSDK.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AppLovinSDKResources.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/bidmad_asset.bundle",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BidmadSDKTest/Pods-BidmadSDKTest-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		86D90AE42B9877CDF600377C /* [CP] Embed Pods Frameworks */ = {
+		2B2AFC978B9F3B0FBC613D8E /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -309,7 +268,50 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BidmadSDKTest/Pods-BidmadSDKTest-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		F33F2C4541066AFE9A1399ED /* [CP] Check Pods Manifest.lock */ = {
+		47BCF8792553A69800A06CBB /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 8;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+			shellPath = /bin/sh;
+			shellScript = "bash \"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/AdFitSDK.framework/strip-frameworks.sh\"\n";
+		};
+		732B1A1C4D4D8F22169D5AD4 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BidmadSDKTest/Pods-BidmadSDKTest-resources.sh",
+				"${PODS_ROOT}/Ads-Global/PangleSDK/LICENSE",
+				"${PODS_ROOT}/Ads-Global/PangleSDK/BUAdSDK.bundle",
+				"${PODS_ROOT}/AppLovinSDK/applovin-ios-sdk-10.3.6/AppLovinSDKResources.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/BidmadSDK/bidmad_asset.bundle",
+				"${PODS_ROOT}/Fyber_Marketplace_SDK/IASDKCore/IASDKCore.xcframework/IASDKResources.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/LICENSE",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/BUAdSDK.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AppLovinSDKResources.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/bidmad_asset.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IASDKResources.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BidmadSDKTest/Pods-BidmadSDKTest-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8B4D60F831CD38B864A52337 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -492,7 +494,7 @@
 		};
 		46EFA9F01F69047F002B7C96 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F1842760F31FF5CA27D7AB1C /* Pods-BidmadSDKTest.debug.xcconfig */;
+			baseConfigurationReference = 5638D5D117BCF243D4E02B8E /* Pods-BidmadSDKTest.debug.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -518,9 +520,9 @@
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.adop.BidmadSDKSample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.adop.mnctest;
 				PRODUCT_NAME = BidmadSimTest;
-				PROVISIONING_PROFILE_SPECIFIER = test;
+				PROVISIONING_PROFILE_SPECIFIER = MNCTEST_DEV;
 				SWIFT_OBJC_BRIDGING_HEADER = "BidmadSDKTest/AdViewController/BidmadSDKTest-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -532,7 +534,7 @@
 		};
 		46EFA9F11F69047F002B7C96 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 21FF91E35B990ADE89D70579 /* Pods-BidmadSDKTest.release.xcconfig */;
+			baseConfigurationReference = BB81E774831757D4CB1BB8D6 /* Pods-BidmadSDKTest.release.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -558,9 +560,9 @@
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.adop.BidmadSDKSample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.adop.mnctest;
 				PRODUCT_NAME = BidmadSimTest;
-				PROVISIONING_PROFILE_SPECIFIER = test;
+				PROVISIONING_PROFILE_SPECIFIER = MNCTEST_DEV;
 				SWIFT_OBJC_BRIDGING_HEADER = "BidmadSDKTest/AdViewController/BidmadSDKTest-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VALID_ARCHS = "$(inherited)";

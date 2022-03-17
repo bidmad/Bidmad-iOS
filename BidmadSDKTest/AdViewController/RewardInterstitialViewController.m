@@ -86,6 +86,9 @@
     
     // Ads can be set with Custom Unique ID with the following method.
     [rewardInterstitialAd setCUID:@"YOUR ENCRYPTED ID"];
+    
+    // Auto Reload feature can be turned on and off with the following method
+    [rewardInterstitialAd setIsAutoReload:YES]; // Default is YES (Auto Reload turned ON)
 }
 
 - (void)adAvailable {
@@ -139,8 +142,6 @@
 - (void)OpenBiddingRewardInterstitialShow:(OpenBiddingRewardInterstitial *)core {
     NSLog(@"Bidmad Sample App RewardInterstitial Show");
     [self->callbackLabelView setText:@"Show"];
-    
-    [self->rewardInterstitialAd load];
 }
 
 - (void)OpenBiddingRewardInterstitialClick:(OpenBiddingRewardInterstitial *)core {
