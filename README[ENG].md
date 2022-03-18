@@ -123,6 +123,29 @@ For interstitial and rewarded ads (including rewardInterstitial ads), <br>
 at the starting point of your app, load the ad, instead of calling initializeSdk(). <br>
 Refer to the guides below for loading the interstitial or rewarded ads and show the ad at the point of your choice.
 
+### Auto Reload feature
+For Interstitial / Reward / rewardInterstitial Ads, another ad is automatically reloaded when an ad is shown to the user.
+This auto-reload feature can freely be turned on and off with the following interface. Please be noted that the default setting for isAutoReload is true (or YES).
+
+<details markdown="1">
+<summary>ObjC</summary>
+<br>
+ 
+```
+[fullscreenAd setIsAutoReload: YES]; // Auto Reload feature turned on
+[fullscreenAd setIsAutoReload: NO]; // Auto Reload feature turned off
+```
+</details>
+
+<details markdown="1">
+<summary>Swift</summary>
+<br>
+
+```
+fullscreenAd.isAutoReload = true // Auto Reload feature turned on
+fullscreenAd.isAutoReload = false // Auto Reload feature turned off
+```
+</details>
 
 ### Banner Ad Load
 
@@ -246,6 +269,9 @@ public func bidmadOpenBiddingBannerAllFail(_ core: OpenBiddingBanner!) {
     NSString *zoneID = @"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx";
     interstitialAd = [[BidmadInterstitialAd alloc] initWith:self zoneID:zoneID];
     [interstitialAd setDelegate: self];
+        
+    // Auto Reload feature can be turned on and off with the following method
+    [interstitialAd setIsAutoReload:YES]; // Default is YES (Auto Reload turned ON)
 }
 
 -(void)loadAd {
@@ -274,6 +300,9 @@ class InterstitialController: UIViewController, BIDMADOpenBiddingInterstitialDel
     let zoneID = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
     interstitialAd = BidmadInterstitialAd(with: self, zoneID: zoneID)
     interstitialAd.delegate = self
+    
+    // Auto Reload feature can be turned on and off with the following method
+    interstitialAd.isAutoReload = true // Default is true (Auto Reload turned ON)
   }
   
   func loadAd() {
@@ -358,6 +387,9 @@ public func bidmadOpenBiddingInterstitialAllFail(_ core: OpenBiddingInterstitial
     NSString *zoneID = @"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx";
     rewardAd = [[BidmadRewardAd alloc] initWith:self zoneID:zoneID];
     rewardAd.delegate = self;
+        
+    // Auto Reload feature can be turned on and off with the following method
+    [rewardAd setIsAutoReload: YES] // Default is YES (Auto Reload turned ON)
 }
 
 -(void)loadReward {
@@ -386,6 +418,9 @@ class RewardVideoController: UIViewController, BIDMADOpenBiddingRewardVideoDeleg
     let zoneID = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
     rewardAd = BidmadRewardAd(with: self, zoneID: zoneID)
     rewardAd.delegate = self
+        
+    // Auto Reload feature can be turned on and off with the following method
+    rewardAd.isAutoReload = true // Default is true (Auto Reload turned ON)
   }
   
   func loadAd() {
@@ -499,6 +534,9 @@ Reward Interstitial Ads only offer skippable ads.<br>
     rewardInterstitialAd = [[BidmadRewardInterstitialAd alloc] initWith:self zoneID:@"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"];
     rewardInterstitialAd.delegate = self;
     [rewardInterstitialAd load];
+        
+    // Auto Reload feature can be turned on and off with the following method
+    [rewardInterstitialAd setIsAutoReload: YES] // Default is YES (Auto Reload turned ON)
 }
 
 - (void)adShow {
@@ -528,6 +566,9 @@ class RewardInterstitialViewController: UIViewController, OpenBiddingRewardInter
         rewardInterstitialAd = BidmadRewardInterstitialAd(with: self, zoneID: zoneID)
         rewardInterstitialAd.delegate = self
         rewardInterstitialAd.load()
+        
+        // Auto Reload feature can be turned on and off with the following method
+        rewardInterstitialAd.isAutoReload = true // Default is true (Auto Reload turned ON)
     }
     
     func adShow() {
