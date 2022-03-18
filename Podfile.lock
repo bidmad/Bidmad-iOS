@@ -35,10 +35,10 @@ PODS:
     - GoogleMobileAdsMediationFacebook (= 6.3.1.0)
     - GoogleMobileAdsMediationFyber (= 8.1.2.0)
     - TapjoySDK (< 12.9.0, >= 12.8.0)
-  - BidmadSDK (4.1.1.2):
-    - BidmadSDK/ForNative (= 4.1.1.2)
+  - BidmadSDK (4.1.1.3):
+    - BidmadSDK/ForNative (= 4.1.1.3)
     - Google-Mobile-Ads-SDK (= 8.13.0)
-  - BidmadSDK/ForNative (4.1.1.2):
+  - BidmadSDK/ForNative (4.1.1.3):
     - Google-Mobile-Ads-SDK (= 8.13.0)
   - FBAudienceNetwork (6.3.1):
     - FBSDKCoreKit/Basics (>= 7.0.1)
@@ -116,7 +116,7 @@ PODS:
 DEPENDENCIES:
   - BidmadAdapterFC (= 4.1.1.4)
   - BidmadAdapterFNC (= 4.1.1.4)
-  - BidmadSDK (= 4.1.1.2)
+  - BidmadSDK (= 4.1.1.3)
   - OpenBiddingHelper (= 4.1.1.2)
 
 SPEC REPOS:
@@ -153,7 +153,7 @@ SPEC CHECKSUMS:
   AppLovinSDK: 6c261fe2ba6ed53969fcfb40aabd41cd3e7d9373
   BidmadAdapterFC: b331cb9cfb9f9a66507da7ddbe41913a2fee3a12
   BidmadAdapterFNC: 8d2764f1c31451e63723072b2eeb2449a6c46a25
-  BidmadSDK: cccd388f61b37b65f15b9c527e2b8ac99f41b603
+  BidmadSDK: 5a37b4da67e81a345a16a047b7b4206ebf9973f1
   FBAudienceNetwork: 443e9c5e717e2d80c0253535a57e2681d34d9571
   FBSDKCoreKit: 0d1ae58388a458b8222f72025804cdc84eb5d0c3
   Fyber_Marketplace_SDK: 63bf7c3e6a3e86320ceb995aae39f71afb9d7626
@@ -172,6 +172,6 @@ SPEC CHECKSUMS:
   TapjoySDK: 6d344dfb0cd205014c9286580d5c97857b170402
   UnityAds: 9adbfd8ccc008e4e3e7b1bcf5666a126df4f1a8e
 
-PODFILE CHECKSUM: dbd0e5e08371d16fd0385d71b86a961372259999
+PODFILE CHECKSUM: f4c90c1dc478a97cfdda784c49d8bef77888bf19
 
-COCOAPODS: 1.11.2
+COCOAPODS: 1.11.3
