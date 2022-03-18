@@ -28,7 +28,7 @@
     - BASE SDK : iOS
     - iOS Deployment Target : 11.0
 2. SDK설치 방법 <br>
-    1. Podfile 내부에 다음 코드 추가
+    1-1. Podfile 내부에 다음 코드 추가 (Xcode 13 이상 버전)
 
         ```
         platform :ios, "11.0"
@@ -38,6 +38,19 @@
          pod 'BidmadSDK', '4.1.1.2'
          pod 'OpenBiddingHelper', '4.1.1.2'
          pod 'BidmadAdapterFC', '4.1.1.4'
+         pod 'BidmadAdapterFNC', '4.1.1.4'
+        ```
+    
+    1-2. Podfile 내부에 다음 코드 추가 (Xcode 13 미만 버전) 
+
+        ```
+        platform :ios, "11.0"
+
+        target "Runner" do
+         use_frameworks!
+         pod 'BidmadSDK', '4.1.1.2'
+         pod 'OpenBiddingHelper', '4.1.1.2'
+         pod 'BidmadAdapterFC/Xcode12Compatibility', '4.1.1.4'
          pod 'BidmadAdapterFNC', '4.1.1.4'
         ```
 
