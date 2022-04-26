@@ -1,6 +1,7 @@
 PODS:
   - AdColony (4.7.2)
   - AdFitSDK (3.7.0)
+  - ADOPUtility (4.2.1.0)
   - Ads-Global (3.8.1.0):
     - Ads-Global/BUAdSDK (= 3.8.1.0)
   - Ads-Global/BUAdSDK (3.8.1.0):
@@ -8,37 +9,90 @@ PODS:
     - Ads-Global/International
   - Ads-Global/BUFoundation (3.8.1.0)
   - Ads-Global/International (3.8.1.0)
-  - AppLovinSDK (10.3.6)
-  - BidmadAdapterFC (4.1.1.4):
-    - AppLovinSDK (= 10.3.6)
-    - BidmadAdapterFC/LatestXcode (= 4.1.1.4)
-    - GoogleMobileAdsMediationAppLovin (= 10.3.6.0)
-    - GoogleMobileAdsMediationUnity (= 3.7.5.0)
+  - AppLovinMediationFacebookAdapter (6.3.1.0):
+    - AppLovinSDK
+    - FBAudienceNetwork (= 6.3.1)
+  - AppLovinMediationFyberAdapter (8.1.2.0):
+    - AppLovinSDK
+    - Fyber_Marketplace_SDK (= 8.1.2)
+  - AppLovinMediationGoogleAdapter (8.13.0.11):
+    - AppLovinSDK
+    - Google-Mobile-Ads-SDK (= 8.13.0)
+  - AppLovinMediationGoogleAdManagerAdapter (8.13.0.8):
+    - AppLovinSDK
+    - Google-Mobile-Ads-SDK (= 8.13.0)
+  - AppLovinMediationInMobiAdapter (10.0.2.1):
+    - AppLovinSDK
+    - InMobiSDK/Core (= 10.0.2)
+  - AppLovinMediationMintegralAdapter (7.1.0.0.1):
+    - AppLovinSDK
+    - MintegralAdSDK (= 7.1.0)
+  - AppLovinMediationMyTargetAdapter (5.15.1.0):
+    - AppLovinSDK
+    - myTargetSDK (= 5.15.1)
+  - AppLovinMediationUnityAdsAdapter (3.7.5.1):
+    - AppLovinSDK
     - UnityAds (= 3.7.5)
-  - BidmadAdapterFC/LatestXcode (4.1.1.4):
+  - AppLovinSDK (10.3.6)
+  - BidmadAdapterFC (4.2.1.0):
+    - ADOPUtility (< 4.3.0.0, >= 4.2.1.0)
+    - AppLovinMediationGoogleAdapter (= 8.13.0.11)
+    - AppLovinMediationGoogleAdManagerAdapter (= 8.13.0.8)
+    - AppLovinMediationUnityAdsAdapter (= 3.7.5.1)
+    - AppLovinSDK (= 10.3.6)
+    - BidmadAdapterFC/LatestXcode (= 4.2.1.0)
+    - GoogleMobileAdsMediationAppLovin (= 10.3.6.0)
+    - GoogleMobileAdsMediationIronSource (= 7.1.14.0)
+    - GoogleMobileAdsMediationUnity (= 3.7.5.0)
+    - GoogleMobileAdsMediationVungle (= 6.10.5.1)
+    - IronSourceSDK (= 7.1.14)
+    - UnityAds (= 3.7.5)
+    - VungleSDK-iOS (= 6.10.5)
+  - BidmadAdapterFC/LatestXcode (4.2.1.0):
     - AdColony (= 4.7.2)
+    - ADOPUtility (< 4.3.0.0, >= 4.2.1.0)
+    - AppLovinMediationGoogleAdapter (= 8.13.0.11)
+    - AppLovinMediationGoogleAdManagerAdapter (= 8.13.0.8)
+    - AppLovinMediationInMobiAdapter (= 10.0.2.1)
+    - AppLovinMediationUnityAdsAdapter (= 3.7.5.1)
     - AppLovinSDK (= 10.3.6)
     - GoogleMobileAdsMediationAdColony (= 4.7.2.0)
     - GoogleMobileAdsMediationAppLovin (= 10.3.6.0)
+    - GoogleMobileAdsMediationInMobi (= 10.0.2.0)
+    - GoogleMobileAdsMediationIronSource (= 7.1.14.0)
     - GoogleMobileAdsMediationUnity (= 3.7.5.0)
+    - GoogleMobileAdsMediationVungle (= 6.10.5.1)
+    - InMobiSDK (= 10.0.2)
+    - IronSourceSDK (= 7.1.14)
     - UnityAds (= 3.7.5)
-  - BidmadAdapterFNC (4.1.1.4):
+    - VungleSDK-iOS (= 6.10.5)
+  - BidmadAdapterFNC (4.2.1.0):
+    - ADOPUtility (< 4.3.0.0, >= 4.2.1.0)
     - Ads-Global (= 3.8.1.0)
-    - BidmadAdapterFNC/ForNative (= 4.1.1.4)
+    - AppLovinMediationFyberAdapter (= 8.1.2.0)
+    - AppLovinMediationMintegralAdapter (= 7.1.0.0.1)
+    - BidmadAdapterFNC/ForNative (= 4.2.1.0)
     - Fyber_Marketplace_SDK (= 8.1.2)
     - GoogleMobileAdsMediationFyber (= 8.1.2.0)
     - TapjoySDK (< 12.9.0, >= 12.8.0)
-  - BidmadAdapterFNC/ForNative (4.1.1.4):
+  - BidmadAdapterFNC/ForNative (4.2.1.0):
     - AdFitSDK (= 3.7.0)
+    - ADOPUtility (< 4.3.0.0, >= 4.2.1.0)
     - Ads-Global (= 3.8.1.0)
+    - AppLovinMediationFacebookAdapter (= 6.3.1.0)
+    - AppLovinMediationFyberAdapter (= 8.1.2.0)
+    - AppLovinMediationMintegralAdapter (= 7.1.0.0.1)
+    - AppLovinMediationMyTargetAdapter (= 5.15.1.0)
     - Fyber_Marketplace_SDK (= 8.1.2)
     - GoogleMobileAdsMediationFacebook (= 6.3.1.0)
     - GoogleMobileAdsMediationFyber (= 8.1.2.0)
     - TapjoySDK (< 12.9.0, >= 12.8.0)
-  - BidmadSDK (4.1.1.3):
-    - BidmadSDK/ForNative (= 4.1.1.3)
+  - BidmadSDK (4.2.1.0):
+    - ADOPUtility (< 4.3.0.0, >= 4.2.1.0)
+    - BidmadSDK/ForNative (= 4.2.1.0)
     - Google-Mobile-Ads-SDK (= 8.13.0)
-  - BidmadSDK/ForNative (4.1.1.3):
+  - BidmadSDK/ForNative (4.2.1.0):
+    - ADOPUtility (< 4.3.0.0, >= 4.2.1.0)
     - Google-Mobile-Ads-SDK (= 8.13.0)
   - FBAudienceNetwork (6.3.1):
     - FBSDKCoreKit/Basics (>= 7.0.1)
@@ -49,21 +103,21 @@ PODS:
   - Google-Mobile-Ads-SDK (8.13.0):
     - GoogleAppMeasurement (< 9.0, >= 7.0)
     - GoogleUserMessagingPlatform (>= 1.1)
-  - GoogleAppMeasurement (8.13.0):
-    - GoogleAppMeasurement/AdIdSupport (= 8.13.0)
+  - GoogleAppMeasurement (8.15.0):
+    - GoogleAppMeasurement/AdIdSupport (= 8.15.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 7.7)
     - GoogleUtilities/MethodSwizzler (~> 7.7)
     - GoogleUtilities/Network (~> 7.7)
     - "GoogleUtilities/NSData+zlib (~> 7.7)"
     - nanopb (~> 2.30908.0)
-  - GoogleAppMeasurement/AdIdSupport (8.13.0):
-    - GoogleAppMeasurement/WithoutAdIdSupport (= 8.13.0)
+  - GoogleAppMeasurement/AdIdSupport (8.15.0):
+    - GoogleAppMeasurement/WithoutAdIdSupport (= 8.15.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 7.7)
     - GoogleUtilities/MethodSwizzler (~> 7.7)
     - GoogleUtilities/Network (~> 7.7)
     - "GoogleUtilities/NSData+zlib (~> 7.7)"
     - nanopb (~> 2.30908.0)
-  - GoogleAppMeasurement/WithoutAdIdSupport (8.13.0):
+  - GoogleAppMeasurement/WithoutAdIdSupport (8.15.0):
     - GoogleUtilities/AppDelegateSwizzler (~> 7.7)
     - GoogleUtilities/MethodSwizzler (~> 7.7)
     - GoogleUtilities/Network (~> 7.7)
@@ -81,9 +135,18 @@ PODS:
   - GoogleMobileAdsMediationFyber (8.1.2.0):
     - Fyber_Marketplace_SDK (= 8.1.2)
     - Google-Mobile-Ads-SDK (~> 8.0)
+  - GoogleMobileAdsMediationInMobi (10.0.2.0):
+    - Google-Mobile-Ads-SDK (~> 8.0)
+    - InMobiSDK/Core (= 10.0.2)
+  - GoogleMobileAdsMediationIronSource (7.1.14.0):
+    - Google-Mobile-Ads-SDK (~> 8.0)
+    - IronSourceSDK (= 7.1.14)
   - GoogleMobileAdsMediationUnity (3.7.5.0):
     - Google-Mobile-Ads-SDK (~> 8.0)
     - UnityAds (= 3.7.5)
+  - GoogleMobileAdsMediationVungle (6.10.5.1):
+    - Google-Mobile-Ads-SDK (~> 8.0)
+    - VungleSDK-iOS (= 6.10.5)
   - GoogleUserMessagingPlatform (2.0.0)
   - GoogleUtilities/AppDelegateSwizzler (7.7.0):
     - GoogleUtilities/Environment
@@ -102,28 +165,83 @@ PODS:
   - "GoogleUtilities/NSData+zlib (7.7.0)"
   - GoogleUtilities/Reachability (7.7.0):
     - GoogleUtilities/Logger
+  - InMobiSDK (10.0.2):
+    - InMobiSDK/InMobiSDK (= 10.0.2)
+  - InMobiSDK/Core (10.0.2)
+  - InMobiSDK/InMobiSDK (10.0.2):
+    - InMobiSDK/Core
+  - IronSourceSDK (7.1.14.0)
+  - MintegralAdSDK (7.1.0.0):
+    - MintegralAdSDK/BannerAd (= 7.1.0.0)
+    - MintegralAdSDK/BidBannerAd (= 7.1.0.0)
+    - MintegralAdSDK/BidInterstitialVideoAd (= 7.1.0.0)
+    - MintegralAdSDK/BidNativeAd (= 7.1.0.0)
+    - MintegralAdSDK/BidNewInterstitialAd (= 7.1.0.0)
+    - MintegralAdSDK/BidRewardVideoAd (= 7.1.0.0)
+    - MintegralAdSDK/InterstitialVideoAd (= 7.1.0.0)
+    - MintegralAdSDK/NativeAd (= 7.1.0.0)
+    - MintegralAdSDK/NewInterstitialAd (= 7.1.0.0)
+    - MintegralAdSDK/RewardVideoAd (= 7.1.0.0)
+  - MintegralAdSDK/BannerAd (7.1.0.0):
+    - MintegralAdSDK/NativeAd
+  - MintegralAdSDK/BidBannerAd (7.1.0.0):
+    - MintegralAdSDK/BannerAd
+    - MintegralAdSDK/BidNativeAd
+  - MintegralAdSDK/BidInterstitialVideoAd (7.1.0.0):
+    - MintegralAdSDK/BidNativeAd
+    - MintegralAdSDK/InterstitialVideoAd
+  - MintegralAdSDK/BidNativeAd (7.1.0.0):
+    - MintegralAdSDK/NativeAd
+  - MintegralAdSDK/BidNewInterstitialAd (7.1.0.0):
+    - MintegralAdSDK/BidNativeAd
+    - MintegralAdSDK/NewInterstitialAd
+  - MintegralAdSDK/BidRewardVideoAd (7.1.0.0):
+    - MintegralAdSDK/BidNativeAd
+    - MintegralAdSDK/RewardVideoAd
+  - MintegralAdSDK/InterstitialVideoAd (7.1.0.0):
+    - MintegralAdSDK/NativeAd
+  - MintegralAdSDK/NativeAd (7.1.0.0)
+  - MintegralAdSDK/NewInterstitialAd (7.1.0.0):
+    - MintegralAdSDK/InterstitialVideoAd
+    - MintegralAdSDK/NativeAd
+  - MintegralAdSDK/RewardVideoAd (7.1.0.0):
+    - MintegralAdSDK/NativeAd
+  - myTargetSDK (5.15.1):
+    - myTrackerSDK (~> 3.0.3)
+  - myTrackerSDK (3.0.6)
   - nanopb (2.30908.0):
     - nanopb/decode (= 2.30908.0)
     - nanopb/encode (= 2.30908.0)
   - nanopb/decode (2.30908.0)
   - nanopb/encode (2.30908.0)
-  - OpenBiddingHelper (4.1.1.2):
+  - OpenBiddingHelper (4.2.1.0):
+    - ADOPUtility (< 4.3.0.0, >= 4.2.1.0)
     - Google-Mobile-Ads-SDK (= 8.13.0)
-  - PromisesObjC (2.0.0)
+  - PromisesObjC (2.1.0)
   - TapjoySDK (12.8.1)
   - UnityAds (3.7.5)
+  - VungleSDK-iOS (6.10.5)
 
 DEPENDENCIES:
-  - BidmadAdapterFC (= 4.1.1.4)
-  - BidmadAdapterFNC (= 4.1.1.4)
-  - BidmadSDK (= 4.1.1.3)
-  - OpenBiddingHelper (= 4.1.1.2)
+  - BidmadAdapterFC (= 4.2.1.0)
+  - BidmadAdapterFNC (= 4.2.1.0)
+  - BidmadSDK (= 4.2.1.0)
+  - OpenBiddingHelper (= 4.2.1.0)
 
 SPEC REPOS:
   trunk:
     - AdColony
     - AdFitSDK
+    - ADOPUtility
     - Ads-Global
+    - AppLovinMediationFacebookAdapter
+    - AppLovinMediationFyberAdapter
+    - AppLovinMediationGoogleAdapter
+    - AppLovinMediationGoogleAdManagerAdapter
+    - AppLovinMediationInMobiAdapter
+    - AppLovinMediationMintegralAdapter
+    - AppLovinMediationMyTargetAdapter
+    - AppLovinMediationUnityAdsAdapter
     - AppLovinSDK
     - BidmadAdapterFC
     - BidmadAdapterFNC
@@ -137,41 +255,68 @@ SPEC REPOS:
     - GoogleMobileAdsMediationAppLovin
     - GoogleMobileAdsMediationFacebook
     - GoogleMobileAdsMediationFyber
+    - GoogleMobileAdsMediationInMobi
+    - GoogleMobileAdsMediationIronSource
     - GoogleMobileAdsMediationUnity
+    - GoogleMobileAdsMediationVungle
     - GoogleUserMessagingPlatform
     - GoogleUtilities
+    - InMobiSDK
+    - IronSourceSDK
+    - MintegralAdSDK
+    - myTargetSDK
+    - myTrackerSDK
     - nanopb
     - OpenBiddingHelper
     - PromisesObjC
     - TapjoySDK
     - UnityAds
+    - VungleSDK-iOS
 
 SPEC CHECKSUMS:
   AdColony: 970af2bff1e500c8a681bfcbd85f8054c0f57071
   AdFitSDK: a922cc8104d5ffc5b8af96226842928a2e3b5c23
+  ADOPUtility: f1c64272883fdb1d48f3f6681f64d73305e28ce9
   Ads-Global: c89f2059cf768ac4b965ac05897eeef8833d7710
+  AppLovinMediationFacebookAdapter: fefc48d9f50fec88426828f61493872615707d68
+  AppLovinMediationFyberAdapter: 3b0f427c13860d23238c5d8422637ef84c712808
+  AppLovinMediationGoogleAdapter: dd13530d1b91634924a19374a96e2d23c26db471
+  AppLovinMediationGoogleAdManagerAdapter: 1cfd1ad8ea73a8e50a109a7f5f241d9812fa7003
+  AppLovinMediationInMobiAdapter: 914ebe2d1d9a153bc93f332eb1c2c23c623d859a
+  AppLovinMediationMintegralAdapter: 321e6a6a1474c5bad73b6b0bb9eabaa98ba5eb4e
+  AppLovinMediationMyTargetAdapter: c03928981f7025d208512c0d57b2a26fde2b435e
+  AppLovinMediationUnityAdsAdapter: 9f369692c224ee68a12f8ce0c5ac7e4c214d720d
   AppLovinSDK: 6c261fe2ba6ed53969fcfb40aabd41cd3e7d9373
-  BidmadAdapterFC: b331cb9cfb9f9a66507da7ddbe41913a2fee3a12
-  BidmadAdapterFNC: 8d2764f1c31451e63723072b2eeb2449a6c46a25
-  BidmadSDK: 5a37b4da67e81a345a16a047b7b4206ebf9973f1
+  BidmadAdapterFC: 4e6f6085bd2b4aab0d86f3691f770dae69d2c141
+  BidmadAdapterFNC: f9a9bcd536408b79de20bd539d633e717e0698c3
+  BidmadSDK: 5caf837fb081a0475af221ea681fd342be539ec0
   FBAudienceNetwork: 443e9c5e717e2d80c0253535a57e2681d34d9571
   FBSDKCoreKit: 0d1ae58388a458b8222f72025804cdc84eb5d0c3
   Fyber_Marketplace_SDK: 63bf7c3e6a3e86320ceb995aae39f71afb9d7626
   Google-Mobile-Ads-SDK: 05e5d68bb42a61b2e5bef336a52789785605aa22
-  GoogleAppMeasurement: 135c2fbcf5038e0f37dbce04fa641a702fc275d1
+  GoogleAppMeasurement: 4c19f031220c72464d460c9daa1fb5d1acce958e
   GoogleMobileAdsMediationAdColony: 9fdd5b256c350cb94d89400f9a2e86bbcc2967fa
   GoogleMobileAdsMediationAppLovin: f5bac07316cb767bb834ca6ccc29da6cff3471b0
   GoogleMobileAdsMediationFacebook: ede1b57a00d79d04655a6bea56939b5f56153ced
   GoogleMobileAdsMediationFyber: e85bcb609146450199effd48c18dadab56fdd47d
+  GoogleMobileAdsMediationInMobi: 63dcf469b721066e6452ee76149d375ac7cbf34a
+  GoogleMobileAdsMediationIronSource: 167eaeb98978d34d9c0d9a3fe3327cad588d1e4c
   GoogleMobileAdsMediationUnity: f5d79cedf3f9e5430650b06e60b9577f03fe26ae
+  GoogleMobileAdsMediationVungle: 070a9165c2ce3fb35ae4a9989cb16b63da2a7560
   GoogleUserMessagingPlatform: ab890ce5f6620f293a21b6bdd82e416a2c73aeca
   GoogleUtilities: e0913149f6b0625b553d70dae12b49fc62914fd1
+  InMobiSDK: ff90089c722e6ce387d85a7d07a45902c73ecf24
+  IronSourceSDK: 7359355050983d7efb5bb779f9129a32138c3c22
+  MintegralAdSDK: a4d75bc67e67cd12f860fd3676077ac63f3cb246
+  myTargetSDK: be478c3ee5661bcfb97b6608f513bb20156434b9
+  myTrackerSDK: 4fc38a0c56573d58761f3e85dbad483077fd0d2d
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
-  OpenBiddingHelper: 374f3ab4aa0b0ee95e12253e6dc4d9dc8047eafe
-  PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
+  OpenBiddingHelper: 8ca8ea170e855766c0aa94b6a5be0ca32b3120ae
+  PromisesObjC: 99b6f43f9e1044bd87a95a60beff28c2c44ddb72
   TapjoySDK: 6d344dfb0cd205014c9286580d5c97857b170402
   UnityAds: 9adbfd8ccc008e4e3e7b1bcf5666a126df4f1a8e
+  VungleSDK-iOS: bee61557642964b441d799bf88e6ea6f6eb29afc
 
-PODFILE CHECKSUM: f4c90c1dc478a97cfdda784c49d8bef77888bf19
+PODFILE CHECKSUM: 6fb774bae44e5fb903d0dede2565fa3d643252e2
 
 COCOAPODS: 1.11.3

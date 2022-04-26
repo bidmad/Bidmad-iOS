@@ -11,14 +11,16 @@
         - Google Manager (Banner, Interstitial, Reward Video)
         - Google Admob (Banner, Interstitial, Reward Video, Rewarded Interstitial, App Open)
         - Pangle (Banner, Interstitial, Reward Video)
-        - AppLovin (Reward Video)
-        - UnityAds (Reward Video, Banner)
-        - Facebook Audience Network (Banner, Interstitial, Reward Video)
+        - AppLovin (Banner, Interstitial, Reward Video)
+        - UnityAds (Banner, Interstitial, Reward Video)
         - AdColony (Banner, Interstitial, Reward Video)
+        - IronSource (Banner, Interstitial, Reward Video)
+        - Vungle (Banner, Interstitial, Reward Video)
+        - InMobi (Banner, Interstitial, Reward Video)
+        - Fyber (Banner, Interstitial, Reward Video)
         - ADOPAtom (Interstitial, Reward Video)
         - AdFit (Banner)
         - Tapjoy (Offerwall)
-        - Fyber (Banner, Interstitial, Reward Video)
         </details>
         
 ## BidmadSDK Installation Guide
@@ -35,10 +37,10 @@
 
         target "Runner" do
          use_frameworks!
-         pod 'BidmadSDK', '4.1.1.3'
-         pod 'OpenBiddingHelper', '4.1.1.2'
-         pod 'BidmadAdapterFC', '4.1.1.4'
-         pod 'BidmadAdapterFNC', '4.1.1.4'
+         pod 'BidmadSDK', '4.2.1.0'
+         pod 'OpenBiddingHelper', '4.2.1.0'
+         pod 'BidmadAdapterFC', '4.2.1.0'
+         pod 'BidmadAdapterFNC', '4.2.1.0'
         ```
     
     1-2. Add the following code in your project Podfile. (For lower than Xcode 13)
@@ -48,10 +50,10 @@
 
         target "Runner" do
          use_frameworks!
-         pod 'BidmadSDK', '4.1.1.3'
-         pod 'OpenBiddingHelper', '4.1.1.2'
-         pod 'BidmadAdapterFC/Xcode12Compatibility', '4.1.1.4'
-         pod 'BidmadAdapterFNC', '4.1.1.4'
+         pod 'BidmadSDK', '4.2.1.0'
+         pod 'OpenBiddingHelper', '4.2.1.0'
+         pod 'BidmadAdapterFC/Xcode12Compatibility', '4.2.1.0'
+         pod 'BidmadAdapterFNC', '4.2.1.0'
         ```
 
     2. Followed by entering the following command in Terminal.
