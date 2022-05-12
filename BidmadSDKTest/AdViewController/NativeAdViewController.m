@@ -30,7 +30,7 @@
     self.adLoader = [[BidmadNativeAdLoader alloc] init];
     self.adLoader.delegate = self;
     
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; i < 5; i++) {
         [self.adLoader loadFor:@"7fe8f6de-cd99-4769-9ae6-a471cfd7e2b1"];
     }
 }
@@ -47,7 +47,7 @@
     [self.callbackLabel setText:[NSString stringWithFormat:@"LOAD (%@)", loadedAd.headline]];
     [self.ads insertObject:loadedAd atIndex:self.ads.count];
     
-    if (self.adsCallbackCount == 10) {
+    if (self.adsCallbackCount == 5) {
         [self.tableView reloadData];
     }
 }
@@ -63,7 +63,7 @@
     [self.callbackLabel setText:[NSString stringWithFormat:@"ALL FAIL (%@)", error.description]];
     NSLog(@"Native Ad Mediation all failed.");
     
-    if (self.adsCallbackCount == 10) {
+    if (self.adsCallbackCount == 5) {
         [self.tableView reloadData];
     }
 }
