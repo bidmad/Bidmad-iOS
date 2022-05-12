@@ -1030,6 +1030,182 @@ public func bidmadOfferwallInitFail(_ core: BIDMADOfferwall!, error: String!) {
 ```
 </details>
 
+### Native Ad Load and Callback Implementation
+Native Ad allows advertisement designed and produced in a unique format that fits the application.<br>
+Before requesting the native ad, please set the native ad UI by following the guide from [Layout Guide](https://github.com/bidmad/Bidmad-iOS/wiki/Native-Ad-Layout-Setting-Guide-%5BENG%5D).<br>
+After setting the UI for the ad, please load BIDMADNativeAd which contains ad data.<br> 
+And, call BidmadNativeAdLoader.setup(for:BIDMADNativeAd, viewController:UIViewController, adView:BIDMADNativeAdView) method. <br>
+After calling the method, set each data from BIDMADNativeAd Instance into your UI appropriately. <br>
+
+<details markdown="1">
+<summary>ObjC</summary>
+<br>
+
+```
+- (void)viewDidLoad {
+    [super viewDidLoad];
+
+    // Request to load ad data (BIDMADNativeAd) from BidmadSDK 
+    BidmadNativeAdLoader* adLoader = [[BidmadNativeAdLoader alloc] init];
+    adLoader.delegate = self;
+    [adLoader loadFor:@"Your ZoneID"];
+}
+
+#pragma mark Native Ad Delegate Methods
+
+// LOAD CALLBACK: Show your ad from the loaded ad from the load callback.
+- (void)bidmadNativeAdWithLoadedAd:(BIDMADNativeAd *)loadedAd {
+    // Instantiating Ad View from XIB file. Please refer to the layout guide for creating XIB file.
+    BIDMADNativeAdView *adView = [[[UINib nibWithNibName:@"NativeAd" bundle:nil] instantiateWithOwner:nil options:nil] firstObject];
+    
+    // Registering your ad view and loaded ad before showing the ad 
+    [BidmadNativeAdLoader setupFor:loadedAd viewController:self adView:adView];
+    
+    // Showing ad with advertisement data from loaded ad.
+    if (loadedAd.headline != nil) {
+        [adView.headlineViewCustom setText:loadedAd.headline];
+    } else {
+        [adView.headlineViewCustom setHidden:YES];
+    }
+    
+    if (loadedAd.body != nil) {
+        [adView.bodyViewCustom setText:loadedAd.body];
+    } else {
+        [adView.bodyViewCustom setHidden:YES];
+    }
+    
+    if (loadedAd.callToAction != nil) {
+        [adView.callToActionViewCustom setTitle:loadedAd.callToAction forState:UIControlStateNormal];
+    } else {
+        [adView.callToActionViewCustom setHidden:YES];
+    }
+    
+    if (loadedAd.icon != nil) {
+        [adView.iconViewCustom setImage:loadedAd.icon];
+    } else {
+        [adView.iconViewCustom setHidden:YES];
+    }
+    
+    if (loadedAd.starRating != nil) {
+        [adView.starRatingViewCustom performSelector:@selector(setText:) withObject:[NSString stringWithFormat:@"%@ ⭐️", loadedAd.starRating]];
+    } else {
+        [adView.starRatingViewCustom setHidden:YES];
+    }
+    
+    if (loadedAd.store != nil) {
+        [adView.storeViewCustom setText:loadedAd.store];
+    } else {
+        [adView.storeViewCustom setHidden:YES];
+    }
+    
+    if (loadedAd.price != nil) {
+        [adView.priceViewCustom setText:loadedAd.price];
+    } else {
+        [adView.priceViewCustom setHidden:YES];
+    }
+    
+    if (loadedAd.advertiser != nil) {
+        [adView.advertiserViewCustom setText:loadedAd.advertiser];
+    } else {
+        [adView.advertiserViewCustom setHidden:YES];
+    }
+}
+
+- (void)bidmadNativeAdWithClickedAd:(BIDMADNativeAd *)clickedAd {
+    NSLog(@"A Native Ad is clicked: %@", clickedAd.description);
+}
+
+- (void)bidmadNativeAdAllFail:(NSError *)error {
+    NSLog(@"Native Ad Mediation all failed.");
+}
+```
+</details>
+
+<details markdown="1">
+<summary>Swift</summary>
+<br>
+
+```
+override func viewDidLoad() {
+    super.viewDidLoad()
+    
+    // Request to load ad data (BIDMADNativeAd) from BidmadSDK 
+    let adLoader = BidmadNativeAdLoader()
+    adLoader.delegate = self
+    adLoader.load(for: "Your ZoneID")
+}
+
+// MARK: Native Ad Delegate Methods
+
+// LOAD CALLBACK: Show your ad from the loaded ad from the load callback.
+func bidmadNativeAd(loadedAd: BIDMADNativeAd) {
+    // Instantiating Ad View from XIB file. Please refer to the layout guide for creating XIB file.
+    let adView =
+    UINib(nibName: "NativeAd", bundle: nil).instantiate(withOwner: nil, options: nil).first as! BIDMADNativeAdView
+    
+    // Registering your ad view and loaded ad before showing the ad
+    BidmadNativeAdLoader.setup(for: loadedAd, viewController: self, adView: adView)
+    
+    // Showing ad with advertisement data from loaded ad.
+    if loadedAd.headline != nil {
+        adView.headlineViewCustom?.text = loadedAd.headline
+    } else {
+        adView.headlineViewCustom?.isHidden = true
+    }
+    
+    if (loadedAd.body != nil) {
+        adView.bodyViewCustom?.text = loadedAd.body
+    } else {
+        adView.bodyViewCustom?.isHidden = true
+    }
+    
+    if (loadedAd.callToAction != nil) {
+        adView.callToActionViewCustom?.setTitle(loadedAd.callToAction, for: .normal)
+    } else {
+        adView.callToActionViewCustom?.isHidden = true
+    }
+    
+    if (loadedAd.icon != nil) {
+        adView.iconViewCustom?.image = loadedAd.icon
+    } else {
+        adView.iconViewCustom?.isHidden = true
+    }
+    
+    if (loadedAd.starRating != nil) {
+        (adView.starRatingViewCustom as! UILabel).text = "⭐️ \(loadedAd.starRating!)"
+    } else {
+        adView.starRatingViewCustom?.isHidden = true
+    }
+    
+    if (loadedAd.store != nil) {
+        adView.storeViewCustom?.text = loadedAd.store
+    } else {
+        adView.storeViewCustom?.isHidden = true
+    }
+    
+    if (loadedAd.price != nil) {
+        adView.priceViewCustom?.text = loadedAd.price
+    } else {
+        adView.priceViewCustom?.isHidden = true
+    }
+    
+    if (loadedAd.advertiser != nil) {
+        adView.advertiserViewCustom?.text = loadedAd.advertiser
+    } else {
+        adView.advertiserViewCustom?.isHidden = true
+    }
+}
+
+func bidmadNativeAd(clickedAd: BIDMADNativeAd) {
+    print("A Native Ad is clicked \(clickedAd.description)")
+}
+
+func bidmadNativeAdAllFail(_ error: NSError) {
+    print("Native Ad Mediation All Failed")
+}
+```
+</details>
+
 ### Google Ad Network Test Device Setting
 </details>
 <details markdown="1">
@@ -1057,7 +1233,7 @@ BidmadCommon.setTestDeviceId("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
 
 </details>
 <details markdown="1">
-<summary>리스트</summary>
+<summary>List</summary>
 <br>
 
 - [Class Reference for BidmadSDK-iOS](https://github.com/bidmad/Bidmad-iOS/wiki/README-ClassReference)
