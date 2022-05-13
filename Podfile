@@ -7,7 +7,7 @@ target 'BidmadSDKTest' do
 
   # Pods for BidmadSDKTest
   pod 'BidmadSDK', '4.3.0.0'
-  pod 'OpenBiddingHelper', '4.3.0.0'
+  pod 'OpenBiddingHelper', '4.3.0.1'
   pod 'BidmadAdapterFC', '4.3.0.0'
   pod 'BidmadAdapterFNC', '4.3.0.0'
 

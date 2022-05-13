@@ -37,10 +37,10 @@
 
         target "Runner" do
          use_frameworks!
-         pod 'BidmadSDK', '4.2.1.0'
-         pod 'OpenBiddingHelper', '4.2.1.0'
-         pod 'BidmadAdapterFC', '4.2.1.0'
-         pod 'BidmadAdapterFNC', '4.2.1.0'
+         pod 'BidmadSDK', '4.3.0.0'
+         pod 'OpenBiddingHelper', '4.3.0.1'
+         pod 'BidmadAdapterFC', '4.3.0.0'
+         pod 'BidmadAdapterFNC', '4.3.0.0'
         ```
     
     1-2. Add the following code in your project Podfile. (For lower than Xcode 13)
@@ -50,10 +50,10 @@
 
         target "Runner" do
          use_frameworks!
-         pod 'BidmadSDK', '4.2.1.0'
-         pod 'OpenBiddingHelper', '4.2.1.0'
-         pod 'BidmadAdapterFC/Xcode12Compatibility', '4.2.1.0'
-         pod 'BidmadAdapterFNC', '4.2.1.0'
+         pod 'BidmadSDK', '4.3.0.0'
+         pod 'OpenBiddingHelper', '4.3.0.1'
+         pod 'BidmadAdapterFC/Xcode12Compatibility', '4.3.0.0'
+         pod 'BidmadAdapterFNC', '4.3.0.0'
         ```
 
     2. Followed by entering the following command in Terminal.

@@ -37,10 +37,10 @@
 
         target "Runner" do
          use_frameworks!
-         pod 'BidmadSDK', '4.2.1.0'
-         pod 'OpenBiddingHelper', '4.2.1.0'
-         pod 'BidmadAdapterFC', '4.2.1.0'
-         pod 'BidmadAdapterFNC', '4.2.1.0'
+         pod 'BidmadSDK', '4.3.0.0'
+         pod 'OpenBiddingHelper', '4.3.0.1'
+         pod 'BidmadAdapterFC', '4.3.0.0'
+         pod 'BidmadAdapterFNC', '4.3.0.0'
         ```
     
     1-2. Podfile 내부에 다음 코드 추가 (Xcode 13 미만 버전) 
@@ -50,10 +50,10 @@
 
         target "Runner" do
          use_frameworks!
-         pod 'BidmadSDK', '4.2.1.0'
-         pod 'OpenBiddingHelper', '4.2.1.0'
-         pod 'BidmadAdapterFC/Xcode12Compatibility', '4.2.1.0'
-         pod 'BidmadAdapterFNC', '4.2.1.0'
+         pod 'BidmadSDK', '4.3.0.0'
+         pod 'OpenBiddingHelper', '4.3.0.1'
+         pod 'BidmadAdapterFC/Xcode12Compatibility', '4.3.0.0'
+         pod 'BidmadAdapterFNC', '4.3.0.0'
         ```
 
     2. Terminal에서 다음 커맨드 입력
