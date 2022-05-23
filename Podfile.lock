@@ -50,11 +50,11 @@ PODS:
     - GoogleMobileAdsMediationFacebook (= 6.9.0.0)
     - GoogleMobileAdsMediationFyber (= 8.1.2.0)
     - TapjoySDK (< 12.9.0, >= 12.8.0)
-  - BidmadSDK (4.3.0.0):
+  - BidmadSDK (4.3.0.1):
     - ADOPUtility (< 4.4.0.0, >= 4.3.0.0)
-    - BidmadSDK/ForNative (= 4.3.0.0)
+    - BidmadSDK/ForNative (= 4.3.0.1)
     - Google-Mobile-Ads-SDK (= 8.13.0)
-  - BidmadSDK/ForNative (4.3.0.0):
+  - BidmadSDK/ForNative (4.3.0.1):
     - ADOPUtility (< 4.4.0.0, >= 4.3.0.0)
     - Google-Mobile-Ads-SDK (= 8.13.0)
   - FBAudienceNetwork (6.9.0)
@@ -137,7 +137,7 @@ PODS:
     - nanopb/encode (= 2.30908.0)
   - nanopb/decode (2.30908.0)
   - nanopb/encode (2.30908.0)
-  - OpenBiddingHelper (4.3.0.0):
+  - OpenBiddingHelper (4.3.0.1):
     - ADOPUtility (< 4.4.0.0, >= 4.3.0.0)
     - Google-Mobile-Ads-SDK (= 8.13.0)
   - PromisesObjC (2.1.0)
@@ -148,8 +148,8 @@ PODS:
 DEPENDENCIES:
   - BidmadAdapterFC (= 4.3.0.0)
   - BidmadAdapterFNC (= 4.3.0.0)
-  - BidmadSDK (= 4.3.0.0)
-  - OpenBiddingHelper (= 4.3.0.0)
+  - BidmadSDK (= 4.3.0.1)
+  - OpenBiddingHelper (= 4.3.0.1)
 
 SPEC REPOS:
   trunk:
@@ -192,7 +192,7 @@ SPEC CHECKSUMS:
   AppLovinSDK: 2b7b5ba1f8523455b66d247f2a37c62354241283
   BidmadAdapterFC: 9c1152226eaac85871b6af4da2ba038059fcd1d0
   BidmadAdapterFNC: 821ccc1dc246160dc53a092be8ca41d27b640054
-  BidmadSDK: c2fddf9989772bacea60124b7ffc48b342dc938f
+  BidmadSDK: 048de59cf1460f41efca99945f6538e620f59f45
   FBAudienceNetwork: 83096d73433759c10f9cf9b3bad5e5cff58694cb
   Fyber_Marketplace_SDK: 63bf7c3e6a3e86320ceb995aae39f71afb9d7626
   Google-Mobile-Ads-SDK: 05e5d68bb42a61b2e5bef336a52789785605aa22
@@ -210,12 +210,12 @@ SPEC CHECKSUMS:
   InMobiSDK: ff90089c722e6ce387d85a7d07a45902c73ecf24
   IronSourceSDK: 7359355050983d7efb5bb779f9129a32138c3c22
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
-  OpenBiddingHelper: 088e1dce7cea9b9140db5d2a0fb1f1c49cc5f18e
+  OpenBiddingHelper: 22a9ab801c59d10cc74edd4fc9eb0fed3b3fe5b0
   PromisesObjC: 99b6f43f9e1044bd87a95a60beff28c2c44ddb72
   TapjoySDK: 6d344dfb0cd205014c9286580d5c97857b170402
   UnityAds: 9adbfd8ccc008e4e3e7b1bcf5666a126df4f1a8e
   VungleSDK-iOS: bee61557642964b441d799bf88e6ea6f6eb29afc
 
-PODFILE CHECKSUM: 06f61691796478cee1c046bf8ee11562fd29b78e
+PODFILE CHECKSUM: f45ea6a5c48261f77aa2d24e55d42b77b3031b4c
 
 COCOAPODS: 1.11.3

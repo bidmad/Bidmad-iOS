@@ -37,7 +37,7 @@
 
         target "Runner" do
          use_frameworks!
-         pod 'BidmadSDK', '4.3.0.0'
+         pod 'BidmadSDK', '4.3.0.1'
          pod 'OpenBiddingHelper', '4.3.0.1'
          pod 'BidmadAdapterFC', '4.3.0.0'
          pod 'BidmadAdapterFNC', '4.3.0.0'
@@ -50,7 +50,7 @@
 
         target "Runner" do
          use_frameworks!
-         pod 'BidmadSDK', '4.3.0.0'
+         pod 'BidmadSDK', '4.3.0.1'
          pod 'OpenBiddingHelper', '4.3.0.1'
          pod 'BidmadAdapterFC/Xcode12Compatibility', '4.3.0.0'
          pod 'BidmadAdapterFNC', '4.3.0.0'
