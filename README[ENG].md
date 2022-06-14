@@ -26,34 +26,21 @@
 ## BidmadSDK Installation Guide
 
 1. Development Environment
-    - Xcode 13.2 (Required Xcode Minimum Version 12.2)
+    - Xcode 13.4 (Minimum-Required Xcode Version 13.0)
     - BASE SDK : iOS
     - iOS Deployment Target : 11.0
 2. SDK Installation Methods<br>
-    1-1. Add the following code in your project Podfile. (For Xcode 13 or higher)
+    1. Add the following code in your project Podfile. (For Xcode 13 or higher)
 
         ```
         platform :ios, "11.0"
 
         target "Runner" do
-         use_frameworks!
-         pod 'BidmadSDK', '4.3.0.1'
-         pod 'OpenBiddingHelper', '4.3.0.1'
-         pod 'BidmadAdapterFC', '4.3.0.0'
-         pod 'BidmadAdapterFNC', '4.3.0.0'
-        ```
-    
-    1-2. Add the following code in your project Podfile. (For lower than Xcode 13)
-    
-        ```
-        platform :ios, "11.0"
-
-        target "Runner" do
-         use_frameworks!
-         pod 'BidmadSDK', '4.3.0.1'
-         pod 'OpenBiddingHelper', '4.3.0.1'
-         pod 'BidmadAdapterFC/Xcode12Compatibility', '4.3.0.0'
-         pod 'BidmadAdapterFNC', '4.3.0.0'
+          use_frameworks!
+          pod 'BidmadSDK', '4.3.1.0'
+          pod 'OpenBiddingHelper', '4.3.1.0'
+          pod 'BidmadAdapterFC', '4.3.1.0'
+          pod 'BidmadAdapterFNC', '4.3.1.0'
         ```
 
     2. Followed by entering the following command in Terminal.

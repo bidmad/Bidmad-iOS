@@ -1,7 +1,7 @@
 PODS:
   - AdColony (4.7.2)
   - AdFitSDK (3.7.0)
-  - ADOPUtility (4.3.0.0)
+  - ADOPUtility (4.3.1.0)
   - Ads-Global (3.8.1.0):
     - Ads-Global/BUAdSDK (= 3.8.1.0)
   - Ads-Global/BUAdSDK (3.8.1.0):
@@ -10,10 +10,10 @@ PODS:
   - Ads-Global/BUFoundation (3.8.1.0)
   - Ads-Global/International (3.8.1.0)
   - AppLovinSDK (11.0.0)
-  - BidmadAdapterFC (4.3.0.0):
+  - BidmadAdapterFC (4.3.1.0):
     - ADOPUtility (< 4.4.0.0, >= 4.3.0.0)
     - AppLovinSDK (= 11.0.0)
-    - BidmadAdapterFC/LatestXcode (= 4.3.0.0)
+    - BidmadAdapterFC/LatestXcode (= 4.3.1.0)
     - GoogleMobileAdsMediationAppLovin (= 11.0.0.0)
     - GoogleMobileAdsMediationIronSource (= 7.1.14.0)
     - GoogleMobileAdsMediationUnity (= 3.7.5.0)
@@ -21,7 +21,7 @@ PODS:
     - IronSourceSDK (= 7.1.14)
     - UnityAds (= 3.7.5)
     - VungleSDK-iOS (= 6.10.5)
-  - BidmadAdapterFC/LatestXcode (4.3.0.0):
+  - BidmadAdapterFC/LatestXcode (4.3.1.0):
     - AdColony (= 4.7.2)
     - ADOPUtility (< 4.4.0.0, >= 4.3.0.0)
     - AppLovinSDK (= 11.0.0)
@@ -35,26 +35,26 @@ PODS:
     - IronSourceSDK (= 7.1.14)
     - UnityAds (= 3.7.5)
     - VungleSDK-iOS (= 6.10.5)
-  - BidmadAdapterFNC (4.3.0.0):
+  - BidmadAdapterFNC (4.3.1.0):
     - ADOPUtility (< 4.4.0.0, >= 4.3.0.0)
     - Ads-Global (= 3.8.1.0)
-    - BidmadAdapterFNC/ForNative (= 4.3.0.0)
+    - BidmadAdapterFNC/ForNative (= 4.3.1.0)
     - Fyber_Marketplace_SDK (= 8.1.2)
     - GoogleMobileAdsMediationFyber (= 8.1.2.0)
-    - TapjoySDK (< 12.9.0, >= 12.8.0)
-  - BidmadAdapterFNC/ForNative (4.3.0.0):
+    - TapjoySDK (< 12.10.0, >= 12.9.0)
+  - BidmadAdapterFNC/ForNative (4.3.1.0):
     - AdFitSDK (= 3.7.0)
     - ADOPUtility (< 4.4.0.0, >= 4.3.0.0)
     - Ads-Global (= 3.8.1.0)
     - Fyber_Marketplace_SDK (= 8.1.2)
     - GoogleMobileAdsMediationFacebook (= 6.9.0.0)
     - GoogleMobileAdsMediationFyber (= 8.1.2.0)
-    - TapjoySDK (< 12.9.0, >= 12.8.0)
-  - BidmadSDK (4.3.0.1):
+    - TapjoySDK (< 12.10.0, >= 12.9.0)
+  - BidmadSDK (4.3.1.0):
     - ADOPUtility (< 4.4.0.0, >= 4.3.0.0)
-    - BidmadSDK/ForNative (= 4.3.0.1)
+    - BidmadSDK/ForNative (= 4.3.1.0)
     - Google-Mobile-Ads-SDK (= 8.13.0)
-  - BidmadSDK/ForNative (4.3.0.1):
+  - BidmadSDK/ForNative (4.3.1.0):
     - ADOPUtility (< 4.4.0.0, >= 4.3.0.0)
     - Google-Mobile-Ads-SDK (= 8.13.0)
   - FBAudienceNetwork (6.9.0)
@@ -137,19 +137,19 @@ PODS:
     - nanopb/encode (= 2.30908.0)
   - nanopb/decode (2.30908.0)
   - nanopb/encode (2.30908.0)
-  - OpenBiddingHelper (4.3.0.1):
+  - OpenBiddingHelper (4.3.1.0):
     - ADOPUtility (< 4.4.0.0, >= 4.3.0.0)
     - Google-Mobile-Ads-SDK (= 8.13.0)
   - PromisesObjC (2.1.0)
-  - TapjoySDK (12.8.1)
+  - TapjoySDK (12.9.1)
   - UnityAds (3.7.5)
   - VungleSDK-iOS (6.10.5)
 
 DEPENDENCIES:
-  - BidmadAdapterFC (= 4.3.0.0)
-  - BidmadAdapterFNC (= 4.3.0.0)
-  - BidmadSDK (= 4.3.0.1)
-  - OpenBiddingHelper (= 4.3.0.1)
+  - BidmadAdapterFC (= 4.3.1.0)
+  - BidmadAdapterFNC (= 4.3.1.0)
+  - BidmadSDK (= 4.3.1.0)
+  - OpenBiddingHelper (= 4.3.1.0)
 
 SPEC REPOS:
   trunk:
@@ -187,12 +187,12 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   AdColony: 970af2bff1e500c8a681bfcbd85f8054c0f57071
   AdFitSDK: a922cc8104d5ffc5b8af96226842928a2e3b5c23
-  ADOPUtility: dd12af5003e87cdc0df66a2ba2817f9339c8ab12
+  ADOPUtility: 6bf629888281a43a4090129510b8538a4e54707c
   Ads-Global: c89f2059cf768ac4b965ac05897eeef8833d7710
   AppLovinSDK: 2b7b5ba1f8523455b66d247f2a37c62354241283
-  BidmadAdapterFC: 9c1152226eaac85871b6af4da2ba038059fcd1d0
-  BidmadAdapterFNC: 821ccc1dc246160dc53a092be8ca41d27b640054
-  BidmadSDK: 048de59cf1460f41efca99945f6538e620f59f45
+  BidmadAdapterFC: 1d0a91fb4997793cebc044e0cdd68f8393b2e3f8
+  BidmadAdapterFNC: 8658280a387f5b3268606edf69b195a17c5f1982
+  BidmadSDK: f92045a3867bbc1535ef53d56df2c24fa5fabda7
   FBAudienceNetwork: 83096d73433759c10f9cf9b3bad5e5cff58694cb
   Fyber_Marketplace_SDK: 63bf7c3e6a3e86320ceb995aae39f71afb9d7626
   Google-Mobile-Ads-SDK: 05e5d68bb42a61b2e5bef336a52789785605aa22
@@ -210,12 +210,12 @@ SPEC CHECKSUMS:
   InMobiSDK: ff90089c722e6ce387d85a7d07a45902c73ecf24
   IronSourceSDK: 7359355050983d7efb5bb779f9129a32138c3c22
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
-  OpenBiddingHelper: 22a9ab801c59d10cc74edd4fc9eb0fed3b3fe5b0
+  OpenBiddingHelper: 81bc104770037b4a4048c93b8546244b0ac1a19f
   PromisesObjC: 99b6f43f9e1044bd87a95a60beff28c2c44ddb72
-  TapjoySDK: 6d344dfb0cd205014c9286580d5c97857b170402
+  TapjoySDK: 4a3ea5146704a2ba8aab84f4e6f7dcec172972b9
   UnityAds: 9adbfd8ccc008e4e3e7b1bcf5666a126df4f1a8e
   VungleSDK-iOS: bee61557642964b441d799bf88e6ea6f6eb29afc
 
-PODFILE CHECKSUM: f45ea6a5c48261f77aa2d24e55d42b77b3031b4c
+PODFILE CHECKSUM: 14e8b415cb43b4717ecaf4aa16133758a8632e22
 
 COCOAPODS: 1.11.3
