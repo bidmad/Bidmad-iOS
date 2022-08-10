@@ -10,7 +10,7 @@
 @interface NativeAdViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UILabel *callbackLabel;
-@property (strong, nonatomic) BidmadNativeAdLoader *adLoader;
+@property (strong, nonatomic) BIDMADNativeAdLoader *adLoader;
 @property (strong, nonatomic) NSMutableArray<BIDMADNativeAd *>* ads;
 @property (nonatomic) int adsCallbackCount;
 @end
@@ -27,11 +27,11 @@
     
     self.ads = [NSMutableArray new];
     
-    self.adLoader = [[BidmadNativeAdLoader alloc] init];
+    self.adLoader = [[BIDMADNativeAdLoader alloc] init];
     self.adLoader.delegate = self;
     
     for (int i = 0; i < 5; i++) {
-        [self.adLoader loadFor:@"7fe8f6de-cd99-4769-9ae6-a471cfd7e2b1"];
+        [self.adLoader requestFor:@"7fe8f6de-cd99-4769-9ae6-a471cfd7e2b1"];
     }
 }
 
@@ -41,20 +41,20 @@
 
 - (void)bidmadNativeAdWithLoadedAd:(BIDMADNativeAd *)loadedAd {
     NSLog(@"Loaded Ad is %@", [loadedAd description]);
+
+    [loadedAd setClickCallback:^(BIDMADNativeAd * clickedAd) {
+        [self.callbackLabel setText:[NSString stringWithFormat:@"CLICK (%@)", clickedAd.headline]];
+        NSLog(@"Native Ad %@ is clicked.", clickedAd.description);
+    }];
     
     self.adsCallbackCount++;
-    
+
     [self.callbackLabel setText:[NSString stringWithFormat:@"LOAD (%@)", loadedAd.headline]];
     [self.ads insertObject:loadedAd atIndex:self.ads.count];
-    
+
     if (self.adsCallbackCount == 5) {
         [self.tableView reloadData];
     }
-}
-
-- (void)bidmadNativeAdWithClickedAd:(BIDMADNativeAd *)clickedAd {
-    [self.callbackLabel setText:[NSString stringWithFormat:@"CLICK (%@)", clickedAd.headline]];
-    NSLog(@"Native Ad %@ is clicked.", clickedAd.description);
 }
 
 - (void)bidmadNativeAdAllFail:(NSError *)error {
@@ -78,7 +78,7 @@
     BIDMADNativeAd *adData = [self.ads objectAtIndex:indexPath.row];
     BIDMADNativeAdView *adView = [cell viewWithTag:123321];
     
-    [BidmadNativeAdLoader setupFor:adData viewController:self adView:adView];
+    [BIDMADNativeAdLoader setupFor:adData viewController:self adView:adView];
     
     if (adData.headline != nil) {
         [adView.headlineViewCustom setHidden:NO];
@@ -142,7 +142,7 @@
     BIDMADNativeAd *adData = [self.ads objectAtIndex:indexPath.row];
     BIDMADNativeAdView *adView = [cell viewWithTag:123321];
     
-    [BidmadNativeAdLoader cleanUpFor:adData adView:adView];
+    [BIDMADNativeAdLoader cleanUpFor:adData adView:adView];
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

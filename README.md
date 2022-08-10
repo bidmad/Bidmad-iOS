@@ -26,7 +26,7 @@
 ## BidmadSDK Installation Guide
 
 1. 개발 환경
-    - Xcode 13.4 버전 (Xcode 최소 사양 13.0)
+    - Xcode 13.4.1 버전 (Xcode 최소 사양 13.0)
     - BASE SDK : iOS
     - iOS Deployment Target : 11.0
 2. SDK설치 방법 <br>
@@ -37,10 +37,10 @@
 
         target "Runner" do
           use_frameworks!
-          pod 'BidmadSDK', '4.3.1.0'
-          pod 'OpenBiddingHelper', '4.3.1.0'
-          pod 'BidmadAdapterFC', '4.3.1.0'
-          pod 'BidmadAdapterFNC', '4.3.1.0'
+          pod 'BidmadSDK', '4.4.0.0'
+          pod 'OpenBiddingHelper', '4.4.0.1'
+          pod 'BidmadAdapterFC', '4.4.0.1'
+          pod 'BidmadAdapterFNC', '4.4.0.1'
         ```
 
     2. Terminal에서 다음 커맨드 입력
@@ -1024,27 +1024,36 @@ public func bidmadOfferwallInitFail(_ core: BIDMADOfferwall!, error: String!) {
 ### Native Ad 광고 로드 및 콜백 구현
 네이티브 광고는 애플리케이션에 맞는 고유한 방식으로 기획, 제작된 광고를 말합니다. 광고를 호출하기 앞서, [레이아웃 가이드](https://github.com/bidmad/Bidmad-iOS/wiki/Native-Ad-Layout-Setting-Guide-%5BKOR%5D)에 따라 광고 UI 설정해주십시오. <br>
 광고 UI 설정 이후, 광고 데이터가 포함된 BIDMADNativeAd 를 로드한 뒤, <br> 
-BidmadNativeAdLoader.setup(for:BIDMADNativeAd, viewController:UIViewController, adView:BIDMADNativeAdView) 메서드를 실행합니다. <br>
+BIDMADNativeAdLoader.setup(for:BIDMADNativeAd, viewController:UIViewController, adView:BIDMADNativeAdView) 메서드를 실행합니다. <br>
 메서드 실행 후, BIDMADNativeAd 인스턴스 내부 광고 데이터를 각 UI에 알맞게 설정합니다. <br>  
 
 <details markdown="1">
 <summary>ObjC</summary>
 <br>
 
+@import OpenBiddingHelper; 
+
 ```
 - (void)viewDidLoad {
     [super viewDidLoad];
 
     // Request to load ad data (BIDMADNativeAd) from BidmadSDK 
-    BidmadNativeAdLoader* adLoader = [[BidmadNativeAdLoader alloc] init];
+    BIDMADNativeAdLoader* adLoader = [[BIDMADNativeAdLoader alloc] init];
     adLoader.delegate = self;
-    [adLoader loadFor:@"Your ZoneID"];
+    // Insert your own zoneID as an argument in the method, 'requestFor:(NSString *)'
+    [adLoader requestFor:@"XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"];
 }
 
 #pragma mark Native Ad Delegate Methods
 
 // LOAD CALLBACK: Show your ad from the loaded ad from the load callback.
 - (void)bidmadNativeAdWithLoadedAd:(BIDMADNativeAd *)loadedAd {
+    
+    // Setting up a click callback for each ad you load
+    [loadedAd setClickCallback:^(BIDMADNativeAd * clickedAd) {
+        NSLog(@"Native Ad %@ is clicked.", clickedAd.description);
+    }];
+
     // Instantiating Ad View from XIB file. Please refer to the layout guide for creating XIB file.
     BIDMADNativeAdView *adView = [[[UINib nibWithNibName:@"NativeAd" bundle:nil] instantiateWithOwner:nil options:nil] firstObject];
     
@@ -1101,10 +1110,6 @@ BidmadNativeAdLoader.setup(for:BIDMADNativeAd, viewController:UIViewController, 
     }
 }
 
-- (void)bidmadNativeAdWithClickedAd:(BIDMADNativeAd *)clickedAd {
-    NSLog(@"A Native Ad is clicked: %@", clickedAd.description);
-}
-
 - (void)bidmadNativeAdAllFail:(NSError *)error {
     NSLog(@"Native Ad Mediation all failed.");
 }
@@ -1120,15 +1125,22 @@ override func viewDidLoad() {
     super.viewDidLoad()
     
     // Request to load ad data (BIDMADNativeAd) from BidmadSDK 
-    let adLoader = BidmadNativeAdLoader()
+    let adLoader = BIDMADNativeAdLoader()
     adLoader.delegate = self
-    adLoader.load(for: "Your ZoneID")
+    // Insert your own zoneID as an argument in the method, 'requestFor:(NSString *)'
+    adLoader.request(for: "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX")
 }
 
 // MARK: Native Ad Delegate Methods
 
 // LOAD CALLBACK: Show your ad from the loaded ad from the load callback.
-func bidmadNativeAd(loadedAd: BIDMADNativeAd) {
+func bidmadNativeAd(withLoadedAd loadedAd: BIDMADNativeAd) {
+    
+    // Setting up a click callback for each ad you load
+    loadedAd.setClickCallback { clickedAd in
+        print("Native Ad \(clickedAd) is clicked.")
+    }
+
     // Instantiating Ad View from XIB file. Please refer to the layout guide for creating XIB file.
     let adView =
     UINib(nibName: "NativeAd", bundle: nil).instantiate(withOwner: nil, options: nil).first as! BIDMADNativeAdView
@@ -1184,10 +1196,6 @@ func bidmadNativeAd(loadedAd: BIDMADNativeAd) {
     } else {
         adView.advertiserViewCustom?.isHidden = true
     }
-}
-
-func bidmadNativeAd(clickedAd: BIDMADNativeAd) {
-    print("A Native Ad is clicked \(clickedAd.description)")
 }
 
 func bidmadNativeAdAllFail(_ error: NSError) {

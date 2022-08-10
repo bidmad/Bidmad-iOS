@@ -45,7 +45,7 @@
     NSLog(@"Bidmad Sample App: [BidmadCommon isDebug] is %@", [NSNumber numberWithBool:[BidmadCommon isDebug]]);
     NSLog(@"Bidmad Sample App: [BidmadCommon bidmadVersion] is %@", [BidmadCommon bidmadVersion]);
     
-    NSLog(@"Bidmad Sample App: [BidmadCommon isChildDirectedTreament] is %@", [BidmadCommon isChildDirectedTreament]);
+    NSLog(@"Bidmad Sample App: [BidmadCommon isChildDirectedTreament] is %@", [BidmadCommon isChildDirectedTreatment]);
     NSLog(@"Bidmad Sample App: [BidmadCommon isUserConsentCCPA] is %@", [BidmadCommon isUserConsentCCPA]);
     
     [BidmadCommon setTestDeviceId:@"0772a1fad2e99786a321e67ac9de4a0f"];
