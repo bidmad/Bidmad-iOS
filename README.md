@@ -37,10 +37,10 @@
 
         target "Runner" do
           use_frameworks!
-          pod 'BidmadSDK', '4.5.0.0'
-          pod 'OpenBiddingHelper', '4.5.0.0'
+          pod 'BidmadSDK', '4.5.1.0'
+          pod 'OpenBiddingHelper', '4.5.0.1'
           pod 'BidmadAdapterFC', '4.5.0.0'
-          pod 'BidmadAdapterFNC', '4.5.0.0'
+          pod 'BidmadAdapterFNC', '4.5.1.0'
         ```
 
     2. Terminal에서 다음 커맨드 입력
