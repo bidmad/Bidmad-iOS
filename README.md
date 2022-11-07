@@ -1,4 +1,3 @@
-4.5.0.0# BidmadSDK iOS
 ## 퍼블리셔의 모바일 앱 기반 광고 수익 최적화를 위한 통합 앱수익화 솔루션
 
 - 개요
@@ -37,10 +36,10 @@
 
         target "Runner" do
           use_frameworks!
-          pod 'BidmadSDK', '4.6.0.0'
-          pod 'OpenBiddingHelper', '4.6.0.0'
-          pod 'BidmadAdapterFC', '4.6.0.0'
-          pod 'BidmadAdapterFNC', '4.6.0.0'
+          pod 'BidmadSDK', '4.6.0.1'
+          pod 'OpenBiddingHelper', '4.6.0.1'
+          pod 'BidmadAdapterFC', '4.6.0.1'
+          pod 'BidmadAdapterFNC', '4.6.0.1'
         ```
 
     2. Terminal에서 다음 커맨드 입력

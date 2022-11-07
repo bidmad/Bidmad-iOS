@@ -36,9 +36,7 @@
 }
 
 -(IBAction)showReward:(UIButton*)sender{
-    if ([rewardAd isLoaded]) {
-        [rewardAd show];
-    }
+    [rewardAd show];
 }
 
 - (IBAction)backBtnPressed:(id)sender {

@@ -9,11 +9,11 @@
 /* Begin PBXBuildFile section */
 		0D82B290282A3D6A00A13696 /* NativeAd.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D82B28E282A3D6A00A13696 /* NativeAd.xib */; };
 		0D82B291282A3D6A00A13696 /* NativeAdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D82B28F282A3D6A00A13696 /* NativeAdViewController.m */; };
+		1A2042BCA1F15759F84A4777 /* Pods_BidmadSDKTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9650B52F6C1D6E7D20263FD /* Pods_BidmadSDKTest.framework */; };
 		265E6471264BB3720006C750 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 265E6470264BB3720006C750 /* main.m */; };
 		26B1BE4B2692CE58003119FE /* RewardInterstitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26B1BE4A2692CE58003119FE /* RewardInterstitialViewController.m */; };
 		26B1BE4E2692D1A9003119FE /* SegueInterimAdVIew.m in Sources */ = {isa = PBXBuildFile; fileRef = 26B1BE4D2692D1A9003119FE /* SegueInterimAdVIew.m */; };
 		26B4FEF42694398E0004A818 /* AppOpenAdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26B4FEF32694398E0004A818 /* AppOpenAdViewController.m */; };
-		3568B400371C001F2E253D67 /* Pods_BidmadSDKTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A98293D5989392CDF847C08 /* Pods_BidmadSDKTest.framework */; };
 		46AB202B218816CF00A2D82F /* RewardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46AB202A218816CF00A2D82F /* RewardViewController.m */; };
 		46EFA9E01F69047F002B7C96 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 46EFA9DF1F69047F002B7C96 /* AppDelegate.m */; };
 		46EFA9E31F69047F002B7C96 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46EFA9E21F69047F002B7C96 /* ViewController.m */; };
@@ -42,6 +42,7 @@
 		0D82B28D282A3D6A00A13696 /* NativeAdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeAdViewController.h; sourceTree = "<group>"; };
 		0D82B28E282A3D6A00A13696 /* NativeAd.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NativeAd.xib; sourceTree = "<group>"; };
 		0D82B28F282A3D6A00A13696 /* NativeAdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NativeAdViewController.m; sourceTree = "<group>"; };
+		1333E3577582A0239F77D6B3 /* Pods-BidmadSDKTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BidmadSDKTest.release.xcconfig"; path = "Target Support Files/Pods-BidmadSDKTest/Pods-BidmadSDKTest.release.xcconfig"; sourceTree = "<group>"; };
 		261FF6F8269EB55700014635 /* BidmadSDKTest-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BidmadSDKTest-Bridging-Header.h"; sourceTree = "<group>"; };
 		265E6470264BB3720006C750 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		26B1BE492692CE58003119FE /* RewardInterstitialViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RewardInterstitialViewController.h; sourceTree = "<group>"; };
@@ -51,6 +52,7 @@
 		26B4FEF22694398E0004A818 /* AppOpenAdViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppOpenAdViewController.h; sourceTree = "<group>"; };
 		26B4FEF32694398E0004A818 /* AppOpenAdViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppOpenAdViewController.m; sourceTree = "<group>"; };
 		26CB246E27574E0C00AD8A11 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		33D9D4A9A441FE6C3EB5EE2B /* Pods-BidmadSDKTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BidmadSDKTest.debug.xcconfig"; path = "Target Support Files/Pods-BidmadSDKTest/Pods-BidmadSDKTest.debug.xcconfig"; sourceTree = "<group>"; };
 		46AB2029218816CF00A2D82F /* RewardViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RewardViewController.h; sourceTree = "<group>"; };
 		46AB202A218816CF00A2D82F /* RewardViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RewardViewController.m; sourceTree = "<group>"; };
 		46BFAB23221EAB6800C2AC3D /* BidmadSDKTest.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BidmadSDKTest.entitlements; sourceTree = "<group>"; };
@@ -67,11 +69,9 @@
 		46EFA9FC1F6908FB002B7C96 /* BannerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BannerViewController.m; sourceTree = "<group>"; };
 		46EFA9FE1F690920002B7C96 /* InterstitialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InterstitialViewController.h; sourceTree = "<group>"; };
 		46EFA9FF1F690920002B7C96 /* InterstitialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InterstitialViewController.m; sourceTree = "<group>"; };
-		8A98293D5989392CDF847C08 /* Pods_BidmadSDKTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BidmadSDKTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8C84460284BF59107E6E1953 /* Pods-BidmadSDKTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BidmadSDKTest.release.xcconfig"; path = "Target Support Files/Pods-BidmadSDKTest/Pods-BidmadSDKTest.release.xcconfig"; sourceTree = "<group>"; };
-		8E60F06FBC352DF71341637A /* Pods-BidmadSDKTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BidmadSDKTest.debug.xcconfig"; path = "Target Support Files/Pods-BidmadSDKTest/Pods-BidmadSDKTest.debug.xcconfig"; sourceTree = "<group>"; };
 		9FD8586F25D37178008D3A3E /* OfferwallController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfferwallController.h; sourceTree = "<group>"; };
 		9FD8587025D37178008D3A3E /* OfferwallController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfferwallController.m; sourceTree = "<group>"; };
+		B9650B52F6C1D6E7D20263FD /* Pods_BidmadSDKTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BidmadSDKTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,7 +79,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3568B400371C001F2E253D67 /* Pods_BidmadSDKTest.framework in Frameworks */,
+				1A2042BCA1F15759F84A4777 /* Pods_BidmadSDKTest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -151,7 +151,7 @@
 			isa = PBXGroup;
 			children = (
 				26CB246E27574E0C00AD8A11 /* AVFoundation.framework */,
-				8A98293D5989392CDF847C08 /* Pods_BidmadSDKTest.framework */,
+				B9650B52F6C1D6E7D20263FD /* Pods_BidmadSDKTest.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -159,8 +159,8 @@
 		8AB48504F218BF3D84ED609A /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				8E60F06FBC352DF71341637A /* Pods-BidmadSDKTest.debug.xcconfig */,
-				8C84460284BF59107E6E1953 /* Pods-BidmadSDKTest.release.xcconfig */,
+				33D9D4A9A441FE6C3EB5EE2B /* Pods-BidmadSDKTest.debug.xcconfig */,
+				1333E3577582A0239F77D6B3 /* Pods-BidmadSDKTest.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -172,14 +172,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 46EFA9EF1F69047F002B7C96 /* Build configuration list for PBXNativeTarget "BidmadSDKTest" */;
 			buildPhases = (
-				7C623245D355485A4CC97D96 /* [CP] Check Pods Manifest.lock */,
+				215CBEEDFD1EAF7185874573 /* [CP] Check Pods Manifest.lock */,
 				46EFA9D41F69047F002B7C96 /* Sources */,
 				46EFA9D51F69047F002B7C96 /* Frameworks */,
 				46EFA9D61F69047F002B7C96 /* Resources */,
 				47BCF8792553A69800A06CBB /* ShellScript */,
 				9FC8DBAB25DF9FA10070D200 /* Embed Frameworks */,
-				125DE68C14B59E542099698A /* [CP] Embed Pods Frameworks */,
-				F3E3E1E92E15686BD82734F1 /* [CP] Copy Pods Resources */,
+				8A8D18E530C4301990CF8697 /* [CP] Embed Pods Frameworks */,
+				D1A385E42D71680D1FFC3193 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -251,52 +251,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		125DE68C14B59E542099698A /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-BidmadSDKTest/Pods-BidmadSDKTest-frameworks.sh",
-				"${PODS_ROOT}/AdFitSDK/Frameworks/AdFitSDK.framework",
-				"${BUILT_PRODUCTS_DIR}/BURelyFoundation_Global/BURelyFoundation_Global.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/PrebidMobile/PrebidMobile.framework",
-				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AdFitSDK.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BURelyFoundation_Global.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PrebidMobile.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BidmadSDKTest/Pods-BidmadSDKTest-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		47BCF8792553A69800A06CBB /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 8;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 1;
-			shellPath = /bin/sh;
-			shellScript = "bash \"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/AdFitSDK.framework/strip-frameworks.sh\"\n";
-		};
-		7C623245D355485A4CC97D96 /* [CP] Check Pods Manifest.lock */ = {
+		215CBEEDFD1EAF7185874573 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -318,7 +273,52 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		F3E3E1E92E15686BD82734F1 /* [CP] Copy Pods Resources */ = {
+		47BCF8792553A69800A06CBB /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 8;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+			shellPath = /bin/sh;
+			shellScript = "bash \"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/AdFitSDK.framework/strip-frameworks.sh\"\n";
+		};
+		8A8D18E530C4301990CF8697 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BidmadSDKTest/Pods-BidmadSDKTest-frameworks.sh",
+				"${PODS_ROOT}/AdFitSDK/Frameworks/AdFitSDK.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/PrebidMobile/PrebidMobile.framework",
+				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/OpenWrapSDK/OpenWrap/OMSDK_Pubmatic.framework/OMSDK_Pubmatic",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AdFitSDK.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PrebidMobile.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OMSDK_Pubmatic.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BidmadSDKTest/Pods-BidmadSDKTest-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D1A385E42D71680D1FFC3193 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -330,6 +330,7 @@
 				"${PODS_ROOT}/AppLovinSDK/applovin-ios-sdk-11.4.2/AppLovinSDKResources.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/BidmadSDK/bidmad_asset.bundle",
 				"${PODS_ROOT}/Fyber_Marketplace_SDK/IASDKCore/IASDKCore.xcframework/IASDKResources.bundle",
+				"${PODS_ROOT}/OpenWrapSDK/OpenWrapSDK/POBResources.bundle",
 				"${PODS_ROOT}/RangersAPM-Pangle/RangersAPM-Pangle/Assets/Core/APMInsightCore.bundle",
 				"${PODS_ROOT}/RangersAPM-Pangle/RangersAPM-Pangle/Assets/Crash/APMInsightCrash.bundle",
 			);
@@ -340,6 +341,7 @@
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AppLovinSDKResources.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/bidmad_asset.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IASDKResources.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/POBResources.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/APMInsightCore.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/APMInsightCrash.bundle",
 			);
@@ -510,7 +512,7 @@
 		};
 		46EFA9F01F69047F002B7C96 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8E60F06FBC352DF71341637A /* Pods-BidmadSDKTest.debug.xcconfig */;
+			baseConfigurationReference = 33D9D4A9A441FE6C3EB5EE2B /* Pods-BidmadSDKTest.debug.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -550,7 +552,7 @@
 		};
 		46EFA9F11F69047F002B7C96 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8C84460284BF59107E6E1953 /* Pods-BidmadSDKTest.release.xcconfig */;
+			baseConfigurationReference = 1333E3577582A0239F77D6B3 /* Pods-BidmadSDKTest.release.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;

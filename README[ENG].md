@@ -37,10 +37,10 @@
 
         target "Runner" do
           use_frameworks!
-          pod 'BidmadSDK', '4.6.0.0'
-          pod 'OpenBiddingHelper', '4.6.0.0'
-          pod 'BidmadAdapterFC', '4.6.0.0'
-          pod 'BidmadAdapterFNC', '4.6.0.0'
+          pod 'BidmadSDK', '4.6.0.1'
+          pod 'OpenBiddingHelper', '4.6.0.1'
+          pod 'BidmadAdapterFC', '4.6.0.1'
+          pod 'BidmadAdapterFNC', '4.6.0.1'
         ```
 
     2. Followed by entering the following command in Terminal.
