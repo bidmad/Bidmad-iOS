@@ -7,6 +7,7 @@
 //
 
 #import "AppOpenAdViewController.h"
+#import <ADOPUtility/ADOPLog.h>
 @import OpenBiddingHelper;
 
 @interface AppOpenAdViewController () <OpenBiddingAppOpenAdDelegate> {
@@ -27,8 +28,7 @@
     [self->appOpenAd setDelegate: self];
     
     // Bidmad AppOpenAd Ads can be set with Custom Unique ID with the following method.
-    [self->appOpenAd setCUID:@"YOUR ENCRYPTED ID"];
-    [self->appOpenAd setCUID:@""];
+    [BidmadCommon setCuid:@"YOUR ENCRYPTED ID"];
 }
 
 - (IBAction)buttonPressAction:(UIButton *)sender {
@@ -52,27 +52,27 @@
 #pragma mark AppOpenAd Delegate Methods
 
 - (void)OpenBiddingAppOpenAdLoad:(OpenBiddingAppOpenAd *)core {
-    NSLog(@"Bidmad Sample App AppOpenAd Load");
+    ADOPLog.printInfo(@"Bidmad Sample App AppOpenAd Load");
     [self.callbackLabel setText:@"Load"];
 }
 
 - (void)OpenBiddingAppOpenAdShow:(OpenBiddingAppOpenAd *)core {
-    NSLog(@"Bidmad Sample App AppOpenAd Show");
+    ADOPLog.printInfo(@"Bidmad Sample App AppOpenAd Show");
     [self.callbackLabel setText:@"Show"];
 }
 
 - (void)OpenBiddingAppOpenAdClick:(OpenBiddingAppOpenAd *)core {
-    NSLog(@"Bidmad Sample App AppOpenAd Click");
+    ADOPLog.printInfo(@"Bidmad Sample App AppOpenAd Click");
     [self.callbackLabel setText:@"Click"];
 }
 
 - (void)OpenBiddingAppOpenAdClose:(OpenBiddingAppOpenAd *)core {
-    NSLog(@"Bidmad Sample App AppOpenAd Close");
+    ADOPLog.printInfo(@"Bidmad Sample App AppOpenAd Close");
     [self.callbackLabel setText:@"Close"];
 }
 
 - (void)OpenBiddingAppOpenAdAllFail:(OpenBiddingAppOpenAd *)core code:(NSString *)error {
-    NSLog(@"Bidmad Sample App AppOpenAd All Fail");
+    ADOPLog.printInfo(@"Bidmad Sample App AppOpenAd All Fail");
     [self.callbackLabel setText:@"All Fail"];
 }
 

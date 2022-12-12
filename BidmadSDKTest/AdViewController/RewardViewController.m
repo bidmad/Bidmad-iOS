@@ -6,6 +6,7 @@
 //
 
 #import "RewardViewController.h"
+#import <ADOPUtility/ADOPLog.h>
 @import OpenBiddingHelper;
 
 @interface RewardViewController () <BIDMADOpenBiddingRewardVideoDelegate> {
@@ -18,14 +19,14 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
     
-    NSLog(@" deviceId: %@", [BIDMADUtil identifierForAdvertising]);
+    ADOPLog.printInfo(@" deviceId: %@", [BIDMADUtil identifierForAdvertising]);
     
     NSString *zoneID = @"29e1ef67-98d2-47b3-9fa2-9192327dd75d";
-    rewardAd = [[BidmadRewardAd alloc] initWith:self zoneID:zoneID];
+    rewardAd = [[BidmadRewardAd alloc] initWithZoneID:zoneID];
     rewardAd.delegate = self;
     
-    // Bidmad Rewarded Ads can be set with Custom Unique ID with the following method.
-    [rewardAd setCUID:@"YOUR ENCRYPTED ID"];
+    // Bidmad Interstitial Ads can be set with Custom Unique ID with the following method.
+    [BidmadCommon setCuid:@"YOUR ENCRYPTED ID"];
     
     // Auto Reload feature can be turned on and off with the following method
     [rewardAd setIsAutoReload:YES]; // Default is YES (Auto Reload turned ON)
@@ -36,11 +37,11 @@
 }
 
 -(IBAction)showReward:(UIButton*)sender{
-    [rewardAd show];
+    [rewardAd showOnViewController:self];
 }
 
 - (IBAction)backBtnPressed:(id)sender {
-    NSLog(@"Back Button Pressed");
+    ADOPLog.printInfo(@"Back Button Pressed");
     
     [self dismissViewControllerAnimated:YES completion:^{ }];
 }
@@ -48,37 +49,37 @@
 #pragma mark Reward Delegate
 
 - (void)BIDMADOpenBiddingRewardSkipped:(OpenBiddingRewardVideo *)core {
-    NSLog(@"Bidmad Sample App Reward Skipped");
+    ADOPLog.printInfo(@"Bidmad Sample App Reward Skipped");
     [[self rewardCallbackDisplay] setText:@"Skipped"];
 }
 
 - (void)BIDMADOpenBiddingRewardVideoLoad:(OpenBiddingRewardVideo *)core {
-    NSLog(@"Bidmad Sample App Reward Load");
+    ADOPLog.printInfo(@"Bidmad Sample App Reward Load");
     [[self rewardCallbackDisplay] setText:@"Load"];
 }
 
 - (void)BIDMADOpenBiddingRewardVideoShow:(OpenBiddingRewardVideo *)core {
-    NSLog(@"Bidmad Sample App Reward Show");
+    ADOPLog.printInfo(@"Bidmad Sample App Reward Show");
     [[self rewardCallbackDisplay] setText:@"Show"];
 }
 
 - (void)BIDMADOpenBiddingRewardVideoClick:(OpenBiddingRewardVideo *)core {
-    NSLog(@"Bidmad Sample App Reward Click");
+    ADOPLog.printInfo(@"Bidmad Sample App Reward Click");
     [[self rewardCallbackDisplay] setText:@"Click"];
 }
 
 - (void)BIDMADOpenBiddingRewardVideoClose:(OpenBiddingRewardVideo *)core {
-    NSLog(@"Bidmad Sample App Reward Close");
+    ADOPLog.printInfo(@"Bidmad Sample App Reward Close");
     [[self rewardCallbackDisplay] setText:@"Close"];
 }
 
 - (void)BIDMADOpenBiddingRewardVideoSucceed:(OpenBiddingRewardVideo *)core {
-    NSLog(@"Bidmad Sample App Reward Success");
+    ADOPLog.printInfo(@"Bidmad Sample App Reward Success");
     [[self rewardCallbackDisplay] setText:@"Success"];
 }
 
 - (void)BIDMADOpenBiddingRewardVideoAllFail:(OpenBiddingRewardVideo *)core {
-    NSLog(@"Bidmad Sample App Reward All Fail");
+    ADOPLog.printInfo(@"Bidmad Sample App Reward All Fail");
     [[self rewardCallbackDisplay] setText:@"All Fail"];
 }
 
