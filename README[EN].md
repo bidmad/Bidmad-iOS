@@ -1,29 +1,29 @@
 # BidmadSDK(v5.0.0)
 ### 바로가기
-1. [SDK 세팅](#bidmadsdk-installation-guide)
-    - [개발 환경](#개발-환경)
-    - [SDK 설치 방법](#sdk-설치-방법)
-2. [SDK 인터페이스 가이드](#bidmadsdk-interface-guide)
-    - [앱 초기 구성 및 Migration](#앱-초기-구성-및-migration)
-    - [BidmadSDK 초기화](#bidmadsdk-초기화)
-    - [배너 광고](#배너-광고)
-    - [전면 광고](#전면-광고)
-    - [보상형 비디오 광고](#보상형-비디오-광고)
-    - [App Open 광고](#app-open-광고)
-    - [Native Ad 광고](#native-ad-광고)
-    - [구글 애드네트워크 테스트 디바이스 설정](#구글-애드네트워크-테스트-디바이스-설정)
-3. [참고사항](#참고사항)
-4. [최신 샘플 프로젝트 다운로드](https://github.com/bidmad/Bidmad-iOS/archive/refs/heads/main.zip)
+1. [SDK Installation Guide](#bidmadsdk-installation-guide)
+    - [Development Environment](#development-environment)
+    - [SDK Installation Guide](#installation-guide)
+2. [BidmadSDK Interface Guide](#bidmadsdk-interface-guide)
+    - [App Configuration and Migration](#app-configuration-and-migration)
+    - [BidmadSDK Initialization](#bidmadsdk-initialization)
+    - [Banner Ad](#banner-ad)
+    - [Interstitial Ad](#interstitial-ad)
+    - [Rewarded Video Ads](#rewarded-video-ads)
+    - [App Open Ad](#app-open-ad)
+    - [Native Ad](#native-ad)
+    - [Google Ad Network Test Device Setting](#google-ad-network-test-device-setting)
+3. [References](#references)
+4. [Download the Lastest Bidmad Sample](https://github.com/bidmad/Bidmad-iOS/archive/refs/heads/main.zip)
 ---
 
 ## BidmadSDK Installation Guide
 
-#### 개발 환경
-- Xcode 13.4.1 버전 (Xcode 최소 사양 13.4.1)
+#### Development Environment
+- Xcode 13.4.1 version (Xcode minimum version of 13.4.1 required)
 - BASE SDK : iOS
 - iOS Deployment Target : 11.0
-#### SDK 설치 방법
-1. Podfile 내부에 다음 코드 추가 (Xcode 13.4.1 이상 버전)
+#### Installation Guide
+1. Add the following code inside the Podfile
 
 ```
 platform :ios, "11.0"
@@ -36,37 +36,37 @@ target "Runner" do
   pod 'BidmadAdapterFNC', '5.0.0'
 ```
 
-2. Terminal에서 다음 커맨드 입력
+2. Enter the following command in Terminal
 
 ```
 pod install
 ```
     
 3. Build Settings ( Target → Build Settings ) <br>
-    - Enable Bitcode 를 No로 설정<br>
+    - Set Enable Bitcode to NO<br>
         ![Enable_Bitcode](https://i.imgur.com/aXOBmr1.png)<br>
 
 ## BidmadSDK Interface Guide
 
-### 앱 초기 구성 및 Migration<br>
-앱 초기 구성에 앞서, 4.6.0.1 이하 버전에서 5.0.0 버전으로 업데이트하는 경우 [API Migration Guide](https://github.com/bidmad/Bidmad-iOS/wiki/v5.0.0-API-Migration-Guide-%5BKR%5D) 를 참고해 앱 업데이트를 진행하십시오. 이후, 아래 info.plist 내부 BidmadAppKey 추가 및 initializeSdk 메서드 추가 과정도 거치십시오.<br>
+### App Configuration and Migration<br>
+Prior to the initial configuration of the app, when updating from version 4.6.0.1 or lower to version 5.0.0 [API Migration Guide](https://github.com/bidmad/Bidmad-iOS/wiki/v5.0.0-API-Migration-Guide-%5BEN%5D) to update the app. After that, go through the process of adding BidmadAppKey and initializeSdk method inside info.plist as guided below.<br>
 
-Xcode 프로젝트 info.plist 에 다음 키를 포함합니다.<br>
-1. ADOP Insight 에서 확인할 수 있는 iOS 용 AppKey ("[App Key 찾기](https://github.com/bidmad/SDK/wiki/Find-your-app-key%5BKR%5D)" 가이드를 참고하십시오) <br>
+Include the following key in your Xcode project info.plist :<br>
+1. iOS App Key identified in ADOP Insight (refer to "[Find your App Key](https://github.com/bidmad/SDK/wiki/Find-your-app-key%5BEN%5D)" guide) <br>
 
 ```
 <key>BidmadAppKey</key>
 <string>xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx</string>
 ```
 
-2. AdMob 대시보드 UI에서 확인 가능한 iOS 용 애드몹 ID ("[App Key 찾기](https://github.com/bidmad/SDK/wiki/Find-your-app-key%5BKR%5D)" 가이드를 참고하십시오) <br>
+2. iOS Google AdMob ID identified in AdMob Dashboard UI (refer to "[Find your App Key](https://github.com/bidmad/SDK/wiki/Find-your-app-key%5BEN%5D)" guide) <br>
 
 ```
 <key>GADApplicationIdentifier</key>
 <string>ca-app-pub-xxxxxxxxxxxxxxxx~xxxxxxxxxx</string>
 ```
 
-3. BidmadSDK에서 지원하는 광고 네트워크에 대한 SKAdNetworkIdentifier 값이 포함된 SKAdNetworkItems 키 ([Preparing for iOS 14](https://github.com/bidmad/Bidmad-iOS/wiki/Preparing-for-iOS-14%5BENG%5D) 를 참고하십시오)<br>
+3. SKAdNetworkItems key containing SKAdNetworkIdentifier values for ad networks supported by BidmadSDK (refer to [Preparing for iOS 14](https://github.com/bidmad/Bidmad-iOS/wiki/Preparing-for-iOS-14%5BENG%5D))<br>
 
 ```
 <key>SKAdNetworkItems</key>
@@ -79,9 +79,9 @@ Xcode 프로젝트 info.plist 에 다음 키를 포함합니다.<br>
 </array>
 ```
 
-### BidmadSDK 초기화<br>
-BidmadSDK 실행에 필요한 작업을 수행합니다. SDK는 initializeSdk 메서드를 호출하지 않은 경우 광고 로드를 허용하지 않습니다.<br>
-초기화는 앱 실행 시 한번만 하는 것이 좋습니다. 다음은 initializeSdk 메서드를 호출하는 방법의 예시입니다.<br>
+### BidmadSDK Initialization<br>
+Performs tasks required to run BidmadSDK. The SDK won't allow ads to load unless you call the initializeSdk method.<br>
+It is recommended to initialize only once when the app is launched. The following is an example of how to call the initializeSdk method.<br>
 
 ```
 // Objective C
@@ -91,9 +91,9 @@ BidmadSDK 실행에 필요한 작업을 수행합니다. SDK는 initializeSdk �
 BidmadCommon.initializeSdk()
 ```
 
-### 배너 광고
-1. 배너를 노출시킬 UIView를 UIViewController 상에 추가합니다 (UIView bannerContainer).
-2. 배너 Initialize / ZoneID / Delegate 세팅 후, RequestBannerView를 호출해 배너를 로드 및 노출시킵니다.
+### Banner Ad
+1. Add a UIView to display the banner on the UIViewController (UIView bannerContainer).
+2. After setting the banner Initialize / ZoneID / Delegate, call RequestBannerView to load and display the banner.
 
 <details markdown="1">
 <summary>Sample Code (Load)</summary>
@@ -177,9 +177,9 @@ func onClickAd(_ bidmadAd: OpenBiddingBanner) {
 ```
 </details>
 
-### 전면 광고
-1. 전면 광고를 노출시키기 전, load 메서드를 호출합니다.
-2. onLoadAd 콜백 수신 이후, show(on:) 메서드를 호출해 미리 로드된 전면 광고를 디스플레이 합니다. 
+### Interstitial Ad
+1. Call the load method before displaying the interstitial ad.
+2. After receiving the onLoadAd callback, call the show(on:) method to display the preloaded interstitial ad. 
 
 <details markdown="1">
 <summary>Sample Code (Load)</summary>
@@ -287,10 +287,10 @@ func onCloseAd(_ bidmadAd: OpenBiddingInterstitial) {
 ```
 </details>
 
-### 보상형 비디오 광고
-1. 보상형 광고를 노출시키기 전, load 메서드를 호출합니다.
-2. onLoadAd 콜백 수신 이후, show(on:) 메서드를 호출해 미리 로드된 보상형 광고를 디스플레이 합니다.
-3. onSkipAd (사용자가 광고를 스킵함) 혹은 onCompleteAd (사용자가 보상 지급 자격을 받음) 콜백에 따라 사용자에게 보상을 지급합니다.
+### Rewarded Video Ads
+1. Call the load method before displaying rewarded ads.
+2. After receiving the onLoadAd callback, call the show(on:) method to display the preloaded rewarded ad.
+3. Reward the user according to the onSkipAd (user skipped the ad) or onCompleteAd (user is eligible for reward) callback.
 
 <details markdown="1">
 <summary>Sample Code (Load)</summary>
@@ -415,8 +415,8 @@ func onCloseAd(_ bidmadAd: OpenBiddingRewardVideo) {
 ```
 </details>
 
-### App Open 광고
-App Open 광고는 사용자가 앱을 포그라운드로 가져올 때, 앱 로드 화면으로 수익을 올리는 광고 형식입니다. App Open 광고는 사용자가 해당 앱을 사용 중임을 알 수 있도록 상단에 앱 로고를 표기합니다. BidmadSDK는 더 쉬운 App Open 광고 로드를 위해 BidmadAppOpenAd init 시, 바로 AppOpenAd를 로드합니다. 사용자가 앱을 닫고 다시 열어 광고를 시청한 이후에도, 다시 AppOpenAd 광고를 로드합니다.
+### App Open Ad
+App Open ads are an ad format that monetizes the app load screen when a user brings the app to the foreground. App Open ads feature the app logo at the top so users know they're using the app. BidmadSDK loads AppOpenAd directly at BidmadAppOpenAd init for easier App Open ad loading. Even after the user closes and reopens the app to view the ad, AppOpenAd will load the ad again.
 
 <details markdown="1">
 <summary>Sample Code (Load)</summary>
@@ -536,8 +536,8 @@ func onCloseAd(_ bidmadAd: OpenBiddingAppOpenAd) {
 ```
 </details>
 
-### Native Ad 광고
-네이티브 광고는 애플리케이션에 맞는 고유한 방식으로 기획, 제작된 광고를 말합니다. 광고를 호출하기 앞서, [레이아웃 가이드](https://github.com/bidmad/Bidmad-iOS/wiki/Native-Ad-Layout-Setting-Guide-%5BKOR%5D)에 따라 광고 UI 설정해주십시오. 광고 UI 설정 이후, 광고 데이터가 포함된 BIDMADNativeAd 를 로드한 뒤, setAdView:adView: 메서드를 실행합니다.
+### Native Ad
+Native ads are ads that are designed and produced in a way unique to the application. Before calling an ad, set the ad UI according to the [Layout Guide](https://github.com/bidmad/Bidmad-iOS/wiki/Native-Ad-Layout-Setting-Guide-%5BKOR%5D). After setting the ad UI, execute the setAdView:adView: method.
 
 <details markdown="1">
 <summary>Sample Code (Load & Callbacks)</summary>
@@ -612,21 +612,19 @@ func onLoadFail(_ bidmadAd: BIDMADNativeAd, error: Error) {
 ```
 </details>
 
-### 구글 애드네트워크 테스트 디바이스 설정
+### Google Ad Network Test Device Setting
 </details>
 <details markdown="1">
-<summary>세부사항</summary>
+<summary>Details</summary>
 <br>
 
-구글 애드네트워크를 위한 테스트 디바이스 설정은 다음과 같은 과정이 필요합니다.  
-
-광고 통합 앱을 로드하고 광고를 요청합니다.
-콘솔에서 다음과 같은 메시지를 확인합니다.
+For setting the test device for Google Ad Networks, the following procedure is needed.
+First, request an ad to Google, and you will be seeing the log on your console.
 
 ```
 <Google> To get test ads on this device, set: GADMobileAds.sharedInstance.requestConfiguration.testDeviceIdentifiers = @[ @"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" ];
 ```
-콘솔에 기록된 테스트 디바이스 ID를 다음 코드를 통해 세팅하십시오.
+Copy the test device ID on console and set it to the following code.
 ```
 // ObjC
 [BidmadCommon setTestDeviceId:@"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"];
@@ -637,11 +635,11 @@ BidmadCommon.setTestDeviceId("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
 
 </details>
 
-### 참고사항
+### References
 
 </details>
 <details markdown="1">
-<summary>리스트</summary>
+<summary>List</summary>
 <br>
 
 - [Class Reference for BidmadSDK-iOS](https://github.com/bidmad/Bidmad-iOS/wiki/README-ClassReference)
