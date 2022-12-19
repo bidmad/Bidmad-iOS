@@ -7,6 +7,7 @@
 //
 
 #import "BannerViewController.h"
+#import <ADOPUtility/ADOPLog.h>
 #import <CommonCrypto/CommonCrypto.h>
 @import OpenBiddingHelper;
 
@@ -28,7 +29,7 @@
     [bannerAd setRefreshInterval:[@60 integerValue]];
 
     // Bidmad Banner Ads can be set with Custom Unique ID with the following method.
-    [bannerAd setCUID:@"YOUR ENCRYPTED ID"];
+    [BidmadCommon setCuid:@"YOUR ENCRYPTED ID"];
 }
 
 - (IBAction)loadBanner:(id)sender {
@@ -45,7 +46,7 @@
 #pragma mark Banner Deleagate
 
 - (IBAction)backBtn:(id)sender {
-    NSLog(@"Back Button Pressed");
+    ADOPLog.printInfo(@"Back Button Pressed");
     
     [bannerAd remove];     //광고 삭제
     [self dismissViewControllerAnimated:YES completion:^{
@@ -55,22 +56,22 @@
 
 - (void)BIDMADOpenBiddingBannerLoad:(OpenBiddingBanner *)core {
     [[self bannerCallbackDisplay] setText:@"Load"];
-    NSLog(@"Bidmad Sample App Banner Load");
+    ADOPLog.printInfo(@"Bidmad Sample App Banner Load");
 }
 
 - (void)BIDMADOpenBiddingBannerClick:(OpenBiddingBanner *)core {
     [[self bannerCallbackDisplay] setText:@"Click"];
-    NSLog(@"Bidmad Sample App Banner Click");
+    ADOPLog.printInfo(@"Bidmad Sample App Banner Click");
 }
 
 - (void)BIDMADOpenBiddingBannerAllFail:(OpenBiddingBanner *)core {
     [[self bannerCallbackDisplay] setText:@"All Fail"];
-    NSLog(@"Bidmad Sample App Banner All Fail");
+    ADOPLog.printInfo(@"Bidmad Sample App Banner All Fail");
 }
 
 - (void)BIDMADOpenBiddingBannerClosed:(OpenBiddingBanner *)core {
     [[self bannerCallbackDisplay] setText:@"Closed"];
-    NSLog(@"Bidmad Sample App Banner Closed");
+    ADOPLog.printInfo(@"Bidmad Sample App Banner Closed");
 }
 
 @end
