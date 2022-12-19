@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -25,13 +25,13 @@
                                 <rect key="frame" x="16" y="0.0" width="343" height="667"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tNa-er-LLL">
-                                        <rect key="frame" x="0.0" y="0.0" width="343" height="67"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="88.5"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="2N4-7k-0eI">
-                                                <rect key="frame" x="0.0" y="0.0" width="343" height="67"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="343" height="88.5"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lLy-zZ-XbV">
-                                                        <rect key="frame" x="0.0" y="19" width="171.5" height="29"/>
+                                                        <rect key="frame" x="0.0" y="29.5" width="171.5" height="29"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <state key="normal" title="Cancel AppOpenAd"/>
                                                         <userDefinedRuntimeAttributes>
@@ -42,7 +42,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EMi-X7-uk1">
-                                                        <rect key="frame" x="171.5" y="18.5" width="171.5" height="30"/>
+                                                        <rect key="frame" x="171.5" y="29" width="171.5" height="30"/>
                                                         <state key="normal" title="Reload AppOpenAd"/>
                                                         <connections>
                                                             <action selector="reloadAppOpenAdButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jUU-Xs-ByW"/>
@@ -60,49 +60,35 @@
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3d0-9p-Dc6">
-                                        <rect key="frame" x="0.0" y="75" width="343" height="67"/>
+                                        <rect key="frame" x="0.0" y="96.5" width="343" height="88.5"/>
                                         <state key="normal" title="BannerView"/>
                                         <connections>
                                             <segue destination="hYw-eA-IlG" kind="presentation" modalPresentationStyle="fullScreen" id="C54-lf-Jfu"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rZq-Z5-yhH">
-                                        <rect key="frame" x="0.0" y="150" width="343" height="67"/>
+                                        <rect key="frame" x="0.0" y="193" width="343" height="88.5"/>
                                         <state key="normal" title="Interstitial"/>
                                         <connections>
                                             <segue destination="PUA-xG-LK6" kind="presentation" modalPresentationStyle="fullScreen" id="tmk-VB-rQA"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mif-k2-vci">
-                                        <rect key="frame" x="0.0" y="225" width="343" height="67"/>
+                                        <rect key="frame" x="0.0" y="289.5" width="343" height="88"/>
                                         <state key="normal" title="Reward"/>
                                         <connections>
                                             <segue destination="jXf-Rl-83R" kind="presentation" modalPresentationStyle="fullScreen" id="k4c-o6-Sw7"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JYu-gt-Lfq">
-                                        <rect key="frame" x="0.0" y="300" width="343" height="67"/>
-                                        <state key="normal" title="Reward Interstitial"/>
-                                        <connections>
-                                            <segue destination="UKi-t8-vz6" kind="presentation" id="GJQ-5d-G4T"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sfh-e3-bQ8">
-                                        <rect key="frame" x="0.0" y="375" width="343" height="67"/>
+                                        <rect key="frame" x="0.0" y="385.5" width="343" height="88.5"/>
                                         <state key="normal" title="App Open Ad"/>
                                         <connections>
                                             <segue destination="eQV-A6-rto" kind="presentation" id="1go-st-vyc"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HGU-Fb-Htg">
-                                        <rect key="frame" x="0.0" y="450" width="343" height="67"/>
-                                        <state key="normal" title="Offerwall"/>
-                                        <connections>
-                                            <segue destination="VbJ-wm-Rq0" kind="presentation" id="qqU-fT-d7k"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QXs-tf-CNF">
-                                        <rect key="frame" x="0.0" y="525" width="343" height="67"/>
+                                        <rect key="frame" x="0.0" y="482" width="343" height="88.5"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Native Ad"/>
                                         <connections>
@@ -110,7 +96,7 @@
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pni-2h-nMe">
-                                        <rect key="frame" x="0.0" y="600" width="343" height="67"/>
+                                        <rect key="frame" x="0.0" y="578.5" width="343" height="88.5"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </view>
                                 </subviews>
@@ -213,7 +199,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rzs-gJ-mEU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1159" y="1003"/>
+            <point key="canvasLocation" x="-542" y="986"/>
         </scene>
         <!--Banner View Controller-->
         <scene sceneID="6nN-4z-8qX">
@@ -389,7 +375,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4fF-Q7-6Ue" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1815" y="1003"/>
+            <point key="canvasLocation" x="-1198" y="986"/>
         </scene>
         <!--Reward View Controller-->
         <scene sceneID="HdW-gS-1cC">
@@ -477,135 +463,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pZu-Q7-8o4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-495" y="1003"/>
-        </scene>
-        <!--Offerwall Controller-->
-        <scene sceneID="0yT-S1-j3U">
-            <objects>
-                <viewController id="VbJ-wm-Rq0" customClass="OfferwallController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="FxO-K8-Jwl"/>
-                        <viewControllerLayoutGuide type="bottom" id="GJP-na-nZY"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="UcU-fp-mhx">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="QDU-bq-gpG">
-                                <rect key="frame" x="198" y="234" width="160" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemTealColor"/>
-                                <color key="tintColor" systemColor="labelColor"/>
-                                <state key="normal" title="Offerwall Show"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="5"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="showOfferwall:" destination="VbJ-wm-Rq0" eventType="touchDown" id="fZI-cY-D4i"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="S5f-eH-PfQ">
-                                <rect key="frame" x="196" y="167" width="160" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <accessibility key="accessibilityConfiguration" hint="GetCurrency 결과"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8u9-R4-hEJ">
-                                <rect key="frame" x="200" y="93" width="160" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <accessibility key="accessibilityConfiguration" hint="소모 재화 입력"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fwj-qS-EIY">
-                                <rect key="frame" x="15" y="333" width="343" height="50"/>
-                                <accessibility key="accessibilityConfiguration" hint="GetCurrency 결과"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="RJA-Xh-sZI">
-                                <rect key="frame" x="13" y="234" width="160" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemTealColor"/>
-                                <color key="tintColor" systemColor="labelColor"/>
-                                <state key="normal" title="Offerwall Load"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="5"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="loadOfferwall:" destination="VbJ-wm-Rq0" eventType="touchDown" id="fku-BX-r26"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pYL-kC-L0b">
-                                <rect key="frame" x="316" y="8" width="40" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="pYL-kC-L0b" secondAttribute="height" multiplier="4:3" id="TsK-NN-Vlz"/>
-                                </constraints>
-                                <state key="normal" title="BACK"/>
-                                <connections>
-                                    <action selector="backButtonPressed:" destination="VbJ-wm-Rq0" eventType="touchUpInside" id="lBP-QH-E34"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="MZH-lu-rbO">
-                                <rect key="frame" x="13" y="93" width="160" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemTealColor"/>
-                                <color key="tintColor" systemColor="labelColor"/>
-                                <state key="normal" title="spendCurreny"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="5"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="spendCurrncy:" destination="VbJ-wm-Rq0" eventType="touchDown" id="ADd-SD-NKc"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="DIg-Oz-rbM">
-                                <rect key="frame" x="13" y="167" width="160" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemTealColor"/>
-                                <color key="tintColor" systemColor="labelColor"/>
-                                <state key="normal" title="getCurrency"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="5"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="getCurrncy:" destination="VbJ-wm-Rq0" eventType="touchDown" id="6rp-1K-XP7"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="pYL-kC-L0b" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="UcU-fp-mhx" secondAttribute="leading" constant="20" symbolic="YES" id="Pqp-HN-C1U"/>
-                            <constraint firstItem="fwj-qS-EIY" firstAttribute="leading" secondItem="UcU-fp-mhx" secondAttribute="leadingMargin" constant="-3" id="Zh8-CI-s9C"/>
-                            <constraint firstItem="pYL-kC-L0b" firstAttribute="trailing" secondItem="fwj-qS-EIY" secondAttribute="trailing" id="dXt-5x-uLt"/>
-                            <constraint firstItem="pYL-kC-L0b" firstAttribute="top" secondItem="FxO-K8-Jwl" secondAttribute="bottom" constant="8" symbolic="YES" id="kkL-RZ-SvF"/>
-                            <constraint firstItem="GJP-na-nZY" firstAttribute="top" secondItem="fwj-qS-EIY" secondAttribute="bottom" constant="227" id="srH-8O-93r"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="pYL-kC-L0b" secondAttribute="trailing" constant="3" id="z9U-4T-m6K"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="getCurrency" destination="DIg-Oz-rbM" id="2wm-vT-oDE"/>
-                        <outlet property="inputSpendCurrency" destination="8u9-R4-hEJ" id="UCy-GU-fXu"/>
-                        <outlet property="load" destination="RJA-Xh-sZI" id="jTw-rt-jdE"/>
-                        <outlet property="offerwallCallbackDisplay" destination="fwj-qS-EIY" id="fwC-s5-oAR"/>
-                        <outlet property="spndCurrency" destination="MZH-lu-rbO" id="KWF-rc-5qN"/>
-                        <outlet property="textCurrency" destination="S5f-eH-PfQ" id="4Nn-EI-p8t"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="gd4-3o-TZi" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1529" y="1003"/>
+            <point key="canvasLocation" x="122" y="986"/>
         </scene>
         <!--Native Ad View Controller-->
         <scene sceneID="q87-ol-yT8">
@@ -620,7 +478,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RBV-hC-xIL">
-                                <rect key="frame" x="319" y="0.0" width="56" height="31"/>
+                                <rect key="frame" x="313" y="0.0" width="62" height="34.5"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Back"/>
                                 <connections>
@@ -628,11 +486,11 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="2Rb-qd-c4l">
-                                <rect key="frame" x="0.0" y="31" width="375" height="636"/>
+                                <rect key="frame" x="0.0" y="34.5" width="375" height="632.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IjJ-KZ-6UB">
-                                <rect key="frame" x="0.0" y="0.0" width="319" height="31"/>
+                                <rect key="frame" x="0.0" y="0.0" width="313" height="34.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -660,39 +518,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kD2-Nk-iy2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2221.5999999999999" y="1002.5487256371815"/>
-        </scene>
-        <!--Reward Interstitial View Controller-->
-        <scene sceneID="VTg-W1-Pa1">
-            <objects>
-                <viewController id="UKi-t8-vz6" customClass="RewardInterstitialViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="x5I-BC-kMo"/>
-                        <viewControllerLayoutGuide type="bottom" id="e3W-cn-Wox"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="yPc-zb-ejD" customClass="SegueInterimAdVIew">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NcF-cH-uo5">
-                                <rect key="frame" x="319" y="20" width="34" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Back"/>
-                                <connections>
-                                    <action selector="backButtonPressed:" destination="UKi-t8-vz6" eventType="touchUpInside" id="47e-or-udZ"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="faS-1j-QJ9"/>
-                    <connections>
-                        <outlet property="backButton" destination="NcF-cH-uo5" id="SHV-cu-zRi"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="mVB-nK-Ywd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="174" y="1003"/>
+            <point key="canvasLocation" x="1511" y="985"/>
         </scene>
         <!--App Open Ad View Controller-->
         <scene sceneID="yxz-wJ-INm">
@@ -839,12 +665,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hqm-vk-yDW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="849" y="1003"/>
+            <point key="canvasLocation" x="818" y="986"/>
         </scene>
     </scenes>
     <resources>
         <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="linkColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

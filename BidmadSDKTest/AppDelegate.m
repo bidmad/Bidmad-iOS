@@ -26,6 +26,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [BidmadCommon initializeSdk];
     
+    GADMobileAds.sharedInstance.requestConfiguration.testDeviceIdentifiers = @[ @"926e928b8b1964c256f30292dd3f4799" ];
+    
     [BidmadCommon reqAdTrackingAuthorizationWith:^(BidmadTrackingAuthorizationStatus status) {
         if(status == BidmadAuthorizationStatusAuthorized){
             ADOPLog.printInfo(@"Bidmad Sample App: IDFA Authorized");
