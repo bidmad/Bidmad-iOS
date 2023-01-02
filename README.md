@@ -19,7 +19,7 @@
 ## BidmadSDK Installation Guide
 
 #### 개발 환경
-- Xcode 13.4.1 버전 (Xcode 최소 사양 13.4.1)
+- Xcode 13.2 버전 (Xcode 최소 사양 13.2)
 - BASE SDK : iOS
 - iOS Deployment Target : 11.0
 #### SDK 설치 방법
@@ -30,10 +30,10 @@ platform :ios, "11.0"
 
 target "Runner" do
   use_frameworks!
-  pod 'BidmadSDK', '5.0.0'
-  pod 'OpenBiddingHelper', '5.0.0'
-  pod 'BidmadAdapterFC', '5.0.0'
-  pod 'BidmadAdapterFNC', '5.0.0'
+  pod 'BidmadSDK', '5.1.0'
+  pod 'OpenBiddingHelper', '5.1.0'
+  pod 'BidmadAdapterFC', '5.1.0'
+  pod 'BidmadAdapterFNC', '5.1.0'
 ```
 
 2. Terminal에서 다음 커맨드 입력

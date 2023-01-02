@@ -3,7 +3,7 @@ PODS:
   - AdFitSDK (3.7.0)
   - AdopPrebidSdk (1.1):
     - PrebidMobile (= 2.0.2)
-  - ADOPUtility (5.0.0)
+  - ADOPUtility (5.1.0)
   - Ads-Global (4.7.0.6):
     - Ads-Global/BUAdSDK (= 4.7.0.6)
   - Ads-Global/APM (4.7.0.6):
@@ -19,9 +19,9 @@ PODS:
     - BUAdSDK (= 0.1.0.19)
     - BURelyFoundation/Pangle (= 0.0.3.10)
   - AppLovinSDK (11.4.2)
-  - BidmadAdapterFC (5.0.0):
+  - BidmadAdapterFC (5.1.0):
     - AdColony (= 4.9.0)
-    - ADOPUtility (< 5.1.0, >= 5.0.0)
+    - ADOPUtility (< 5.2.0, >= 5.1.0)
     - AppLovinSDK (= 11.4.2)
     - GoogleMobileAdsMediationAdColony (= 4.9.0.0)
     - GoogleMobileAdsMediationAppLovin (= 11.4.2.0)
@@ -33,24 +33,25 @@ PODS:
     - IronSourceSDK (= 7.2.5.1)
     - UnityAds (= 4.4.1)
     - VungleSDK-iOS (= 6.12.0)
-  - BidmadAdapterFNC (5.0.0):
+  - BidmadAdapterFNC (5.1.0):
     - AdFitSDK (= 3.7.0)
     - AdopPrebidSdk (< 1.2.0, >= 1.1)
-    - ADOPUtility (< 5.1.0, >= 5.0.0)
+    - ADOPUtility (< 5.2.0, >= 5.1.0)
     - Ads-Global (= 4.7.0.6)
     - Fyber_Marketplace_SDK (= 8.1.6)
     - GoogleMobileAdsMediationFacebook (<= 6.12.0.0, >= 6.9.0.1)
     - GoogleMobileAdsMediationFyber (= 8.1.6.0)
     - GoogleMobileAdsMediationPangle (= 4.7.0.6.0)
+    - MobonSDK (= 0.6.11)
     - OpenWrapHandlerDFP (= 3.0.1)
     - OpenWrapSDK (= 2.6.2)
     - TapjoySDK (<= 12.11.0, >= 12.9.0)
-  - BidmadSDK (5.0.0):
-    - ADOPUtility (< 5.1.0, >= 5.0.0)
-    - BidmadSDK/ForNative (= 5.0.0)
+  - BidmadSDK (5.1.0):
+    - ADOPUtility (< 5.2.0, >= 5.1.0)
+    - BidmadSDK/ForNative (= 5.1.0)
     - Google-Mobile-Ads-SDK (= 9.14.0)
-  - BidmadSDK/ForNative (5.0.0):
-    - ADOPUtility (< 5.1.0, >= 5.0.0)
+  - BidmadSDK/ForNative (5.1.0):
+    - ADOPUtility (< 5.2.0, >= 5.1.0)
     - Google-Mobile-Ads-SDK (= 9.14.0)
   - BUAdSDK (0.1.0.19):
     - BUAdSDK/BUAdSDK (= 0.1.0.19)
@@ -159,6 +160,7 @@ PODS:
   - InMobiSDK/InMobiSDK (10.1.0):
     - InMobiSDK/Core
   - IronSourceSDK (7.2.5.1)
+  - MobonSDK (0.6.11)
   - nanopb (2.30909.0):
     - nanopb/decode (= 2.30909.0)
     - nanopb/encode (= 2.30909.0)
@@ -170,8 +172,8 @@ PODS:
   - OneKit-Pangle/Reachability (1.3.11):
     - OneKit-Pangle/Service
   - OneKit-Pangle/Service (1.3.11)
-  - OpenBiddingHelper (5.0.0):
-    - ADOPUtility (< 5.1.0, >= 5.0.0)
+  - OpenBiddingHelper (5.1.0):
+    - ADOPUtility (< 5.2.0, >= 5.1.0)
     - Google-Mobile-Ads-SDK (= 9.14.0)
   - OpenWrapHandlerDFP (3.0.1):
     - Google-Mobile-Ads-SDK (>= 8.12.0)
@@ -214,10 +216,10 @@ PODS:
   - VungleSDK-iOS (6.12.0)
 
 DEPENDENCIES:
-  - BidmadAdapterFC (= 5.0.0)
-  - BidmadAdapterFNC (= 5.0.0)
-  - BidmadSDK (= 5.0.0)
-  - OpenBiddingHelper (= 5.0.0)
+  - BidmadAdapterFC (= 5.1.0)
+  - BidmadAdapterFNC (= 5.1.0)
+  - BidmadSDK (= 5.1.0)
+  - OpenBiddingHelper (= 5.1.0)
 
 SPEC REPOS:
   trunk:
@@ -249,6 +251,7 @@ SPEC REPOS:
     - GoogleUtilities
     - InMobiSDK
     - IronSourceSDK
+    - MobonSDK
     - nanopb
     - OneKit-Pangle
     - OpenBiddingHelper
@@ -266,12 +269,12 @@ SPEC CHECKSUMS:
   AdColony: 4f3738dc633d7aaa8ec60729df973076cc8e97ed
   AdFitSDK: a922cc8104d5ffc5b8af96226842928a2e3b5c23
   AdopPrebidSdk: 600946bf2d78cb6449082ddcc8f7a11fca53a071
-  ADOPUtility: 3d2b428498c81352f98b6c02d37d5a0dc4808575
+  ADOPUtility: 69e513198832d2fa905acede3c829422cd9dd9bb
   Ads-Global: 331350b59fab4e5dc0d1f5aaf6f3442dd6745997
   AppLovinSDK: 119a0b2a743f9d9c6002c58776b1013778a65084
-  BidmadAdapterFC: ef0e418ca380b6260b16d4a462f508c562105838
-  BidmadAdapterFNC: 93cee907dae4191cac947f7d6959ee0047a8cd93
-  BidmadSDK: 5890ead56ec28299daaa82ed0e4dc6ce7a812537
+  BidmadAdapterFC: 05dc15c9d7149b596d6abedb215e059395237745
+  BidmadAdapterFNC: 56ad6125b118894c9b72d272180cbb2584d2eaad
+  BidmadSDK: 8e4ce18137a6fef81086aaea4a72468bcc95c530
   BUAdSDK: 76825d6c9bd72d4f38d5e1cda427e109a6a586ee
   BURelyFoundation: 83db9b9b06911ea1178fa02b79421feaa30d907a
   FBAudienceNetwork: e0fcc9091fced34910ed0b6da06f129db46ac9e6
@@ -291,9 +294,10 @@ SPEC CHECKSUMS:
   GoogleUtilities: bad72cb363809015b1f7f19beb1f1cd23c589f95
   InMobiSDK: faedaff7a06ce78d653d0f4005176fe9c12f3a0e
   IronSourceSDK: 45212c7ec28cc0bbda13255e8dc65f7ed7aa1370
+  MobonSDK: 925c98e05750603f7b0c16764117d70be267650f
   nanopb: b552cce312b6c8484180ef47159bc0f65a1f0431
   OneKit-Pangle: 19fc175cb04d0830594808f470751d3d2ab14318
-  OpenBiddingHelper: 00c9686de09c0e3274c15e60dc3e4bbc668192fa
+  OpenBiddingHelper: 2a5d304fa5477bbcae6817d33d32d352f4db5c75
   OpenWrapHandlerDFP: e13e69ae431e2bc903f06c6f32e3b0db563d9bfa
   OpenWrapSDK: 17a18b2c4d1ad9b366e2db782d17ea27480e3422
   PrebidMobile: 0bd01e4c19cefe0039e4d8d2fd645d7e131ef752
@@ -304,6 +308,6 @@ SPEC CHECKSUMS:
   UnityAds: 1af6c4fdd7030c2593c58f520504e167561175ab
   VungleSDK-iOS: 1936f966dd5828d171fc514343741480bf219496
 
-PODFILE CHECKSUM: baada428282ac75340ad939df27e3a45d713aafe
+PODFILE CHECKSUM: 772d9963392e7ec90a620ebcef3a006e26093bfc
 
 COCOAPODS: 1.11.3
