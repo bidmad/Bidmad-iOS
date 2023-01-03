@@ -1,4 +1,4 @@
-# BidmadSDK(v5.0.0)
+# BidmadSDK
 ### 바로가기
 1. [SDK Installation Guide](#bidmadsdk-installation-guide)
     - [Development Environment](#development-environment)
