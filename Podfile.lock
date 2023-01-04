@@ -46,11 +46,11 @@ PODS:
     - OpenWrapHandlerDFP (= 3.0.1)
     - OpenWrapSDK (= 2.6.2)
     - TapjoySDK (<= 12.11.0, >= 12.9.0)
-  - BidmadSDK (5.1.0):
+  - BidmadSDK (5.1.1):
     - ADOPUtility (< 5.2.0, >= 5.1.0)
-    - BidmadSDK/ForNative (= 5.1.0)
+    - BidmadSDK/ForNative (= 5.1.1)
     - Google-Mobile-Ads-SDK (= 9.14.0)
-  - BidmadSDK/ForNative (5.1.0):
+  - BidmadSDK/ForNative (5.1.1):
     - ADOPUtility (< 5.2.0, >= 5.1.0)
     - Google-Mobile-Ads-SDK (= 9.14.0)
   - BUAdSDK (0.1.0.19):
@@ -218,7 +218,7 @@ PODS:
 DEPENDENCIES:
   - BidmadAdapterFC (= 5.1.0)
   - BidmadAdapterFNC (= 5.1.0)
-  - BidmadSDK (= 5.1.0)
+  - BidmadSDK (= 5.1.1)
   - OpenBiddingHelper (= 5.1.0)
 
 SPEC REPOS:
@@ -274,7 +274,7 @@ SPEC CHECKSUMS:
   AppLovinSDK: 119a0b2a743f9d9c6002c58776b1013778a65084
   BidmadAdapterFC: 05dc15c9d7149b596d6abedb215e059395237745
   BidmadAdapterFNC: 56ad6125b118894c9b72d272180cbb2584d2eaad
-  BidmadSDK: 8e4ce18137a6fef81086aaea4a72468bcc95c530
+  BidmadSDK: 4d065d943171431d7cef886836b0c73cedf2f508
   BUAdSDK: 76825d6c9bd72d4f38d5e1cda427e109a6a586ee
   BURelyFoundation: 83db9b9b06911ea1178fa02b79421feaa30d907a
   FBAudienceNetwork: e0fcc9091fced34910ed0b6da06f129db46ac9e6
@@ -308,6 +308,6 @@ SPEC CHECKSUMS:
   UnityAds: 1af6c4fdd7030c2593c58f520504e167561175ab
   VungleSDK-iOS: 1936f966dd5828d171fc514343741480bf219496
 
-PODFILE CHECKSUM: 772d9963392e7ec90a620ebcef3a006e26093bfc
+PODFILE CHECKSUM: 1a6fb311bfe59492225ce19fe7bfc41205ca694e
 
 COCOAPODS: 1.11.3

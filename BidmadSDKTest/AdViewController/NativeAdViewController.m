@@ -5,6 +5,7 @@
 //  Created by Seungsub Oh on 2022/04/15.
 //
 
+#import <ADOPUtility/ADOPUtility.h>
 #import "NativeAdViewController.h"
 #import <ADOPUtility/ADOPLog.h>
 
@@ -20,8 +21,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    GADMobileAds.sharedInstance.requestConfiguration.testDeviceIdentifiers = @[ @"926e928b8b1964c256f30292dd3f4799" ];
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -49,9 +48,6 @@
 - (void)onLoadAd:(BIDMADNativeAd *)bidmadAd {
     ADOPLog.printInfo(@"Native Ad Load: %@", bidmadAd.adData.description);
     
-    BIDMADNativeAdView *view = [NSBundle.mainBundle loadNibNamed:@"NativeAdView" owner:nil options:nil].firstObject;
-    [self.adLoader setAdView:self adView:view];
-    
     self.adsCount += 1;
     [self.tableView reloadData];
     [self.callbackLabel setText:[NSString stringWithFormat:@"LOAD (%@)", bidmadAd.adData.headline]];
@@ -68,12 +64,18 @@
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    BIDMADNativeAdView *adView = [NSBundle.mainBundle loadNibNamed:@"NativeAdView" owner:nil options:nil].firstObject;
+    BIDMADNativeAdView *adView =
+        [cell.subviews filterForADOP:^BOOL(__kindof UIView *view) {
+            return [view isKindOfClass:BIDMADNativeAdView.class];
+        }].firstObject;
     [self.adLoader setAdView:self adView:adView];
 }
 
 - (void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    BIDMADNativeAdView *adView = [cell viewWithTag:123321];
+    BIDMADNativeAdView *adView =
+        [cell.subviews filterForADOP:^BOOL(__kindof UIView *view) {
+            return [view isKindOfClass:BIDMADNativeAdView.class];
+        }].firstObject;
     [self.adLoader removeAdView:adView];
 }
 

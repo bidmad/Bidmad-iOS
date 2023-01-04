@@ -8,9 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import <BidmadSDK/BidmadSDK.h>
-#import <AVFoundation/AVFoundation.h>
-#import <AVKit/AVKit.h>
-#import <QuartzCore/QuartzCore.h>
 
 @interface ViewController : UIViewController
 @property (nonatomic, strong) UILabel*  remainLbl;
