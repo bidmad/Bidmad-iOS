@@ -1,5 +1,5 @@
 # BidmadSDK
-### 바로가기
+### Shortcuts
 1. [SDK Installation Guide](#bidmadsdk-installation-guide)
     - [Development Environment](#development-environment)
     - [SDK Installation Guide](#installation-guide)
@@ -549,65 +549,60 @@ Native ads are ads that are designed and produced in a way unique to the applica
 @import OpenBiddingHelper; 
 
 @interface NativeAdViewController ()
-@property (strong, nonatomic) BidmadNativeAdLoader *adLoader;
+@property (strong, nonatomic) BidmadNativeAd * ad;
 @end
 ...
 
 - (void)viewDidLoad {
-    self.adLoader = [BidmadNativeAdLoader new];
-    self.adLoader.delegate = self;
-    self.adLoader.numberOfAds = 5;
-    
-    [self.adLoader requestAd:@"7fe8f6de-cd99-4769-9ae6-a471cfd7e2b1"];
+    self.ad = [BidmadNativeAd adWithZoneID:@"7fe8f6de-cd99-4769-9ae6-a471cfd7e2b1"];
+    [self.ad setDelegate:self];
+    [self.ad load];
 }
 
 #pragma mark Native Ad Delegate Methods
 
-- (void)onClickAd:(BIDMADNativeAd *)bidmadAd {
-    ADOPLog.printInfo(@"Native Ad Click: %@", bidmadAd.adData.description);
+- (void)onClickAd:(BidmadNativeAd *)bidmadAd {
+    ADOPLog.printInfo(@"Native Ad Click");
 }
 
-- (void)onLoadAd:(BIDMADNativeAd *)bidmadAd {
-    ADOPLog.printInfo(@"Native Ad Load: %@", bidmadAd.adData.description);
+- (void)onLoadAd:(BidmadNativeAd *)bidmadAd {
+    ADOPLog.printInfo(@"Native Ad Load);
     
     BIDMADNativeAdView *view = [NSBundle.mainBundle loadNibNamed:@"NativeAdView" owner:nil options:nil].firstObject;
-    [self.adLoader setAdView:self adView:view];
+    [bidmadAd setRootViewController:self adView:adView];
 }
 
-- (void)onLoadFailAd:(BIDMADNativeAd *)bidmadAd error:(NSError *)error {
+- (void)onLoadFailAd:(BidmadNativeAd *)bidmadAd error:(NSError *)error {
     ADOPLog.printInfo(@"Native Ad Fail: %@", error.localizedDescription);
 }
 
 // Swift
 
-let adLoader = BidmadNativeAdLoader()
+let ad: BidmadNativeAd! = BidmadNativeAd(zoneID: "Native Ad Zone ID")
 
 override func viewDidLoad() {
     super.viewDidLoad()
 
-    adLoader.delegate = self
-    adLoader.numberOfAds = 1
-    
-    // Insert your own zoneID as an argument in the method, 'requestAd:(NSString *)'
-    adLoader.requestAd("xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx")
+    self.ad.delegate = self
+    self.ad.load()
 }
 
 // MARK: BIDMADNativeAdDelegate
 
-func onLoad(_ bidmadAd: BIDMADNativeAd) {
+func onLoad(_ bidmadAd: BidmadNativeAd) {
     guard let nativeAdView = Bundle.main.loadNibNamed("NativeAdView", owner: nil)?.first as? BIDMADNativeAdView else {
         return
     }
 
-    self.adLoader.setAdView(self, adView: nativeAdView)
+    self.ad.setRootViewController(self, adView: nativeAdView)
 }
 
-func onClick(_ bidmadAd: BIDMADNativeAd) {
-    print("Native Ad Click: \(bidmadAd.adData?.headline ?? "No Headline")")
+func onClick(_ bidmadAd: BidmadNativeAd) {
+    print("Native Ad Click")
 }
 
-func onLoadFail(_ bidmadAd: BIDMADNativeAd, error: Error) {
-    print("Native Ad Fail: \(error.localizedDescription)")
+func onLoadFail(_ bidmadAd: BidmadNativeAd, error: Error) {
+    print("Native Ad Fail")
 }
 ```
 </details>
