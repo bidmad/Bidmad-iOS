@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface NativeAdViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, BIDMADNativeAdDelegate>
+@interface NativeAdViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, BidmadNativeAdDelegate>
 
 @end
 

@@ -6,9 +6,9 @@ target 'BidmadSDKTest' do
   use_frameworks!
 
   # Pods for BidmadSDKTest
-  pod 'BidmadSDK', '5.1.1'
-  pod 'OpenBiddingHelper', '5.1.0'
-  pod 'BidmadAdapterFC', '5.1.0'
-  pod 'BidmadAdapterFNC', '5.1.0'
+  pod 'BidmadSDK', '5.2.0'
+  pod 'OpenBiddingHelper', '5.2.0'
+  pod 'BidmadAdapterFC', '5.2.0'
+  pod 'BidmadAdapterFNC', '5.2.0'
 
 end

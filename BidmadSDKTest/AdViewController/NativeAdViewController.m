@@ -12,7 +12,7 @@
 @interface NativeAdViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UILabel *callbackLabel;
-@property (strong, nonatomic) BidmadNativeAdLoader *adLoader;
+@property (strong, nonatomic) NSArray<BidmadNativeAd *> *ads;
 @property (nonatomic) int adsCount;
 @property (nonatomic) int adsCallbackCount;
 @end
@@ -29,32 +29,33 @@
     
     self.adsCount = 0;
     
-    self.adLoader = [BidmadNativeAdLoader new];
-    self.adLoader.delegate = self;
-    self.adLoader.numberOfAds = 5;
+    self.ads = @[
+        [BidmadNativeAd adWithZoneID:@"7fe8f6de-cd99-4769-9ae6-a471cfd7e2b1"],
+        [BidmadNativeAd adWithZoneID:@"7fe8f6de-cd99-4769-9ae6-a471cfd7e2b1"],
+        [BidmadNativeAd adWithZoneID:@"7fe8f6de-cd99-4769-9ae6-a471cfd7e2b1"]
+    ];
     
-    [self.adLoader requestAd:@"7fe8f6de-cd99-4769-9ae6-a471cfd7e2b1"];
+    [self.ads enumerateObjectsUsingBlock:^(BidmadNativeAd * _Nonnull ad, NSUInteger idx, BOOL * _Nonnull stop) {
+        [ad setDelegate:self];
+        [ad load];
+    }];
 }
 
 - (IBAction)backButtonClicked:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)onClickAd:(BIDMADNativeAd *)bidmadAd {
-    ADOPLog.printInfo(@"Native Ad Click: %@", bidmadAd.adData.description);
-    [self.callbackLabel setText:[NSString stringWithFormat:@"CLICK (%@)", bidmadAd.adData.headline]];
+- (void)onClickAd:(BidmadNativeAd *)bidmadAd {
+    [self.callbackLabel setText:@"CLICK"];
 }
 
-- (void)onLoadAd:(BIDMADNativeAd *)bidmadAd {
-    ADOPLog.printInfo(@"Native Ad Load: %@", bidmadAd.adData.description);
-    
+- (void)onLoadAd:(BidmadNativeAd *)bidmadAd {
     self.adsCount += 1;
     [self.tableView reloadData];
-    [self.callbackLabel setText:[NSString stringWithFormat:@"LOAD (%@)", bidmadAd.adData.headline]];
+    [self.callbackLabel setText:@"LOAD"];
 }
 
-- (void)onLoadFailAd:(BIDMADNativeAd *)bidmadAd error:(NSError *)error {
-    ADOPLog.printInfo(@"Native Ad Fail: %@", error.localizedDescription);
+- (void)onLoadFailAd:(BidmadNativeAd *)bidmadAd error:(NSError *)error {
     [self.callbackLabel setText:[NSString stringWithFormat:@"FAIL (%@)", error.localizedDescription]];
 }
 
@@ -68,7 +69,8 @@
         [cell.subviews filterForADOP:^BOOL(__kindof UIView *view) {
             return [view isKindOfClass:BIDMADNativeAdView.class];
         }].firstObject;
-    [self.adLoader setAdView:self adView:adView];
+    
+    [self.ads[indexPath.row] setRootViewController:self adView:adView];
 }
 
 - (void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -76,7 +78,8 @@
         [cell.subviews filterForADOP:^BOOL(__kindof UIView *view) {
             return [view isKindOfClass:BIDMADNativeAdView.class];
         }].firstObject;
-    [self.adLoader removeAdView:adView];
+    
+    [self.ads[indexPath.row] removeAdView:adView];
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
