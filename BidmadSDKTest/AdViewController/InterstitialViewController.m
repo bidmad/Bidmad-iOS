@@ -48,22 +48,22 @@
 
 #pragma mark Interstitial Delegate
 
-- (void)BIDMADOpenBiddingInterstitialLoad:(OpenBiddingInterstitial *)core {
+- (void)onLoadAd:(OpenBiddingInterstitial *)bidmadAd {
     ADOPLog.printInfo(@"Bidmad Sample App Interstitial Load");
     [[self InterstitialCallbackDisplay] setText:@"Load"];
 }
 
-- (void)BIDMADOpenBiddingInterstitialShow:(OpenBiddingInterstitial *)core {
+- (void)onShowAd:(OpenBiddingInterstitial *)bidmadAd {
     ADOPLog.printInfo(@"Bidmad Sample App Interstitial Show");
     [[self InterstitialCallbackDisplay] setText:@"Show"];
 }
 
-- (void)BIDMADOpenBiddingInterstitialClose:(OpenBiddingInterstitial *)core {
+- (void)onCloseAd:(OpenBiddingInterstitial *)bidmadAd {
     ADOPLog.printInfo(@"Bidmad Sample App Interstitial Close");
     [[self InterstitialCallbackDisplay] setText:@"Close"];
 }
 
-- (void)BIDMADOpenBiddingInterstitialAllFail:(OpenBiddingInterstitial *)core {
+- (void)onLoadFailAd:(OpenBiddingInterstitial *)bidmadAd error:(NSError *)error {
     ADOPLog.printInfo(@"Bidmad Sample App Interstitial AllFail");
     [[self InterstitialCallbackDisplay] setText:@"All Fail"];
 }

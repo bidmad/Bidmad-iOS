@@ -48,37 +48,37 @@
 
 #pragma mark Reward Delegate
 
-- (void)BIDMADOpenBiddingRewardSkipped:(OpenBiddingRewardVideo *)core {
+- (void)onSkipAd:(OpenBiddingRewardVideo *)bidmadAd {
     ADOPLog.printInfo(@"Bidmad Sample App Reward Skipped");
     [[self rewardCallbackDisplay] setText:@"Skipped"];
 }
 
-- (void)BIDMADOpenBiddingRewardVideoLoad:(OpenBiddingRewardVideo *)core {
+- (void)onLoadAd:(OpenBiddingRewardVideo *)bidmadAd {
     ADOPLog.printInfo(@"Bidmad Sample App Reward Load");
     [[self rewardCallbackDisplay] setText:@"Load"];
 }
 
-- (void)BIDMADOpenBiddingRewardVideoShow:(OpenBiddingRewardVideo *)core {
+- (void)onShowAd:(OpenBiddingRewardVideo *)bidmadAd {
     ADOPLog.printInfo(@"Bidmad Sample App Reward Show");
     [[self rewardCallbackDisplay] setText:@"Show"];
 }
 
-- (void)BIDMADOpenBiddingRewardVideoClick:(OpenBiddingRewardVideo *)core {
+- (void)onClickAd:(OpenBiddingRewardVideo *)bidmadAd {
     ADOPLog.printInfo(@"Bidmad Sample App Reward Click");
     [[self rewardCallbackDisplay] setText:@"Click"];
 }
 
-- (void)BIDMADOpenBiddingRewardVideoClose:(OpenBiddingRewardVideo *)core {
+- (void)onCloseAd:(OpenBiddingRewardVideo *)bidmadAd {
     ADOPLog.printInfo(@"Bidmad Sample App Reward Close");
     [[self rewardCallbackDisplay] setText:@"Close"];
 }
 
-- (void)BIDMADOpenBiddingRewardVideoSucceed:(OpenBiddingRewardVideo *)core {
+- (void)onCompleteAd:(OpenBiddingRewardVideo *)bidmadAd {
     ADOPLog.printInfo(@"Bidmad Sample App Reward Success");
     [[self rewardCallbackDisplay] setText:@"Success"];
 }
 
-- (void)BIDMADOpenBiddingRewardVideoAllFail:(OpenBiddingRewardVideo *)core {
+- (void)onLoadFailAd:(OpenBiddingRewardVideo *)bidmadAd error:(NSError *)error {
     ADOPLog.printInfo(@"Bidmad Sample App Reward All Fail");
     [[self rewardCallbackDisplay] setText:@"All Fail"];
 }

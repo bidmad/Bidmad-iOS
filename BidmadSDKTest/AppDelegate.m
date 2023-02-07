@@ -96,34 +96,29 @@
     bidmadAppOpenAd = [[BidmadAppOpenAd alloc] initWith:self.window.rootViewController zoneID:@"0ddd6401-0f19-49ee-b1f9-63e910f92e77"];
 }
 
-- (void)BIDMADAppOpenAdAllFail:(BIDMADAppOpenAd *)core code:(NSString *)error {
+- (void)onLoadFailAd:(OpenBiddingAppOpenAd *)bidmadAd error:(NSError *)error {
     ADOPLog.printInfo(@"BidmadSDK App Open Ad Callback → AllFail");
     [self callbackLabelViewShow: @"App Open Ad Callback → AllFail"];
 }
 
-- (void)OpenBiddingAppOpenAdLoad:(OpenBiddingAppOpenAd *)core {
+- (void)onLoadAd:(OpenBiddingAppOpenAd *)bidmadAd {
     ADOPLog.printInfo(@"BidmadSDK App Open Ad Callback → Load");
     [self callbackLabelViewShow: @"App Open Ad Callback → Load"];
 }
 
-- (void)OpenBiddingAppOpenAdShow:(OpenBiddingAppOpenAd *)core {
+- (void)onShowAd:(OpenBiddingAppOpenAd *)bidmadAd {
     ADOPLog.printInfo(@"BidmadSDK App Open Ad Callback → Show");
     [self callbackLabelViewShow: @"App Open Ad Callback → Show"];
 }
 
-- (void)OpenBiddingAppOpenAdClick:(OpenBiddingAppOpenAd *)core {
+- (void)onClickAd:(OpenBiddingAppOpenAd *)bidmadAd {
     ADOPLog.printInfo(@"BidmadSDK App Open Ad Callback → Click");
     [self callbackLabelViewShow: @"App Open Ad Callback → Click"];
 }
 
-- (void)OpenBiddingAppOpenAdClose:(OpenBiddingAppOpenAd *)core {
+- (void)onCloseAd:(OpenBiddingAppOpenAd *)bidmadAd {
     ADOPLog.printInfo(@"BidmadSDK App Open Ad Callback → Close");
     [self callbackLabelViewShow: @"App Open Ad Callback → Close"];
-}
-
-- (void)OpenBiddingAppOpenAdAllFail:(OpenBiddingAppOpenAd *)core code:(NSString *)error {
-    ADOPLog.printInfo(@"BidmadSDK App Open Ad Callback → All Fail");
-    [self callbackLabelViewShow: @"App Open Ad Callback → All Fail"];
 }
 
 - (void)callbackLabelViewShow: (NSString *)callbackText {

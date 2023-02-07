@@ -54,24 +54,19 @@
     }];
 }
 
-- (void)BIDMADOpenBiddingBannerLoad:(OpenBiddingBanner *)core {
+- (void)onLoadAd:(OpenBiddingBanner *)bidmadAd {
     [[self bannerCallbackDisplay] setText:@"Load"];
     ADOPLog.printInfo(@"Bidmad Sample App Banner Load");
 }
 
-- (void)BIDMADOpenBiddingBannerClick:(OpenBiddingBanner *)core {
+- (void)onClickAd:(OpenBiddingBanner *)bidmadAd {
     [[self bannerCallbackDisplay] setText:@"Click"];
     ADOPLog.printInfo(@"Bidmad Sample App Banner Click");
 }
 
-- (void)BIDMADOpenBiddingBannerAllFail:(OpenBiddingBanner *)core {
+- (void)onLoadFailAd:(OpenBiddingBanner *)bidmadAd error:(NSError *)error {
     [[self bannerCallbackDisplay] setText:@"All Fail"];
     ADOPLog.printInfo(@"Bidmad Sample App Banner All Fail");
-}
-
-- (void)BIDMADOpenBiddingBannerClosed:(OpenBiddingBanner *)core {
-    [[self bannerCallbackDisplay] setText:@"Closed"];
-    ADOPLog.printInfo(@"Bidmad Sample App Banner Closed");
 }
 
 @end
