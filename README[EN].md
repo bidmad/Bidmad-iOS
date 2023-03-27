@@ -30,11 +30,12 @@ platform :ios, "11.0"
 
 target "Runner" do
   use_frameworks!
-  pod 'BidmadSDK', '5.3.0'
-  pod 'OpenBiddingHelper', '5.3.0'
-  pod 'BidmadAdapterFC', '5.3.0'
-  pod 'BidmadAdapterFNC', '5.3.0'
+  pod 'BidmadSDK', '6.0.0'
+  pod 'OpenBiddingHelper', '6.0.0'
+  pod 'BidmadAdapterDynamic', '6.0.0'
 ```
+
+  * BidmadAdapterFNC / BidmadAdapterFC are no longer supported since version 6.0 and later. For Bidmad 5.x or lower version users who want to update to version 6.0 or higher, remove "pod 'BidmadAdapterFNC' ~" and "pod 'BidmadAdapterFC' ~", then add BidmadAdapterDynamic declared in the Podfile above.
 
 2. Enter the following command in Terminal
 
@@ -50,6 +51,8 @@ pod install
 
 ### App Configuration and Migration<br>
 Prior to the initial configuration of the app, when updating from version 4.6.0.1 or lower to version 5.0.0 [API Migration Guide](https://github.com/bidmad/Bidmad-iOS/wiki/v5.0.0-API-Migration-Guide-%5BEN%5D) to update the app. After that, go through the process of adding BidmadAppKey and initializeSdk method inside info.plist as guided below.<br>
+
+For users of native ad interface updating from v5.3.0 or lower to v6.0.0 or higher, please refer to [NativeAd Migration Guide 6.0.0](https://github.com/bidmad/Bidmad-iOS/wiki/Native-Ad-Migration-to-v6.0.0%5BENG%5D) for your app updates. 
 
 Include the following key in your Xcode project info.plist :<br>
 1. iOS App Key identified in ADOP Insight (refer to "[Find your App Key](https://github.com/bidmad/SDK/wiki/Find-your-app-key%5BEN%5D)" guide) <br>
@@ -537,7 +540,9 @@ func onCloseAd(_ bidmadAd: OpenBiddingAppOpenAd) {
 </details>
 
 ### Native Ad
-Native ads are ads that are designed and produced in a way unique to the application. Before calling an ad, set the ad UI according to the [Layout Guide](https://github.com/bidmad/Bidmad-iOS/wiki/Native-Ad-Layout-Setting-Guide-%5BKOR%5D). After setting the ad UI, execute the setAdView:adView: method.
+Native ads are ads that are designed and produced in a way unique to the application. Before calling an ad, set the ad UI according to the [Layout Guide](https://github.com/bidmad/Bidmad-iOS/wiki/Native-Ad-Layout-Setting-Guide-%5BENG%5D). After setting the ad UI, execute the setAdView:adView: method.
+
+*For users of native ad interface updating from v5.3.0 or lower to v6.0.0 or higher, please refer to [NativeAd Migration Guide 6.0.0](https://github.com/bidmad/Bidmad-iOS/wiki/Native-Ad-Migration-to-v6.0.0%5BENG%5D) for your app updates.
 
 <details markdown="1">
 <summary>Sample Code (Load & Callbacks)</summary>
@@ -554,7 +559,7 @@ Native ads are ads that are designed and produced in a way unique to the applica
 ...
 
 - (void)viewDidLoad {
-    self.ad = [BidmadNativeAd adWithZoneID:@"7fe8f6de-cd99-4769-9ae6-a471cfd7e2b1"];
+    self.ad = [BidmadNativeAd adWithZoneID:@"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"];
     [self.ad setDelegate:self];
     [self.ad load];
 }
@@ -568,7 +573,7 @@ Native ads are ads that are designed and produced in a way unique to the applica
 - (void)onLoadAd:(BidmadNativeAd *)bidmadAd {
     ADOPLog.printInfo(@"Native Ad Load);
     
-    BIDMADNativeAdView *view = [NSBundle.mainBundle loadNibNamed:@"NativeAdView" owner:nil options:nil].firstObject;
+    BIDMADNativeAdView *view = [BidmadNativeAd findAdViewFromSuperview:[NSBundle.mainBundle loadNibNamed:@"NativeAdView" owner:nil options:nil].firstObject];
     [bidmadAd setRootViewController:self adView:adView];
 }
 

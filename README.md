@@ -30,11 +30,12 @@ platform :ios, "11.0"
 
 target "Runner" do
   use_frameworks!
-  pod 'BidmadSDK', '5.3.0'
-  pod 'OpenBiddingHelper', '5.3.0'
-  pod 'BidmadAdapterFC', '5.3.0'
-  pod 'BidmadAdapterFNC', '5.3.0'
+  pod 'BidmadSDK', '6.0.0'
+  pod 'OpenBiddingHelper', '6.0.0'
+  pod 'BidmadAdapterDynamic', '6.0.0'
 ```
+
+  * 6.0 이상 버전부터 BidmadAdapterFNC / BidmadAdapterFC 를 지원하지 않습니다. 6.0 이상 버전으로 업데이트를 원하시는 Bidmad 5.x 이하 버전 사용자는 "pod 'BidmadAdapterFNC' ~" 와 "pod 'BidmadAdapterFC' ~" 를 제거한 뒤, 위 Podfile 에 기재된 BidmadAdapterDynamic 을 추가해주세요.
 
 2. Terminal에서 다음 커맨드 입력
 
@@ -50,6 +51,8 @@ pod install
 
 ### 앱 초기 구성 및 Migration<br>
 앱 초기 구성에 앞서, 4.6.0.1 이하 버전에서 5.0.0 버전으로 업데이트하는 경우 [API Migration Guide](https://github.com/bidmad/Bidmad-iOS/wiki/v5.0.0-API-Migration-Guide-%5BKR%5D) 를 참고해 앱 업데이트를 진행하십시오. 이후, 아래 info.plist 내부 BidmadAppKey 추가 및 initializeSdk 메서드 추가 과정도 거치십시오.<br>
+
+5.3.0 버전 이하에서 6.0.0 버전 이상으로 업데이트하시는 네이티브 광고 인터페이스 사용자의 경우 [NativeAd Migration Guide 6.0.0](https://github.com/bidmad/Bidmad-iOS/wiki/Native-Ad-Migration-to-v6.0.0%5BKOR%5D) 를 참고해 앱 업데이트를 진행하십시오.
 
 Xcode 프로젝트 info.plist 에 다음 키를 포함합니다.<br>
 1. ADOP Insight 에서 확인할 수 있는 iOS 용 AppKey ("[App Key 찾기](https://github.com/bidmad/SDK/wiki/Find-your-app-key%5BKR%5D)" 가이드를 참고하십시오) <br>
@@ -539,6 +542,8 @@ func onCloseAd(_ bidmadAd: OpenBiddingAppOpenAd) {
 ### Native Ad 광고
 네이티브 광고는 애플리케이션에 맞는 고유한 방식으로 기획, 제작된 광고를 말합니다. 광고를 호출하기 앞서, [레이아웃 가이드](https://github.com/bidmad/Bidmad-iOS/wiki/Native-Ad-Layout-Setting-Guide-%5BKOR%5D)에 따라 광고 UI 설정해주십시오. 광고 UI 설정 이후, 광고 데이터가 포함된 BIDMADNativeAd 를 로드한 뒤, setAdView:adView: 메서드를 실행합니다.
 
+*5.3.0 버전 이하에서 6.0.0 버전 이상으로 업데이트하시는 네이티브 광고 인터페이스 사용자의 경우 [NativeAd Migration Guide 6.0.0](https://github.com/bidmad/Bidmad-iOS/wiki/Native-Ad-Migration-to-v6.0.0%5BKOR%5D) 를 참고해 앱 업데이트를 진행하십시오.
+
 <details markdown="1">
 <summary>Sample Code (Load & Callbacks)</summary>
 <br>
@@ -554,7 +559,7 @@ func onCloseAd(_ bidmadAd: OpenBiddingAppOpenAd) {
 ...
 
 - (void)viewDidLoad {
-    self.ad = [BidmadNativeAd adWithZoneID:@"7fe8f6de-cd99-4769-9ae6-a471cfd7e2b1"];
+    self.ad = [BidmadNativeAd adWithZoneID:@"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"];
     [self.ad setDelegate:self];
     [self.ad load];
 }
@@ -568,7 +573,7 @@ func onCloseAd(_ bidmadAd: OpenBiddingAppOpenAd) {
 - (void)onLoadAd:(BidmadNativeAd *)bidmadAd {
     ADOPLog.printInfo(@"Native Ad Load);
     
-    BIDMADNativeAdView *view = [NSBundle.mainBundle loadNibNamed:@"NativeAdView" owner:nil options:nil].firstObject;
+    BIDMADNativeAdView *view = [BidmadNativeAd findAdViewFromSuperview:[NSBundle.mainBundle loadNibNamed:@"NativeAdView" owner:nil options:nil].firstObject];
     [bidmadAd setRootViewController:self adView:adView];
 }
 

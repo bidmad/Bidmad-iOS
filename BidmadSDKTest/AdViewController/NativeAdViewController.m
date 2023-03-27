@@ -65,20 +65,12 @@
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    BIDMADNativeAdView *adView =
-        [cell.subviews filterForADOP:^BOOL(__kindof UIView *view) {
-            return [view isKindOfClass:BIDMADNativeAdView.class];
-        }].firstObject;
-    
+    BIDMADNativeAdView *adView = [BidmadNativeAd findAdViewFromSuperview:cell];
     [self.ads[indexPath.row] setRootViewController:self adView:adView];
 }
 
 - (void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    BIDMADNativeAdView *adView =
-        [cell.subviews filterForADOP:^BOOL(__kindof UIView *view) {
-            return [view isKindOfClass:BIDMADNativeAdView.class];
-        }].firstObject;
-    
+    BIDMADNativeAdView *adView = [BidmadNativeAd findAdViewFromSuperview:cell];
     [self.ads[indexPath.row] removeAdView:adView];
 }
 

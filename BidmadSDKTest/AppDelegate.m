@@ -20,21 +20,13 @@
 @implementation AppDelegate {
     BidmadAppOpenAd *bidmadAppOpenAd;
     BIDMADGDPRforGoogle *gdpr;
+    
+    BOOL didRequestATTPopup;
 }
 
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    didRequestATTPopup = NO;
     [BidmadCommon initializeSdk];
-    
-    [BidmadCommon reqAdTrackingAuthorizationWith:^(BidmadTrackingAuthorizationStatus status) {
-        if(status == BidmadAuthorizationStatusAuthorized){
-            ADOPLog.printInfo(@"Bidmad Sample App: IDFA Authorized");
-        }else if(status == BidmadAuthorizationStatusDenied) {
-            ADOPLog.printInfo(@"Bidmad Sample App: IDFA Unauthorized");
-        }else if(status == BidmadAuthorizationStatusLessThaniOS14) {
-            ADOPLog.printInfo(@"Bidmad Sample App: iOS Version lower than iOS 14");
-        }
-    }];
     
     bidmadAppOpenAd = [[BidmadAppOpenAd alloc] initWith:self.window.rootViewController zoneID:@"0ddd6401-0f19-49ee-b1f9-63e910f92e77"];
     [bidmadAppOpenAd setDelegate:self];
@@ -163,7 +155,24 @@
 - (void)applicationWillEnterForeground:(UIApplication *)application {}
 
 
-- (void)applicationDidBecomeActive:(UIApplication *)application {}
+- (void)applicationDidBecomeActive:(UIApplication *)application {
+    if (!didRequestATTPopup) {
+        bidmadWeakify(self)
+        [BidmadCommon reqAdTrackingAuthorizationWith:^(BidmadTrackingAuthorizationStatus status) {
+            bidmadStrongify(self)
+            
+            if(status == BidmadAuthorizationStatusAuthorized){
+                ADOPLog.printInfo(@"Bidmad Sample App: IDFA Authorized");
+            }else if(status == BidmadAuthorizationStatusDenied) {
+                ADOPLog.printInfo(@"Bidmad Sample App: IDFA Unauthorized");
+            }else if(status == BidmadAuthorizationStatusLessThaniOS14) {
+                ADOPLog.printInfo(@"Bidmad Sample App: iOS Version lower than iOS 14");
+            }
+            
+            self->didRequestATTPopup = YES;
+        }];
+    }
+}
 
 
 - (void)applicationWillTerminate:(UIApplication *)application {}
