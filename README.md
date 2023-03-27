@@ -573,7 +573,8 @@ func onCloseAd(_ bidmadAd: OpenBiddingAppOpenAd) {
 - (void)onLoadAd:(BidmadNativeAd *)bidmadAd {
     ADOPLog.printInfo(@"Native Ad Load);
     
-    BIDMADNativeAdView *view = [BidmadNativeAd findAdViewFromSuperview:[NSBundle.mainBundle loadNibNamed:@"NativeAdView" owner:nil options:nil].firstObject];
+    UIView *loadedView = [NSBundle.mainBundle loadNibNamed:@"NativeAdView" owner:nil options:nil].firstObject;
+    BIDMADNativeAdView *adView = [BidmadNativeAd findAdViewFromSuperview:loadedView];
     [bidmadAd setRootViewController:self adView:adView];
 }
 
@@ -595,11 +596,10 @@ override func viewDidLoad() {
 // MARK: BIDMADNativeAdDelegate
 
 func onLoad(_ bidmadAd: BidmadNativeAd) {
-    guard let nativeAdView = Bundle.main.loadNibNamed("NativeAdView", owner: nil)?.first as? BIDMADNativeAdView else {
-        return
+    if let loadedView = Bundle.main.loadNibNamed("NativeAd", owner: nil)?.first as? UIView,
+       let adView = BidmadNativeAd.findView(fromSuperview: loadedView) {
+        self.ad.setRootViewController(self, adView: adView)
     }
-
-    self.ad.setRootViewController(self, adView: nativeAdView)
 }
 
 func onClick(_ bidmadAd: BidmadNativeAd) {
