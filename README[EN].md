@@ -575,6 +575,8 @@ Native ads are ads that are designed and produced in a way unique to the applica
     
     UIView *loadedView = [NSBundle.mainBundle loadNibNamed:@"NativeAdView" owner:nil options:nil].firstObject;
     BIDMADNativeAdView *adView = [BidmadNativeAd findAdViewFromSuperview:loadedView];
+    
+    [self.view addSubview:loadedView];
     [bidmadAd setRootViewController:self adView:adView];
 }
 
@@ -598,6 +600,7 @@ override func viewDidLoad() {
 func onLoad(_ bidmadAd: BidmadNativeAd) {
     if let loadedView = Bundle.main.loadNibNamed("NativeAd", owner: nil)?.first as? UIView,
        let adView = BidmadNativeAd.findView(fromSuperview: loadedView) {
+        view.addSubview(loadedView)
         self.ad.setRootViewController(self, adView: adView)
     }
 }
