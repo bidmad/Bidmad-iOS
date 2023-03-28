@@ -19,17 +19,17 @@ PODS:
     - BUAdSDK (= 0.1.0.19)
     - BURelyFoundation/Pangle (= 0.0.3.10)
   - AppLovinSDK (11.4.2)
-  - BidmadAdapterDynamic (6.0.0):
+  - BidmadAdapterDynamic (6.0.1):
     - AdFitSDK (= 3.7.0)
     - ADOPUtility (< 6.1.0, >= 6.0.0)
     - TeadsSDK (= 5.0.25)
-  - BidmadSDK (6.0.0):
+  - BidmadSDK (6.0.1):
     - AdColony (= 4.9.0)
     - AdopPrebidSdk (< 1.2.0, >= 1.1)
     - ADOPUtility (< 6.1.0, >= 6.0.0)
     - Ads-Global (= 4.7.0.6)
     - AppLovinSDK (= 11.4.2)
-    - BidmadSDK/ForNative (= 6.0.0)
+    - BidmadSDK/ForNative (= 6.0.1)
     - Fyber_Marketplace_SDK (= 8.1.6)
     - Google-Mobile-Ads-SDK (= 9.14.0)
     - GoogleMobileAdsMediationAdColony (= 4.9.0.0)
@@ -48,7 +48,7 @@ PODS:
     - TapjoySDK (<= 12.11.1, >= 12.9.0)
     - UnityAds (= 4.4.1)
     - VungleSDK-iOS (= 6.12.0)
-  - BidmadSDK/ForNative (6.0.0):
+  - BidmadSDK/ForNative (6.0.1):
     - AdColony (= 4.9.0)
     - AdopPrebidSdk (< 1.2.0, >= 1.1)
     - ADOPUtility (< 6.1.0, >= 6.0.0)
@@ -237,8 +237,8 @@ PODS:
   - VungleSDK-iOS (6.12.0)
 
 DEPENDENCIES:
-  - BidmadAdapterDynamic (= 6.0.0)
-  - BidmadSDK (= 6.0.0)
+  - BidmadAdapterDynamic (= 6.0.1)
+  - BidmadSDK (= 6.0.1)
   - OpenBiddingHelper (= 6.0.0)
 
 SPEC REPOS:
@@ -291,8 +291,8 @@ SPEC CHECKSUMS:
   ADOPUtility: bbae100a2f2b53c66c50e36b0b9e8ae239119ab0
   Ads-Global: 331350b59fab4e5dc0d1f5aaf6f3442dd6745997
   AppLovinSDK: 119a0b2a743f9d9c6002c58776b1013778a65084
-  BidmadAdapterDynamic: 88b07f80c7a359999f4b405d4f963b7b1c83fe01
-  BidmadSDK: 643dd16506365188db3f78350af95a5e3bcf6043
+  BidmadAdapterDynamic: 209cefceb6ca13f5dd882ef638b1645f2e99b3b1
+  BidmadSDK: 1dfe258da5020c7d84d97af84e88b9ec44065fca
   BUAdSDK: 76825d6c9bd72d4f38d5e1cda427e109a6a586ee
   BURelyFoundation: 83db9b9b06911ea1178fa02b79421feaa30d907a
   FBAudienceNetwork: e0fcc9091fced34910ed0b6da06f129db46ac9e6
@@ -326,6 +326,6 @@ SPEC CHECKSUMS:
   UnityAds: 1af6c4fdd7030c2593c58f520504e167561175ab
   VungleSDK-iOS: 1936f966dd5828d171fc514343741480bf219496
 
-PODFILE CHECKSUM: 06c387400ed2f14927a1de5e0183069b2544e62a
+PODFILE CHECKSUM: c8ffca5203db63c3beb8c4999c01fbd7d4475f8a
 
 COCOAPODS: 1.12.0

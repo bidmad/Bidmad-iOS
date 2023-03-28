@@ -30,9 +30,9 @@ platform :ios, "11.0"
 
 target "Runner" do
   use_frameworks!
-  pod 'BidmadSDK', '6.0.0'
+  pod 'BidmadSDK', '6.0.1'
   pod 'OpenBiddingHelper', '6.0.0'
-  pod 'BidmadAdapterDynamic', '6.0.0'
+  pod 'BidmadAdapterDynamic', '6.0.1'
 ```
 
   * 6.0 이상 버전부터 BidmadAdapterFNC / BidmadAdapterFC 를 지원하지 않습니다. 6.0 이상 버전으로 업데이트를 원하시는 Bidmad 5.x 이하 버전 사용자는 "pod 'BidmadAdapterFNC' ~" 와 "pod 'BidmadAdapterFC' ~" 를 제거한 뒤, 위 Podfile 에 기재된 BidmadAdapterDynamic 을 추가해주세요.
