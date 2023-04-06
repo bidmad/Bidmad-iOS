@@ -23,7 +23,7 @@
 - BASE SDK : iOS
 - iOS Deployment Target : 11.0
 #### SDK 설치 방법
-1. Podfile 내부에 다음 코드 추가 (Xcode 13.4.1 이상 버전)
+1. Podfile 내부에 다음 코드 추가
 
 ```
 platform :ios, "11.0"
