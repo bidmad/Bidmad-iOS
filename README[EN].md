@@ -30,9 +30,9 @@ platform :ios, "11.0"
 
 target "Runner" do
   use_frameworks!
-  pod 'BidmadSDK', '6.1.0'
-  pod 'OpenBiddingHelper', '6.1.0'
-  pod 'BidmadAdapterDynamic', '6.1.0'
+  pod 'BidmadSDK', '6.2.0'
+  pod 'OpenBiddingHelper', '6.2.0'
+  pod 'BidmadAdapterDynamic', '6.2.0'
 ```
 
   * BidmadAdapterFNC / BidmadAdapterFC are no longer supported since version 6.0 and later. For Bidmad 5.x or lower version users who want to update to version 6.0 or higher, remove "pod 'BidmadAdapterFNC' ~" and "pod 'BidmadAdapterFC' ~", then add BidmadAdapterDynamic declared in the Podfile above.
@@ -92,6 +92,14 @@ It is recommended to initialize only once when the app is launched. The followin
 
 // Swift
 BidmadCommon.initializeSdk()
+```
+
+Also, you can be receiving the initialization success or failure callback w ith the following interface.<br>
+
+```
+[BidmadCommon initializeSdkWithCompletionHandler:^(BOOL isInitialized) {
+    NSLog(@"Bidmad Sample App: Initialized %@", isInitialized ? @"YES" : @"NO");
+}];
 ```
 
 ### Banner Ad

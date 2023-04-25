@@ -30,9 +30,9 @@ platform :ios, "11.0"
 
 target "Runner" do
   use_frameworks!
-  pod 'BidmadSDK', '6.1.0'
-  pod 'OpenBiddingHelper', '6.1.0'
-  pod 'BidmadAdapterDynamic', '6.1.0'
+  pod 'BidmadSDK', '6.2.0'
+  pod 'OpenBiddingHelper', '6.2.0'
+  pod 'BidmadAdapterDynamic', '6.2.0'
 ```
 
   * 6.0 이상 버전부터 BidmadAdapterFNC / BidmadAdapterFC 를 지원하지 않습니다. 6.0 이상 버전으로 업데이트를 원하시는 Bidmad 5.x 이하 버전 사용자는 "pod 'BidmadAdapterFNC' ~" 와 "pod 'BidmadAdapterFC' ~" 를 제거한 뒤, 위 Podfile 에 기재된 BidmadAdapterDynamic 을 추가해주세요.
@@ -92,6 +92,14 @@ BidmadSDK 실행에 필요한 작업을 수행합니다. SDK는 initializeSdk �
 
 // Swift
 BidmadCommon.initializeSdk()
+```
+
+또한, 아래 인터페이스를 통해 initializeSdk 성공 여부 콜백을 전달받을 수 있습니다.<br>
+
+```
+[BidmadCommon initializeSdkWithCompletionHandler:^(BOOL isInitialized) {
+    NSLog(@"Bidmad Sample App: Initialized %@", isInitialized ? @"YES" : @"NO");
+}];
 ```
 
 ### 배너 광고

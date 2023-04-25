@@ -26,7 +26,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     didRequestATTPopup = NO;
-    [BidmadCommon initializeSdk];
+    [BidmadCommon initializeSdkWithCompletionHandler:^(BOOL isInitialized) {
+        ADOPLog.printInfo(@"Bidmad Sample App: Initialized %@", isInitialized ? @"YES" : @"NO");
+    }];
     
     bidmadAppOpenAd = [[BidmadAppOpenAd alloc] initWith:self.window.rootViewController zoneID:@"0ddd6401-0f19-49ee-b1f9-63e910f92e77"];
     [bidmadAppOpenAd setDelegate:self];
