@@ -97,9 +97,15 @@ BidmadCommon.initializeSdk()
 또한, 아래 인터페이스를 통해 initializeSdk 성공 여부 콜백을 전달받을 수 있습니다.<br>
 
 ```
+// Objective C
 [BidmadCommon initializeSdkWithCompletionHandler:^(BOOL isInitialized) {
     NSLog(@"Bidmad Sample App: Initialized %@", isInitialized ? @"YES" : @"NO");
 }];
+
+// Swift
+BidmadCommon.initializeSdk { isInitialized in
+    print("Bidmad Sample App: \(isInitialized)")
+}
 ```
 
 ### 배너 광고
