@@ -1,7 +1,7 @@
 PODS:
   - AdColony (4.9.0)
   - AdFitSDK (3.7.0)
-  - ADOPUtility (6.2.0)
+  - ADOPUtility (6.3.0)
   - Ads-Global (4.7.0.6):
     - Ads-Global/BUAdSDK (= 4.7.0.6)
   - Ads-Global/APM (4.7.0.6):
@@ -17,16 +17,16 @@ PODS:
     - BUAdSDK (= 0.1.0.19)
     - BURelyFoundation/Pangle (= 0.0.3.10)
   - AppLovinSDK (11.4.2)
-  - BidmadAdapterDynamic (6.2.0):
+  - BidmadAdapterDynamic (6.3.0):
     - AdFitSDK (= 3.7.0)
-    - ADOPUtility (< 6.3.0, >= 6.2.0)
+    - ADOPUtility (< 6.4.0, >= 6.3.0)
     - TeadsSDK (= 5.0.25)
-  - BidmadSDK (6.2.0):
+  - BidmadSDK (6.3.0):
     - AdColony (= 4.9.0)
-    - ADOPUtility (< 6.3.0, >= 6.2.0)
+    - ADOPUtility (< 6.4.0, >= 6.3.0)
     - Ads-Global (= 4.7.0.6)
     - AppLovinSDK (= 11.4.2)
-    - BidmadSDK/ForNative (= 6.2.0)
+    - BidmadSDK/ForNative (= 6.3.0)
     - Fyber_Marketplace_SDK (= 8.1.6)
     - Google-Mobile-Ads-SDK (= 9.14.0)
     - GoogleMobileAdsMediationAdColony (= 4.9.0.0)
@@ -42,9 +42,9 @@ PODS:
     - OpenWrapSDK (= 2.6.2)
     - UnityAds (= 4.4.1)
     - VungleSDK-iOS (= 6.12.0)
-  - BidmadSDK/ForNative (6.2.0):
+  - BidmadSDK/ForNative (6.3.0):
     - AdColony (= 4.9.0)
-    - ADOPUtility (< 6.3.0, >= 6.2.0)
+    - ADOPUtility (< 6.4.0, >= 6.3.0)
     - Ads-Global (= 4.7.0.6)
     - AppLovinSDK (= 11.4.2)
     - Fyber_Marketplace_SDK (= 8.1.6)
@@ -98,25 +98,25 @@ PODS:
   - Google-Mobile-Ads-SDK (9.14.0):
     - GoogleAppMeasurement (< 11.0, >= 7.0)
     - GoogleUserMessagingPlatform (>= 1.1)
-  - GoogleAppMeasurement (10.8.0):
-    - GoogleAppMeasurement/AdIdSupport (= 10.8.0)
-    - GoogleUtilities/AppDelegateSwizzler (~> 7.8)
-    - GoogleUtilities/MethodSwizzler (~> 7.8)
-    - GoogleUtilities/Network (~> 7.8)
-    - "GoogleUtilities/NSData+zlib (~> 7.8)"
+  - GoogleAppMeasurement (10.12.0):
+    - GoogleAppMeasurement/AdIdSupport (= 10.12.0)
+    - GoogleUtilities/AppDelegateSwizzler (~> 7.11)
+    - GoogleUtilities/MethodSwizzler (~> 7.11)
+    - GoogleUtilities/Network (~> 7.11)
+    - "GoogleUtilities/NSData+zlib (~> 7.11)"
     - nanopb (< 2.30910.0, >= 2.30908.0)
-  - GoogleAppMeasurement/AdIdSupport (10.8.0):
-    - GoogleAppMeasurement/WithoutAdIdSupport (= 10.8.0)
-    - GoogleUtilities/AppDelegateSwizzler (~> 7.8)
-    - GoogleUtilities/MethodSwizzler (~> 7.8)
-    - GoogleUtilities/Network (~> 7.8)
-    - "GoogleUtilities/NSData+zlib (~> 7.8)"
+  - GoogleAppMeasurement/AdIdSupport (10.12.0):
+    - GoogleAppMeasurement/WithoutAdIdSupport (= 10.12.0)
+    - GoogleUtilities/AppDelegateSwizzler (~> 7.11)
+    - GoogleUtilities/MethodSwizzler (~> 7.11)
+    - GoogleUtilities/Network (~> 7.11)
+    - "GoogleUtilities/NSData+zlib (~> 7.11)"
     - nanopb (< 2.30910.0, >= 2.30908.0)
-  - GoogleAppMeasurement/WithoutAdIdSupport (10.8.0):
-    - GoogleUtilities/AppDelegateSwizzler (~> 7.8)
-    - GoogleUtilities/MethodSwizzler (~> 7.8)
-    - GoogleUtilities/Network (~> 7.8)
-    - "GoogleUtilities/NSData+zlib (~> 7.8)"
+  - GoogleAppMeasurement/WithoutAdIdSupport (10.12.0):
+    - GoogleUtilities/AppDelegateSwizzler (~> 7.11)
+    - GoogleUtilities/MethodSwizzler (~> 7.11)
+    - GoogleUtilities/Network (~> 7.11)
+    - "GoogleUtilities/NSData+zlib (~> 7.11)"
     - nanopb (< 2.30910.0, >= 2.30908.0)
   - GoogleMobileAdsMediationAdColony (4.9.0.0):
     - AdColony (= 4.9.0)
@@ -172,8 +172,8 @@ PODS:
   - OneKit-Pangle/Reachability (1.3.11):
     - OneKit-Pangle/Service
   - OneKit-Pangle/Service (1.3.11)
-  - OpenBiddingHelper (6.2.0):
-    - ADOPUtility (< 6.3.0, >= 6.2.0)
+  - OpenBiddingHelper (6.3.0):
+    - ADOPUtility (< 6.4.0, >= 6.3.0)
     - Google-Mobile-Ads-SDK (= 9.14.0)
   - OpenWrapHandlerDFP (3.0.1):
     - Google-Mobile-Ads-SDK (>= 8.12.0)
@@ -215,9 +215,9 @@ PODS:
   - VungleSDK-iOS (6.12.0)
 
 DEPENDENCIES:
-  - BidmadAdapterDynamic (= 6.2.0)
-  - BidmadSDK (= 6.2.0)
-  - OpenBiddingHelper (= 6.2.0)
+  - BidmadAdapterDynamic (= 6.3.0)
+  - BidmadSDK (= 6.3.0)
+  - OpenBiddingHelper (= 6.3.0)
 
 SPEC REPOS:
   trunk:
@@ -260,17 +260,17 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   AdColony: 4f3738dc633d7aaa8ec60729df973076cc8e97ed
   AdFitSDK: a922cc8104d5ffc5b8af96226842928a2e3b5c23
-  ADOPUtility: ec1da29d74773183ce2ac7f5cde61a17ac62afb6
+  ADOPUtility: 963b50b55213dae2d2d456d1256949cc3d5739e5
   Ads-Global: 331350b59fab4e5dc0d1f5aaf6f3442dd6745997
   AppLovinSDK: 119a0b2a743f9d9c6002c58776b1013778a65084
-  BidmadAdapterDynamic: 64c322821c969bec2dd3afe37961b4b04011282d
-  BidmadSDK: 7ce3f04668802cfadd10872c8c3dd2446f64f3f4
+  BidmadAdapterDynamic: f193a5144943aedd3703a125cb02b7b4335f7537
+  BidmadSDK: 09f341665dd7163d39eb46b8ff99f575b7344334
   BUAdSDK: 76825d6c9bd72d4f38d5e1cda427e109a6a586ee
   BURelyFoundation: 83db9b9b06911ea1178fa02b79421feaa30d907a
   FBAudienceNetwork: e0fcc9091fced34910ed0b6da06f129db46ac9e6
   Fyber_Marketplace_SDK: 0325c667dce841f2fabc3644c1a467978c3eed02
   Google-Mobile-Ads-SDK: 4fe6304b771f8467d29978cb790ec1e56e646946
-  GoogleAppMeasurement: 0ba93018e916f7badf915c2337d43cc1fa96b3f9
+  GoogleAppMeasurement: 2d800fab85e7848b1e66a6f8ce5bca06c5aad892
   GoogleMobileAdsMediationAdColony: dac67babc0a116f7e8c2afa804ebce284ab0d491
   GoogleMobileAdsMediationAppLovin: 84223d164abdfa01fa02218c3a07dd10599bb2ed
   GoogleMobileAdsMediationFacebook: 8c64904ac98459c8819cf07de3e15d5663b3d8ec
@@ -284,7 +284,7 @@ SPEC CHECKSUMS:
   IronSourceSDK: 45212c7ec28cc0bbda13255e8dc65f7ed7aa1370
   nanopb: b552cce312b6c8484180ef47159bc0f65a1f0431
   OneKit-Pangle: 19fc175cb04d0830594808f470751d3d2ab14318
-  OpenBiddingHelper: 096fb1c107317e619f4a16ad34081e73731910e7
+  OpenBiddingHelper: a7f29a3a957ba9573d2a5a1cac5b339cab25c729
   OpenWrapHandlerDFP: e13e69ae431e2bc903f06c6f32e3b0db563d9bfa
   OpenWrapSDK: 17a18b2c4d1ad9b366e2db782d17ea27480e3422
   PromisesObjC: 09985d6d70fbe7878040aa746d78236e6946d2ef
@@ -294,6 +294,6 @@ SPEC CHECKSUMS:
   UnityAds: 1af6c4fdd7030c2593c58f520504e167561175ab
   VungleSDK-iOS: 1936f966dd5828d171fc514343741480bf219496
 
-PODFILE CHECKSUM: 2877f34752b299cccf4a95f39ecae2fcfd46f342
+PODFILE CHECKSUM: 67fc7f64ce06f2148b912db2a9dcf4a557320e9b
 
-COCOAPODS: 1.12.0
+COCOAPODS: 1.12.1

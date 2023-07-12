@@ -30,9 +30,9 @@ platform :ios, "11.0"
 
 target "Runner" do
   use_frameworks!
-  pod 'BidmadSDK', '6.2.0'
-  pod 'OpenBiddingHelper', '6.2.0'
-  pod 'BidmadAdapterDynamic', '6.2.0'
+  pod 'BidmadSDK', '6.3.0'
+  pod 'OpenBiddingHelper', '6.3.0'
+  pod 'BidmadAdapterDynamic', '6.3.0'
 ```
 
   * 6.0 이상 버전부터 BidmadAdapterFNC / BidmadAdapterFC 를 지원하지 않습니다. 6.0 이상 버전으로 업데이트를 원하시는 Bidmad 5.x 이하 버전 사용자는 "pod 'BidmadAdapterFNC' ~" 와 "pod 'BidmadAdapterFC' ~" 를 제거한 뒤, 위 Podfile 에 기재된 BidmadAdapterDynamic 을 추가해주세요.
@@ -665,5 +665,6 @@ BidmadCommon.setTestDeviceId("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
 - Apple privacy survey ([[ENG]](https://github.com/bidmad/Bidmad-iOS/wiki/Apple-privacy-survey%5BENG%5D) | [[KOR]](https://github.com/bidmad/Bidmad-iOS/wiki/Apple-privacy-survey%5BKOR%5D))
 - iOS GDPR Guide ([[ENG]](https://github.com/bidmad/Bidmad-iOS/wiki/iOS-GDPR-Guide-%5BENG%5D) | [[KOR]](https://github.com/bidmad/Bidmad-iOS/wiki/iOS-GDPR-Guide-%5BKOR%5D))
 - Preparing for iOS 14 ([[ENG]](https://github.com/bidmad/Bidmad-iOS/wiki/Preparing-for-iOS-14%5BENG%5D) | [[KOR]](https://github.com/bidmad/Bidmad-iOS/wiki/Preparing-for-iOS-14%5BKOR%5D))
+- [쿠팡 네트워크 광고 차단 인터페이스 가이드](https://github.com/bidmad/Bidmad-iOS/wiki/쿠팡-네트워크-광고-차단-인터페이스-가이드)
 </details>
 
