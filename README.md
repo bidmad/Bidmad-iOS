@@ -19,20 +19,20 @@
 ## BidmadSDK Installation Guide
 
 #### 개발 환경
-- Xcode 13.2 버전 (Xcode 최소 사양 13.2)
+- Xcode 14.1 버전 (Xcode 최소 사양 14.1)
 - BASE SDK : iOS
-- iOS Deployment Target : 11.0
+- iOS Deployment Target : 12.0
 #### SDK 설치 방법
 1. Podfile 내부에 다음 코드 추가
 
 ```
-platform :ios, "11.0"
+platform :ios, "12.0"
 
 target "Runner" do
   use_frameworks!
-  pod 'BidmadSDK', '6.3.0'
-  pod 'OpenBiddingHelper', '6.3.0'
-  pod 'BidmadAdapterDynamic', '6.3.0'
+  pod 'BidmadSDK', '6.3.1'
+  pod 'OpenBiddingHelper', '6.3.2'
+  pod 'BidmadAdapterDynamic', '6.3.1'
 ```
 
   * 6.0 이상 버전부터 BidmadAdapterFNC / BidmadAdapterFC 를 지원하지 않습니다. 6.0 이상 버전으로 업데이트를 원하시는 Bidmad 5.x 이하 버전 사용자는 "pod 'BidmadAdapterFNC' ~" 와 "pod 'BidmadAdapterFC' ~" 를 제거한 뒤, 위 Podfile 에 기재된 BidmadAdapterDynamic 을 추가해주세요.
