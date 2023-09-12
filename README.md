@@ -30,7 +30,7 @@ platform :ios, "12.0"
 
 target "Runner" do
   use_frameworks!
-  pod 'BidmadSDK', '6.3.1'
+  pod 'BidmadSDK', '6.3.2'
   pod 'OpenBiddingHelper', '6.3.2'
   pod 'BidmadAdapterDynamic', '6.3.1'
 ```
