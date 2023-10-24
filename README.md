@@ -30,9 +30,26 @@ platform :ios, "12.0"
 
 target "Runner" do
   use_frameworks!
-  pod 'BidmadSDK', '6.3.2'
-  pod 'OpenBiddingHelper', '6.3.2'
-  pod 'BidmadAdapterDynamic', '6.3.1'
+  
+  # NECESSARY
+  pod 'BidmadSDK', '6.4.0'
+  pod 'OpenBiddingHelper', '6.4.0'
+  pod 'BidmadGoogleAdMobAdapter', '10.12.0.0'
+  pod 'BidmadGoogleAdManagerAdapter', '10.12.0.0'
+  pod 'BidmadAppLovinAdapter', '11.11.3.0'
+  pod 'BidmadUnityAdsAdapter', '4.8.0.0'
+  pod 'BidmadPangleAdapter', '5.3.1.0.0'
+  pod 'BidmadFyberAdapter', '8.2.4.0'
+  pod 'BidmadVungleAdapter', '7.1.0.0'
+  pod 'BidmadPubmaticAdapter', '3.2.0.0'
+  pod 'BidmadAdColonyAdapter', '4.9.0.0'
+  pod 'BidmadADOPCoupangAdapter', '1.0.0.0'
+  
+  # OPTIONAL
+  pod 'BidmadTeadsAdapter', '5.0.27.0'
+  pod 'BidmadAtomAdapter', '1.0.0.0'
+  pod 'BidmadAdFitAdapter', '3.12.7.0'
+  pod 'BidmadIronSourceAdapter', '7.5.0.0.0'
 ```
 
   * 6.0 이상 버전부터 BidmadAdapterFNC / BidmadAdapterFC 를 지원하지 않습니다. 6.0 이상 버전으로 업데이트를 원하시는 Bidmad 5.x 이하 버전 사용자는 "pod 'BidmadAdapterFNC' ~" 와 "pod 'BidmadAdapterFC' ~" 를 제거한 뒤, 위 Podfile 에 기재된 BidmadAdapterDynamic 을 추가해주세요.
@@ -53,6 +70,8 @@ pod install
 앱 초기 구성에 앞서, 4.6.0.1 이하 버전에서 5.0.0 버전으로 업데이트하는 경우 [API Migration Guide](https://github.com/bidmad/Bidmad-iOS/wiki/v5.0.0-API-Migration-Guide-%5BKR%5D) 를 참고해 앱 업데이트를 진행하십시오. 이후, 아래 info.plist 내부 BidmadAppKey 추가 및 initializeSdk 메서드 추가 과정도 거치십시오.<br>
 
 5.3.0 버전 이하에서 6.0.0 버전 이상으로 업데이트하시는 네이티브 광고 인터페이스 사용자의 경우 [NativeAd Migration Guide 6.0.0](https://github.com/bidmad/Bidmad-iOS/wiki/Native-Ad-Migration-to-v6.0.0%5BKOR%5D) 를 참고해 앱 업데이트를 진행하십시오.
+
+6.3.5 버전 이하에서 6.4.0 버전 이상으로 업데이트하시는 앱오픈 광고 / 네이티브 광고 인터페이스 사용자의 경우 [AppOpen and NativeAd Migration Guide for 6.4.0](https://github.com/bidmad/Bidmad-iOS/wiki/AppOpen-and-NativeAd-Migration-Guide-for-6.4.0-%5BKOR%5D)를 참고해 앱 업데이트를 진행하십시오. 
 
 Xcode 프로젝트 info.plist 에 다음 키를 포함합니다.<br>
 1. ADOP Insight 에서 확인할 수 있는 iOS 용 AppKey ("[App Key 찾기](https://github.com/bidmad/SDK/wiki/Find-your-app-key%5BKR%5D)" 가이드를 참고하십시오) <br>
@@ -461,7 +480,7 @@ App Open 광고는 사용자가 앱을 포그라운드로 가져올 때, 앱 로
 
 - (void)showAd {
     if ([self.appOpenAd isLoaded]) {
-        [self.appOpenAd show];
+        [self.appOpenAd showOnViewController:self];
     }
 }
 
@@ -493,7 +512,7 @@ class AppOpenAdViewController: UIViewController, OpenBiddingAppOpenAdDelegate {
     
     func showAppOpenAd() {
         if appOpenAd.isLoaded() {
-            appOpenAd.show()
+            appOpenAd.show(on: self)
         }
     }
     

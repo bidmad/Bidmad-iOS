@@ -36,7 +36,7 @@
         [self->appOpenAd load];
     } else if ([sender.titleLabel.text isEqualToString:@"Show"]) {
         if ([self->appOpenAd isLoaded]) {
-            [self->appOpenAd show];
+            [self->appOpenAd showOnViewController:self];
         }
     } else if ([sender.titleLabel.text isEqualToString:@"Deregister"]) {
         if (self->appOpenAd != nil) {

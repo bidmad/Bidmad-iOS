@@ -30,9 +30,26 @@ platform :ios, "12.0"
 
 target "Runner" do
   use_frameworks!
-  pod 'BidmadSDK', '6.3.2'
-  pod 'OpenBiddingHelper', '6.3.2'
-  pod 'BidmadAdapterDynamic', '6.3.1'
+  
+  # NECESSARY
+  pod 'BidmadSDK', '6.4.0'
+  pod 'OpenBiddingHelper', '6.4.0'
+  pod 'BidmadGoogleAdMobAdapter', '10.12.0.0'
+  pod 'BidmadGoogleAdManagerAdapter', '10.12.0.0'
+  pod 'BidmadAppLovinAdapter', '11.11.3.0'
+  pod 'BidmadUnityAdsAdapter', '4.8.0.0'
+  pod 'BidmadPangleAdapter', '5.3.1.0.0'
+  pod 'BidmadFyberAdapter', '8.2.4.0'
+  pod 'BidmadVungleAdapter', '7.1.0.0'
+  pod 'BidmadPubmaticAdapter', '3.2.0.0'
+  pod 'BidmadAdColonyAdapter', '4.9.0.0'
+  pod 'BidmadADOPCoupangAdapter', '1.0.0.0'
+  
+  # OPTIONAL
+  pod 'BidmadTeadsAdapter', '5.0.27.0'
+  pod 'BidmadAtomAdapter', '1.0.0.0'
+  pod 'BidmadAdFitAdapter', '3.12.7.0'
+  pod 'BidmadIronSourceAdapter', '7.5.0.0.0'
 ```
 
   * BidmadAdapterFNC / BidmadAdapterFC are no longer supported since version 6.0 and later. For Bidmad 5.x or lower version users who want to update to version 6.0 or higher, remove "pod 'BidmadAdapterFNC' ~" and "pod 'BidmadAdapterFC' ~", then add BidmadAdapterDynamic declared in the Podfile above.
@@ -53,6 +70,8 @@ pod install
 Prior to the initial configuration of the app, when updating from version 4.6.0.1 or lower to version 5.0.0 [API Migration Guide](https://github.com/bidmad/Bidmad-iOS/wiki/v5.0.0-API-Migration-Guide-%5BEN%5D) to update the app. After that, go through the process of adding BidmadAppKey and initializeSdk method inside info.plist as guided below.<br>
 
 For users of native ad interface updating from v5.3.0 or lower to v6.0.0 or higher, please refer to [NativeAd Migration Guide 6.0.0](https://github.com/bidmad/Bidmad-iOS/wiki/Native-Ad-Migration-to-v6.0.0%5BENG%5D) for your app updates. 
+
+For users of app open ad and native ad interface updating from v6.3.5 or lower to v6.4.0 or higher, please refer to [AppOpen and NativeAd Migration Guide for 6.4.0](https://github.com/bidmad/Bidmad-iOS/wiki/AppOpen-and-NativeAd-Migration-Guide-for-6.4.0-%5BKOR%5D) for your app updates.
 
 Include the following key in your Xcode project info.plist :<br>
 1. iOS App Key identified in ADOP Insight (refer to "[Find your App Key](https://github.com/bidmad/SDK/wiki/Find-your-app-key%5BEN%5D)" guide) <br>
@@ -461,7 +480,7 @@ App Open ads are an ad format that monetizes the app load screen when a user bri
 
 - (void)showAd {
     if ([self.appOpenAd isLoaded]) {
-        [self.appOpenAd show];
+        [self.appOpenAd showOnViewController:self];
     }
 }
 
@@ -493,7 +512,7 @@ class AppOpenAdViewController: UIViewController, OpenBiddingAppOpenAdDelegate {
     
     func showAppOpenAd() {
         if appOpenAd.isLoaded() {
-            appOpenAd.show()
+            appOpenAd.show(on: self)
         }
     }
     
