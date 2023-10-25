@@ -52,7 +52,7 @@ target "Runner" do
   pod 'BidmadIronSourceAdapter', '7.5.0.0.0'
 ```
 
-  * 6.0 이상 버전부터 BidmadAdapterFNC / BidmadAdapterFC 를 지원하지 않습니다. 6.0 이상 버전으로 업데이트를 원하시는 Bidmad 5.x 이하 버전 사용자는 "pod 'BidmadAdapterFNC' ~" 와 "pod 'BidmadAdapterFC' ~" 를 제거한 뒤, 위 Podfile 에 기재된 BidmadAdapterDynamic 을 추가해주세요.
+  * 6.4.0 이상 버전부터 BidmadAdapterFNC, BidmadAdapterFC, BidmadAdapterDynamic 을 지원하지 않습니다. 6.3.X 이하 버전에서 6.4.0 이상 버전으로 업데이트를 원하시는 사용자는 "BidmadAdapterFNC, BidmadAdapterFC, BidmadAdapterDynamic" 의존성을 제거하고, 위에 기재된 의존성을 추가해 어댑터를 추가해주세요.
 
 2. Terminal에서 다음 커맨드 입력
 
@@ -88,7 +88,7 @@ Xcode 프로젝트 info.plist 에 다음 키를 포함합니다.<br>
 <string>ca-app-pub-xxxxxxxxxxxxxxxx~xxxxxxxxxx</string>
 ```
 
-3. BidmadSDK에서 지원하는 광고 네트워크에 대한 SKAdNetworkIdentifier 값이 포함된 SKAdNetworkItems 키 ([Preparing for iOS 14](https://github.com/bidmad/Bidmad-iOS/wiki/Preparing-for-iOS-14%5BENG%5D) 를 참고하십시오)<br>
+3. BidmadSDK에서 지원하는 광고 네트워크에 대한 SKAdNetworkIdentifier 값이 포함된 SKAdNetworkItems 키 ([Preparing for iOS 14](https://github.com/bidmad/Bidmad-iOS/wiki/Preparing-for-iOS-14%5BKOR%5D) 를 참고하십시오)<br>
 
 ```
 <key>SKAdNetworkItems</key>

@@ -52,7 +52,7 @@ target "Runner" do
   pod 'BidmadIronSourceAdapter', '7.5.0.0.0'
 ```
 
-  * BidmadAdapterFNC / BidmadAdapterFC are no longer supported since version 6.0 and later. For Bidmad 5.x or lower version users who want to update to version 6.0 or higher, remove "pod 'BidmadAdapterFNC' ~" and "pod 'BidmadAdapterFC' ~", then add BidmadAdapterDynamic declared in the Podfile above.
+  * From version 6.4.0 onwards, BidmadAdapterFNC, BidmadAdapterFC, and BidmadAdapterDynamic are not supported. Users who wish to update from version 6.3.X or below to version 6.4.0 or above should remove the dependencies for "BidmadAdapterFNC, BidmadAdapterFC, BidmadAdapterDynamic" and add the adapter by including the dependencies mentioned above.
 
 2. Enter the following command in Terminal
 
