@@ -32,7 +32,7 @@ target "Runner" do
   use_frameworks!
   
   # NECESSARY
-  pod 'BidmadSDK', '6.4.0'
+  pod 'BidmadSDK', '6.4.1'
   pod 'OpenBiddingHelper', '6.4.0'
   pod 'BidmadGoogleAdMobAdapter', '10.12.0.0'
   pod 'BidmadGoogleAdManagerAdapter', '10.12.0.0'

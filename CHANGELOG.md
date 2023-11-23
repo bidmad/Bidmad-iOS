@@ -1,3 +1,6 @@
+#### Version 6.4.1
+DAU collection bug fixed
+
 #### Version 6.4.0
 Apply adapters classified by ad network
 
