@@ -32,24 +32,9 @@ target "Runner" do
   use_frameworks!
   
   # NECESSARY
-  pod 'BidmadSDK', '6.4.1'
-  pod 'OpenBiddingHelper', '6.4.0'
-  pod 'BidmadGoogleAdMobAdapter', '10.12.0.0'
-  pod 'BidmadGoogleAdManagerAdapter', '10.12.0.0'
-  pod 'BidmadAppLovinAdapter', '11.11.3.0'
-  pod 'BidmadUnityAdsAdapter', '4.8.0.0'
-  pod 'BidmadPangleAdapter', '5.3.1.0.0'
-  pod 'BidmadFyberAdapter', '8.2.4.0'
-  pod 'BidmadVungleAdapter', '7.1.0.0'
-  pod 'BidmadPubmaticAdapter', '3.2.0.0'
-  pod 'BidmadAdColonyAdapter', '4.9.0.0'
-  pod 'BidmadADOPCoupangAdapter', '1.0.0.0'
-  
-  # OPTIONAL
-  pod 'BidmadTeadsAdapter', '5.0.27.0'
-  pod 'BidmadAtomAdapter', '1.0.0.0'
-  pod 'BidmadAdFitAdapter', '3.12.7.0'
-  pod 'BidmadIronSourceAdapter', '7.5.0.0.0'
+  pod 'BidmadSDK', '6.5.0'
+  pod 'OpenBiddingHelper', '6.5.0'
+  pod 'BidmadPartners/AdMobBidding', '1.0.1'
 ```
 
   * 6.4.0 이상 버전부터 BidmadAdapterFNC, BidmadAdapterFC, BidmadAdapterDynamic 을 지원하지 않습니다. 6.3.X 이하 버전에서 6.4.0 이상 버전으로 업데이트를 원하시는 사용자는 "BidmadAdapterFNC, BidmadAdapterFC, BidmadAdapterDynamic" 의존성을 제거하고, 위에 기재된 의존성을 추가해 어댑터를 추가해주세요.
