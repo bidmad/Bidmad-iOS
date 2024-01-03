@@ -34,7 +34,23 @@ target "Runner" do
   # NECESSARY
   pod 'BidmadSDK', '6.5.0'
   pod 'OpenBiddingHelper', '6.5.0'
-  pod 'BidmadPartners/AdMobBidding', '1.0.1'
+  pod 'BidmadGoogleAdMobAdapter', '10.12.0.1'
+  pod 'BidmadGoogleAdManagerAdapter', '10.12.0.1'
+  pod 'BidmadAppLovinAdapter', '11.11.3.1'
+  pod 'BidmadUnityAdsAdapter', '4.8.0.1'
+  pod 'BidmadPangleAdapter', '5.3.1.0.1'
+  pod 'BidmadFyberAdapter', '8.2.4.1'
+  pod 'BidmadVungleAdapter', '7.1.0.1'
+  pod 'BidmadPubmaticAdapter', '3.2.0.1'
+  pod 'BidmadAdColonyAdapter', '4.9.0.1'
+  pod 'BidmadADOPCoupangAdapter', '1.0.0.1'
+  pod 'BidmadPartners/AdMobBidding', '1.0.2'
+  
+  # OPTIONAL
+  pod 'BidmadTeadsAdapter', '5.0.27.1'
+  pod 'BidmadAtomAdapter', '1.0.0.1'
+  pod 'BidmadAdFitAdapter', '3.12.7.1'
+  pod 'BidmadIronSourceAdapter', '7.5.0.0.1'
 ```
 
   * From version 6.4.0 onwards, BidmadAdapterFNC, BidmadAdapterFC, and BidmadAdapterDynamic are not supported. Users who wish to update from version 6.3.X or below to version 6.4.0 or above should remove the dependencies for "BidmadAdapterFNC, BidmadAdapterFC, BidmadAdapterDynamic" and add the adapter by including the dependencies mentioned above.

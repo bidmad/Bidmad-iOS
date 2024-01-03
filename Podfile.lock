@@ -40,21 +40,7 @@ PODS:
   - BidmadPangleAdapter (5.3.1.0.1):
     - ADOPUtility (< 6.6.0, >= 6.5.0)
     - Ads-Global (= 5.3.1.0)
-  - BidmadPartners/AdMobBidding (1.0.1):
-    - BidmadAdColonyAdapter (= 4.9.0.1)
-    - BidmadAdFitAdapter (= 3.12.7.1)
-    - BidmadADOPCoupangAdapter (= 1.0.0.1)
-    - BidmadAppLovinAdapter (= 11.11.3.1)
-    - BidmadAtomAdapter (= 1.0.0.1)
-    - BidmadFyberAdapter (= 8.2.4.1)
-    - BidmadGoogleAdManagerAdapter (= 10.12.0.1)
-    - BidmadGoogleAdMobAdapter (= 10.12.0.1)
-    - BidmadIronSourceAdapter (= 7.5.0.0.1)
-    - BidmadPangleAdapter (= 5.3.1.0.1)
-    - BidmadPubmaticAdapter (= 3.2.0.1)
-    - BidmadTeadsAdapter (= 5.0.27.1)
-    - BidmadUnityAdsAdapter (= 4.8.0.1)
-    - BidmadVungleAdapter (= 7.1.0.1)
+  - BidmadPartners/AdMobBidding (1.0.2):
     - GoogleMobileAdsMediationAppLovin (= 11.11.3.0)
     - GoogleMobileAdsMediationFyber (= 8.2.4.0)
     - GoogleMobileAdsMediationIronSource (= 7.5.0.0.0)
@@ -193,8 +179,22 @@ PODS:
   - VungleAds (7.1.0)
 
 DEPENDENCIES:
-  - BidmadPartners/AdMobBidding (= 1.0.1)
+  - BidmadAdColonyAdapter (= 4.9.0.1)
+  - BidmadAdFitAdapter (= 3.12.7.1)
+  - BidmadADOPCoupangAdapter (= 1.0.0.1)
+  - BidmadAppLovinAdapter (= 11.11.3.1)
+  - BidmadAtomAdapter (= 1.0.0.1)
+  - BidmadFyberAdapter (= 8.2.4.1)
+  - BidmadGoogleAdManagerAdapter (= 10.12.0.1)
+  - BidmadGoogleAdMobAdapter (= 10.12.0.1)
+  - BidmadIronSourceAdapter (= 7.5.0.0.1)
+  - BidmadPangleAdapter (= 5.3.1.0.1)
+  - BidmadPartners/AdMobBidding (= 1.0.2)
+  - BidmadPubmaticAdapter (= 3.2.0.1)
   - BidmadSDK (= 6.5.0)
+  - BidmadTeadsAdapter (= 5.0.27.1)
+  - BidmadUnityAdsAdapter (= 4.8.0.1)
+  - BidmadVungleAdapter (= 7.1.0.1)
   - OpenBiddingHelper (= 6.5.0)
 
 SPEC REPOS:
@@ -260,7 +260,7 @@ SPEC CHECKSUMS:
   BidmadGoogleAdMobAdapter: 3343e6de65a2d35f931fde521be3a81647ad576a
   BidmadIronSourceAdapter: bc9d01aa7e8991c9bea021ccef40123ab9991146
   BidmadPangleAdapter: 41652986cf8eeaa062e1f1479efc0fb316f0d546
-  BidmadPartners: ea5b170890d17fad5e7169bf881a5a38527b57e7
+  BidmadPartners: 074aeb47c57d305bf2aff68feefa7b7e24db49dd
   BidmadPubmaticAdapter: 27bfd0241ce311efdc1ade8163b0531d4956d30f
   BidmadSDK: cfb97171814522f3c1182d2f40d8115709da97a5
   BidmadTeadsAdapter: e032577ac24bca649d4a2e739fac11d8cf3a0245
@@ -290,6 +290,6 @@ SPEC CHECKSUMS:
   UnityAds: 390144b2029ac9ce2ec81c3cfd0007686b59236a
   VungleAds: e13f0ea8facb05d5511e31c5abcced79a82409e7
 
-PODFILE CHECKSUM: a88647e690c0dcff5b17b3941667355de83d16ef
+PODFILE CHECKSUM: 4acca49bdcc4ffd085ca8a37cef80305bc0d39ea
 
 COCOAPODS: 1.14.3
