@@ -76,4 +76,9 @@
     [self.callbackLabel setText:@"All Fail"];
 }
 
+- (void)onShowFailAd:(OpenBiddingAppOpenAd *)bidmadAd error:(NSError *)error {
+    ADOPLog.printInfo(@"Bidmad Sample App AppOpenAd Show Fail");
+    [self.callbackLabel setText:@"Show Fail"];
+}
+
 @end

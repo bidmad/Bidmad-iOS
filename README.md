@@ -110,7 +110,7 @@ BidmadSDK 실행에 필요한 작업을 수행합니다. SDK는 initializeSdk �
 // Objective C
 [BidmadCommon initializeSdk];
 
-// Swift
+// -- SWIFT --
 BidmadCommon.initializeSdk()
 ```
 
@@ -122,7 +122,7 @@ BidmadCommon.initializeSdk()
     NSLog(@"Bidmad Sample App: Initialized %@", isInitialized ? @"YES" : @"NO");
 }];
 
-// Swift
+// -- SWIFT --
 BidmadCommon.initializeSdk { isInitialized in
     print("Bidmad Sample App: \(isInitialized)")
 }
@@ -160,7 +160,7 @@ __weak IBOutlet UIView *bannerContainer;
     [bannerAd load];
 }
 
-// Swift
+// -- SWIFT --
 
 import OpenBiddingHelper
 
@@ -199,7 +199,7 @@ class BannerViewController: UIViewController, BIDMADOpenBiddingBannerDelegate {
     NSLog(@"LoadFail")
 }
 
-// Swift
+// -- SWIFT --
 
 func onLoadAd(_ bidmadAd: OpenBiddingBanner) {
     print("ad is loaded")
@@ -248,7 +248,7 @@ func onClickAd(_ bidmadAd: OpenBiddingBanner) {
     [interstitialAd showOnViewController:self];
 }
 
-// Swift
+// -- SWIFT --
 
 import OpenBiddingHelper
 
@@ -300,7 +300,12 @@ class InterstitialController: UIViewController, BIDMADOpenBiddingInterstitialDel
     NSLog(@"Close");
 }
 
-// Swift
+// onShowFailAd:error: 콜백은 v6.6.0 이상에서만 사용할 수 있습니다.
+- (void)onShowFailAd:(OpenBiddingInterstitial *)bidmadAd error:(NSError *)error {
+    NSLog(@"Show Fail");
+}
+
+// -- SWIFT --
 
 func onLoadAd(_ bidmadAd: OpenBiddingInterstitial) {
     print("ad is loaded")
@@ -320,6 +325,11 @@ func onClickAd(_ bidmadAd: OpenBiddingInterstitial) {
 
 func onCloseAd(_ bidmadAd: OpenBiddingInterstitial) {
     print("ad is closed")
+}
+
+// onShowFailAd:error: 콜백은 v6.6.0 이상에서만 사용할 수 있습니다.
+func onShowFailAd(_ bidmadAd: OpenBiddingInterstitial, error: Error) {
+    print("ad display failed")
 }
 ```
 </details>
@@ -360,7 +370,7 @@ func onCloseAd(_ bidmadAd: OpenBiddingInterstitial) {
     [rewardAd showOnViewController:self];
 }
 
-// Swift
+// -- SWIFT --
 
 import OpenBiddingHelper
 
@@ -420,7 +430,12 @@ class RewardVideoController: UIViewController, BIDMADOpenBiddingRewardVideoDeleg
     NSLog(@"Close");
 }
 
-// Swift
+// onShowFailAd:error: 콜백은 v6.6.0 이상에서만 사용할 수 있습니다.
+- (void)onShowFailAd:(OpenBiddingRewardVideo *)bidmadAd error:(NSError *)error {
+    NSLog(@"Show Fail");
+}
+
+// -- SWIFT --
 
 func onLoadAd(_ bidmadAd: OpenBiddingRewardVideo) {
     print("ad is loaded")
@@ -448,6 +463,11 @@ func onSkipAd(_ bidmadAd: OpenBiddingRewardVideo) {
 
 func onCloseAd(_ bidmadAd: OpenBiddingRewardVideo) {
     print("ad is closed")
+}
+
+// onShowFailAd:error: 콜백은 v6.6.0 이상에서만 사용할 수 있습니다.
+func onShowFailAd(_ bidmadAd: OpenBiddingRewardVideo, error: Error) {
+    print("ad display failed")
 }
 ```
 </details>
@@ -492,7 +512,7 @@ App Open 광고는 사용자가 앱을 포그라운드로 가져올 때, 앱 로
 
 @end
 
-// Swift
+// -- SWIFT --
 
 import OpenBiddingHelper
 
@@ -549,7 +569,12 @@ class AppOpenAdViewController: UIViewController, OpenBiddingAppOpenAdDelegate {
     NSLog(@"Load Fail");
 }
 
-// Swift
+// onShowFailAd:error: 콜백은 v6.6.0 이상에서만 사용할 수 있습니다.
+- (void)onShowFailAd:(OpenBiddingAppOpenAd *)bidmadAd error:(NSError *)error {
+    NSLog(@"Show Fail");
+}
+
+// -- SWIFT --
 
 func onLoadAd(_ bidmadAd: OpenBiddingAppOpenAd) {
     print("ad is loaded")
@@ -569,6 +594,11 @@ func onClickAd(_ bidmadAd: OpenBiddingAppOpenAd) {
 
 func onCloseAd(_ bidmadAd: OpenBiddingAppOpenAd) {
     print("ad is closed")
+}
+
+// onShowFailAd:error: 콜백은 v6.6.0 이상에서만 사용할 수 있습니다.
+func onShowFail(_ bidmadAd: OpenBiddingAppOpenAd, error: Error) {
+    print("ad display failed")
 }
 ```
 </details>
@@ -618,7 +648,7 @@ func onCloseAd(_ bidmadAd: OpenBiddingAppOpenAd) {
     ADOPLog.printInfo(@"Native Ad Fail: %@", error.localizedDescription);
 }
 
-// Swift
+// -- SWIFT --
 
 let ad: BidmadNativeAd! = BidmadNativeAd(zoneID: "Native Ad Zone ID")
 
@@ -668,7 +698,7 @@ func onLoadFail(_ bidmadAd: BidmadNativeAd, error: Error) {
 // ObjC
 [BidmadCommon setTestDeviceId:@"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"];
 
-// Swift
+// -- SWIFT --
 BidmadCommon.setTestDeviceId("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
 ```
 

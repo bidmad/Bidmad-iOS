@@ -68,4 +68,9 @@
     [[self InterstitialCallbackDisplay] setText:@"All Fail"];
 }
 
+- (void)onShowFailAd:(OpenBiddingInterstitial *)bidmadAd error:(NSError *)error {
+    ADOPLog.printInfo(@"Bidmad Sample App Interstitial Show Fail");
+    [[self InterstitialCallbackDisplay] setText:@"Show Fail"];
+}
+
 @end

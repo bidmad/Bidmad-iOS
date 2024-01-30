@@ -110,7 +110,7 @@ It is recommended to initialize only once when the app is launched. The followin
 // Objective C
 [BidmadCommon initializeSdk];
 
-// Swift
+// -- SWIFT --
 BidmadCommon.initializeSdk()
 ```
 
@@ -122,7 +122,7 @@ Also, you can be receiving the initialization success or failure callback w ith 
     NSLog(@"Bidmad Sample App: Initialized %@", isInitialized ? @"YES" : @"NO");
 }];
 
-// Swift
+// -- SWIFT --
 BidmadCommon.initializeSdk { isInitialized in
     print("Bidmad Sample App: \(isInitialized)")
 }
@@ -160,7 +160,7 @@ __weak IBOutlet UIView *bannerContainer;
     [bannerAd load];
 }
 
-// Swift
+// -- SWIFT --
 
 import OpenBiddingHelper
 
@@ -199,7 +199,7 @@ class BannerViewController: UIViewController, BIDMADOpenBiddingBannerDelegate {
     NSLog(@"LoadFail")
 }
 
-// Swift
+// -- SWIFT --
 
 func onLoadAd(_ bidmadAd: OpenBiddingBanner) {
     print("ad is loaded")
@@ -248,7 +248,7 @@ func onClickAd(_ bidmadAd: OpenBiddingBanner) {
     [interstitialAd showOnViewController:self];
 }
 
-// Swift
+// -- SWIFT --
 
 import OpenBiddingHelper
 
@@ -300,7 +300,12 @@ class InterstitialController: UIViewController, BIDMADOpenBiddingInterstitialDel
     NSLog(@"Close");
 }
 
-// Swift
+// onShowFailAd:error: callback is only available for v6.6.0 or higher
+- (void)onShowFailAd:(OpenBiddingInterstitial *)bidmadAd error:(NSError *)error {
+    NSLog(@"Show Fail");
+}
+
+// -- SWIFT --
 
 func onLoadAd(_ bidmadAd: OpenBiddingInterstitial) {
     print("ad is loaded")
@@ -320,6 +325,11 @@ func onClickAd(_ bidmadAd: OpenBiddingInterstitial) {
 
 func onCloseAd(_ bidmadAd: OpenBiddingInterstitial) {
     print("ad is closed")
+}
+
+// onShowFailAd:error: callback is only available for v6.6.0 or higher
+func onShowFailAd(_ bidmadAd: OpenBiddingInterstitial, error: Error) {
+    print("ad display failed")
 }
 ```
 </details>
@@ -360,7 +370,7 @@ func onCloseAd(_ bidmadAd: OpenBiddingInterstitial) {
     [rewardAd showOnViewController:self];
 }
 
-// Swift
+// -- SWIFT --
 
 import OpenBiddingHelper
 
@@ -420,7 +430,12 @@ class RewardVideoController: UIViewController, BIDMADOpenBiddingRewardVideoDeleg
     NSLog(@"Close");
 }
 
-// Swift
+// onShowFailAd:error: callback is only available for v6.6.0 or higher
+- (void)onShowFailAd:(OpenBiddingRewardVideo *)bidmadAd error:(NSError *)error {
+    NSLog(@"Show Fail");
+}
+
+// -- SWIFT --
 
 func onLoadAd(_ bidmadAd: OpenBiddingRewardVideo) {
     print("ad is loaded")
@@ -448,6 +463,11 @@ func onSkipAd(_ bidmadAd: OpenBiddingRewardVideo) {
 
 func onCloseAd(_ bidmadAd: OpenBiddingRewardVideo) {
     print("ad is closed")
+}
+
+// onShowFailAd:error: callback is only available for v6.6.0 or higher
+func onShowFailAd(_ bidmadAd: OpenBiddingRewardVideo, error: Error) {
+    print("ad display failed")
 }
 ```
 </details>
@@ -492,7 +512,7 @@ App Open ads are an ad format that monetizes the app load screen when a user bri
 
 @end
 
-// Swift
+// -- SWIFT --
 
 import OpenBiddingHelper
 
@@ -549,7 +569,12 @@ class AppOpenAdViewController: UIViewController, OpenBiddingAppOpenAdDelegate {
     NSLog(@"Load Fail");
 }
 
-// Swift
+// onShowFailAd:error: callback is only available for v6.6.0 or higher
+- (void)onShowFailAd:(OpenBiddingAppOpenAd *)bidmadAd error:(NSError *)error {
+    NSLog(@"Show Fail");
+}
+
+// -- SWIFT --
 
 func onLoadAd(_ bidmadAd: OpenBiddingAppOpenAd) {
     print("ad is loaded")
@@ -569,6 +594,11 @@ func onClickAd(_ bidmadAd: OpenBiddingAppOpenAd) {
 
 func onCloseAd(_ bidmadAd: OpenBiddingAppOpenAd) {
     print("ad is closed")
+}
+
+// onShowFailAd:error: callback is only available for v6.6.0 or higher
+func onShowFail(_ bidmadAd: OpenBiddingAppOpenAd, error: Error) {
+    print("ad display failed")
 }
 ```
 </details>
@@ -618,7 +648,7 @@ Native ads are ads that are designed and produced in a way unique to the applica
     ADOPLog.printInfo(@"Native Ad Fail: %@", error.localizedDescription);
 }
 
-// Swift
+// -- SWIFT --
 
 let ad: BidmadNativeAd! = BidmadNativeAd(zoneID: "Native Ad Zone ID")
 
@@ -666,7 +696,7 @@ Copy the test device ID on console and set it to the following code.
 // ObjC
 [BidmadCommon setTestDeviceId:@"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"];
 
-// Swift
+// -- SWIFT --
 BidmadCommon.setTestDeviceId("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
 ```
 

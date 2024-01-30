@@ -83,4 +83,9 @@
     [[self rewardCallbackDisplay] setText:@"All Fail"];
 }
 
+- (void)onShowFailAd:(OpenBiddingRewardVideo *)bidmadAd error:(NSError *)error {
+    ADOPLog.printInfo(@"Bidmad Sample App Reward Show Fail");
+    [[self rewardCallbackDisplay] setText:@"Show Fail"];
+}
+
 @end
