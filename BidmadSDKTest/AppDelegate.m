@@ -30,7 +30,7 @@
         ADOPLog.printInfo(@"Bidmad Sample App: Initialized %@", isInitialized ? @"YES" : @"NO");
     }];
     
-    bidmadAppOpenAd = [[BidmadAppOpenAd alloc] initWith:self.window.rootViewController zoneID:@"0ddd6401-0f19-49ee-b1f9-63e910f92e77"];
+    bidmadAppOpenAd = [[BidmadAppOpenAd alloc] initWithZoneID:@"0ddd6401-0f19-49ee-b1f9-63e910f92e77"];
     [bidmadAppOpenAd setDelegate:self];
     
     [BidmadCommon setIsChildDirectedAds:YES];
@@ -87,7 +87,7 @@
 }
 
 - (void)reloadAppOpenAd {
-    bidmadAppOpenAd = [[BidmadAppOpenAd alloc] initWith:self.window.rootViewController zoneID:@"0ddd6401-0f19-49ee-b1f9-63e910f92e77"];
+    bidmadAppOpenAd = [[BidmadAppOpenAd alloc] initWithZoneID:@"0ddd6401-0f19-49ee-b1f9-63e910f92e77"];
 }
 
 - (void)onLoadFailAd:(OpenBiddingAppOpenAd *)bidmadAd error:(NSError *)error {

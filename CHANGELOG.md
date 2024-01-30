@@ -1,3 +1,7 @@
+#### Version 6.6.0
+BidmadSDK and OpenBiddingHelper now support Show-Fail callback
+AppOpenAd Type initializer method no longer requires View Controller
+
 #### Version 6.5.0
 BidmadSDK does not rely on AdMob libraries
 Bug fixes

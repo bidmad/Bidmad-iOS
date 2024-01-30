@@ -24,7 +24,7 @@
     
     [[BIDMADSetting sharedInstance] setIsDebug:YES];
     
-    self->appOpenAd = [[BidmadAppOpenAd alloc] initWith:self zoneID:@"0ddd6401-0f19-49ee-b1f9-63e910f92e77"];
+    self->appOpenAd = [[BidmadAppOpenAd alloc] initWithZoneID:@"0ddd6401-0f19-49ee-b1f9-63e910f92e77"];
     [self->appOpenAd setDelegate: self];
     
     // Bidmad AppOpenAd Ads can be set with Custom Unique ID with the following method.
