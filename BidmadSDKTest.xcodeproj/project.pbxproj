@@ -266,9 +266,7 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-BidmadSDKTest/Pods-BidmadSDKTest-frameworks.sh",
 				"${PODS_ROOT}/AdFitSDK/Frameworks/AdFitSDK.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ADOPUtility/ADOPUtility.framework/ADOPUtility",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/Fyber_Marketplace_SDK/IASDKCore.framework/IASDKCore",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/OpenWrapSDK/OpenWrap/OMSDK_Pubmatic.framework/OMSDK_Pubmatic",
@@ -278,9 +276,7 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AdFitSDK.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ADOPUtility.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IASDKCore.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OMSDK_Pubmatic.framework",
@@ -317,7 +313,9 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-BidmadSDKTest/Pods-BidmadSDKTest-resources.sh",
 				"${PODS_ROOT}/Ads-Global/SDK/PAGAdSDK.bundle",
-				"${PODS_ROOT}/AppLovinSDK/applovin-ios-sdk-11.11.3/AppLovinSDKResources.bundle",
+				"${PODS_ROOT}/AppLovinSDK/applovin-ios-sdk-12.2.1/AppLovinSDKResources.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/BidmadSDK/BidmadSDK_Privacy.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/Google-Mobile-Ads-SDK/GoogleMobileAdsResources.bundle",
 				"${PODS_ROOT}/OpenWrapSDK/OpenWrapSDK/POBResources.bundle",
 				"${PODS_ROOT}/OpenWrapSDK/OpenWrapSDK/POBNativeResources.bundle",
 			);
@@ -325,6 +323,8 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/PAGAdSDK.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AppLovinSDKResources.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/BidmadSDK_Privacy.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMobileAdsResources.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/POBResources.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/POBNativeResources.bundle",
 			);
