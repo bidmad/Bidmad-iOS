@@ -1,3 +1,7 @@
+#### Version 6.6.1
+BidmadSDK supports PrivacyManifest file
+IronSource banner mispositioning bug fixed 
+
 #### Version 6.6.0
 BidmadSDK and OpenBiddingHelper now support Show-Fail callback
 AppOpenAd Type initializer method no longer requires View Controller
