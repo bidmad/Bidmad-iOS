@@ -20,6 +20,7 @@
 		46EFA9FD1F6908FB002B7C96 /* BannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46EFA9FC1F6908FB002B7C96 /* BannerViewController.m */; };
 		46EFAA001F690920002B7C96 /* InterstitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46EFA9FF1F690920002B7C96 /* InterstitialViewController.m */; };
 		BC27F9DC355F6B8D862731C3 /* Pods_BidmadSDKTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D05A6B87845E40BAF189E0E6 /* Pods_BidmadSDKTest.framework */; };
+		E378174F2BCCC7E8009BFCAA /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = E378174E2BCCC7E8009BFCAA /* PrivacyInfo.xcprivacy */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -63,6 +64,7 @@
 		53D269D73A93BC22F904EC06 /* Pods-BidmadSDKTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BidmadSDKTest.release.xcconfig"; path = "Target Support Files/Pods-BidmadSDKTest/Pods-BidmadSDKTest.release.xcconfig"; sourceTree = "<group>"; };
 		79122B1AD289A3DE269B1C9E /* Pods-BidmadSDKTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BidmadSDKTest.debug.xcconfig"; path = "Target Support Files/Pods-BidmadSDKTest/Pods-BidmadSDKTest.debug.xcconfig"; sourceTree = "<group>"; };
 		D05A6B87845E40BAF189E0E6 /* Pods_BidmadSDKTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BidmadSDKTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E378174E2BCCC7E8009BFCAA /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +130,7 @@
 				46EFA9E91F69047F002B7C96 /* LaunchScreen.storyboard */,
 				46EFA9E71F69047F002B7C96 /* Assets.xcassets */,
 				46EFA9EC1F69047F002B7C96 /* Info.plist */,
+				E378174E2BCCC7E8009BFCAA /* PrivacyInfo.xcprivacy */,
 			);
 			path = BidmadSDKTest;
 			sourceTree = "<group>";
@@ -229,6 +232,7 @@
 				46EFA9EB1F69047F002B7C96 /* LaunchScreen.storyboard in Resources */,
 				0D82B290282A3D6A00A13696 /* NativeAd.xib in Resources */,
 				46EFA9E81F69047F002B7C96 /* Assets.xcassets in Resources */,
+				E378174F2BCCC7E8009BFCAA /* PrivacyInfo.xcprivacy in Resources */,
 				46EFA9E61F69047F002B7C96 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -303,7 +307,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
-			shellScript = "bash \"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/AdFitSDK.framework/strip-frameworks.sh\"\n";
+			shellScript = "# bash \"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/AdFitSDK.framework/strip-frameworks.sh\"\n";
 		};
 		480F70E14A4B32400415EA87 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;

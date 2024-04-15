@@ -1,6 +1,6 @@
 PODS:
   - AdFitSDK (3.12.7)
-  - ADOPUtility (6.6.1)
+  - ADOPUtility (6.6.2)
   - Ads-Global (5.8.0.7):
     - Ads-Global/BUAdSDK (= 5.8.0.7)
   - Ads-Global/BUAdSDK (5.8.0.7):
@@ -204,7 +204,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   AdFitSDK: dc7a5a2ed6e432355d7429eed27c8f88d46da4cd
-  ADOPUtility: a60713805a77d9d37ec9032b1a5edde3bb0ce4b3
+  ADOPUtility: a1d6f5e404e4e3bea79e66d5a3e5bef0c3ec2a10
   Ads-Global: 2f19513311f4e360bcad037a2edf1dc2772ab224
   AppLovinSDK: ed2ea453fc6cc836f4f829046865e6731010c139
   BidmadAdFitAdapter: 649af5c7f27b2309a04c8e6bebb249ade5bad2d8
@@ -243,4 +243,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: e88b940d7b191d929f94c88b81c7170ac404f86a
 
-COCOAPODS: 1.14.3
+COCOAPODS: 1.15.2

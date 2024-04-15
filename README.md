@@ -19,7 +19,7 @@
 ## BidmadSDK Installation Guide
 
 #### 개발 환경
-- Xcode 14.1 버전 (Xcode 최소 사양 14.1)
+- Xcode 최소 사양 15.3
 - BASE SDK : iOS
 - iOS Deployment Target : 12.0
 #### SDK 설치 방법
@@ -63,6 +63,9 @@ pod install
 3. Build Settings ( Target → Build Settings ) <br>
     - Enable Bitcode 를 No로 설정<br>
         ![Enable_Bitcode](https://i.imgur.com/aXOBmr1.png)<br>
+
+#### 앱 제출 및 개인정보 보호 설문조사
+App Store에 애플리케이션을 제출할 때 다음 가이드를 참고하여 개인 정보 보호 정책 및 설문조사를 올바르게 설정하세요. [Guide for Privacy Manifest & Privacy Survey](https://github.com/bidmad/Bidmad-iOS/wiki/Guide-for-Privacy-Manifest-&-Privacy-Survey-%5BKR%5D)
 
 ## BidmadSDK Interface Guide
 
