@@ -7,7 +7,6 @@
 //
 
 #import "AppOpenAdViewController.h"
-#import <ADOPUtility/ADOPLog.h>
 @import OpenBiddingHelper;
 
 @interface AppOpenAdViewController () <OpenBiddingAppOpenAdDelegate> {
@@ -52,32 +51,32 @@
 #pragma mark AppOpenAd Delegate Methods
 
 - (void)onLoadAd:(OpenBiddingAppOpenAd *)bidmadAd {
-    ADOPLog.printInfo(@"Bidmad Sample App AppOpenAd Load");
+    NSLog(@"Bidmad Sample App AppOpenAd Load");
     [self.callbackLabel setText:@"Load"];
 }
 
 - (void)onShowAd:(OpenBiddingAppOpenAd *)bidmadAd {
-    ADOPLog.printInfo(@"Bidmad Sample App AppOpenAd Show");
+    NSLog(@"Bidmad Sample App AppOpenAd Show");
     [self.callbackLabel setText:@"Show"];
 }
 
 - (void)onClickAd:(OpenBiddingAppOpenAd *)bidmadAd {
-    ADOPLog.printInfo(@"Bidmad Sample App AppOpenAd Click");
+    NSLog(@"Bidmad Sample App AppOpenAd Click");
     [self.callbackLabel setText:@"Click"];
 }
 
 - (void)onCloseAd:(OpenBiddingAppOpenAd *)bidmadAd {
-    ADOPLog.printInfo(@"Bidmad Sample App AppOpenAd Close");
+    NSLog(@"Bidmad Sample App AppOpenAd Close");
     [self.callbackLabel setText:@"Close"];
 }
 
 - (void)onLoadFailAd:(OpenBiddingAppOpenAd *)bidmadAd error:(NSError *)error {
-    ADOPLog.printInfo(@"Bidmad Sample App AppOpenAd All Fail");
+    NSLog(@"Bidmad Sample App AppOpenAd All Fail");
     [self.callbackLabel setText:@"All Fail"];
 }
 
 - (void)onShowFailAd:(OpenBiddingAppOpenAd *)bidmadAd error:(NSError *)error {
-    ADOPLog.printInfo(@"Bidmad Sample App AppOpenAd Show Fail");
+    NSLog(@"Bidmad Sample App AppOpenAd Show Fail");
     [self.callbackLabel setText:@"Show Fail"];
 }
 

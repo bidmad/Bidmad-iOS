@@ -5,9 +5,7 @@
 //  Created by Seungsub Oh on 2022/04/15.
 //
 
-#import <ADOPUtility/ADOPUtility.h>
 #import "NativeAdViewController.h"
-#import <ADOPUtility/ADOPLog.h>
 
 @interface NativeAdViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;

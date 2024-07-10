@@ -7,7 +7,6 @@
 //
 
 #import "InterstitialViewController.h"
-#import <ADOPUtility/ADOPLog.h>
 @import OpenBiddingHelper;
 
 @interface InterstitialViewController () <BIDMADOpenBiddingInterstitialDelegate> {
@@ -41,7 +40,7 @@
 }
 
 - (IBAction)backBtnPressed:(id)sender {
-    ADOPLog.printInfo(@"Back Button Pressed");
+    NSLog(@"Back Button Pressed");
     
     [self dismissViewControllerAnimated:YES completion:^{ }];
 }
@@ -49,27 +48,27 @@
 #pragma mark Interstitial Delegate
 
 - (void)onLoadAd:(OpenBiddingInterstitial *)bidmadAd {
-    ADOPLog.printInfo(@"Bidmad Sample App Interstitial Load");
+    NSLog(@"Bidmad Sample App Interstitial Load");
     [[self InterstitialCallbackDisplay] setText:@"Load"];
 }
 
 - (void)onShowAd:(OpenBiddingInterstitial *)bidmadAd {
-    ADOPLog.printInfo(@"Bidmad Sample App Interstitial Show");
+    NSLog(@"Bidmad Sample App Interstitial Show");
     [[self InterstitialCallbackDisplay] setText:@"Show"];
 }
 
 - (void)onCloseAd:(OpenBiddingInterstitial *)bidmadAd {
-    ADOPLog.printInfo(@"Bidmad Sample App Interstitial Close");
+    NSLog(@"Bidmad Sample App Interstitial Close");
     [[self InterstitialCallbackDisplay] setText:@"Close"];
 }
 
 - (void)onLoadFailAd:(OpenBiddingInterstitial *)bidmadAd error:(NSError *)error {
-    ADOPLog.printInfo(@"Bidmad Sample App Interstitial AllFail");
+    NSLog(@"Bidmad Sample App Interstitial AllFail");
     [[self InterstitialCallbackDisplay] setText:@"All Fail"];
 }
 
 - (void)onShowFailAd:(OpenBiddingInterstitial *)bidmadAd error:(NSError *)error {
-    ADOPLog.printInfo(@"Bidmad Sample App Interstitial Show Fail");
+    NSLog(@"Bidmad Sample App Interstitial Show Fail");
     [[self InterstitialCallbackDisplay] setText:@"Show Fail"];
 }
 

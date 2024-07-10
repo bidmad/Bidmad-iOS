@@ -8,7 +8,6 @@
 
 #import "AppDelegate.h"
 #import <AppTrackingTransparency/AppTrackingTransparency.h>
-#import <ADOPUtility/ADOPLog.h>
 @import OpenBiddingHelper;
 @import BidmadSDK;
 
@@ -27,7 +26,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     didRequestATTPopup = NO;
     [BidmadCommon initializeSdkWithCompletionHandler:^(BOOL isInitialized) {
-        ADOPLog.printInfo(@"Bidmad Sample App: Initialized %@", isInitialized ? @"YES" : @"NO");
+        NSLog(@"Bidmad Sample App: Initialized %@", isInitialized ? @"YES" : @"NO");
     }];
     
     bidmadAppOpenAd = [[BidmadAppOpenAd alloc] initWithZoneID:@"0ddd6401-0f19-49ee-b1f9-63e910f92e77"];
@@ -37,14 +36,14 @@
     [BidmadCommon setUserConsentStatusForCCPACompliance:YES];
     
     [BidmadCommon setIsDebug:YES];
-    ADOPLog.printInfo(@"Bidmad Sample App: [BidmadCommon isDebug] is %@", [NSNumber numberWithBool:[BidmadCommon isDebug]]);
-    ADOPLog.printInfo(@"Bidmad Sample App: [BidmadCommon bidmadVersion] is %@", [BidmadCommon bidmadVersion]);
+    NSLog(@"Bidmad Sample App: [BidmadCommon isDebug] is %@", [NSNumber numberWithBool:[BidmadCommon isDebug]]);
+    NSLog(@"Bidmad Sample App: [BidmadCommon bidmadVersion] is %@", [BidmadCommon bidmadVersion]);
     
-    ADOPLog.printInfo(@"Bidmad Sample App: [BidmadCommon isChildDirectedTreament] is %@", [BidmadCommon isChildDirectedTreatment]);
-    ADOPLog.printInfo(@"Bidmad Sample App: [BidmadCommon isUserConsentCCPA] is %@", [BidmadCommon isUserConsentCCPA]);
+    NSLog(@"Bidmad Sample App: [BidmadCommon isChildDirectedTreament] is %@", [BidmadCommon isChildDirectedTreatment]);
+    NSLog(@"Bidmad Sample App: [BidmadCommon isUserConsentCCPA] is %@", [BidmadCommon isUserConsentCCPA]);
     
     [BidmadCommon setTestDeviceId:@"0772a1fad2e99786a321e67ac9de4a0f"];
-    ADOPLog.printInfo(@"Bidmad Sample App: [BidmadCommon testDeviceId] is %@", [BidmadCommon testDeviceId]);
+    NSLog(@"Bidmad Sample App: [BidmadCommon testDeviceId] is %@", [BidmadCommon testDeviceId]);
     
     return YES;
 }
@@ -58,27 +57,27 @@
 }
 
 - (void)onConsentFormLoadSuccess {
-    ADOPLog.printInfo(@"Consent Form Load Success");
+    NSLog(@"Consent Form Load Success");
     [gdpr showForm];
 }
 
 - (void)onConsentFormLoadFailure:(NSError *)formError {
-    ADOPLog.printInfo(@"Consent Form Load Failed");
+    NSLog(@"Consent Form Load Failed");
 }
 
 - (void)onConsentInfoUpdateSuccess {
-    ADOPLog.printInfo(@"Info Update");
+    NSLog(@"Info Update");
     [gdpr loadForm];
 }
 
 - (void)onConsentInfoUpdateFailure:(NSError *)formError {
-    ADOPLog.printInfo(@"Info Update Fail");
+    NSLog(@"Info Update Fail");
 }
 
 - (void)onConsentFormDismissed:(NSError *)formError {
-    ADOPLog.printInfo(@"Consent Form Dismissed");
+    NSLog(@"Consent Form Dismissed");
     if (formError != nil) {
-        ADOPLog.printInfo(@"Receiving Consent Failed");
+        NSLog(@"Receiving Consent Failed");
     }
 }
 
@@ -91,27 +90,27 @@
 }
 
 - (void)onLoadFailAd:(OpenBiddingAppOpenAd *)bidmadAd error:(NSError *)error {
-    ADOPLog.printInfo(@"BidmadSDK App Open Ad Callback → AllFail");
+    NSLog(@"BidmadSDK App Open Ad Callback → AllFail");
     [self callbackLabelViewShow: @"App Open Ad Callback → AllFail"];
 }
 
 - (void)onLoadAd:(OpenBiddingAppOpenAd *)bidmadAd {
-    ADOPLog.printInfo(@"BidmadSDK App Open Ad Callback → Load");
+    NSLog(@"BidmadSDK App Open Ad Callback → Load");
     [self callbackLabelViewShow: @"App Open Ad Callback → Load"];
 }
 
 - (void)onShowAd:(OpenBiddingAppOpenAd *)bidmadAd {
-    ADOPLog.printInfo(@"BidmadSDK App Open Ad Callback → Show");
+    NSLog(@"BidmadSDK App Open Ad Callback → Show");
     [self callbackLabelViewShow: @"App Open Ad Callback → Show"];
 }
 
 - (void)onClickAd:(OpenBiddingAppOpenAd *)bidmadAd {
-    ADOPLog.printInfo(@"BidmadSDK App Open Ad Callback → Click");
+    NSLog(@"BidmadSDK App Open Ad Callback → Click");
     [self callbackLabelViewShow: @"App Open Ad Callback → Click"];
 }
 
 - (void)onCloseAd:(OpenBiddingAppOpenAd *)bidmadAd {
-    ADOPLog.printInfo(@"BidmadSDK App Open Ad Callback → Close");
+    NSLog(@"BidmadSDK App Open Ad Callback → Close");
     [self callbackLabelViewShow: @"App Open Ad Callback → Close"];
 }
 
@@ -164,11 +163,11 @@
             bidmadStrongify(self)
             
             if(status == BidmadAuthorizationStatusAuthorized){
-                ADOPLog.printInfo(@"Bidmad Sample App: IDFA Authorized");
+                NSLog(@"Bidmad Sample App: IDFA Authorized");
             }else if(status == BidmadAuthorizationStatusDenied) {
-                ADOPLog.printInfo(@"Bidmad Sample App: IDFA Unauthorized");
+                NSLog(@"Bidmad Sample App: IDFA Unauthorized");
             }else if(status == BidmadAuthorizationStatusLessThaniOS14) {
-                ADOPLog.printInfo(@"Bidmad Sample App: iOS Version lower than iOS 14");
+                NSLog(@"Bidmad Sample App: iOS Version lower than iOS 14");
             }
             
             self->didRequestATTPopup = YES;

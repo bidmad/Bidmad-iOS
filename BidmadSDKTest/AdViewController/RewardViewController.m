@@ -6,7 +6,6 @@
 //
 
 #import "RewardViewController.h"
-#import <ADOPUtility/ADOPLog.h>
 @import OpenBiddingHelper;
 
 @interface RewardViewController () <BIDMADOpenBiddingRewardVideoDelegate> {
@@ -19,7 +18,7 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
     
-    ADOPLog.printInfo(@" deviceId: %@", [BIDMADUtil identifierForAdvertising]);
+    NSLog(@" deviceId: %@", [BIDMADUtil identifierForAdvertising]);
     
     NSString *zoneID = @"29e1ef67-98d2-47b3-9fa2-9192327dd75d";
     rewardAd = [[BidmadRewardAd alloc] initWithZoneID:zoneID];
@@ -41,7 +40,7 @@
 }
 
 - (IBAction)backBtnPressed:(id)sender {
-    ADOPLog.printInfo(@"Back Button Pressed");
+    NSLog(@"Back Button Pressed");
     
     [self dismissViewControllerAnimated:YES completion:^{ }];
 }
@@ -49,42 +48,42 @@
 #pragma mark Reward Delegate
 
 - (void)onSkipAd:(OpenBiddingRewardVideo *)bidmadAd {
-    ADOPLog.printInfo(@"Bidmad Sample App Reward Skipped");
+    NSLog(@"Bidmad Sample App Reward Skipped");
     [[self rewardCallbackDisplay] setText:@"Skipped"];
 }
 
 - (void)onLoadAd:(OpenBiddingRewardVideo *)bidmadAd {
-    ADOPLog.printInfo(@"Bidmad Sample App Reward Load");
+    NSLog(@"Bidmad Sample App Reward Load");
     [[self rewardCallbackDisplay] setText:@"Load"];
 }
 
 - (void)onShowAd:(OpenBiddingRewardVideo *)bidmadAd {
-    ADOPLog.printInfo(@"Bidmad Sample App Reward Show");
+    NSLog(@"Bidmad Sample App Reward Show");
     [[self rewardCallbackDisplay] setText:@"Show"];
 }
 
 - (void)onClickAd:(OpenBiddingRewardVideo *)bidmadAd {
-    ADOPLog.printInfo(@"Bidmad Sample App Reward Click");
+    NSLog(@"Bidmad Sample App Reward Click");
     [[self rewardCallbackDisplay] setText:@"Click"];
 }
 
 - (void)onCloseAd:(OpenBiddingRewardVideo *)bidmadAd {
-    ADOPLog.printInfo(@"Bidmad Sample App Reward Close");
+    NSLog(@"Bidmad Sample App Reward Close");
     [[self rewardCallbackDisplay] setText:@"Close"];
 }
 
 - (void)onCompleteAd:(OpenBiddingRewardVideo *)bidmadAd {
-    ADOPLog.printInfo(@"Bidmad Sample App Reward Success");
+    NSLog(@"Bidmad Sample App Reward Success");
     [[self rewardCallbackDisplay] setText:@"Success"];
 }
 
 - (void)onLoadFailAd:(OpenBiddingRewardVideo *)bidmadAd error:(NSError *)error {
-    ADOPLog.printInfo(@"Bidmad Sample App Reward All Fail");
+    NSLog(@"Bidmad Sample App Reward All Fail");
     [[self rewardCallbackDisplay] setText:@"All Fail"];
 }
 
 - (void)onShowFailAd:(OpenBiddingRewardVideo *)bidmadAd error:(NSError *)error {
-    ADOPLog.printInfo(@"Bidmad Sample App Reward Show Fail");
+    NSLog(@"Bidmad Sample App Reward Show Fail");
     [[self rewardCallbackDisplay] setText:@"Show Fail"];
 }
 

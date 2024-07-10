@@ -269,9 +269,7 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-BidmadSDKTest/Pods-BidmadSDKTest-frameworks.sh",
-				"${PODS_ROOT}/AdFitSDK/Frameworks/AdFitSDK.framework",
-				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ADOPUtility/ADOPUtility.framework/ADOPUtility",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/BidmadSDK/BidmadSDK.framework/BidmadSDK",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/Fyber_Marketplace_SDK/IASDKCore.framework/IASDKCore",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/OpenWrapSDK/OpenWrap/OMSDK_Pubmatic.framework/OMSDK_Pubmatic",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/TeadsSDK/Core/TeadsSDK.framework/TeadsSDK",
@@ -279,9 +277,7 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AdFitSDK.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ADOPUtility.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BidmadSDK.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IASDKCore.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OMSDK_Pubmatic.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TeadsSDK.framework",
@@ -319,6 +315,7 @@
 				"${PODS_ROOT}/Ads-Global/SDK/PAGAdSDK.bundle",
 				"${PODS_ROOT}/AppLovinSDK/applovin-ios-sdk-12.2.1/AppLovinSDKResources.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/BidmadSDK/BidmadSDK_Privacy.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/FBAudienceNetwork/FBAudienceNetwork.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/Google-Mobile-Ads-SDK/GoogleMobileAdsResources.bundle",
 				"${PODS_ROOT}/OpenWrapSDK/OpenWrapSDK/POBResources.bundle",
 				"${PODS_ROOT}/OpenWrapSDK/OpenWrapSDK/POBNativeResources.bundle",
@@ -328,6 +325,7 @@
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/PAGAdSDK.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AppLovinSDKResources.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/BidmadSDK_Privacy.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FBAudienceNetwork.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMobileAdsResources.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/POBResources.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/POBNativeResources.bundle",
@@ -504,7 +502,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = MWF8UC94P5;
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = MWF8UC94P5;
 				ENABLE_BITCODE = NO;
@@ -519,11 +517,11 @@
 				INFOPLIST_FILE = BidmadSDKTest/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 11.1;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.adop.BidmadSample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.adop.mnctest;
 				PRODUCT_NAME = BidmadSimTest;
 				PROVISIONING_PROFILE_SPECIFIER = AdopSampleDev;
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Techlabs Test";
@@ -546,7 +544,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = MWF8UC94P5;
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = MWF8UC94P5;
 				ENABLE_BITCODE = NO;
@@ -561,11 +559,11 @@
 				INFOPLIST_FILE = BidmadSDKTest/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 11.1;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.adop.BidmadSample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.adop.mnctest;
 				PRODUCT_NAME = BidmadSimTest;
 				PROVISIONING_PROFILE_SPECIFIER = AdopSampleDev;
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Techlabs Test";

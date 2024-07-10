@@ -7,7 +7,6 @@
 //
 
 #import "BannerViewController.h"
-#import <ADOPUtility/ADOPLog.h>
 #import <CommonCrypto/CommonCrypto.h>
 @import OpenBiddingHelper;
 
@@ -46,7 +45,7 @@
 #pragma mark Banner Deleagate
 
 - (IBAction)backBtn:(id)sender {
-    ADOPLog.printInfo(@"Back Button Pressed");
+    NSLog(@"Back Button Pressed");
     
     [bannerAd remove];     //광고 삭제
     [self dismissViewControllerAnimated:YES completion:^{
@@ -56,17 +55,17 @@
 
 - (void)onLoadAd:(OpenBiddingBanner *)bidmadAd {
     [[self bannerCallbackDisplay] setText:@"Load"];
-    ADOPLog.printInfo(@"Bidmad Sample App Banner Load");
+    NSLog(@"Bidmad Sample App Banner Load");
 }
 
 - (void)onClickAd:(OpenBiddingBanner *)bidmadAd {
     [[self bannerCallbackDisplay] setText:@"Click"];
-    ADOPLog.printInfo(@"Bidmad Sample App Banner Click");
+    NSLog(@"Bidmad Sample App Banner Click");
 }
 
 - (void)onLoadFailAd:(OpenBiddingBanner *)bidmadAd error:(NSError *)error {
     [[self bannerCallbackDisplay] setText:@"All Fail"];
-    ADOPLog.printInfo(@"Bidmad Sample App Banner All Fail");
+    NSLog(@"Bidmad Sample App Banner All Fail");
 }
 
 @end
