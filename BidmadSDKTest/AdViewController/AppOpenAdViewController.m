@@ -50,22 +50,22 @@
 
 #pragma mark AppOpenAd Delegate Methods
 
-- (void)onLoadAd:(OpenBiddingAppOpenAd *)bidmadAd {
+- (void)onLoadAd:(OpenBiddingAppOpenAd *)bidmadAd info:(BidmadInfo *)info {
     NSLog(@"Bidmad Sample App AppOpenAd Load");
     [self.callbackLabel setText:@"Load"];
 }
 
-- (void)onShowAd:(OpenBiddingAppOpenAd *)bidmadAd {
+- (void)onShowAd:(OpenBiddingAppOpenAd *)bidmadAd info:(BidmadInfo *)info {
     NSLog(@"Bidmad Sample App AppOpenAd Show");
     [self.callbackLabel setText:@"Show"];
 }
 
-- (void)onClickAd:(OpenBiddingAppOpenAd *)bidmadAd {
+- (void)onClickAd:(OpenBiddingAppOpenAd *)bidmadAd info:(BidmadInfo *)info {
     NSLog(@"Bidmad Sample App AppOpenAd Click");
     [self.callbackLabel setText:@"Click"];
 }
 
-- (void)onCloseAd:(OpenBiddingAppOpenAd *)bidmadAd {
+- (void)onCloseAd:(OpenBiddingAppOpenAd *)bidmadAd info:(BidmadInfo *)info {
     NSLog(@"Bidmad Sample App AppOpenAd Close");
     [self.callbackLabel setText:@"Close"];
 }
@@ -75,7 +75,7 @@
     [self.callbackLabel setText:@"All Fail"];
 }
 
-- (void)onShowFailAd:(OpenBiddingAppOpenAd *)bidmadAd error:(NSError *)error {
+- (void)onShowFailAd:(OpenBiddingAppOpenAd *)bidmadAd info:(BidmadInfo *)info error:(NSError *)error {
     NSLog(@"Bidmad Sample App AppOpenAd Show Fail");
     [self.callbackLabel setText:@"Show Fail"];
 }

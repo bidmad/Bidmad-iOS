@@ -6,22 +6,28 @@ target 'BidmadSDKTest' do
   use_frameworks!
 
   # NECESSARY
-  pod 'BidmadSDK', '6.7.0'
-  pod 'OpenBiddingHelper', '6.7.0'
-  pod 'BidmadUnityAdsAdapter', '4.9.3.5'
-  pod 'BidmadGoogleAdMobAdapter', '11.2.0.5'
-  pod 'BidmadGoogleAdManagerAdapter', '11.2.0.5'
-  pod 'BidmadAppLovinAdapter', '12.2.1.5'
-  pod 'BidmadUnityAdsAdapter', '4.9.3.5'
-  pod 'BidmadPangleAdapter', '5.8.0.7.5'
-  pod 'BidmadFyberAdapter', '8.2.6.5'
-  pod 'BidmadVungleAdapter', '7.2.2.5'
-  pod 'BidmadPubmaticAdapter', '3.2.0.5'
-  pod 'BidmadADOPCoupangAdapter', '1.0.0.5'
-  pod 'BidmadPartners/AdMobBidding', '1.0.4'
+  pod "BidmadSDK", "6.11.0"
+  pod "OpenBiddingHelper", "6.11.0"
+  pod "BidmadAdpieAdapter", "1.6.1.10.0"
+  pod "BidmadAdPopcornAdapter", "2.6.5.10.0"
+  pod "BidmadPangleAdapter", "6.2.0.7.10.0"
+  pod "BidmadAdFitAdapter", "3.12.7.10.0"
+  pod "BidmadUnityAdsAdapter", "4.12.3.10.0"
+  pod "BidmadVungleAdapter", "7.4.1.10.0"
+  pod "BidmadAppLovinAdapter", "13.0.0.10.0"
+  pod "BidmadGoogleAdMobAdapter", "11.10.0.10.0"
+  pod "BidmadGoogleAdManagerAdapter", "11.10.0.10.0"
+  pod "BidmadFyberAdapter", "8.3.2.10.0"
+  pod "BidmadIronSourceAdapter", "8.3.0.0.10.0"
+  pod "BidmadPartners/AdMobBidding", "1.0.5"
+  pod "BidmadAtomAdapter", "1.0.0.10.0"
   
   # OPTIONAL
-  pod 'BidmadTeadsAdapter', '5.0.27.5'
-  pod 'BidmadAtomAdapter', '1.0.0.5'
+  pod "BidmadAllianceInternetAdapter", "1.0.0.10.0"
+  pod "BidmadCoviAdapter", "1.0.0.10.0"
+  pod "BidmadMobonAdapter", "0.6.17.10.0"
+  pod "BidmadMobwithAdapter", "1.0.0.10.0"
+  pod "BidmadPubmaticAdapter", "3.2.0.10.0"
+  pod "BidmadTeadsAdapter", "5.0.27.10.0"
 
 end

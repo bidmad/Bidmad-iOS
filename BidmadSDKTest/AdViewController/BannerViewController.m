@@ -53,12 +53,12 @@
     }];
 }
 
-- (void)onLoadAd:(OpenBiddingBanner *)bidmadAd {
+- (void)onLoadAd:(OpenBiddingBanner *)bidmadAd info:(BidmadInfo *)info {
     [[self bannerCallbackDisplay] setText:@"Load"];
     NSLog(@"Bidmad Sample App Banner Load");
 }
 
-- (void)onClickAd:(OpenBiddingBanner *)bidmadAd {
+- (void)onClickAd:(OpenBiddingBanner *)bidmadAd info:(BidmadInfo *)info {
     [[self bannerCallbackDisplay] setText:@"Click"];
     NSLog(@"Bidmad Sample App Banner Click");
 }

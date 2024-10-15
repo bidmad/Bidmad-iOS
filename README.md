@@ -76,12 +76,15 @@ App Store에 애플리케이션을 제출할 때 다음 가이드를 참고하�
 
 6.3.5 버전 이하에서 6.4.0 버전 이상으로 업데이트하시는 앱오픈 광고 / 네이티브 광고 인터페이스 사용자의 경우 [AppOpen and NativeAd Migration Guide for 6.4.0](https://github.com/bidmad/Bidmad-iOS/wiki/AppOpen-and-NativeAd-Migration-Guide-for-6.4.0-%5BKOR%5D)를 참고해 앱 업데이트를 진행하십시오. 
 
-Xcode 프로젝트 info.plist 에 다음 키를 포함합니다.<br>
-1. ADOP Insight 에서 확인할 수 있는 iOS 용 AppKey ("[App Key 찾기](https://github.com/bidmad/SDK/wiki/Find-your-app-key%5BKR%5D)" 가이드를 참고하십시오) <br>
+[!IMPORTANT]BidmadSDK-iOS v6.11.0 부터, 이전 버전에서 사용되던 AppKey는 AppDomain으로 변경되었습니다.
+**AppDomain은 기존 Appkeys와 호환되지 않으므로 BidmadSDK를 초기화하기 위해선 새로운 AppDomain을 발급받아야 합니다.**<br>
+BidmadSDK-iOS v6.11.0 으로 업데이트하는 경우 **Techlabs 플랫폼 운영팀**에 문의해주세요.
+
+1. Techlabs 운영팀으로부터 전달받은 AppDomain 값을 다음과 같이 info.plist에 기입하십시오.<br>
 
 ```
-<key>BidmadAppKey</key>
-<string>xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx</string>
+<key>BidmadAppDomain</key>
+<string>**YOUR-APP-DOMAIN**</string>
 ```
 
 2. AdMob 대시보드 UI에서 확인 가능한 iOS 용 애드몹 ID ("[App Key 찾기](https://github.com/bidmad/SDK/wiki/Find-your-app-key%5BKR%5D)" 가이드를 참고하십시오) <br>
@@ -189,28 +192,29 @@ class BannerViewController: UIViewController, BIDMADOpenBiddingBannerDelegate {
 ```
 // Objective C
 
-- (void)onLoadAd:(OpenBiddingBanner *)bidmadAd {
+- (void)onLoadAd:(OpenBiddingBanner *)bidmadAd info:(BidmadInfo *)info {
     NSLog(@"Load")
 }
 
-- (void)onClickAd:(OpenBiddingBanner *)bidmadAd {
+- (void)onClickAd:(OpenBiddingBanner *)bidmadAd info:(BidmadInfo *)info {
     NSLog(@"Click")
 }
 
-- (void)onLoadFailAd:(OpenBiddingBanner *)bidmadAd error:(NSError * _Nonnull)error {
+- (void)onLoadFailAd:(OpenBiddingBanner *)bidmadAd error:(NSError *)error {
     NSLog(@"LoadFail")
 }
 
 // -- SWIFT --
 
-func onLoadAd(_ bidmadAd: OpenBiddingBanner) {
+func onLoadAd(_ bidmadAd: OpenBiddingBanner, info: BidmadInfo) {
     print("ad is loaded")
 }
 
-func onLoadFailAd(_ bidmadAd: OpenBiddingBanner, error: Error) {
+func onLoadFailAd(_ bidmadAd: OpenBiddingBanner, error: any Error) {
     print("ad failed to load with error \(error.localizedDescription)")
 }
-func onClickAd(_ bidmadAd: OpenBiddingBanner) {
+
+func onClickAd(_ bidmadAd: OpenBiddingBanner, info: BidmadInfo) {
     print("ad is clicked")
 }
 ```
@@ -282,55 +286,55 @@ class InterstitialController: UIViewController, BIDMADOpenBiddingInterstitialDel
 ```
 // Objective C
 
-- (void)onLoadAd:(OpenBiddingInterstitial *)bidmadAd {
+- (void)onLoadAd:(OpenBiddingInterstitial *)bidmadAd info:(BidmadInfo *)info {
     NSLog(@"Load");
 }
 
-- (void)onLoadFailAd:(OpenBiddingInterstitial *)bidmadAd error:(NSError * _Nonnull)error {
+- (void)onLoadFailAd:(OpenBiddingInterstitial *)bidmadAd error:(NSError *)error {
     NSLog(@"Load Fail");
 }
 
-- (void)onShowAd:(OpenBiddingInterstitial *)bidmadAd {
+- (void)onShowAd:(OpenBiddingInterstitial *)bidmadAd info:(BidmadInfo *)info {
     NSLog(@"Show");
 }
 
-- (void)onClickAd:(OpenBiddingInterstitial *)bidmadAd {
+- (void)onClickAd:(OpenBiddingInterstitial *)bidmadAd info:(BidmadInfo *)info {
     NSLog(@"Click");
 }
 
-- (void)onCloseAd:(OpenBiddingInterstitial *)bidmadAd {
+- (void)onCloseAd:(OpenBiddingInterstitial *)bidmadAd info:(BidmadInfo *)info {
     NSLog(@"Close");
 }
 
 // onShowFailAd:error: 콜백은 v6.6.0 이상에서만 사용할 수 있습니다.
-- (void)onShowFailAd:(OpenBiddingInterstitial *)bidmadAd error:(NSError *)error {
+- (void)onShowFailAd:(OpenBiddingInterstitial *)bidmadAd info:(BidmadInfo *)info error:(NSError *)error {
     NSLog(@"Show Fail");
 }
 
 // -- SWIFT --
 
-func onLoadAd(_ bidmadAd: OpenBiddingInterstitial) {
+func onLoadAd(_ bidmadAd: OpenBiddingInterstitial, info: BidmadInfo) {
     print("ad is loaded")
 }
 
-func onLoadFailAd(_ bidmadAd: OpenBiddingInterstitial, error: Error) {
+func onLoadFailAd(_ bidmadAd: OpenBiddingInterstitial, error: any Error) {
     print("ad failed to load with error \(error.localizedDescription)")
 }
 
-func onShowAd(_ bidmadAd: OpenBiddingInterstitial) {
+func onShowAd(_ bidmadAd: OpenBiddingInterstitial, info: BidmadInfo) {
     print("ad is shown")
 }
 
-func onClickAd(_ bidmadAd: OpenBiddingInterstitial) {
+func onClickAd(_ bidmadAd: OpenBiddingInterstitial, info: BidmadInfo) {
     print("ad is clicked")
 }
 
-func onCloseAd(_ bidmadAd: OpenBiddingInterstitial) {
+func onCloseAd(_ bidmadAd: OpenBiddingInterstitial, info: BidmadInfo) {
     print("ad is closed")
 }
 
 // onShowFailAd:error: 콜백은 v6.6.0 이상에서만 사용할 수 있습니다.
-func onShowFailAd(_ bidmadAd: OpenBiddingInterstitial, error: Error) {
+func onShowFailAd(_ bidmadAd: OpenBiddingInterstitial,, info: BidmadInfo, error: Error) {
     print("ad display failed")
 }
 ```
@@ -404,42 +408,42 @@ class RewardVideoController: UIViewController, BIDMADOpenBiddingRewardVideoDeleg
 ```
 // Objective C
 
-- (void)onLoadAd:(OpenBiddingRewardVideo *)bidmadAd {
+- (void)onLoadAd:(OpenBiddingRewardVideo *)bidmadAd info:(BidmadInfo *)info {
     NSLog(@"Load");
 }
 
-- (void)onLoadFailAd:(OpenBiddingRewardVideo *)bidmadAd error:(NSError * _Nonnull)error {
+- (void)onLoadFailAd:(OpenBiddingRewardVideo *)bidmadAd error:(NSError *)error {
     NSLog(@"Load Fail");
 }
 
-- (void)onShowAd:(OpenBiddingRewardVideo *)bidmadAd {
+- (void)onShowAd:(OpenBiddingRewardVideo *)bidmadAd info:(BidmadInfo *)info {
     NSLog(@"Show");
 }
 
-- (void)onClickAd:(OpenBiddingRewardVideo *)bidmadAd {
+- (void)onClickAd:(OpenBiddingRewardVideo *)bidmadAd info:(BidmadInfo *)info {
     NSLog(@"Click");
 }
 
-- (void)onCompleteAd:(OpenBiddingRewardVideo *)bidmadAd {
+- (void)onCompleteAd:(OpenBiddingRewardVideo *)bidmadAd info:(BidmadInfo *)info {
     NSLog(@"Complete");
 }
 
-- (void)onSkipAd:(OpenBiddingRewardVideo *)bidmadAd {
+- (void)onSkipAd:(OpenBiddingRewardVideo *)bidmadAd info:(BidmadInfo *)info {
     NSLog(@"Skip");
 }
 
-- (void)onCloseAd:(OpenBiddingRewardVideo *)bidmadAd {
+- (void)onCloseAd:(OpenBiddingRewardVideo *)bidmadAd info:(BidmadInfo *)info {
     NSLog(@"Close");
 }
 
 // onShowFailAd:error: 콜백은 v6.6.0 이상에서만 사용할 수 있습니다.
-- (void)onShowFailAd:(OpenBiddingRewardVideo *)bidmadAd error:(NSError *)error {
+- (void)onShowFailAd:(OpenBiddingRewardVideo *)bidmadAd info:(BidmadInfo *)info error:(NSError *)error {
     NSLog(@"Show Fail");
 }
 
 // -- SWIFT --
 
-func onLoadAd(_ bidmadAd: OpenBiddingRewardVideo) {
+func onLoadAd(_ bidmadAd: OpenBiddingRewardVideo, info: BidmadInfo) {
     print("ad is loaded")
 }
 
@@ -447,28 +451,28 @@ func onLoadFailAd(_ bidmadAd: OpenBiddingRewardVideo, error: Error) {
     print("ad failed to load with error \(error.localizedDescription)")
 }
 
-func onShowAd(_ bidmadAd: OpenBiddingRewardVideo) {
+func onShowAd(_ bidmadAd: OpenBiddingRewardVideo, info: BidmadInfo) {
     print("ad is shown")
 }
 
-func onClickAd(_ bidmadAd: OpenBiddingRewardVideo) {
+func onClickAd(_ bidmadAd: OpenBiddingRewardVideo, info: BidmadInfo) {
     print("ad is clicked")
 }
 
-func onCompleteAd(_ bidmadAd: OpenBiddingRewardVideo) {
+func onCompleteAd(_ bidmadAd: OpenBiddingRewardVideo, info: BidmadInfo) {
     print("ad reward is completed")
 }
 
-func onSkipAd(_ bidmadAd: OpenBiddingRewardVideo) {
+func onSkipAd(_ bidmadAd: OpenBiddingRewardVideo, info: BidmadInfo) {
     print("ad reward is skipped")
 }
 
-func onCloseAd(_ bidmadAd: OpenBiddingRewardVideo) {
+func onCloseAd(_ bidmadAd: OpenBiddingRewardVideo, info: BidmadInfo) {
     print("ad is closed")
 }
 
 // onShowFailAd:error: 콜백은 v6.6.0 이상에서만 사용할 수 있습니다.
-func onShowFailAd(_ bidmadAd: OpenBiddingRewardVideo, error: Error) {
+func onShowFailAd(_ bidmadAd: OpenBiddingRewardVideo, info: BidmadInfo, error: Error) {
     print("ad display failed")
 }
 ```
@@ -551,34 +555,34 @@ class AppOpenAdViewController: UIViewController, OpenBiddingAppOpenAdDelegate {
 <br>
 
 ```
-- (void)onLoadAd:(OpenBiddingAppOpenAd *)bidmadAd {
+- (void)onLoadAd:(OpenBiddingAppOpenAd *)bidmadAd info:(BidmadInfo *)info {
     NSLog(@"Load");
 }
 
-- (void)onShowAd:(OpenBiddingAppOpenAd *)bidmadAd {
+- (void)onShowAd:(OpenBiddingAppOpenAd *)bidmadAd info:(BidmadInfo *)info {
     NSLog(@"Show");
 }
 
-- (void)onClickAd:(OpenBiddingAppOpenAd *)bidmadAd {
+- (void)onClickAd:(OpenBiddingAppOpenAd *)bidmadAd info:(BidmadInfo *)info {
     NSLog(@"Click");
 }
 
-- (void)onCloseAd:(OpenBiddingAppOpenAd *)bidmadAd {
+- (void)onCloseAd:(OpenBiddingAppOpenAd *)bidmadAd info:(BidmadInfo *)info {
     NSLog(@"Close");
 }
 
-- (void)onLoadFailAd:(OpenBiddingAppOpenAd *)bidmadAd error:(NSError * _Nonnull)error {
+- (void)onLoadFailAd:(OpenBiddingAppOpenAd *)bidmadAd error:(NSError *)error {
     NSLog(@"Load Fail");
 }
 
 // onShowFailAd:error: 콜백은 v6.6.0 이상에서만 사용할 수 있습니다.
-- (void)onShowFailAd:(OpenBiddingAppOpenAd *)bidmadAd error:(NSError *)error {
+- (void)onShowFailAd:(OpenBiddingAppOpenAd *)bidmadAd info:(BidmadInfo *)info error:(NSError *)error {
     NSLog(@"Show Fail");
 }
 
 // -- SWIFT --
 
-func onLoadAd(_ bidmadAd: OpenBiddingAppOpenAd) {
+func onLoadAd(_ bidmadAd: OpenBiddingAppOpenAd, info: BidmadInfo) {
     print("ad is loaded")
 }
 
@@ -586,20 +590,20 @@ func onLoadFailAd(_ bidmadAd: OpenBiddingAppOpenAd, error: Error) {
     print("ad failed to load with error \(error.localizedDescription)")
 }
 
-func onShowAd(_ bidmadAd: OpenBiddingAppOpenAd) {
+func onShowAd(_ bidmadAd: OpenBiddingAppOpenAd, info: BidmadInfo) {
     print("ad is shown")
 }
 
-func onClickAd(_ bidmadAd: OpenBiddingAppOpenAd) {
+func onClickAd(_ bidmadAd: OpenBiddingAppOpenAd, info: BidmadInfo) {
     print("ad is clicked")
 }
 
-func onCloseAd(_ bidmadAd: OpenBiddingAppOpenAd) {
+func onCloseAd(_ bidmadAd: OpenBiddingAppOpenAd, info: BidmadInfo) {
     print("ad is closed")
 }
 
 // onShowFailAd:error: 콜백은 v6.6.0 이상에서만 사용할 수 있습니다.
-func onShowFail(_ bidmadAd: OpenBiddingAppOpenAd, error: Error) {
+func onShowFail(_ bidmadAd: OpenBiddingAppOpenAd, info: BidmadInfo, error: Error) {
     print("ad display failed")
 }
 ```
@@ -632,11 +636,11 @@ func onShowFail(_ bidmadAd: OpenBiddingAppOpenAd, error: Error) {
 
 #pragma mark Native Ad Delegate Methods
 
-- (void)onClickAd:(BidmadNativeAd *)bidmadAd {
+- (void)onClickAd:(BidmadNativeAd *)bidmadAd info:(BidmadInfo *)info {
     ADOPLog.printInfo(@"Native Ad Click");
 }
 
-- (void)onLoadAd:(BidmadNativeAd *)bidmadAd {
+- (void)onLoadAd:(BidmadNativeAd *)bidmadAd info:(BidmadInfo *)info {
     ADOPLog.printInfo(@"Native Ad Load);
     
     UIView *loadedView = [NSBundle.mainBundle loadNibNamed:@"NativeAdView" owner:nil options:nil].firstObject;
@@ -646,7 +650,7 @@ func onShowFail(_ bidmadAd: OpenBiddingAppOpenAd, error: Error) {
     [bidmadAd setRootViewController:self adView:adView];
 }
 
-- (void)onLoadFailAd:(BidmadNativeAd *)bidmadAd error:(NSError *)error {
+- (void)onLoadFailAd:(BidmadNativeAd *)bidmadAd error:(NSError *)erro {
     ADOPLog.printInfo(@"Native Ad Fail: %@", error.localizedDescription);
 }
 
@@ -663,7 +667,7 @@ override func viewDidLoad() {
 
 // MARK: BIDMADNativeAdDelegate
 
-func onLoad(_ bidmadAd: BidmadNativeAd) {
+func onLoad(_ bidmadAd: BidmadNativeAd, info: BidmadInfo) {
     if let loadedView = Bundle.main.loadNibNamed("NativeAd", owner: nil)?.first as? UIView,
        let adView = BidmadNativeAd.findView(fromSuperview: loadedView) {
         view.addSubview(loadedView)
@@ -671,11 +675,11 @@ func onLoad(_ bidmadAd: BidmadNativeAd) {
     }
 }
 
-func onClick(_ bidmadAd: BidmadNativeAd) {
+func onClick(_ bidmadAd: BidmadNativeAd, info: BidmadInfo) {
     print("Native Ad Click")
 }
 
-func onLoadFail(_ bidmadAd: BidmadNativeAd, error: Error) {
+func onLoadFail(_ bidmadAd: BidmadNativeAd, error: any Error) {
     print("Native Ad Fail")
 }
 ```

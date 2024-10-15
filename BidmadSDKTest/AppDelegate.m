@@ -94,22 +94,22 @@
     [self callbackLabelViewShow: @"App Open Ad Callback → AllFail"];
 }
 
-- (void)onLoadAd:(OpenBiddingAppOpenAd *)bidmadAd {
+- (void)onLoadAd:(OpenBiddingAppOpenAd *)bidmadAd info:(BidmadInfo *)info {
     NSLog(@"BidmadSDK App Open Ad Callback → Load");
     [self callbackLabelViewShow: @"App Open Ad Callback → Load"];
 }
 
-- (void)onShowAd:(OpenBiddingAppOpenAd *)bidmadAd {
+- (void)onShowAd:(OpenBiddingAppOpenAd *)bidmadAd info:(BidmadInfo *)info {
     NSLog(@"BidmadSDK App Open Ad Callback → Show");
     [self callbackLabelViewShow: @"App Open Ad Callback → Show"];
 }
 
-- (void)onClickAd:(OpenBiddingAppOpenAd *)bidmadAd {
+- (void)onClickAd:(OpenBiddingAppOpenAd *)bidmadAd info:(BidmadInfo *)info {
     NSLog(@"BidmadSDK App Open Ad Callback → Click");
     [self callbackLabelViewShow: @"App Open Ad Callback → Click"];
 }
 
-- (void)onCloseAd:(OpenBiddingAppOpenAd *)bidmadAd {
+- (void)onCloseAd:(OpenBiddingAppOpenAd *)bidmadAd info:(BidmadInfo *)info {
     NSLog(@"BidmadSDK App Open Ad Callback → Close");
     [self callbackLabelViewShow: @"App Open Ad Callback → Close"];
 }
@@ -162,11 +162,11 @@
         [BidmadCommon reqAdTrackingAuthorizationWith:^(BidmadTrackingAuthorizationStatus status) {
             bidmadStrongify(self)
             
-            if(status == BidmadAuthorizationStatusAuthorized){
+            if(status == BidmadTrackingAuthorizationStatusAuthorized){
                 NSLog(@"Bidmad Sample App: IDFA Authorized");
-            }else if(status == BidmadAuthorizationStatusDenied) {
+            }else if(status == BidmadTrackingAuthorizationStatusDenied) {
                 NSLog(@"Bidmad Sample App: IDFA Unauthorized");
-            }else if(status == BidmadAuthorizationStatusLessThaniOS14) {
+            }else if(status == BidmadTrackingAuthorizationStatusLessThaniOS14) {
                 NSLog(@"Bidmad Sample App: iOS Version lower than iOS 14");
             }
             

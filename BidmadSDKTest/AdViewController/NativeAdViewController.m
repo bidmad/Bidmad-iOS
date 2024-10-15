@@ -43,11 +43,11 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)onClickAd:(BidmadNativeAd *)bidmadAd {
+- (void)onClickAd:(BidmadNativeAd *)bidmadAd info:(BidmadInfo *)info {
     [self.callbackLabel setText:@"CLICK"];
 }
 
-- (void)onLoadAd:(BidmadNativeAd *)bidmadAd {
+- (void)onLoadAd:(BidmadNativeAd *)bidmadAd info:(BidmadInfo *)info {
     self.adsCount += 1;
     [self.tableView reloadData];
     [self.callbackLabel setText:@"LOAD"];

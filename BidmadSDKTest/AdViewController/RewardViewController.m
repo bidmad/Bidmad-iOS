@@ -47,34 +47,9 @@
 
 #pragma mark Reward Delegate
 
-- (void)onSkipAd:(OpenBiddingRewardVideo *)bidmadAd {
-    NSLog(@"Bidmad Sample App Reward Skipped");
-    [[self rewardCallbackDisplay] setText:@"Skipped"];
-}
-
-- (void)onLoadAd:(OpenBiddingRewardVideo *)bidmadAd {
+- (void)onLoadAd:(OpenBiddingRewardVideo *)bidmadAd info:(BidmadInfo *)info {
     NSLog(@"Bidmad Sample App Reward Load");
     [[self rewardCallbackDisplay] setText:@"Load"];
-}
-
-- (void)onShowAd:(OpenBiddingRewardVideo *)bidmadAd {
-    NSLog(@"Bidmad Sample App Reward Show");
-    [[self rewardCallbackDisplay] setText:@"Show"];
-}
-
-- (void)onClickAd:(OpenBiddingRewardVideo *)bidmadAd {
-    NSLog(@"Bidmad Sample App Reward Click");
-    [[self rewardCallbackDisplay] setText:@"Click"];
-}
-
-- (void)onCloseAd:(OpenBiddingRewardVideo *)bidmadAd {
-    NSLog(@"Bidmad Sample App Reward Close");
-    [[self rewardCallbackDisplay] setText:@"Close"];
-}
-
-- (void)onCompleteAd:(OpenBiddingRewardVideo *)bidmadAd {
-    NSLog(@"Bidmad Sample App Reward Success");
-    [[self rewardCallbackDisplay] setText:@"Success"];
 }
 
 - (void)onLoadFailAd:(OpenBiddingRewardVideo *)bidmadAd error:(NSError *)error {
@@ -82,7 +57,32 @@
     [[self rewardCallbackDisplay] setText:@"All Fail"];
 }
 
-- (void)onShowFailAd:(OpenBiddingRewardVideo *)bidmadAd error:(NSError *)error {
+- (void)onShowAd:(OpenBiddingRewardVideo *)bidmadAd info:(BidmadInfo *)info {
+    NSLog(@"Bidmad Sample App Reward Show");
+    [[self rewardCallbackDisplay] setText:@"Show"];
+}
+
+- (void)onClickAd:(OpenBiddingRewardVideo *)bidmadAd info:(BidmadInfo *)info {
+    NSLog(@"Bidmad Sample App Reward Click");
+    [[self rewardCallbackDisplay] setText:@"Click"];
+}
+
+- (void)onCompleteAd:(OpenBiddingRewardVideo *)bidmadAd info:(BidmadInfo *)info {
+    NSLog(@"Bidmad Sample App Reward Success");
+    [[self rewardCallbackDisplay] setText:@"Success"];
+}
+
+- (void)onSkipAd:(OpenBiddingRewardVideo *)bidmadAd info:(BidmadInfo *)info {
+    NSLog(@"Bidmad Sample App Reward Skipped");
+    [[self rewardCallbackDisplay] setText:@"Skipped"];
+}
+
+- (void)onCloseAd:(OpenBiddingRewardVideo *)bidmadAd info:(BidmadInfo *)info {
+    NSLog(@"Bidmad Sample App Reward Close");
+    [[self rewardCallbackDisplay] setText:@"Close"];
+}
+
+- (void)onShowFailAd:(OpenBiddingRewardVideo *)bidmadAd info:(BidmadInfo *)info error:(NSError *)error {
     NSLog(@"Bidmad Sample App Reward Show Fail");
     [[self rewardCallbackDisplay] setText:@"Show Fail"];
 }

@@ -76,12 +76,15 @@ For users of native ad interface updating from v5.3.0 or lower to v6.0.0 or high
 
 For users of app open ad and native ad interface updating from v6.3.5 or lower to v6.4.0 or higher, please refer to [AppOpen and NativeAd Migration Guide for 6.4.0](https://github.com/bidmad/Bidmad-iOS/wiki/AppOpen-and-NativeAd-Migration-Guide-for-6.4.0-%5BKOR%5D) for your app updates.
 
-Include the following key in your Xcode project info.plist :<br>
-1. iOS App Key identified in ADOP Insight (refer to "[Find your App Key](https://github.com/bidmad/SDK/wiki/Find-your-app-key%5BEN%5D)" guide) <br>
+[!IMPORTANT] Starting with BidmadSDK-iOS v6.11.0, the AppKey used in previous versions has been changed to AppDomain.
+**AppDomain is not compatible with existing Appkeys, so you must obtain a new AppDomain to initialize BidmadSDK.**<br>
+If you are updating to BidmadSDK-iOS v6.11.0, please contact **Techlabs Platform Operations Team**.
+
+1. Enter the AppDomain value received from the Techlabs Operations Team in info.plist as follows.<br>
 
 ```
-<key>BidmadAppKey</key>
-<string>xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx</string>
+<key>BidmadAppDomain</key>
+<string>**YOUR-APP-DOMAIN**</string>
 ```
 
 2. iOS Google AdMob ID identified in AdMob Dashboard UI (refer to "[Find your App Key](https://github.com/bidmad/SDK/wiki/Find-your-app-key%5BEN%5D)" guide) <br>
@@ -189,28 +192,29 @@ class BannerViewController: UIViewController, BIDMADOpenBiddingBannerDelegate {
 ```
 // Objective C
 
-- (void)onLoadAd:(OpenBiddingBanner *)bidmadAd {
+- (void)onLoadAd:(OpenBiddingBanner *)bidmadAd info:(BidmadInfo *)info {
     NSLog(@"Load")
 }
 
-- (void)onClickAd:(OpenBiddingBanner *)bidmadAd {
+- (void)onClickAd:(OpenBiddingBanner *)bidmadAd info:(BidmadInfo *)info {
     NSLog(@"Click")
 }
 
-- (void)onLoadFailAd:(OpenBiddingBanner *)bidmadAd error:(NSError * _Nonnull)error {
+- (void)onLoadFailAd:(OpenBiddingBanner *)bidmadAd error:(NSError *)error {
     NSLog(@"LoadFail")
 }
 
 // -- SWIFT --
 
-func onLoadAd(_ bidmadAd: OpenBiddingBanner) {
+func onLoadAd(_ bidmadAd: OpenBiddingBanner, info: BidmadInfo) {
     print("ad is loaded")
 }
 
-func onLoadFailAd(_ bidmadAd: OpenBiddingBanner, error: Error) {
+func onLoadFailAd(_ bidmadAd: OpenBiddingBanner, error: any Error) {
     print("ad failed to load with error \(error.localizedDescription)")
 }
-func onClickAd(_ bidmadAd: OpenBiddingBanner) {
+
+func onClickAd(_ bidmadAd: OpenBiddingBanner, info: BidmadInfo) {
     print("ad is clicked")
 }
 ```
@@ -282,55 +286,55 @@ class InterstitialController: UIViewController, BIDMADOpenBiddingInterstitialDel
 ```
 // Objective C
 
-- (void)onLoadAd:(OpenBiddingInterstitial *)bidmadAd {
+- (void)onLoadAd:(OpenBiddingInterstitial *)bidmadAd info:(BidmadInfo *)info {
     NSLog(@"Load");
 }
 
-- (void)onLoadFailAd:(OpenBiddingInterstitial *)bidmadAd error:(NSError * _Nonnull)error {
+- (void)onLoadFailAd:(OpenBiddingInterstitial *)bidmadAd error:(NSError *)error {
     NSLog(@"Load Fail");
 }
 
-- (void)onShowAd:(OpenBiddingInterstitial *)bidmadAd {
+- (void)onShowAd:(OpenBiddingInterstitial *)bidmadAd info:(BidmadInfo *)info {
     NSLog(@"Show");
 }
 
-- (void)onClickAd:(OpenBiddingInterstitial *)bidmadAd {
+- (void)onClickAd:(OpenBiddingInterstitial *)bidmadAd info:(BidmadInfo *)info {
     NSLog(@"Click");
 }
 
-- (void)onCloseAd:(OpenBiddingInterstitial *)bidmadAd {
+- (void)onCloseAd:(OpenBiddingInterstitial *)bidmadAd info:(BidmadInfo *)info {
     NSLog(@"Close");
 }
 
-// onShowFailAd:error: callback is only available for v6.6.0 or higher
-- (void)onShowFailAd:(OpenBiddingInterstitial *)bidmadAd error:(NSError *)error {
+// onShowFailAd:error: callback can only be used for versions 6.6.0 or higher.
+- (void)onShowFailAd:(OpenBiddingInterstitial *)bidmadAd info:(BidmadInfo *)info error:(NSError *)error {
     NSLog(@"Show Fail");
 }
 
 // -- SWIFT --
 
-func onLoadAd(_ bidmadAd: OpenBiddingInterstitial) {
+func onLoadAd(_ bidmadAd: OpenBiddingInterstitial, info: BidmadInfo) {
     print("ad is loaded")
 }
 
-func onLoadFailAd(_ bidmadAd: OpenBiddingInterstitial, error: Error) {
+func onLoadFailAd(_ bidmadAd: OpenBiddingInterstitial, error: any Error) {
     print("ad failed to load with error \(error.localizedDescription)")
 }
 
-func onShowAd(_ bidmadAd: OpenBiddingInterstitial) {
+func onShowAd(_ bidmadAd: OpenBiddingInterstitial, info: BidmadInfo) {
     print("ad is shown")
 }
 
-func onClickAd(_ bidmadAd: OpenBiddingInterstitial) {
+func onClickAd(_ bidmadAd: OpenBiddingInterstitial, info: BidmadInfo) {
     print("ad is clicked")
 }
 
-func onCloseAd(_ bidmadAd: OpenBiddingInterstitial) {
+func onCloseAd(_ bidmadAd: OpenBiddingInterstitial, info: BidmadInfo) {
     print("ad is closed")
 }
 
-// onShowFailAd:error: callback is only available for v6.6.0 or higher
-func onShowFailAd(_ bidmadAd: OpenBiddingInterstitial, error: Error) {
+// onShowFailAd:error: callback can only be used for versions 6.6.0 or higher.
+func onShowFailAd(_ bidmadAd: OpenBiddingInterstitial,, info: BidmadInfo, error: Error) {
     print("ad display failed")
 }
 ```
@@ -404,42 +408,42 @@ class RewardVideoController: UIViewController, BIDMADOpenBiddingRewardVideoDeleg
 ```
 // Objective C
 
-- (void)onLoadAd:(OpenBiddingRewardVideo *)bidmadAd {
+- (void)onLoadAd:(OpenBiddingRewardVideo *)bidmadAd info:(BidmadInfo *)info {
     NSLog(@"Load");
 }
 
-- (void)onLoadFailAd:(OpenBiddingRewardVideo *)bidmadAd error:(NSError * _Nonnull)error {
+- (void)onLoadFailAd:(OpenBiddingRewardVideo *)bidmadAd error:(NSError *)error {
     NSLog(@"Load Fail");
 }
 
-- (void)onShowAd:(OpenBiddingRewardVideo *)bidmadAd {
+- (void)onShowAd:(OpenBiddingRewardVideo *)bidmadAd info:(BidmadInfo *)info {
     NSLog(@"Show");
 }
 
-- (void)onClickAd:(OpenBiddingRewardVideo *)bidmadAd {
+- (void)onClickAd:(OpenBiddingRewardVideo *)bidmadAd info:(BidmadInfo *)info {
     NSLog(@"Click");
 }
 
-- (void)onCompleteAd:(OpenBiddingRewardVideo *)bidmadAd {
+- (void)onCompleteAd:(OpenBiddingRewardVideo *)bidmadAd info:(BidmadInfo *)info {
     NSLog(@"Complete");
 }
 
-- (void)onSkipAd:(OpenBiddingRewardVideo *)bidmadAd {
+- (void)onSkipAd:(OpenBiddingRewardVideo *)bidmadAd info:(BidmadInfo *)info {
     NSLog(@"Skip");
 }
 
-- (void)onCloseAd:(OpenBiddingRewardVideo *)bidmadAd {
+- (void)onCloseAd:(OpenBiddingRewardVideo *)bidmadAd info:(BidmadInfo *)info {
     NSLog(@"Close");
 }
 
-// onShowFailAd:error: callback is only available for v6.6.0 or higher
-- (void)onShowFailAd:(OpenBiddingRewardVideo *)bidmadAd error:(NSError *)error {
+// onShowFailAd:error: callback can only be used for versions 6.6.0 or higher.
+- (void)onShowFailAd:(OpenBiddingRewardVideo *)bidmadAd info:(BidmadInfo *)info error:(NSError *)error {
     NSLog(@"Show Fail");
 }
 
 // -- SWIFT --
 
-func onLoadAd(_ bidmadAd: OpenBiddingRewardVideo) {
+func onLoadAd(_ bidmadAd: OpenBiddingRewardVideo, info: BidmadInfo) {
     print("ad is loaded")
 }
 
@@ -447,28 +451,28 @@ func onLoadFailAd(_ bidmadAd: OpenBiddingRewardVideo, error: Error) {
     print("ad failed to load with error \(error.localizedDescription)")
 }
 
-func onShowAd(_ bidmadAd: OpenBiddingRewardVideo) {
+func onShowAd(_ bidmadAd: OpenBiddingRewardVideo, info: BidmadInfo) {
     print("ad is shown")
 }
 
-func onClickAd(_ bidmadAd: OpenBiddingRewardVideo) {
+func onClickAd(_ bidmadAd: OpenBiddingRewardVideo, info: BidmadInfo) {
     print("ad is clicked")
 }
 
-func onCompleteAd(_ bidmadAd: OpenBiddingRewardVideo) {
+func onCompleteAd(_ bidmadAd: OpenBiddingRewardVideo, info: BidmadInfo) {
     print("ad reward is completed")
 }
 
-func onSkipAd(_ bidmadAd: OpenBiddingRewardVideo) {
+func onSkipAd(_ bidmadAd: OpenBiddingRewardVideo, info: BidmadInfo) {
     print("ad reward is skipped")
 }
 
-func onCloseAd(_ bidmadAd: OpenBiddingRewardVideo) {
+func onCloseAd(_ bidmadAd: OpenBiddingRewardVideo, info: BidmadInfo) {
     print("ad is closed")
 }
 
-// onShowFailAd:error: callback is only available for v6.6.0 or higher
-func onShowFailAd(_ bidmadAd: OpenBiddingRewardVideo, error: Error) {
+// onShowFailAd:error: callback can only be used for versions 6.6.0 or higher.
+func onShowFailAd(_ bidmadAd: OpenBiddingRewardVideo, info: BidmadInfo, error: Error) {
     print("ad display failed")
 }
 ```
@@ -551,34 +555,34 @@ class AppOpenAdViewController: UIViewController, OpenBiddingAppOpenAdDelegate {
 <br>
 
 ```
-- (void)onLoadAd:(OpenBiddingAppOpenAd *)bidmadAd {
+- (void)onLoadAd:(OpenBiddingAppOpenAd *)bidmadAd info:(BidmadInfo *)info {
     NSLog(@"Load");
 }
 
-- (void)onShowAd:(OpenBiddingAppOpenAd *)bidmadAd {
+- (void)onShowAd:(OpenBiddingAppOpenAd *)bidmadAd info:(BidmadInfo *)info {
     NSLog(@"Show");
 }
 
-- (void)onClickAd:(OpenBiddingAppOpenAd *)bidmadAd {
+- (void)onClickAd:(OpenBiddingAppOpenAd *)bidmadAd info:(BidmadInfo *)info {
     NSLog(@"Click");
 }
 
-- (void)onCloseAd:(OpenBiddingAppOpenAd *)bidmadAd {
+- (void)onCloseAd:(OpenBiddingAppOpenAd *)bidmadAd info:(BidmadInfo *)info {
     NSLog(@"Close");
 }
 
-- (void)onLoadFailAd:(OpenBiddingAppOpenAd *)bidmadAd error:(NSError * _Nonnull)error {
+- (void)onLoadFailAd:(OpenBiddingAppOpenAd *)bidmadAd error:(NSError *)error {
     NSLog(@"Load Fail");
 }
 
-// onShowFailAd:error: callback is only available for v6.6.0 or higher
-- (void)onShowFailAd:(OpenBiddingAppOpenAd *)bidmadAd error:(NSError *)error {
+// onShowFailAd:error: callback can only be used for versions 6.6.0 or higher.
+- (void)onShowFailAd:(OpenBiddingAppOpenAd *)bidmadAd info:(BidmadInfo *)info error:(NSError *)error {
     NSLog(@"Show Fail");
 }
 
 // -- SWIFT --
 
-func onLoadAd(_ bidmadAd: OpenBiddingAppOpenAd) {
+func onLoadAd(_ bidmadAd: OpenBiddingAppOpenAd, info: BidmadInfo) {
     print("ad is loaded")
 }
 
@@ -586,20 +590,20 @@ func onLoadFailAd(_ bidmadAd: OpenBiddingAppOpenAd, error: Error) {
     print("ad failed to load with error \(error.localizedDescription)")
 }
 
-func onShowAd(_ bidmadAd: OpenBiddingAppOpenAd) {
+func onShowAd(_ bidmadAd: OpenBiddingAppOpenAd, info: BidmadInfo) {
     print("ad is shown")
 }
 
-func onClickAd(_ bidmadAd: OpenBiddingAppOpenAd) {
+func onClickAd(_ bidmadAd: OpenBiddingAppOpenAd, info: BidmadInfo) {
     print("ad is clicked")
 }
 
-func onCloseAd(_ bidmadAd: OpenBiddingAppOpenAd) {
+func onCloseAd(_ bidmadAd: OpenBiddingAppOpenAd, info: BidmadInfo) {
     print("ad is closed")
 }
 
-// onShowFailAd:error: callback is only available for v6.6.0 or higher
-func onShowFail(_ bidmadAd: OpenBiddingAppOpenAd, error: Error) {
+// onShowFailAd:error: callback can only be used for versions 6.6.0 or higher.
+func onShowFail(_ bidmadAd: OpenBiddingAppOpenAd, info: BidmadInfo, error: Error) {
     print("ad display failed")
 }
 ```

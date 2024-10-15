@@ -2,8 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>BidmadAppKey</key>
-	<string>6b097551-7f78-11ed-a117-026864a21938</string>
+	<key>BidmadAppDomain</key>
+	<string>common-serving-bidmad.adop.co.kr</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>

@@ -47,19 +47,9 @@
 
 #pragma mark Interstitial Delegate
 
-- (void)onLoadAd:(OpenBiddingInterstitial *)bidmadAd {
+- (void)onLoadAd:(OpenBiddingInterstitial *)bidmadAd info:(BidmadInfo *)info {
     NSLog(@"Bidmad Sample App Interstitial Load");
     [[self InterstitialCallbackDisplay] setText:@"Load"];
-}
-
-- (void)onShowAd:(OpenBiddingInterstitial *)bidmadAd {
-    NSLog(@"Bidmad Sample App Interstitial Show");
-    [[self InterstitialCallbackDisplay] setText:@"Show"];
-}
-
-- (void)onCloseAd:(OpenBiddingInterstitial *)bidmadAd {
-    NSLog(@"Bidmad Sample App Interstitial Close");
-    [[self InterstitialCallbackDisplay] setText:@"Close"];
 }
 
 - (void)onLoadFailAd:(OpenBiddingInterstitial *)bidmadAd error:(NSError *)error {
@@ -67,7 +57,22 @@
     [[self InterstitialCallbackDisplay] setText:@"All Fail"];
 }
 
-- (void)onShowFailAd:(OpenBiddingInterstitial *)bidmadAd error:(NSError *)error {
+- (void)onShowAd:(OpenBiddingInterstitial *)bidmadAd info:(BidmadInfo *)info {
+    NSLog(@"Bidmad Sample App Interstitial Show");
+    [[self InterstitialCallbackDisplay] setText:@"Show"];
+}
+
+- (void)onClickAd:(OpenBiddingInterstitial *)bidmadAd info:(BidmadInfo *)info {
+    NSLog(@"Bidmad Sample App Interstitial Show");
+    [[self InterstitialCallbackDisplay] setText:@"Click"];
+}
+
+- (void)onCloseAd:(OpenBiddingInterstitial *)bidmadAd info:(BidmadInfo *)info {
+    NSLog(@"Bidmad Sample App Interstitial Close");
+    [[self InterstitialCallbackDisplay] setText:@"Close"];
+}
+
+- (void)onShowFailAd:(OpenBiddingInterstitial *)bidmadAd info:(BidmadInfo *)info error:(NSError *)error {
     NSLog(@"Bidmad Sample App Interstitial Show Fail");
     [[self InterstitialCallbackDisplay] setText:@"Show Fail"];
 }
