@@ -23,10 +23,6 @@ target 'BidmadSDKTest' do
   pod "BidmadAtomAdapter", "1.0.0.10.0"
   
   # OPTIONAL
-  pod "BidmadAllianceInternetAdapter", "1.0.0.10.0"
-  pod "BidmadCoviAdapter", "1.0.0.10.0"
-  pod "BidmadMobonAdapter", "0.6.17.10.0"
-  pod "BidmadMobwithAdapter", "1.0.0.10.0"
   pod "BidmadPubmaticAdapter", "3.2.0.10.0"
   pod "BidmadTeadsAdapter", "5.0.27.10.0"
 
