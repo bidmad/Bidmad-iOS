@@ -1,3 +1,8 @@
+> [!IMPORTANT]
+> BidmadSDK-iOS v6.11.0 부터, 이전 버전에서 사용되던 AppKey는 AppDomain으로 변경되었습니다.<br>
+> **AppDomain은 기존 Appkeys와 호환되지 않으므로 BidmadSDK를 초기화하기 위해선 새로운 AppDomain을 발급받아야 합니다.**<br>
+> BidmadSDK-iOS v6.11.0 으로 업데이트하는 경우 **Techlabs 플랫폼 운영팀**에 문의해주세요.
+
 # BidmadSDK
 ### 바로가기
 1. [SDK 세팅](#bidmadsdk-installation-guide)
@@ -75,10 +80,6 @@ App Store에 애플리케이션을 제출할 때 다음 가이드를 참고하�
 5.3.0 버전 이하에서 6.0.0 버전 이상으로 업데이트하시는 네이티브 광고 인터페이스 사용자의 경우 [NativeAd Migration Guide 6.0.0](https://github.com/bidmad/Bidmad-iOS/wiki/Native-Ad-Migration-to-v6.0.0%5BKOR%5D) 를 참고해 앱 업데이트를 진행하십시오.
 
 6.3.5 버전 이하에서 6.4.0 버전 이상으로 업데이트하시는 앱오픈 광고 / 네이티브 광고 인터페이스 사용자의 경우 [AppOpen and NativeAd Migration Guide for 6.4.0](https://github.com/bidmad/Bidmad-iOS/wiki/AppOpen-and-NativeAd-Migration-Guide-for-6.4.0-%5BKOR%5D)를 참고해 앱 업데이트를 진행하십시오. 
-
-[!IMPORTANT]BidmadSDK-iOS v6.11.0 부터, 이전 버전에서 사용되던 AppKey는 AppDomain으로 변경되었습니다.
-**AppDomain은 기존 Appkeys와 호환되지 않으므로 BidmadSDK를 초기화하기 위해선 새로운 AppDomain을 발급받아야 합니다.**<br>
-BidmadSDK-iOS v6.11.0 으로 업데이트하는 경우 **Techlabs 플랫폼 운영팀**에 문의해주세요.
 
 1. Techlabs 운영팀으로부터 전달받은 AppDomain 값을 다음과 같이 info.plist에 기입하십시오.<br>
 
