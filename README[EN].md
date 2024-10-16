@@ -1,3 +1,8 @@
+> [!IMPORTANT]
+> Starting with BidmadSDK-iOS v6.11.0, the AppKey used in previous versions has been changed to AppDomain.<br>
+> AppDomain is not compatible with existing Appkeys, so you must obtain a new AppDomain to initialize BidmadSDK.<br>
+> If you are updating to BidmadSDK-iOS v6.11.0, please contact Techlabs Platform Operations Team.
+
 # BidmadSDK
 ### Shortcuts
 1. [SDK Installation Guide](#bidmadsdk-installation-guide)
@@ -75,10 +80,6 @@ Prior to the initial configuration of the app, when updating from version 4.6.0.
 For users of native ad interface updating from v5.3.0 or lower to v6.0.0 or higher, please refer to [NativeAd Migration Guide 6.0.0](https://github.com/bidmad/Bidmad-iOS/wiki/Native-Ad-Migration-to-v6.0.0%5BENG%5D) for your app updates. 
 
 For users of app open ad and native ad interface updating from v6.3.5 or lower to v6.4.0 or higher, please refer to [AppOpen and NativeAd Migration Guide for 6.4.0](https://github.com/bidmad/Bidmad-iOS/wiki/AppOpen-and-NativeAd-Migration-Guide-for-6.4.0-%5BKOR%5D) for your app updates.
-
-[!IMPORTANT] Starting with BidmadSDK-iOS v6.11.0, the AppKey used in previous versions has been changed to AppDomain.
-**AppDomain is not compatible with existing Appkeys, so you must obtain a new AppDomain to initialize BidmadSDK.**<br>
-If you are updating to BidmadSDK-iOS v6.11.0, please contact **Techlabs Platform Operations Team**.
 
 1. Enter the AppDomain value received from the Techlabs Operations Team in info.plist as follows.<br>
 
