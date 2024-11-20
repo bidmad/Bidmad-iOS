@@ -37,24 +37,27 @@ target "Runner" do
   use_frameworks!
   
   # NECESSARY
-  pod 'BidmadSDK', '6.6.1'
-  pod 'OpenBiddingHelper', '6.6.1'
-  pod 'BidmadGoogleAdMobAdapter', '11.2.0.0'
-  pod 'BidmadGoogleAdManagerAdapter', '11.2.0.0'
-  pod 'BidmadAppLovinAdapter', '12.2.1.0'
-  pod 'BidmadUnityAdsAdapter', '4.9.3.0'
-  pod 'BidmadPangleAdapter', '5.8.0.7.0'
-  pod 'BidmadFyberAdapter', '8.2.6.0'
-  pod 'BidmadVungleAdapter', '7.2.2.0'
-  pod 'BidmadPubmaticAdapter', '3.2.0.3'
-  pod 'BidmadADOPCoupangAdapter', '1.0.0.3'
-  pod 'BidmadPartners/AdMobBidding', '1.0.3'
+  pod 'BidmadPartners/AdMobBidding', '1.0.6'
+  pod "BidmadSDK", "6.11.0"
+  pod "OpenBiddingHelper", "6.11.0"
+  pod "BidmadAdpieAdapter", "1.6.1.10.0"
+  pod "BidmadAdPopcornAdapter", "2.6.5.10.0"
+  pod "BidmadPangleAdapter", "6.2.0.7.10.0"
+  pod "BidmadAdFitAdapter", "3.12.7.10.0"
+  pod "BidmadUnityAdsAdapter", "4.12.3.10.0"
+  pod "BidmadVungleAdapter", "7.4.1.10.0"
+  pod "BidmadAppLovinAdapter", "13.0.0.10.0"
+  pod "BidmadGoogleAdMobAdapter", "11.10.0.10.0"
+  pod "BidmadGoogleAdManagerAdapter", "11.10.0.10.0"
+  pod "BidmadFyberAdapter", "8.3.2.10.0"
+  pod "BidmadIronSourceAdapter", "8.3.0.0.10.0"
+  pod "BidmadPartners/AdMobBidding", "1.0.5"
+  pod "BidmadAtomAdapter", "1.0.0.10.0"
   
   # OPTIONAL
-  pod 'BidmadTeadsAdapter', '5.0.27.3'
-  pod 'BidmadAtomAdapter', '1.0.0.3'
-  pod 'BidmadAdFitAdapter', '3.12.7.4'
-  pod 'BidmadIronSourceAdapter', '7.8.0.0.0'
+  pod "BidmadPubmaticAdapter", "3.2.0.10.0"
+  pod "BidmadTeadsAdapter", "5.0.27.10.0"
+
 ```
 
   * 6.4.0 이상 버전부터 BidmadAdapterFNC, BidmadAdapterFC, BidmadAdapterDynamic 을 지원하지 않습니다. 6.3.X 이하 버전에서 6.4.0 이상 버전으로 업데이트를 원하시는 사용자는 "BidmadAdapterFNC, BidmadAdapterFC, BidmadAdapterDynamic" 의존성을 제거하고, 위에 기재된 의존성을 추가해 어댑터를 추가해주세요.
