@@ -1,3 +1,6 @@
+#### Version 6.12.0
+BidmadSDK supports Taboola, Mobwith Ad Networks.
+
 #### Version 6.6.1
 BidmadSDK supports PrivacyManifest file
 IronSource banner mispositioning bug fixed 

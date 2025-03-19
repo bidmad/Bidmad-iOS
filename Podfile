@@ -5,25 +5,32 @@ target 'BidmadSDKTest' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
-  # NECESSARY
-  pod "BidmadSDK", "6.11.0"
-  pod "OpenBiddingHelper", "6.11.0"
-  pod "BidmadAdpieAdapter", "1.6.1.10.0"
-  pod "BidmadAdPopcornAdapter", "2.6.5.10.0"
-  pod "BidmadPangleAdapter", "6.2.0.7.10.0"
-  pod "BidmadAdFitAdapter", "3.12.7.10.0"
-  pod "BidmadUnityAdsAdapter", "4.12.3.10.0"
-  pod "BidmadVungleAdapter", "7.4.1.10.0"
-  pod "BidmadAppLovinAdapter", "13.0.0.10.0"
-  pod "BidmadGoogleAdMobAdapter", "11.10.0.10.0"
-  pod "BidmadGoogleAdManagerAdapter", "11.10.0.10.0"
-  pod "BidmadFyberAdapter", "8.3.2.10.0"
-  pod "BidmadIronSourceAdapter", "8.3.0.0.10.0"
-  pod "BidmadPartners/AdMobBidding", "1.0.5"
-  pod "BidmadAtomAdapter", "1.0.0.10.0"
-  
-  # OPTIONAL
-  pod "BidmadPubmaticAdapter", "3.2.0.10.0"
-  pod "BidmadTeadsAdapter", "5.0.27.10.0"
+  pod "BidmadSDK", "6.12.0"
+  pod "OpenBiddingHelper", "6.12.0"
 
+  pod "BidmadAdFitAdapter", "3.12.7.11.0"
+  pod "BidmadAdmixerAdapter", "2.0.0.11.0"
+  pod "BidmadAdPopcornAdapter", "2.6.5.11.0"
+  pod "BidmadAppLovinAdapter", "13.0.0.11.0"
+  pod "BidmadFyberAdapter", "8.3.2.11.0"
+  pod "BidmadGoogleAdManagerAdapter", "11.10.0.11.0"
+  pod "BidmadGoogleAdMobAdapter", "11.10.0.11.0"
+  pod "BidmadMobwithAdapter", "1.0.0.11.0"
+  pod "BidmadORTBAdapter", "1.0.0.11.0"
+  pod "BidmadPangleAdapter", "6.2.0.7.11.0"
+  pod "BidmadPubmaticAdapter", "3.2.0.11.0"
+  pod "BidmadTaboolaAdapter", "3.8.33.11.0"
+  pod "BidmadTeadsAdapter", "5.2.0.11.0"
+  pod "BidmadUnityAdsAdapter", "4.12.3.11.0"
+  pod "BidmadVungleAdapter", "7.4.1.11.0"
+  pod "BidmadPartners/AdMobBidding", "1.0.6"
+
+end
+
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+      config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '12.0'
+    end
+  end
 end
