@@ -10,7 +10,6 @@ target 'BidmadSDKTest' do
 
   pod "BidmadAdFitAdapter", "3.12.7.11.0"
   pod "BidmadAdmixerAdapter", "2.0.0.11.0"
-  pod "BidmadAdPopcornAdapter", "2.6.5.11.0"
   pod "BidmadAppLovinAdapter", "13.0.0.11.0"
   pod "BidmadFyberAdapter", "8.3.2.11.0"
   pod "BidmadGoogleAdManagerAdapter", "11.10.0.11.0"
