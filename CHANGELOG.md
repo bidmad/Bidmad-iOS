@@ -1,3 +1,6 @@
+#### Version 6.12.4
+BidmadSDK supports GoogleMobileAds v12.6.0 with other ad networks
+
 #### Version 6.12.0
 BidmadSDK supports Taboola, Mobwith Ad Networks.
 
