@@ -2,6 +2,7 @@
 > Starting with BidmadSDK-iOS v6.11.0, the AppKey used in previous versions has been changed to AppDomain.<br>
 > AppDomain is not compatible with existing Appkeys, so you must obtain a new AppDomain to initialize BidmadSDK.<br>
 > If you are updating to BidmadSDK-iOS v6.11.0, please contact Techlabs Platform Operations Team.
+> Starting with BidmadSDK-iOS v6.12.4, the iOS deployment target is 13.0
 
 # BidmadSDK
 ### Shortcuts
@@ -26,7 +27,7 @@
 #### Development Environment
 - Xcode minimum version of 16.0 required
 - BASE SDK : iOS
-- iOS Deployment Target : 12.0
+- iOS Deployment Target : 13.0
 #### Installation Guide
 1. Add the following code inside the Podfile
 
@@ -37,23 +38,22 @@ platform :ios, "12.0"
 target "BidmadSDKTest" do
 
   use_frameworks!
-  pod "BidmadSDK", "6.12.2"
-  pod "OpenBiddingHelper", "6.12.1"
+  pod "BidmadSDK", "6.12.4"
+  pod "OpenBiddingHelper", "6.12.3"
   pod "BidmadAdFitAdapter", "3.12.7.11.0"
   pod "BidmadAdmixerAdapter", "2.0.2.11.1"
-  pod "BidmadAppLovinAdapter", "13.0.0.11.0"
-  pod "BidmadFyberAdapter", "8.3.2.11.0"
-  pod "BidmadGoogleAdManagerAdapter", "11.10.0.11.0"
-  pod "BidmadGoogleAdMobAdapter", "11.10.0.11.2"
+  pod "BidmadAppLovinAdapter", "13.3.1.11.0"
+  pod "BidmadFyberAdapter", "8.3.7.11.0"
+  pod "BidmadGoogleAdManagerAdapter", "12.6.0.11.0"
+  pod "BidmadGoogleAdMobAdapter", "12.6.0.11.0"
   pod "BidmadMobwithAdapter", "1.0.0.11.2"
   pod "BidmadORTBAdapter", "1.0.0.11.2"
-  pod "BidmadPangleAdapter", "6.2.0.7.11.0"
-  pod "BidmadPubmaticAdapter", "3.2.0.11.0"
+  pod "BidmadPangleAdapter", "7.2.0.5.11.0"
   pod "BidmadTaboolaAdapter", "3.8.33.11.2"
   pod "BidmadTeadsAdapter", "5.2.0.11.2"
-  pod "BidmadUnityAdsAdapter", "4.12.3.11.0"
-  pod "BidmadVungleAdapter", "7.4.1.11.0"
-  pod "BidmadPartners/AdMobBidding", "1.0.6"
+  pod "BidmadUnityAdsAdapter", "4.15.0.11.0"
+  pod "BidmadVungleAdapter", "7.5.1.11.0"
+  pod "BidmadPartners/AdMobBidding", "1.0.7"
 
 end
 
