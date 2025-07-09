@@ -6,6 +6,9 @@
 # CocoaPods
 Pods/
 
+# Unreal Engine Build
+UnrealEngineBuild/
+
 # Node artifact files
 node_modules/
 dist/

@@ -30,6 +30,102 @@ print_error() {
     echo -e "${RED}[ERROR]${NC} $1"
 }
 
+# Function to check if framework is dynamic
+is_dynamic_framework() {
+    local framework_path="$1"
+    local binary_path="$framework_path/$(basename "$framework_path" .framework)"
+    
+    if [[ -f "$binary_path" ]]; then
+        local file_type=$(file "$binary_path" 2>/dev/null)
+        if [[ "$file_type" == *"dynamically linked shared library"* ]]; then
+            return 0  # True - is dynamic
+        fi
+    fi
+    return 1  # False - is static or unknown
+}
+
+# Function to check if framework is static
+is_static_framework() {
+    local framework_path="$1"
+    local binary_path="$framework_path/$(basename "$framework_path" .framework)"
+    
+    if [[ -f "$binary_path" ]]; then
+        local file_type=$(file "$binary_path" 2>/dev/null)
+        if [[ "$file_type" == *"current ar archive"* ]]; then
+            return 0  # True - is static
+        fi
+    fi
+    return 1  # False - is dynamic or unknown
+}
+
+# Function to find and copy bundle files for static frameworks
+copy_bundle_for_static_framework() {
+    local framework_path="$1"
+    local embedded_framework_path="$2"
+    
+    if ! is_static_framework "$framework_path"; then
+        return 0  # Not a static framework, skip
+    fi
+    
+    local framework_name=$(basename "$framework_path" .framework)
+    local pod_name=""
+    
+    # Extract pod name from framework path
+    # Example: Pods/Ads-Global/SDK/PAGAdSDK.xcframework/ios-arm64/PAGAdSDK.framework
+    # We need to find the pod directory (Ads-Global in this case)
+    local path_parts=($(echo "$framework_path" | tr '/' ' '))
+    for i in "${!path_parts[@]}"; do
+        if [[ "${path_parts[$i]}" == "Pods" && $((i+1)) -lt ${#path_parts[@]} ]]; then
+            pod_name="${path_parts[$((i+1))]}"
+            break
+        fi
+    done
+    
+    if [[ -z "$pod_name" ]]; then
+        print_warning "Could not determine pod name for $framework_name" >&2
+        return 1
+    fi
+    
+    # Look for bundle in the pod directory and its subdirectories
+    local bundle_found=false
+    
+    # First try direct path: Pods/PodName/FrameworkName.bundle
+    local bundle_path="Pods/$pod_name/$framework_name.bundle"
+    if [[ -d "$bundle_path" ]]; then
+        bundle_found=true
+    else
+        # Search in subdirectories of the pod
+        while IFS= read -r -d '' found_bundle; do
+            if [[ "$found_bundle" == *"/$framework_name.bundle" ]]; then
+                bundle_path="$found_bundle"
+                bundle_found=true
+                break
+            fi
+        done < <(find "Pods/$pod_name" -name "$framework_name.bundle" -type d -print0 2>/dev/null)
+    fi
+    
+    if [[ "$bundle_found" == true ]]; then
+        print_status "Found bundle for static framework $framework_name: $bundle_path" >&2
+        
+        # Create Resources directory in embedded framework
+        local resources_dir="$embedded_framework_path/Resources"
+        mkdir -p "$resources_dir"
+        
+        # Copy bundle to Resources directory
+        cp -R "$bundle_path" "$resources_dir/"
+        if [[ $? -eq 0 ]]; then
+            print_success "Copied bundle to $resources_dir/$framework_name.bundle" >&2
+        else
+            print_error "Failed to copy bundle for $framework_name" >&2
+            return 1
+        fi
+    else
+        print_status "No bundle found for static framework $framework_name" >&2
+    fi
+    
+    return 0
+}
+
 # Function to find framework files in Pods directory
 find_frameworks() {
     local target_framework="$1"
@@ -50,6 +146,52 @@ find_frameworks() {
     
     # Return the array by printing each element on a separate line
     printf '%s\n' "${frameworks_found[@]}"
+}
+
+# Function to copy dynamic frameworks
+copy_dynamic_frameworks() {
+    local frameworks=("$@")
+    local dynamic_frameworks_dir="UnrealEngineBuild/DynamicFrameworks"
+    
+    print_status "Checking for dynamic frameworks..."
+    
+    # Create DynamicFrameworks directory if it doesn't exist
+    if [[ ! -d "$dynamic_frameworks_dir" ]]; then
+        print_status "Creating $dynamic_frameworks_dir directory"
+        mkdir -p "$dynamic_frameworks_dir"
+    fi
+    
+    local dynamic_count=0
+    
+    for framework_path in "${frameworks[@]}"; do
+        if is_dynamic_framework "$framework_path"; then
+            local framework_name=$(basename "$framework_path" .framework)
+            local target_path="$dynamic_frameworks_dir/$framework_name.framework"
+            
+            print_status "Found dynamic framework: $framework_name"
+            
+            # Remove existing copy if it exists
+            if [[ -d "$target_path" ]]; then
+                print_warning "Removing existing $target_path"
+                rm -rf "$target_path"
+            fi
+            
+            # Copy the dynamic framework
+            cp -R "$framework_path" "$target_path"
+            if [[ $? -eq 0 ]]; then
+                print_success "Copied dynamic framework: $framework_name"
+                ((dynamic_count++))
+            else
+                print_error "Failed to copy dynamic framework: $framework_name"
+            fi
+        fi
+    done
+    
+    if [[ $dynamic_count -gt 0 ]]; then
+        print_success "Copied $dynamic_count dynamic framework(s) to $dynamic_frameworks_dir"
+    else
+        print_status "No dynamic frameworks found"
+    fi
 }
 
 # Function to create embedded framework
@@ -83,6 +225,9 @@ create_embedded_framework() {
         print_error "Failed to copy framework contents from $source_framework to $embedded_framework_name" >&2
         exit 2
     fi
+    
+    # Copy bundle files for static frameworks
+    copy_bundle_for_static_framework "$source_framework" "$embedded_framework_name"
     
     print_success "Created embedded framework: $embedded_framework_name" >&2
     echo "$embedded_framework_name"
@@ -161,7 +306,11 @@ main() {
     
     print_status "Found ${#frameworks[@]} framework(s) to process"
     
-    # Process each framework
+    # Copy dynamic frameworks first
+    copy_dynamic_frameworks "${frameworks[@]}"
+    echo ""
+    
+    # Process each framework for embedded framework creation
     for framework_path in "${frameworks[@]}"; do
         framework_name=$(basename "$framework_path" .framework)
         print_status "Found framework: $framework_name at $framework_path"
