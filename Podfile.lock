@@ -7,31 +7,31 @@ PODS:
     - Ads-Global/BUAdSDK (= 7.2.0.5)
   - Ads-Global/BUAdSDK (7.2.0.5)
   - AppLovinSDK (13.3.1)
-  - BidmadAdFitAdapter (3.12.7.11.0):
+  - BidmadAdFitAdapter (3.12.7.12.0):
     - AdFitSDK (= 3.12.7)
-    - BidmadSDK (< 6.13.0, >= 6.12.0)
-  - BidmadAdmixerAdapter (2.0.2.11.1):
+    - BidmadSDK (< 6.14.0, >= 6.13.0)
+  - BidmadAdmixerAdapter (2.0.2.12.0):
     - AdMixerMediation (= 2.0.2)
-    - BidmadSDK (< 6.13.0, >= 6.12.2)
-  - BidmadAppLovinAdapter (13.3.1.11.0):
+    - BidmadSDK (< 6.14.0, >= 6.13.0)
+  - BidmadAppLovinAdapter (13.3.1.12.0):
     - AppLovinSDK (= 13.3.1)
-    - BidmadSDK (< 6.13.0, >= 6.12.4)
-  - BidmadFyberAdapter (8.3.7.11.0):
-    - BidmadSDK (< 6.13.0, >= 6.12.4)
+    - BidmadSDK (< 6.14.0, >= 6.13.0)
+  - BidmadFyberAdapter (8.3.7.12.0):
+    - BidmadSDK (< 6.14.0, >= 6.13.0)
     - Fyber_Marketplace_SDK (= 8.3.7)
-  - BidmadGoogleAdManagerAdapter (12.6.0.11.0):
-    - BidmadSDK (< 6.13.0, >= 6.12.4)
+  - BidmadGoogleAdManagerAdapter (12.6.0.12.0):
+    - BidmadSDK (< 6.14.0, >= 6.13.0)
     - Google-Mobile-Ads-SDK (= 12.6.0)
-  - BidmadGoogleAdMobAdapter (12.6.0.11.0):
-    - BidmadSDK (< 6.13.0, >= 6.12.4)
+  - BidmadGoogleAdMobAdapter (12.6.0.12.0):
+    - BidmadSDK (< 6.14.0, >= 6.13.0)
     - Google-Mobile-Ads-SDK (= 12.6.0)
-  - BidmadMobwithAdapter (1.0.0.11.2):
-    - BidmadSDK (< 6.13.0, >= 6.12.0)
-  - BidmadORTBAdapter (1.0.0.11.2):
-    - BidmadSDK (< 6.13.0, >= 6.12.2)
-  - BidmadPangleAdapter (7.2.0.5.11.0):
+  - BidmadMobwithAdapter (1.0.0.12.0):
+    - BidmadSDK (< 6.14.0, >= 6.13.0)
+  - BidmadORTBAdapter (1.0.0.12.0):
+    - BidmadSDK (< 6.14.0, >= 6.13.0)
+  - BidmadPangleAdapter (7.2.0.5.12.0):
     - Ads-Global (= 7.2.0.5)
-    - BidmadSDK (< 6.13.0, >= 6.12.4)
+    - BidmadSDK (< 6.14.0, >= 6.13.0)
   - BidmadPartners/AdMobBidding (1.0.7):
     - GoogleMobileAdsMediationAppLovin (= 13.3.1.0)
     - GoogleMobileAdsMediationFacebook (= 6.20.0.0)
@@ -40,19 +40,19 @@ PODS:
     - GoogleMobileAdsMediationPangle (= 7.2.0.5.0)
     - GoogleMobileAdsMediationUnity (= 4.15.0.0)
     - GoogleMobileAdsMediationVungle (= 7.5.1.0)
-  - BidmadSDK (6.12.4):
+  - BidmadSDK (6.13.0):
     - GoogleUserMessagingPlatform (= 2.1.0)
-  - BidmadTaboolaAdapter (3.8.33.11.2):
-    - BidmadSDK (< 6.13.0, >= 6.12.2)
+  - BidmadTaboolaAdapter (3.8.33.12.0):
+    - BidmadSDK (< 6.14.0, >= 6.13.0)
     - TaboolaSDK (= 3.8.33)
-  - BidmadTeadsAdapter (5.2.0.11.2):
-    - BidmadSDK (< 6.13.0, >= 6.12.0)
+  - BidmadTeadsAdapter (5.2.0.12.0):
+    - BidmadSDK (< 6.14.0, >= 6.13.0)
     - TeadsSDK (= 5.2.0)
-  - BidmadUnityAdsAdapter (4.15.0.11.0):
-    - BidmadSDK (< 6.13.0, >= 6.12.4)
+  - BidmadUnityAdsAdapter (4.15.0.12.0):
+    - BidmadSDK (< 6.14.0, >= 6.13.0)
     - UnityAds (= 4.15.0)
-  - BidmadVungleAdapter (7.5.1.11.0):
-    - BidmadSDK (< 6.13.0, >= 6.12.4)
+  - BidmadVungleAdapter (7.5.1.12.0):
+    - BidmadSDK (< 6.14.0, >= 6.13.0)
     - VungleAds (= 7.5.1)
   - FBAudienceNetwork (6.20.0)
   - Fyber_Marketplace_SDK (8.3.7)
@@ -105,8 +105,8 @@ PODS:
     - MintegralAdSDK/NativeAd
   - MintegralAdSDK/SplashAd (7.7.8):
     - MintegralAdSDK/NativeAd
-  - OpenBiddingHelper (6.12.3):
-    - BidmadSDK (< 6.13.0, >= 6.12.4)
+  - OpenBiddingHelper (6.13.0):
+    - BidmadSDK (< 6.14.0, >= 6.13.0)
   - TaboolaSDK (3.8.33)
   - TeadsSDK (5.2.0):
     - TeadsSDK/Core (= 5.2.0)
@@ -115,22 +115,22 @@ PODS:
   - VungleAds (7.5.1)
 
 DEPENDENCIES:
-  - BidmadAdFitAdapter (= 3.12.7.11.0)
-  - BidmadAdmixerAdapter (= 2.0.2.11.1)
-  - BidmadAppLovinAdapter (= 13.3.1.11.0)
-  - BidmadFyberAdapter (= 8.3.7.11.0)
-  - BidmadGoogleAdManagerAdapter (= 12.6.0.11.0)
-  - BidmadGoogleAdMobAdapter (= 12.6.0.11.0)
-  - BidmadMobwithAdapter (= 1.0.0.11.2)
-  - BidmadORTBAdapter (= 1.0.0.11.2)
-  - BidmadPangleAdapter (= 7.2.0.5.11.0)
+  - BidmadAdFitAdapter (= 3.12.7.12.0)
+  - BidmadAdmixerAdapter (= 2.0.2.12.0)
+  - BidmadAppLovinAdapter (= 13.3.1.12.0)
+  - BidmadFyberAdapter (= 8.3.7.12.0)
+  - BidmadGoogleAdManagerAdapter (= 12.6.0.12.0)
+  - BidmadGoogleAdMobAdapter (= 12.6.0.12.0)
+  - BidmadMobwithAdapter (= 1.0.0.12.0)
+  - BidmadORTBAdapter (= 1.0.0.12.0)
+  - BidmadPangleAdapter (= 7.2.0.5.12.0)
   - BidmadPartners/AdMobBidding (= 1.0.7)
-  - BidmadSDK (= 6.12.4)
-  - BidmadTaboolaAdapter (= 3.8.33.11.2)
-  - BidmadTeadsAdapter (= 5.2.0.11.2)
-  - BidmadUnityAdsAdapter (= 4.15.0.11.0)
-  - BidmadVungleAdapter (= 7.5.1.11.0)
-  - OpenBiddingHelper (= 6.12.3)
+  - BidmadSDK (= 6.13.0)
+  - BidmadTaboolaAdapter (= 3.8.33.12.0)
+  - BidmadTeadsAdapter (= 5.2.0.12.0)
+  - BidmadUnityAdsAdapter (= 4.15.0.12.0)
+  - BidmadVungleAdapter (= 7.5.1.12.0)
+  - OpenBiddingHelper (= 6.13.0)
 
 SPEC REPOS:
   trunk:
@@ -178,21 +178,21 @@ SPEC CHECKSUMS:
   AdMixerMediation: 42529099b8231159bc6a60ab13b42029edbed4be
   Ads-Global: b76f43304561c8d77e5e3cee39e1a501e9717104
   AppLovinSDK: 5075837afdee4fb429121799b8cbcc5918ef3a23
-  BidmadAdFitAdapter: 97ac41b2fff27a3a40c871016afe6309e1db7ea8
-  BidmadAdmixerAdapter: 5b791bbdf3db5a019354df4d8ccfc0365e4bb185
-  BidmadAppLovinAdapter: f90e388576e200148c7e40e271e7a6a1d850d109
-  BidmadFyberAdapter: 6be747a1cd5c8f70565985c8bfa10dcbc83775b9
-  BidmadGoogleAdManagerAdapter: 7ea2ba5d86455ce04012e44c184a719a3d8295a0
-  BidmadGoogleAdMobAdapter: abb9ea4eb5f6c9975f120f41250c8a90d497bad5
-  BidmadMobwithAdapter: 2924c14597d23c7af5ca67c2ef7ee627c0cae4d5
-  BidmadORTBAdapter: 85cffba565390e263706575fcd13d72ecf2a9df2
-  BidmadPangleAdapter: 4fb22320a91d90e4185f9dac78719c4e4f9449bd
+  BidmadAdFitAdapter: 07fd335e995e0bd558966f5f023470a1a5bae02c
+  BidmadAdmixerAdapter: 2d0a832cba04f782dceb54a90343bcaa6ed6ede0
+  BidmadAppLovinAdapter: 1d0184fb794c9f9565b81b1b1b60b95174f3374f
+  BidmadFyberAdapter: 87d1189061d86f14ed5fe92b466bd0bb88a5002d
+  BidmadGoogleAdManagerAdapter: 8736c0612a4f498d8b2c4480571d8269e9c7cbb7
+  BidmadGoogleAdMobAdapter: 6520f6cd31ac7cc7e29afb4e64e46638172f5e80
+  BidmadMobwithAdapter: 79100ce85f6a64606f31cef7cf941c971eeb80e9
+  BidmadORTBAdapter: dd4337127da5929a7d4321b5f710f4b1ae42e6e2
+  BidmadPangleAdapter: 3ebc38aa7b4446fd187c5604bb176cac63ecc0c9
   BidmadPartners: ab64a743369822ef3f8990b0a9010e3c9ae6467e
-  BidmadSDK: 4ee8cea41a68b26d7e0f8e462c61fcfd5d411c6f
-  BidmadTaboolaAdapter: de9f4f8a27296b3d3aae3c31a948c7aa50e17943
-  BidmadTeadsAdapter: f66450ee6e54da8fbf9f76f30415c3572d7a4e30
-  BidmadUnityAdsAdapter: 0748df83999127ac3570f93856f3d7208c8f605c
-  BidmadVungleAdapter: 53fb6708da3bc5925d2f5fa049760b548c5c330f
+  BidmadSDK: a3bf014f8e5743db53c61682646459e981e13d4f
+  BidmadTaboolaAdapter: 705e7a61aec2e44587b7d8d9399bf6727e1e1981
+  BidmadTeadsAdapter: eed1f3cd194ee6acc7d3754444d4fe94d561fc39
+  BidmadUnityAdsAdapter: 58513eec78de046201203cfcc7efa09a5d6faa3a
+  BidmadVungleAdapter: 11239d74de615c95106fba49680a5801beb64645
   FBAudienceNetwork: 51d3681e66c00ee36811c0d96e9fa39d5673eba8
   Fyber_Marketplace_SDK: 99ff1d44bf0c9b4e0aa3e2f2bd8c7956fc5c5675
   Google-Mobile-Ads-SDK: 198db3cfaaafdacf4ebfa273944c844792d483d1
@@ -205,12 +205,12 @@ SPEC CHECKSUMS:
   GoogleMobileAdsMediationVungle: ac53b75b6b6cc1e1acf670e773522be909dcf18a
   GoogleUserMessagingPlatform: dce302b8f1b84d6e945812ee7a15c3f65a102cbf
   MintegralAdSDK: 07e018290689b906499d8285654bba42681cafcf
-  OpenBiddingHelper: b1697611666c707241c169066a9ac1757b5151d9
+  OpenBiddingHelper: 10f72095106a4d13078f8b3d38305c1585ce3952
   TaboolaSDK: 54ad07f7607ca37e0aaebcf032138f44abb31554
   TeadsSDK: 7355125b5a05f67ee9fcb982e8bc1df5211aa816
   UnityAds: 5f487a7cf0b0cd162810cff51698f3ca0b4f8e68
   VungleAds: f7143149d6160211c6d462453adce125160e4283
 
-PODFILE CHECKSUM: dbdfd9c75e28f3853cc3830bc90e1b4add337d49
+PODFILE CHECKSUM: 7e9194b71bb6da5724a85c892b12b56177b9c9b6
 
 COCOAPODS: 1.16.2

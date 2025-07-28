@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0D6F46022E31A699009C97B3 /* FullscreenAdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D6F46012E31A699009C97B3 /* FullscreenAdViewController.m */; };
 		0D82B290282A3D6A00A13696 /* NativeAd.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D82B28E282A3D6A00A13696 /* NativeAd.xib */; };
 		0D82B291282A3D6A00A13696 /* NativeAdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D82B28F282A3D6A00A13696 /* NativeAdViewController.m */; };
 		265E6471264BB3720006C750 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 265E6470264BB3720006C750 /* main.m */; };
@@ -37,6 +38,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0D6F46002E31A699009C97B3 /* FullscreenAdViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FullscreenAdViewController.h; sourceTree = "<group>"; };
+		0D6F46012E31A699009C97B3 /* FullscreenAdViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FullscreenAdViewController.m; sourceTree = "<group>"; };
 		0D82B28D282A3D6A00A13696 /* NativeAdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeAdViewController.h; sourceTree = "<group>"; };
 		0D82B28E282A3D6A00A13696 /* NativeAd.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NativeAd.xib; sourceTree = "<group>"; };
 		0D82B28F282A3D6A00A13696 /* NativeAdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NativeAdViewController.m; sourceTree = "<group>"; };
@@ -93,6 +96,8 @@
 				46AB202A218816CF00A2D82F /* RewardViewController.m */,
 				26B4FEF22694398E0004A818 /* AppOpenAdViewController.h */,
 				26B4FEF32694398E0004A818 /* AppOpenAdViewController.m */,
+				0D6F46002E31A699009C97B3 /* FullscreenAdViewController.h */,
+				0D6F46012E31A699009C97B3 /* FullscreenAdViewController.m */,
 				261FF6F8269EB55700014635 /* BidmadSDKTest-Bridging-Header.h */,
 			);
 			path = AdViewController;
@@ -368,6 +373,7 @@
 				46EFA9FD1F6908FB002B7C96 /* BannerViewController.m in Sources */,
 				265E6471264BB3720006C750 /* main.m in Sources */,
 				46AB202B218816CF00A2D82F /* RewardViewController.m in Sources */,
+				0D6F46022E31A699009C97B3 /* FullscreenAdViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

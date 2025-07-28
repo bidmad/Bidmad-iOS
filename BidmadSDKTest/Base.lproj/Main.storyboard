@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23094" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23084"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -22,16 +22,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="AV7-ua-w5K">
-                                <rect key="frame" x="16" y="0.0" width="343" height="667"/>
+                                <rect key="frame" x="16" y="20" width="343" height="647"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tNa-er-LLL">
-                                        <rect key="frame" x="0.0" y="0.0" width="343" height="88.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="74"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="2N4-7k-0eI">
-                                                <rect key="frame" x="0.0" y="0.0" width="343" height="88.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="343" height="74"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lLy-zZ-XbV">
-                                                        <rect key="frame" x="0.0" y="29.5" width="171.5" height="29"/>
+                                                        <rect key="frame" x="0.0" y="22.5" width="171.5" height="29"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <state key="normal" title="Cancel AppOpenAd"/>
                                                         <userDefinedRuntimeAttributes>
@@ -42,7 +42,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EMi-X7-uk1">
-                                                        <rect key="frame" x="171.5" y="29" width="171.5" height="30"/>
+                                                        <rect key="frame" x="171.5" y="22" width="171.5" height="30"/>
                                                         <state key="normal" title="Reload AppOpenAd"/>
                                                         <connections>
                                                             <action selector="reloadAppOpenAdButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jUU-Xs-ByW"/>
@@ -60,43 +60,51 @@
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3d0-9p-Dc6">
-                                        <rect key="frame" x="0.0" y="96.5" width="343" height="88.5"/>
+                                        <rect key="frame" x="0.0" y="82" width="343" height="74"/>
                                         <state key="normal" title="BannerView"/>
                                         <connections>
                                             <segue destination="hYw-eA-IlG" kind="presentation" modalPresentationStyle="fullScreen" id="C54-lf-Jfu"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rZq-Z5-yhH">
-                                        <rect key="frame" x="0.0" y="193" width="343" height="88.5"/>
+                                        <rect key="frame" x="0.0" y="164" width="343" height="73.5"/>
                                         <state key="normal" title="Interstitial"/>
                                         <connections>
                                             <segue destination="PUA-xG-LK6" kind="presentation" modalPresentationStyle="fullScreen" id="tmk-VB-rQA"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mif-k2-vci">
-                                        <rect key="frame" x="0.0" y="289.5" width="343" height="88"/>
+                                        <rect key="frame" x="0.0" y="245.5" width="343" height="74"/>
                                         <state key="normal" title="Reward"/>
                                         <connections>
                                             <segue destination="jXf-Rl-83R" kind="presentation" modalPresentationStyle="fullScreen" id="k4c-o6-Sw7"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sfh-e3-bQ8">
-                                        <rect key="frame" x="0.0" y="385.5" width="343" height="88.5"/>
+                                        <rect key="frame" x="0.0" y="327.5" width="343" height="74"/>
                                         <state key="normal" title="App Open Ad"/>
                                         <connections>
                                             <segue destination="eQV-A6-rto" kind="presentation" id="1go-st-vyc"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QXs-tf-CNF">
-                                        <rect key="frame" x="0.0" y="482" width="343" height="88.5"/>
+                                        <rect key="frame" x="0.0" y="409.5" width="343" height="74"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Native Ad"/>
                                         <connections>
                                             <segue destination="qXj-hK-MtZ" kind="show" id="Sl7-bq-MV8"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jah-D5-8Hb">
+                                        <rect key="frame" x="0.0" y="491.5" width="343" height="73.5"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Fullscreen Ad"/>
+                                        <connections>
+                                            <segue destination="zdr-Qy-gbK" kind="show" id="XHq-0G-Z5z"/>
+                                        </connections>
+                                    </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pni-2h-nMe">
-                                        <rect key="frame" x="0.0" y="578.5" width="343" height="88.5"/>
+                                        <rect key="frame" x="0.0" y="573" width="343" height="74"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </view>
                                 </subviews>
@@ -199,7 +207,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rzs-gJ-mEU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-542" y="986"/>
+            <point key="canvasLocation" x="-1102" y="990"/>
         </scene>
         <!--Banner View Controller-->
         <scene sceneID="6nN-4z-8qX">
@@ -375,7 +383,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4fF-Q7-6Ue" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1198" y="986"/>
+            <point key="canvasLocation" x="-1758" y="990"/>
         </scene>
         <!--Reward View Controller-->
         <scene sceneID="HdW-gS-1cC">
@@ -463,7 +471,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pZu-Q7-8o4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="122" y="986"/>
+            <point key="canvasLocation" x="-438" y="990"/>
         </scene>
         <!--Native Ad View Controller-->
         <scene sceneID="q87-ol-yT8">
@@ -518,7 +526,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kD2-Nk-iy2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1511" y="985"/>
+            <point key="canvasLocation" x="951" y="989"/>
         </scene>
         <!--App Open Ad View Controller-->
         <scene sceneID="yxz-wJ-INm">
@@ -665,12 +673,72 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hqm-vk-yDW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="818" y="986"/>
+            <point key="canvasLocation" x="258" y="990"/>
+        </scene>
+        <!--Fullscreen Ad View Controller-->
+        <scene sceneID="Nt2-89-YWN">
+            <objects>
+                <viewController modalPresentationStyle="fullScreen" id="zdr-Qy-gbK" customClass="FullscreenAdViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Bqq-kk-BQE"/>
+                        <viewControllerLayoutGuide type="bottom" id="Uzb-FN-kVl"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="1zI-eS-I27">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Callbacks" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UAB-bz-jWS">
+                                <rect key="frame" x="151" y="156.5" width="73.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="klu-Hd-KZI">
+                                <rect key="frame" x="46" y="475.5" width="283" height="151.5"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fah-2p-c3L">
+                                        <rect key="frame" x="0.0" y="0.0" width="283" height="34.5"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Load Ad"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="obj-qN-xve">
+                                        <rect key="frame" x="0.0" y="58.5" width="283" height="34.5"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Show Ad"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GhR-yZ-6Md">
+                                        <rect key="frame" x="0.0" y="117" width="283" height="34.5"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Auto Reload On"/>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="klu-Hd-KZI" secondAttribute="trailing" constant="30" id="87x-Su-G09"/>
+                            <constraint firstItem="Uzb-FN-kVl" firstAttribute="top" secondItem="klu-Hd-KZI" secondAttribute="bottom" constant="40" id="EhV-Dc-chT"/>
+                            <constraint firstItem="klu-Hd-KZI" firstAttribute="leading" secondItem="1zI-eS-I27" secondAttribute="leadingMargin" constant="30" id="P93-Ec-opq"/>
+                            <constraint firstItem="UAB-bz-jWS" firstAttribute="centerY" secondItem="1zI-eS-I27" secondAttribute="centerY" multiplier="0.5" id="btQ-1H-xFe"/>
+                            <constraint firstItem="UAB-bz-jWS" firstAttribute="centerX" secondItem="1zI-eS-I27" secondAttribute="centerX" id="gwR-Ro-qSY"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="9vs-9q-FnC"/>
+                    <connections>
+                        <outlet property="autoReloadToggle" destination="GhR-yZ-6Md" id="aZ0-a1-Wn8"/>
+                        <outlet property="callbacks" destination="UAB-bz-jWS" id="syg-FY-0hf"/>
+                        <outlet property="loadAd" destination="Fah-2p-c3L" id="UwV-PS-h50"/>
+                        <outlet property="showAd" destination="obj-qN-xve" id="ee8-s8-Et1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Jqx-MM-Gq7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1654" y="990"/>
         </scene>
     </scenes>
     <resources>
         <systemColor name="labelColor">
-            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="linkColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
