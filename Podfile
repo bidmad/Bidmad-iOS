@@ -5,18 +5,18 @@ target 'BidmadSDKTest' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
-  pod "BidmadSDK/core", "6.13.2"
+  pod "BidmadSDK/core", "6.13.3"
   pod "OpenBiddingHelper", "6.13.2"
 
   pod "BidmadAdFitAdapter", "3.12.7.12.1"
-  pod "BidmadAdmixerAdapter", "2.0.2.12.1"
+  pod "BidmadAdmixerAdapter", "2.0.2.12.2"
   pod "BidmadAppLovinAdapter", "13.3.1.12.1"
   pod "BidmadFyberAdapter", "8.3.7.12.1"
   pod "BidmadGoogleAdManagerAdapter", "12.6.0.12.1"
   pod "BidmadGoogleAdMobAdapter", "12.6.0.12.1"
   pod "BidmadMobwithAdapter", "1.0.0.12.1"
   pod "BidmadORTBAdapter", "1.0.0.12.1"
-  pod "BidmadPangleAdapter", "7.2.0.5.12.1"
+  pod "BidmadPangleAdapter", "7.2.0.5.12.2"
   pod "BidmadTaboolaAdapter", "3.8.33.12.1"
   pod "BidmadTeadsAdapter", "5.2.0.12.1"
   pod "BidmadUnityAdsAdapter", "4.15.0.12.1"
