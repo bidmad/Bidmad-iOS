@@ -31,6 +31,9 @@
 #### Installation Guide
 1. Add the following code inside the Podfile
 
+> [!WARNING]
+> When using BidmadSDK, make sure to add "/core" to the pod declaration: `pod "BidmadSDK/core", "version"`<br>
+
 ```
 # Please set the minimum iOS version here
 platform :ios, "12.0"

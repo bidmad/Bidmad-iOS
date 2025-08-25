@@ -31,6 +31,9 @@
 #### SDK 설치 방법
 1. Podfile 내부에 다음 코드 추가
 
+> [!WARNING]
+> BidmadSDK를 사용할 때는 pod 선언에 "/core"를 추가해야 합니다: `pod "BidmadSDK/core", "version"`<br>
+
 ```
 # 사용하시는 최소 iOS 버전을 아래 라인에 기입해주세요
 platform :ios, "12.0"
