@@ -25,38 +25,39 @@
 ## BidmadSDK Installation Guide
 
 #### Development Environment
-- Xcode minimum version of 16.0 required
+- Xcode minimum version of 16.4 required
 - BASE SDK : iOS
 - iOS Deployment Target : 13.0
 #### Installation Guide
 1. Add the following code inside the Podfile
 
 > [!WARNING]
-> When using BidmadSDK, make sure to add "/core" to the pod declaration: `pod "BidmadSDK/core", "version"`<br>
+> Starting from 6.14.0, the `BidmadSDK/core` subspec has been removed. Use `pod "BidmadSDK", "version"` and add `BidmadGoogleGDPRAdapter` as a separate dependency.
 
 ```
 # Please set the minimum iOS version here
-platform :ios, "12.0"
+platform :ios, "13.0"
 
 target "BidmadSDKTest" do
 
   use_frameworks!
-  pod "BidmadSDK/core", "6.13.6"
-  pod "OpenBiddingHelper", "6.13.4"
-  pod "BidmadAdFitAdapter", "3.12.7.12.1"
-  pod "BidmadAdmixerAdapter", "2.0.2.12.2"
-  pod "BidmadAppLovinAdapter", "13.3.1.12.1"
-  pod "BidmadFyberAdapter", "8.3.7.12.1"
-  pod "BidmadGoogleAdManagerAdapter", "12.6.0.12.1"
-  pod "BidmadGoogleAdMobAdapter", "12.6.0.12.1"
-  pod "BidmadMobwithAdapter", "2.0.0.12.0"
-  pod "BidmadORTBAdapter", "1.0.0.12.1"
-  pod "BidmadPangleAdapter", "7.2.0.5.12.2"
-  pod "BidmadTaboolaAdapter", "3.8.33.12.1"
-  pod "BidmadTeadsAdapter", "5.2.0.12.1"
-  pod "BidmadUnityAdsAdapter", "4.15.0.12.1"
-  pod "BidmadVungleAdapter", "7.5.1.12.1"
-  pod "BidmadPartners/AdMobBidding", "1.0.7"
+  pod "BidmadSDK", "6.14.0"
+  pod "BidmadGoogleGDPRAdapter", "6.14.0"
+  pod "OpenBiddingHelper", "6.14.0"
+  pod "BidmadAdFitAdapter", "3.12.7.13.0"
+  pod "BidmadAdmixerAdapter", "2.0.2.13.0"
+  pod "BidmadAppLovinAdapter", "13.3.1.13.0"
+  pod "BidmadFyberAdapter", "8.3.7.13.0"
+  pod "BidmadGoogleAdManagerAdapter", "12.6.0.13.0"
+  pod "BidmadGoogleAdMobAdapter", "12.6.0.13.0"
+  pod "BidmadMobwithAdapter", "2.0.0.13.0"
+  pod "BidmadORTBAdapter", "1.0.0.13.0"
+  pod "BidmadPangleAdapter", "7.2.0.5.13.0"
+  pod "BidmadTaboolaAdapter", "3.8.33.13.0"
+  pod "BidmadTeadsAdapter", "5.2.0.13.0"
+  pod "BidmadUnityAdsAdapter", "4.15.0.13.0"
+  pod "BidmadVungleAdapter", "7.5.1.13.0"
+  pod "BidmadPartners/AdMobBidding", "1.0.8"
 
 end
 
@@ -94,6 +95,8 @@ Prior to the initial configuration of the app, when updating from version 4.6.0.
 For users of native ad interface updating from v5.3.0 or lower to v6.0.0 or higher, please refer to [NativeAd Migration Guide 6.0.0](https://github.com/bidmad/Bidmad-iOS/wiki/Native-Ad-Migration-to-v6.0.0%5BENG%5D) for your app updates. 
 
 For users of app open ad and native ad interface updating from v6.3.5 or lower to v6.4.0 or higher, please refer to [AppOpen and NativeAd Migration Guide for 6.4.0](https://github.com/bidmad/Bidmad-iOS/wiki/AppOpen-and-NativeAd-Migration-Guide-for-6.4.0-%5BKOR%5D) for your app updates.
+
+When updating from a version below 6.14.0 to 6.14.0 or higher, the Banner / AppOpen / NativeAd delegate protocols and callback method signatures have changed. Refer to [CHANGELOG.md](./CHANGELOG.md) for the full breakdown and migration steps before updating your app.
 
 1. Enter the AppDomain value received from the Techlabs Operations Team in info.plist as follows.<br>
 
@@ -161,7 +164,7 @@ BidmadCommon.initializeSdk { isInitialized in
 
 @import OpenBiddingHelper;
 
-@interface BannerViewController : UIViewController<BIDMADOpenBiddingBannerDelegate> {
+@interface BannerViewController : UIViewController<BidmadBannerAdDelegate> {
     BidmadBannerAd *bannerAd;
 }
 __weak IBOutlet UIView *bannerContainer;
@@ -184,7 +187,7 @@ __weak IBOutlet UIView *bannerContainer;
 
 import OpenBiddingHelper
 
-class BannerViewController: UIViewController, BIDMADOpenBiddingBannerDelegate {
+class BannerViewController: UIViewController, BidmadBannerAdDelegate {
     var bannerAd: BidmadBannerAd!
     @IBOutlet weak var bannerContainer: UIView!
     
@@ -207,29 +210,29 @@ class BannerViewController: UIViewController, BIDMADOpenBiddingBannerDelegate {
 ```
 // Objective C
 
-- (void)onLoadAd:(OpenBiddingBanner *)bidmadAd info:(BidmadInfo *)info {
+- (void)onLoadBannerAd:(BidmadBannerAd *)bannerAd info:(BidmadInfo *)info {
     NSLog(@"Load")
 }
 
-- (void)onClickAd:(OpenBiddingBanner *)bidmadAd info:(BidmadInfo *)info {
+- (void)onClickBannerAd:(BidmadBannerAd *)bannerAd info:(BidmadInfo *)info {
     NSLog(@"Click")
 }
 
-- (void)onLoadFailAd:(OpenBiddingBanner *)bidmadAd error:(NSError *)error {
+- (void)onLoadFailBannerAd:(BidmadBannerAd *)bannerAd error:(NSError *)error {
     NSLog(@"LoadFail")
 }
 
 // -- SWIFT --
 
-func onLoadAd(_ bidmadAd: OpenBiddingBanner, info: BidmadInfo) {
+func onLoad(bannerAd: BidmadBannerAd, info: BidmadInfo) {
     print("ad is loaded")
 }
 
-func onLoadFailAd(_ bidmadAd: OpenBiddingBanner, error: any Error) {
+func onLoadFail(bannerAd: BidmadBannerAd, error: any Error) {
     print("ad failed to load with error \(error.localizedDescription)")
 }
 
-func onClickAd(_ bidmadAd: OpenBiddingBanner, info: BidmadInfo) {
+func onClick(bannerAd: BidmadBannerAd, info: BidmadInfo) {
     print("ad is clicked")
 }
 ```
@@ -503,7 +506,7 @@ App Open ads are an ad format that monetizes the app load screen when a user bri
 ```
 // Objective C
 
-@interface AppOpenAdViewController () <OpenBiddingAppOpenAdDelegate>
+@interface AppOpenAdViewController () <BidmadAppOpenAdDelegate>
 @property (nonatomic, strong) BidmadAppOpenAd *appOpenAd;
 @end
 
@@ -526,25 +529,20 @@ App Open ads are an ad format that monetizes the app load screen when a user bri
     }
 }
 
-- (void)deregister {
-    // Disable App Open Ad automatically showing once your app moves to foreground
-    [self.appOpenAd deregisterForAppOpenAd];
-}
-
 @end
 
 // -- SWIFT --
 
 import OpenBiddingHelper
 
-class AppOpenAdViewController: UIViewController, OpenBiddingAppOpenAdDelegate {
+class AppOpenAdViewController: UIViewController, BidmadAppOpenAdDelegate {
     let appOpenAdZoneID = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
     var appOpenAd: BidmadAppOpenAd!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        appOpenAd = BidmadAppOpenAd(self, zoneID: appOpenAdZoneID)
+        appOpenAd = BidmadAppOpenAd(zoneID: appOpenAdZoneID)
         appOpenAd.delegate = self
     }
     
@@ -557,10 +555,6 @@ class AppOpenAdViewController: UIViewController, OpenBiddingAppOpenAdDelegate {
             appOpenAd.show(on: self)
         }
     }
-    
-    func deregisterAppOpenAd() {
-        appOpenAd.deregisterForAppOpenAd()
-    }
 }
 ```
 </details>
@@ -570,55 +564,53 @@ class AppOpenAdViewController: UIViewController, OpenBiddingAppOpenAdDelegate {
 <br>
 
 ```
-- (void)onLoadAd:(OpenBiddingAppOpenAd *)bidmadAd info:(BidmadInfo *)info {
+- (void)onLoadAppOpenAd:(BidmadAppOpenAd *)appOpenAd info:(BidmadInfo *)info {
     NSLog(@"Load");
 }
 
-- (void)onShowAd:(OpenBiddingAppOpenAd *)bidmadAd info:(BidmadInfo *)info {
+- (void)onShowAppOpenAd:(BidmadAppOpenAd *)appOpenAd info:(BidmadInfo *)info {
     NSLog(@"Show");
 }
 
-- (void)onClickAd:(OpenBiddingAppOpenAd *)bidmadAd info:(BidmadInfo *)info {
+- (void)onClickAppOpenAd:(BidmadAppOpenAd *)appOpenAd info:(BidmadInfo *)info {
     NSLog(@"Click");
 }
 
-- (void)onCloseAd:(OpenBiddingAppOpenAd *)bidmadAd info:(BidmadInfo *)info {
+- (void)onCloseAppOpenAd:(BidmadAppOpenAd *)appOpenAd info:(BidmadInfo *)info {
     NSLog(@"Close");
 }
 
-- (void)onLoadFailAd:(OpenBiddingAppOpenAd *)bidmadAd error:(NSError *)error {
+- (void)onLoadFailAppOpenAd:(BidmadAppOpenAd *)appOpenAd error:(NSError *)error {
     NSLog(@"Load Fail");
 }
 
-// onShowFailAd:error: callback can only be used for versions 6.6.0 or higher.
-- (void)onShowFailAd:(OpenBiddingAppOpenAd *)bidmadAd info:(BidmadInfo *)info error:(NSError *)error {
+- (void)onShowFailAppOpenAd:(BidmadAppOpenAd *)appOpenAd info:(BidmadInfo *)info error:(NSError *)error {
     NSLog(@"Show Fail");
 }
 
 // -- SWIFT --
 
-func onLoadAd(_ bidmadAd: OpenBiddingAppOpenAd, info: BidmadInfo) {
+func onLoad(appOpenAd: BidmadAppOpenAd, info: BidmadInfo) {
     print("ad is loaded")
 }
 
-func onLoadFailAd(_ bidmadAd: OpenBiddingAppOpenAd, error: Error) {
+func onLoadFail(appOpenAd: BidmadAppOpenAd, error: Error) {
     print("ad failed to load with error \(error.localizedDescription)")
 }
 
-func onShowAd(_ bidmadAd: OpenBiddingAppOpenAd, info: BidmadInfo) {
+func onShow(appOpenAd: BidmadAppOpenAd, info: BidmadInfo) {
     print("ad is shown")
 }
 
-func onClickAd(_ bidmadAd: OpenBiddingAppOpenAd, info: BidmadInfo) {
+func onClick(appOpenAd: BidmadAppOpenAd, info: BidmadInfo) {
     print("ad is clicked")
 }
 
-func onCloseAd(_ bidmadAd: OpenBiddingAppOpenAd, info: BidmadInfo) {
+func onClose(appOpenAd: BidmadAppOpenAd, info: BidmadInfo) {
     print("ad is closed")
 }
 
-// onShowFailAd:error: callback can only be used for versions 6.6.0 or higher.
-func onShowFail(_ bidmadAd: OpenBiddingAppOpenAd, info: BidmadInfo, error: Error) {
+func onShowFail(appOpenAd: BidmadAppOpenAd, info: BidmadInfo, error: Error) {
     print("ad display failed")
 }
 ```
@@ -651,21 +643,21 @@ Native ads are ads that are designed and produced in a way unique to the applica
 
 #pragma mark Native Ad Delegate Methods
 
-- (void)onClickAd:(BidmadNativeAd *)bidmadAd {
+- (void)onClickNativeAd:(BidmadNativeAd *)nativeAd info:(BidmadInfo *)info {
     ADOPLog.printInfo(@"Native Ad Click");
 }
 
-- (void)onLoadAd:(BidmadNativeAd *)bidmadAd {
+- (void)onLoadNativeAd:(BidmadNativeAd *)nativeAd info:(BidmadInfo *)info {
     ADOPLog.printInfo(@"Native Ad Load);
     
     UIView *loadedView = [NSBundle.mainBundle loadNibNamed:@"NativeAdView" owner:nil options:nil].firstObject;
     BIDMADNativeAdView *adView = [BidmadNativeAd findAdViewFromSuperview:loadedView];
     
     [self.view addSubview:loadedView];
-    [bidmadAd setRootViewController:self adView:adView];
+    [nativeAd setRootViewController:self adView:adView];
 }
 
-- (void)onLoadFailAd:(BidmadNativeAd *)bidmadAd error:(NSError *)error {
+- (void)onLoadFailNativeAd:(BidmadNativeAd *)nativeAd error:(NSError *)error {
     ADOPLog.printInfo(@"Native Ad Fail: %@", error.localizedDescription);
 }
 
@@ -680,9 +672,9 @@ override func viewDidLoad() {
     self.ad.load()
 }
 
-// MARK: BIDMADNativeAdDelegate
+// MARK: BidmadNativeAdDelegate
 
-func onLoad(_ bidmadAd: BidmadNativeAd) {
+func onLoad(nativeAd: BidmadNativeAd, info: BidmadInfo) {
     if let loadedView = Bundle.main.loadNibNamed("NativeAd", owner: nil)?.first as? UIView,
        let adView = BidmadNativeAd.findView(fromSuperview: loadedView) {
         view.addSubview(loadedView)
@@ -690,11 +682,11 @@ func onLoad(_ bidmadAd: BidmadNativeAd) {
     }
 }
 
-func onClick(_ bidmadAd: BidmadNativeAd) {
+func onClick(nativeAd: BidmadNativeAd, info: BidmadInfo) {
     print("Native Ad Click")
 }
 
-func onLoadFail(_ bidmadAd: BidmadNativeAd, error: Error) {
+func onLoadFail(nativeAd: BidmadNativeAd, error: Error) {
     print("Native Ad Fail")
 }
 ```
