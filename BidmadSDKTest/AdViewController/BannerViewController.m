@@ -10,7 +10,7 @@
 #import <CommonCrypto/CommonCrypto.h>
 @import OpenBiddingHelper;
 
-@interface BannerViewController () <BIDMADOpenBiddingBannerDelegate> {
+@interface BannerViewController () <BidmadBannerAdDelegate> {
     BidmadBannerAd *bannerAd;
 }
 
@@ -53,17 +53,17 @@
     }];
 }
 
-- (void)onLoadAd:(OpenBiddingBanner *)bidmadAd info:(BidmadInfo *)info {
+- (void)onLoadBannerAd:(BidmadBannerAd *)bannerAd info:(BidmadInfo *)info {
     [[self bannerCallbackDisplay] setText:@"Load"];
     NSLog(@"Bidmad Sample App Banner Load");
 }
 
-- (void)onClickAd:(OpenBiddingBanner *)bidmadAd info:(BidmadInfo *)info {
+- (void)onClickBannerAd:(BidmadBannerAd *)bannerAd info:(BidmadInfo *)info {
     [[self bannerCallbackDisplay] setText:@"Click"];
     NSLog(@"Bidmad Sample App Banner Click");
 }
 
-- (void)onLoadFailAd:(OpenBiddingBanner *)bidmadAd error:(NSError *)error {
+- (void)onLoadFailBannerAd:(BidmadBannerAd *)bannerAd error:(NSError *)error {
     [[self bannerCallbackDisplay] setText:@"All Fail"];
     NSLog(@"Bidmad Sample App Banner All Fail");
 }

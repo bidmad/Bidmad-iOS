@@ -9,7 +9,7 @@
 #import "AppOpenAdViewController.h"
 @import OpenBiddingHelper;
 
-@interface AppOpenAdViewController () <OpenBiddingAppOpenAdDelegate> {
+@interface AppOpenAdViewController () <BidmadAppOpenAdDelegate> {
     BidmadAppOpenAd *appOpenAd;
 }
 @property (weak, nonatomic) IBOutlet UILabel *callbackLabel;
@@ -37,10 +37,6 @@
         if ([self->appOpenAd isLoaded]) {
             [self->appOpenAd showOnViewController:self];
         }
-    } else if ([sender.titleLabel.text isEqualToString:@"Deregister"]) {
-        if (self->appOpenAd != nil) {
-            [self->appOpenAd deregisterForAppOpenAd];
-        }
     }
 }
 
@@ -50,32 +46,32 @@
 
 #pragma mark AppOpenAd Delegate Methods
 
-- (void)onLoadAd:(OpenBiddingAppOpenAd *)bidmadAd info:(BidmadInfo *)info {
+- (void)onLoadAppOpenAd:(BidmadAppOpenAd *)appOpenAd info:(BidmadInfo *)info {
     NSLog(@"Bidmad Sample App AppOpenAd Load");
     [self.callbackLabel setText:@"Load"];
 }
 
-- (void)onShowAd:(OpenBiddingAppOpenAd *)bidmadAd info:(BidmadInfo *)info {
+- (void)onShowAppOpenAd:(BidmadAppOpenAd *)appOpenAd info:(BidmadInfo *)info {
     NSLog(@"Bidmad Sample App AppOpenAd Show");
     [self.callbackLabel setText:@"Show"];
 }
 
-- (void)onClickAd:(OpenBiddingAppOpenAd *)bidmadAd info:(BidmadInfo *)info {
+- (void)onClickAppOpenAd:(BidmadAppOpenAd *)appOpenAd info:(BidmadInfo *)info {
     NSLog(@"Bidmad Sample App AppOpenAd Click");
     [self.callbackLabel setText:@"Click"];
 }
 
-- (void)onCloseAd:(OpenBiddingAppOpenAd *)bidmadAd info:(BidmadInfo *)info {
+- (void)onCloseAppOpenAd:(BidmadAppOpenAd *)appOpenAd info:(BidmadInfo *)info {
     NSLog(@"Bidmad Sample App AppOpenAd Close");
     [self.callbackLabel setText:@"Close"];
 }
 
-- (void)onLoadFailAd:(OpenBiddingAppOpenAd *)bidmadAd error:(NSError *)error {
+- (void)onLoadFailAppOpenAd:(BidmadAppOpenAd *)appOpenAd error:(NSError *)error {
     NSLog(@"Bidmad Sample App AppOpenAd All Fail");
     [self.callbackLabel setText:@"All Fail"];
 }
 
-- (void)onShowFailAd:(OpenBiddingAppOpenAd *)bidmadAd info:(BidmadInfo *)info error:(NSError *)error {
+- (void)onShowFailAppOpenAd:(BidmadAppOpenAd *)appOpenAd info:(BidmadInfo *)info error:(NSError *)error {
     NSLog(@"Bidmad Sample App AppOpenAd Show Fail");
     [self.callbackLabel setText:@"Show Fail"];
 }

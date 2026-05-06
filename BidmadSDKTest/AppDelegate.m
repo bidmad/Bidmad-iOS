@@ -12,7 +12,7 @@
 @import BidmadSDK;
 
 #define DEBUG_MODE
-@interface AppDelegate () <BIDMADGDPRforGoogleProtocol, OpenBiddingAppOpenAdDelegate>
+@interface AppDelegate () <BIDMADGDPRforGoogleProtocol, BidmadAppOpenAdDelegate>
 
 @end
 
@@ -82,34 +82,33 @@
 }
 
 - (void)cancelAppOpenAd {
-    [bidmadAppOpenAd deregisterForAppOpenAd];
 }
 
 - (void)reloadAppOpenAd {
     bidmadAppOpenAd = [[BidmadAppOpenAd alloc] initWithZoneID:@"0ddd6401-0f19-49ee-b1f9-63e910f92e77"];
 }
 
-- (void)onLoadFailAd:(OpenBiddingAppOpenAd *)bidmadAd error:(NSError *)error {
+- (void)onLoadFailAppOpenAd:(BidmadAppOpenAd *)appOpenAd error:(NSError *)error {
     NSLog(@"BidmadSDK App Open Ad Callback → AllFail");
     [self callbackLabelViewShow: @"App Open Ad Callback → AllFail"];
 }
 
-- (void)onLoadAd:(OpenBiddingAppOpenAd *)bidmadAd info:(BidmadInfo *)info {
+- (void)onLoadAppOpenAd:(BidmadAppOpenAd *)appOpenAd info:(BidmadInfo *)info {
     NSLog(@"BidmadSDK App Open Ad Callback → Load");
     [self callbackLabelViewShow: @"App Open Ad Callback → Load"];
 }
 
-- (void)onShowAd:(OpenBiddingAppOpenAd *)bidmadAd info:(BidmadInfo *)info {
+- (void)onShowAppOpenAd:(BidmadAppOpenAd *)appOpenAd info:(BidmadInfo *)info {
     NSLog(@"BidmadSDK App Open Ad Callback → Show");
     [self callbackLabelViewShow: @"App Open Ad Callback → Show"];
 }
 
-- (void)onClickAd:(OpenBiddingAppOpenAd *)bidmadAd info:(BidmadInfo *)info {
+- (void)onClickAppOpenAd:(BidmadAppOpenAd *)appOpenAd info:(BidmadInfo *)info {
     NSLog(@"BidmadSDK App Open Ad Callback → Click");
     [self callbackLabelViewShow: @"App Open Ad Callback → Click"];
 }
 
-- (void)onCloseAd:(OpenBiddingAppOpenAd *)bidmadAd info:(BidmadInfo *)info {
+- (void)onCloseAppOpenAd:(BidmadAppOpenAd *)appOpenAd info:(BidmadInfo *)info {
     NSLog(@"BidmadSDK App Open Ad Callback → Close");
     [self callbackLabelViewShow: @"App Open Ad Callback → Close"];
 }

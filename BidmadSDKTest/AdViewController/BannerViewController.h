@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
-#import <OpenBiddingHelper/OpenBiddingBanner.h>
 
 @import BidmadSDK;
 @interface BannerViewController : UIViewController
