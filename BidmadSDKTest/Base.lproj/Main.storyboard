@@ -103,6 +103,14 @@
                                             <segue destination="zdr-Qy-gbK" kind="show" id="XHq-0G-Z5z"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cns-Bt-1xx">
+                                        <rect key="frame" x="0.0" y="573" width="343" height="74"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Consumable Example"/>
+                                        <connections>
+                                            <segue destination="Cns-Vc-1xx" kind="presentation" modalPresentationStyle="fullScreen" id="Cns-Sg-1xx"/>
+                                        </connections>
+                                    </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pni-2h-nMe">
                                         <rect key="frame" x="0.0" y="573" width="343" height="74"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -734,6 +742,33 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jqx-MM-Gq7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1654" y="990"/>
+        </scene>
+        <!--Consumable Example View Controller-->
+        <scene sceneID="Cns-Sc-1xx">
+            <objects>
+                <viewController modalPresentationStyle="fullScreen" id="Cns-Vc-1xx" customClass="ConsumableExampleViewController" customModule="BidmadSDKTest" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Cns-Vw-1xx">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cns-Bk-1xx">
+                                <rect key="frame" x="20" y="50" width="60" height="30"/>
+                                <state key="normal" title="BACK"/>
+                                <connections>
+                                    <action selector="backBtnPressed:" destination="Cns-Vc-1xx" eventType="touchUpInside" id="Cns-Ac-1xx"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Cns-Bk-1xx" firstAttribute="leading" secondItem="Cns-Vw-1xx" secondAttribute="leading" constant="20" id="Cns-Cn-1xx"/>
+                            <constraint firstItem="Cns-Bk-1xx" firstAttribute="top" secondItem="Cns-Vw-1xx" secondAttribute="top" constant="50" id="Cns-Cn-2xx"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Cns-Fr-1xx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2400" y="135"/>
         </scene>
     </scenes>
     <resources>
