@@ -7,11 +7,7 @@ import OpenBiddingHelper
 import UIKit
 
 private func onMain(_ block: @escaping () -> Void) {
-    if Thread.isMainThread {
-        block()
-    } else {
-        DispatchQueue.main.async(execute: block)
-    }
+    DispatchQueue.main.async(execute: block)
 }
 
 final class FullscreenAd: NSObject, BidmadFullscreenAdDelegate,
@@ -24,6 +20,7 @@ final class FullscreenAd: NSObject, BidmadFullscreenAdDelegate,
     private var loadedInfo: BidmadInfo?
     private var loadCompletions: [(Result<BidmadInfo, Error>) -> Void] = []
     private var showCompletion: ((Result<BidmadFullscreenAd, Error>) -> Void)?
+    private var holdUntilClose: FullscreenAd?
 
     init(zoneId: String) {
         self.zoneId = zoneId
@@ -71,6 +68,7 @@ final class FullscreenAd: NSObject, BidmadFullscreenAdDelegate,
             }
             if isLoaded {
                 showCompletion = completionHandler
+                holdUntilClose = self
                 ad.show(on: viewController)
                 return
             }
@@ -79,6 +77,7 @@ final class FullscreenAd: NSObject, BidmadFullscreenAdDelegate,
                 switch result {
                 case .success:
                     self.showCompletion = completionHandler
+                    self.holdUntilClose = self
                     self.ad.show(on: viewController)
                 case .failure(let error):
                     completionHandler(.failure(error))
@@ -134,6 +133,7 @@ final class FullscreenAd: NSObject, BidmadFullscreenAdDelegate,
             let completion = showCompletion
             showCompletion = nil
             completion?(.failure(error))
+            holdUntilClose = nil
         }
     }
 
@@ -151,6 +151,9 @@ final class FullscreenAd: NSObject, BidmadFullscreenAdDelegate,
 
     func bidmadFullscreenClose(ad: BidmadFullscreenAd, info: BidmadInfo) {
         NSLog("FullscreenAd[%@] close: %@", zoneId, info)
+        onMain { [weak self] in
+            self?.holdUntilClose = nil
+        }
     }
 }
 
@@ -188,19 +191,9 @@ final class BannerAd: UIView, BIDMADOpenBiddingBannerDelegate,
 
     deinit {
         NSLog("BannerAd[%@] deinit %p", zoneId, self)
-    }
-
-    override func willMove(toSuperview newSuperview: UIView?) {
-        super.willMove(toSuperview: newSuperview)
-        NSLog(
-            "BannerAd[%@] willMove toSuperview=%@ (self %p)",
-            zoneId,
-            newSuperview.map { String(format: "%p", $0) } ?? "nil",
-            self
-        )
-        if superview != nil && newSuperview == nil {
-            ad?.remove()
-            ad = nil
+        let adToRelease = ad
+        DispatchQueue.main.async {
+            adToRelease?.remove()
         }
     }
 
@@ -342,19 +335,29 @@ final class Consumable: @unchecked Sendable {
             if let index = pickedIndex {
                 let wrapper = pool.remove(at: index)
                 fullscreenAds[zoneId] = pool
-                wrapper.show(
-                    on: viewController,
-                    completionHandler: completionHandler
-                )
+                wrapper.show(on: viewController) { result in
+                    _ = wrapper
+                    switch result {
+                    case .success(let ad):
+                        completionHandler(.success(ad))
+                    case .failure(let error):
+                        completionHandler(.failure(error))
+                    }
+                }
                 loadFullscreenAd(for: zoneId) { _ in }
                 return
             }
 
             let transient = FullscreenAd(zoneId: zoneId)
-            transient.show(
-                on: viewController,
-                completionHandler: completionHandler
-            )
+            transient.show(on: viewController) { result in
+                _ = transient
+                switch result {
+                case .success(let ad):
+                    completionHandler(.success(ad))
+                case .failure(let error):
+                    completionHandler(.failure(error))
+                }
+            }
         }
     }
 

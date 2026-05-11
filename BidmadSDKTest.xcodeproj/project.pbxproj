@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0D6F46022E31A699009C97B3 /* FullscreenAdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D6F46012E31A699009C97B3 /* FullscreenAdViewController.m */; };
-		C054AB1E2E5C0BA100000001 /* ConsumableExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C054AB1F2E5C0BA100000002 /* ConsumableExampleViewController.swift */; };
 		0D82B290282A3D6A00A13696 /* NativeAd.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D82B28E282A3D6A00A13696 /* NativeAd.xib */; };
 		0D82B291282A3D6A00A13696 /* NativeAdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D82B28F282A3D6A00A13696 /* NativeAdViewController.m */; };
 		265E6471264BB3720006C750 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 265E6470264BB3720006C750 /* main.m */; };
@@ -22,6 +21,7 @@
 		46EFA9FD1F6908FB002B7C96 /* BannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46EFA9FC1F6908FB002B7C96 /* BannerViewController.m */; };
 		46EFAA001F690920002B7C96 /* InterstitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46EFA9FF1F690920002B7C96 /* InterstitialViewController.m */; };
 		A85CB7EF829EBBADA2079949 /* Pods_BidmadSDKTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B52623029C36F2A137BB57B9 /* Pods_BidmadSDKTest.framework */; };
+		C054AB1E2E5C0BA100000001 /* ConsumableExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C054AB1F2E5C0BA100000002 /* ConsumableExampleViewController.swift */; };
 		E378174F2BCCC7E8009BFCAA /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = E378174E2BCCC7E8009BFCAA /* PrivacyInfo.xcprivacy */; };
 /* End PBXBuildFile section */
 
@@ -41,7 +41,6 @@
 /* Begin PBXFileReference section */
 		0D6F46002E31A699009C97B3 /* FullscreenAdViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FullscreenAdViewController.h; sourceTree = "<group>"; };
 		0D6F46012E31A699009C97B3 /* FullscreenAdViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FullscreenAdViewController.m; sourceTree = "<group>"; };
-		C054AB1F2E5C0BA100000002 /* ConsumableExampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsumableExampleViewController.swift; sourceTree = "<group>"; };
 		0D82B28D282A3D6A00A13696 /* NativeAdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeAdViewController.h; sourceTree = "<group>"; };
 		0D82B28E282A3D6A00A13696 /* NativeAd.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NativeAd.xib; sourceTree = "<group>"; };
 		0D82B28F282A3D6A00A13696 /* NativeAdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NativeAdViewController.m; sourceTree = "<group>"; };
@@ -68,6 +67,7 @@
 		46EFA9FE1F690920002B7C96 /* InterstitialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InterstitialViewController.h; sourceTree = "<group>"; };
 		46EFA9FF1F690920002B7C96 /* InterstitialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InterstitialViewController.m; sourceTree = "<group>"; };
 		B52623029C36F2A137BB57B9 /* Pods_BidmadSDKTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BidmadSDKTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C054AB1F2E5C0BA100000002 /* ConsumableExampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsumableExampleViewController.swift; sourceTree = "<group>"; };
 		DD011DA7F9FEA0B4F037ADA3 /* Pods-BidmadSDKTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BidmadSDKTest.release.xcconfig"; path = "Target Support Files/Pods-BidmadSDKTest/Pods-BidmadSDKTest.release.xcconfig"; sourceTree = "<group>"; };
 		E378174E2BCCC7E8009BFCAA /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -315,7 +315,7 @@
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/BidmadAppLovinAdapter/BidmadAppLovinAdapter.framework/BidmadAppLovinAdapter",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/BidmadMobwithAdapter/BidmadMobwithAdapter.framework/BidmadMobwithAdapter",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/BidmadORTBAdapter/BidmadORTBAdapter.framework/BidmadORTBAdapter",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/BidmadSDK/core/BidmadSDK.framework/BidmadSDK",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/BidmadSDK/BidmadSDK.framework/BidmadSDK",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/OpenBiddingHelper/OpenBiddingHelper.framework/OpenBiddingHelper",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/TaboolaSDK/TaboolaSDK.framework/TaboolaSDK",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/TeadsSDK/Core/TeadsSDK.framework/TeadsSDK",

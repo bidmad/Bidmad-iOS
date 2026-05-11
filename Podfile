@@ -5,8 +5,9 @@ target 'BidmadSDKTest' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
-  pod "BidmadSDK/core", "6.13.6"
-  pod "OpenBiddingHelper", "6.13.4"
+  pod "BidmadSDK", "6.13.8"
+  pod "OpenBiddingHelper", "6.13.7"
+  pod "BidmadGoogleGDPRAdapter", "6.13.1"
 
   pod "BidmadAdFitAdapter", "3.12.7.12.1"
   pod "BidmadAdmixerAdapter", "2.0.2.12.2"
