@@ -14,7 +14,9 @@ private func onMain(_ block: @escaping () -> Void) {
     }
 }
 
-final class FullscreenAd: NSObject, BidmadFullscreenAdDelegate, @unchecked Sendable {
+final class FullscreenAd: NSObject, BidmadFullscreenAdDelegate,
+    @unchecked Sendable
+{
     let zoneId: String
     let ad: BidmadFullscreenAd
     private(set) var isLoaded: Bool = false
@@ -31,7 +33,8 @@ final class FullscreenAd: NSObject, BidmadFullscreenAdDelegate, @unchecked Senda
         self.ad.delegate = self
     }
 
-    func load(completionHandler: @escaping (Result<BidmadInfo, Error>) -> Void) {
+    func load(completionHandler: @escaping (Result<BidmadInfo, Error>) -> Void)
+    {
         onMain { [weak self] in
             guard let self = self else { return }
             if isLoaded, let info = loadedInfo {
@@ -52,9 +55,18 @@ final class FullscreenAd: NSObject, BidmadFullscreenAdDelegate, @unchecked Senda
         onMain { [weak self] in
             guard let self = self else { return }
             if showCompletion != nil {
-                completionHandler(.failure(NSError(
-                    domain: "FullscreenAd", code: -2,
-                    userInfo: [NSLocalizedDescriptionKey: "show already in progress"])))
+                completionHandler(
+                    .failure(
+                        NSError(
+                            domain: "FullscreenAd",
+                            code: -2,
+                            userInfo: [
+                                NSLocalizedDescriptionKey:
+                                    "show already in progress"
+                            ]
+                        )
+                    )
+                )
                 return
             }
             if isLoaded {
@@ -110,7 +122,11 @@ final class FullscreenAd: NSObject, BidmadFullscreenAdDelegate, @unchecked Senda
         }
     }
 
-    func bidmadFullscreenShowFail(ad: BidmadFullscreenAd, info: BidmadInfo?, error: Error) {
+    func bidmadFullscreenShowFail(
+        ad: BidmadFullscreenAd,
+        info: BidmadInfo?,
+        error: Error
+    ) {
         onMain { [weak self] in
             guard let self = self else { return }
             isLoaded = false
@@ -138,7 +154,9 @@ final class FullscreenAd: NSObject, BidmadFullscreenAdDelegate, @unchecked Senda
     }
 }
 
-final class BannerAd: UIView, BIDMADOpenBiddingBannerDelegate, @unchecked Sendable {
+final class BannerAd: UIView, BIDMADOpenBiddingBannerDelegate,
+    @unchecked Sendable
+{
     let zoneId: String
     private(set) var ad: BidmadBannerAd!
     private(set) var isLoaded: Bool = false
@@ -160,6 +178,7 @@ final class BannerAd: UIView, BIDMADOpenBiddingBannerDelegate, @unchecked Sendab
             zoneID: zoneId
         )
         self.ad.delegate = self
+        NSLog("BannerAd[%@] init %p (sdk %p)", zoneId, self, self.ad)
     }
 
     @available(*, unavailable)
@@ -168,7 +187,21 @@ final class BannerAd: UIView, BIDMADOpenBiddingBannerDelegate, @unchecked Sendab
     }
 
     deinit {
-        NSLog("BannerAd[%@] deinit", zoneId)
+        NSLog("BannerAd[%@] deinit %p", zoneId, self)
+    }
+
+    override func willMove(toSuperview newSuperview: UIView?) {
+        super.willMove(toSuperview: newSuperview)
+        NSLog(
+            "BannerAd[%@] willMove toSuperview=%@ (self %p)",
+            zoneId,
+            newSuperview.map { String(format: "%p", $0) } ?? "nil",
+            self
+        )
+        if superview != nil && newSuperview == nil {
+            ad?.remove()
+            ad = nil
+        }
     }
 
     func onLoadAd(_ bidmadAd: OpenBiddingBanner, info: BidmadInfo) {
@@ -199,7 +232,8 @@ final class BannerAd: UIView, BIDMADOpenBiddingBannerDelegate, @unchecked Sendab
         NSLog("BannerAd[%@] click: %@", zoneId, info)
     }
 
-    func load(completionHandler: @escaping (Result<BidmadInfo, Error>) -> Void) {
+    func load(completionHandler: @escaping (Result<BidmadInfo, Error>) -> Void)
+    {
         onMain { [weak self] in
             guard let self = self else { return }
             if isLoaded, let info = loadedInfo {
@@ -249,7 +283,10 @@ final class Consumable: @unchecked Sendable {
     var fullscreenAds: [String: [FullscreenAd]] = [:]
     var bannerAds: [String: [BannerAd]] = [:]
 
-    func load(fullscreenAdZoneIds: [String] = [], bannerAdZoneIds: [String] = []) {
+    func load(
+        fullscreenAdZoneIds: [String] = [],
+        bannerAdZoneIds: [String] = []
+    ) {
         onMain { [weak self] in
             guard let self = self else { return }
             let tasks: [(isFullscreen: Bool, zoneId: String)] =
@@ -298,18 +335,26 @@ final class Consumable: @unchecked Sendable {
             guard let self = self else { return }
             var pool = fullscreenAds[zoneId] ?? []
 
-            let pickedIndex = pool.firstIndex(where: { $0.isLoaded }) ?? (pool.isEmpty ? nil : 0)
+            let pickedIndex =
+                pool.firstIndex(where: { $0.isLoaded })
+                ?? (pool.isEmpty ? nil : 0)
 
             if let index = pickedIndex {
                 let wrapper = pool.remove(at: index)
                 fullscreenAds[zoneId] = pool
-                wrapper.show(on: viewController, completionHandler: completionHandler)
+                wrapper.show(
+                    on: viewController,
+                    completionHandler: completionHandler
+                )
                 loadFullscreenAd(for: zoneId) { _ in }
                 return
             }
 
             let transient = FullscreenAd(zoneId: zoneId)
-            transient.show(on: viewController, completionHandler: completionHandler)
+            transient.show(
+                on: viewController,
+                completionHandler: completionHandler
+            )
         }
     }
 
@@ -319,6 +364,11 @@ final class Consumable: @unchecked Sendable {
     ) {
         onMain { [weak self] in
             guard let self = self else { return }
+            NSLog(
+                "Consumable.loadBannerAd[%@] pool=%d (before)",
+                zoneId,
+                self.bannerAds[zoneId]?.count ?? 0
+            )
             guard let wrapper = makeBannerAd(for: zoneId) else {
                 completionHandler(
                     .failure(
@@ -335,6 +385,12 @@ final class Consumable: @unchecked Sendable {
                 return
             }
             bannerAds[zoneId, default: []].append(wrapper)
+            NSLog(
+                "Consumable.loadBannerAd[%@] pool=%d (after append %p)",
+                zoneId,
+                bannerAds[zoneId]?.count ?? 0,
+                wrapper
+            )
             wrapper.load(completionHandler: completionHandler)
         }
     }
@@ -347,11 +403,19 @@ final class Consumable: @unchecked Sendable {
             guard let self = self else { return }
             var pool = bannerAds[zoneId] ?? []
 
-            let pickedIndex = pool.firstIndex(where: { $0.isLoaded }) ?? (pool.isEmpty ? nil : 0)
+            let pickedIndex =
+                pool.firstIndex(where: { $0.isLoaded })
+                ?? (pool.isEmpty ? nil : 0)
 
             if let index = pickedIndex {
                 let wrapper = pool.remove(at: index)
                 bannerAds[zoneId] = pool
+                NSLog(
+                    "Consumable.consumeBannerAd[%@] picked %p, pool now=%d",
+                    zoneId,
+                    wrapper,
+                    pool.count
+                )
                 wrapper.show { result in
                     switch result {
                     case .success: completionHandler(.success(wrapper))
@@ -390,7 +454,10 @@ final class Consumable: @unchecked Sendable {
         guard let parentViewController = Self.topViewController() else {
             return nil
         }
-        return BannerAd(zoneId: zoneId, parentViewController: parentViewController)
+        return BannerAd(
+            zoneId: zoneId,
+            parentViewController: parentViewController
+        )
     }
 
     private static func topViewController() -> UIViewController? {
@@ -516,15 +583,23 @@ class ConsumableExampleViewController: UIViewController {
             startButton.widthAnchor.constraint(equalToConstant: 220),
             startButton.heightAnchor.constraint(equalToConstant: 40),
 
-            fullscreenConsumeButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            fullscreenConsumeButton.centerXAnchor.constraint(
+                equalTo: view.centerXAnchor
+            ),
             fullscreenConsumeButton.topAnchor.constraint(
                 equalTo: startButton.bottomAnchor,
                 constant: 12
             ),
-            fullscreenConsumeButton.widthAnchor.constraint(equalToConstant: 220),
-            fullscreenConsumeButton.heightAnchor.constraint(equalToConstant: 40),
+            fullscreenConsumeButton.widthAnchor.constraint(
+                equalToConstant: 220
+            ),
+            fullscreenConsumeButton.heightAnchor.constraint(
+                equalToConstant: 40
+            ),
 
-            bannerConsumeButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            bannerConsumeButton.centerXAnchor.constraint(
+                equalTo: view.centerXAnchor
+            ),
             bannerConsumeButton.topAnchor.constraint(
                 equalTo: fullscreenConsumeButton.bottomAnchor,
                 constant: 12
@@ -532,7 +607,9 @@ class ConsumableExampleViewController: UIViewController {
             bannerConsumeButton.widthAnchor.constraint(equalToConstant: 220),
             bannerConsumeButton.heightAnchor.constraint(equalToConstant: 40),
 
-            bannerRemoveButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            bannerRemoveButton.centerXAnchor.constraint(
+                equalTo: view.centerXAnchor
+            ),
             bannerRemoveButton.topAnchor.constraint(
                 equalTo: bannerConsumeButton.bottomAnchor,
                 constant: 12
@@ -540,15 +617,21 @@ class ConsumableExampleViewController: UIViewController {
             bannerRemoveButton.widthAnchor.constraint(equalToConstant: 220),
             bannerRemoveButton.heightAnchor.constraint(equalToConstant: 40),
 
-            bannerStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            bannerStackView.centerXAnchor.constraint(
+                equalTo: view.centerXAnchor
+            ),
             bannerStackView.topAnchor.constraint(
                 equalTo: bannerRemoveButton.bottomAnchor,
                 constant: 20
             ),
             bannerStackView.leadingAnchor.constraint(
-                greaterThanOrEqualTo: view.leadingAnchor, constant: 16),
+                greaterThanOrEqualTo: view.leadingAnchor,
+                constant: 16
+            ),
             bannerStackView.trailingAnchor.constraint(
-                lessThanOrEqualTo: view.trailingAnchor, constant: -16),
+                lessThanOrEqualTo: view.trailingAnchor,
+                constant: -16
+            ),
         ])
     }
 
@@ -557,22 +640,27 @@ class ConsumableExampleViewController: UIViewController {
             fullscreenAdZoneIds: fullscreenZoneIds,
             bannerAdZoneIds: bannerZoneIds
         )
-        print("Started loading \(fullscreenZoneIds.count) fullscreen and \(bannerZoneIds.count) banner ads")
+        print(
+            "Started loading \(fullscreenZoneIds.count) fullscreen and \(bannerZoneIds.count) banner ads"
+        )
     }
 
     @objc private func consumeFullscreenTapped() {
         guard let fullscreenZoneId = fullscreenZoneIds.first else { return }
-        Consumable.shared.consumeFullscreenAd(for: fullscreenZoneId, on: self) { result in
+        Consumable.shared.consumeFullscreenAd(for: fullscreenZoneId, on: self) {
+            result in
             switch result {
             case .success: print("Fullscreen consumed for \(fullscreenZoneId)")
-            case .failure(let error): print("Fullscreen consume failed: \(error)")
+            case .failure(let error):
+                print("Fullscreen consume failed: \(error)")
             }
         }
     }
 
     @objc private func consumeBannerTapped() {
         guard let bannerZoneId = bannerZoneIds.first else { return }
-        Consumable.shared.consumeBannerAd(for: bannerZoneId) { [weak self] result in
+        Consumable.shared.consumeBannerAd(for: bannerZoneId) {
+            [weak self] result in
             guard let self = self else { return }
             switch result {
             case .success(let banner):
@@ -588,9 +676,18 @@ class ConsumableExampleViewController: UIViewController {
             print("No banner to remove")
             return
         }
+        NSLog(
+            "removeBannerTapped: removing %p (stack before=%d)",
+            last,
+            bannerStackView.arrangedSubviews.count
+        )
         bannerStackView.removeArrangedSubview(last)
         last.removeFromSuperview()
-        print("Removed banner from stack (count: \(bannerStackView.arrangedSubviews.count))")
+        NSLog(
+            "removeBannerTapped: removed, stack after=%d, pool=%@",
+            bannerStackView.arrangedSubviews.count,
+            Consumable.shared.bannerAds.mapValues { $0.count } as NSDictionary
+        )
     }
 
     @IBAction func backBtnPressed(_ sender: Any) {
