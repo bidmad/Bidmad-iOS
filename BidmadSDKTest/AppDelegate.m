@@ -12,14 +12,13 @@
 @import BidmadSDK;
 
 #define DEBUG_MODE
-@interface AppDelegate () <BIDMADGDPRforGoogleProtocol, OpenBiddingAppOpenAdDelegate>
+@interface AppDelegate () <BIDMADGDPRforGoogleProtocol>
 
 @end
 
 @implementation AppDelegate {
-    BidmadAppOpenAd *bidmadAppOpenAd;
     BIDMADGDPRforGoogle *gdpr;
-    
+
     BOOL didRequestATTPopup;
 }
 
@@ -28,10 +27,7 @@
     [BidmadCommon initializeSdkWithCompletionHandler:^(BOOL isInitialized) {
         NSLog(@"Bidmad Sample App: Initialized %@", isInitialized ? @"YES" : @"NO");
     }];
-    
-    bidmadAppOpenAd = [[BidmadAppOpenAd alloc] initWithZoneID:@"0ddd6401-0f19-49ee-b1f9-63e910f92e77"];
-    [bidmadAppOpenAd setDelegate:self];
-    
+
     [BidmadCommon setIsChildDirectedAds:YES];
     [BidmadCommon setUserConsentStatusForCCPACompliance:YES];
     
@@ -81,71 +77,9 @@
     }
 }
 
-- (void)cancelAppOpenAd {
-    [bidmadAppOpenAd deregisterForAppOpenAd];
-}
+- (void)cancelAppOpenAd {}
 
-- (void)reloadAppOpenAd {
-    bidmadAppOpenAd = [[BidmadAppOpenAd alloc] initWithZoneID:@"0ddd6401-0f19-49ee-b1f9-63e910f92e77"];
-}
-
-- (void)onLoadFailAd:(OpenBiddingAppOpenAd *)bidmadAd error:(NSError *)error {
-    NSLog(@"BidmadSDK App Open Ad Callback → AllFail");
-    [self callbackLabelViewShow: @"App Open Ad Callback → AllFail"];
-}
-
-- (void)onLoadAd:(OpenBiddingAppOpenAd *)bidmadAd info:(BidmadInfo *)info {
-    NSLog(@"BidmadSDK App Open Ad Callback → Load");
-    [self callbackLabelViewShow: @"App Open Ad Callback → Load"];
-}
-
-- (void)onShowAd:(OpenBiddingAppOpenAd *)bidmadAd info:(BidmadInfo *)info {
-    NSLog(@"BidmadSDK App Open Ad Callback → Show");
-    [self callbackLabelViewShow: @"App Open Ad Callback → Show"];
-}
-
-- (void)onClickAd:(OpenBiddingAppOpenAd *)bidmadAd info:(BidmadInfo *)info {
-    NSLog(@"BidmadSDK App Open Ad Callback → Click");
-    [self callbackLabelViewShow: @"App Open Ad Callback → Click"];
-}
-
-- (void)onCloseAd:(OpenBiddingAppOpenAd *)bidmadAd info:(BidmadInfo *)info {
-    NSLog(@"BidmadSDK App Open Ad Callback → Close");
-    [self callbackLabelViewShow: @"App Open Ad Callback → Close"];
-}
-
-- (void)callbackLabelViewShow: (NSString *)callbackText {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        UIViewController *topVC = self.window.rootViewController;
-        while (topVC.presentedViewController != nil) {
-            topVC = topVC.presentedViewController;
-        }
-        
-        CGFloat notiSizeWidth = 320;
-        CGFloat notiSizeHeight = 50;
-        CGFloat x = ([[topVC view] frame].size.width - notiSizeWidth) / 2;
-        CGFloat y = ([[topVC view] frame].size.height - notiSizeHeight) / 2;
-        UILabel *smallNotificationView = [[UILabel alloc] initWithFrame: CGRectMake(x, y, notiSizeWidth, notiSizeHeight)];
-        [smallNotificationView setAlpha:0.0f];
-        [smallNotificationView setText:callbackText];
-        [smallNotificationView setTextColor: [UIColor systemBlueColor]];
-        [smallNotificationView setAdjustsFontSizeToFitWidth:YES];
-        [smallNotificationView setFont:[UIFont systemFontOfSize:24.0f weight:UIFontWeightBold]];
-        
-        [[topVC view] addSubview:smallNotificationView];
-        [UIView animateWithDuration:1.0f animations:^{
-            [smallNotificationView setAlpha:1.0f];
-        } completion:^(BOOL finished) {
-            dispatch_after(4, dispatch_get_main_queue(), ^{
-                [UIView animateWithDuration:1.0f animations:^{
-                    [smallNotificationView setAlpha:0.0f];
-                } completion:^(BOOL finished) {
-                    [smallNotificationView removeFromSuperview];
-                }];
-            });
-        }];
-    });
-}
+- (void)reloadAppOpenAd {}
 
 - (void)applicationWillResignActive:(UIApplication *)application {}
 

@@ -120,31 +120,55 @@ final class FullscreenAd: NSObject, BidmadFullscreenAdDelegate, @unchecked Senda
             completion?(.failure(error))
         }
     }
+
+    func bidmadFullscreenClick(ad: BidmadFullscreenAd, info: BidmadInfo) {
+        NSLog("FullscreenAd[%@] click: %@", zoneId, info)
+    }
+
+    func bidmadFullscreenComplete(ad: BidmadFullscreenAd, info: BidmadInfo) {
+        NSLog("FullscreenAd[%@] complete: %@", zoneId, info)
+    }
+
+    func bidmadFullscreenSkip(ad: BidmadFullscreenAd, info: BidmadInfo) {
+        NSLog("FullscreenAd[%@] skip: %@", zoneId, info)
+    }
+
+    func bidmadFullscreenClose(ad: BidmadFullscreenAd, info: BidmadInfo) {
+        NSLog("FullscreenAd[%@] close: %@", zoneId, info)
+    }
 }
 
-final class BannerAd: NSObject, BIDMADOpenBiddingBannerDelegate, @unchecked Sendable {
+final class BannerAd: UIView, BIDMADOpenBiddingBannerDelegate, @unchecked Sendable {
     let zoneId: String
-    let ad: BidmadBannerAd
-    let containerView: UIView
+    private(set) var ad: BidmadBannerAd!
     private(set) var isLoaded: Bool = false
     private var isLoading: Bool = false
     private var loadedInfo: BidmadInfo?
     private var loadCompletions: [(Result<BidmadInfo, Error>) -> Void] = []
 
-    init(
-        zoneId: String,
-        parentViewController: UIViewController,
-        containerView: UIView
-    ) {
+    init(zoneId: String, parentViewController: UIViewController) {
         self.zoneId = zoneId
-        self.containerView = containerView
+        super.init(frame: .zero)
+        translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            widthAnchor.constraint(equalToConstant: 320),
+            heightAnchor.constraint(equalToConstant: 50),
+        ])
         self.ad = BidmadBannerAd(
             parentViewController,
-            containerView: containerView,
+            containerView: self,
             zoneID: zoneId
         )
-        super.init()
         self.ad.delegate = self
+    }
+
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) is not supported")
+    }
+
+    deinit {
+        NSLog("BannerAd[%@] deinit", zoneId)
     }
 
     func onLoadAd(_ bidmadAd: OpenBiddingBanner, info: BidmadInfo) {
@@ -169,6 +193,10 @@ final class BannerAd: NSObject, BIDMADOpenBiddingBannerDelegate, @unchecked Send
             loadCompletions = []
             pending.forEach { $0(.failure(error)) }
         }
+    }
+
+    func onClickAd(_ bidmadAd: OpenBiddingBanner, info: BidmadInfo) {
+        NSLog("BannerAd[%@] click: %@", zoneId, info)
     }
 
     func load(completionHandler: @escaping (Result<BidmadInfo, Error>) -> Void) {
@@ -362,17 +390,7 @@ final class Consumable: @unchecked Sendable {
         guard let parentViewController = Self.topViewController() else {
             return nil
         }
-        let containerView = UIView()
-        containerView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            containerView.widthAnchor.constraint(equalToConstant: 320),
-            containerView.heightAnchor.constraint(equalToConstant: 50),
-        ])
-        return BannerAd(
-            zoneId: zoneId,
-            parentViewController: parentViewController,
-            containerView: containerView
-        )
+        return BannerAd(zoneId: zoneId, parentViewController: parentViewController)
     }
 
     private static func topViewController() -> UIViewController? {
@@ -440,6 +458,16 @@ class ConsumableExampleViewController: UIViewController {
         return button
     }()
 
+    private let bannerRemoveButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Remove Banner", for: .normal)
+        button.backgroundColor = .systemOrange
+        button.setTitleColor(.label, for: .normal)
+        button.layer.cornerRadius = 5
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+
     private let bannerStackView: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
@@ -455,6 +483,7 @@ class ConsumableExampleViewController: UIViewController {
         view.addSubview(startButton)
         view.addSubview(fullscreenConsumeButton)
         view.addSubview(bannerConsumeButton)
+        view.addSubview(bannerRemoveButton)
         view.addSubview(bannerStackView)
 
         startButton.addTarget(
@@ -470,6 +499,11 @@ class ConsumableExampleViewController: UIViewController {
         bannerConsumeButton.addTarget(
             self,
             action: #selector(consumeBannerTapped),
+            for: .touchUpInside
+        )
+        bannerRemoveButton.addTarget(
+            self,
+            action: #selector(removeBannerTapped),
             for: .touchUpInside
         )
 
@@ -498,9 +532,17 @@ class ConsumableExampleViewController: UIViewController {
             bannerConsumeButton.widthAnchor.constraint(equalToConstant: 220),
             bannerConsumeButton.heightAnchor.constraint(equalToConstant: 40),
 
+            bannerRemoveButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            bannerRemoveButton.topAnchor.constraint(
+                equalTo: bannerConsumeButton.bottomAnchor,
+                constant: 12
+            ),
+            bannerRemoveButton.widthAnchor.constraint(equalToConstant: 220),
+            bannerRemoveButton.heightAnchor.constraint(equalToConstant: 40),
+
             bannerStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             bannerStackView.topAnchor.constraint(
-                equalTo: bannerConsumeButton.bottomAnchor,
+                equalTo: bannerRemoveButton.bottomAnchor,
                 constant: 20
             ),
             bannerStackView.leadingAnchor.constraint(
@@ -534,11 +576,21 @@ class ConsumableExampleViewController: UIViewController {
             guard let self = self else { return }
             switch result {
             case .success(let banner):
-                self.bannerStackView.addArrangedSubview(banner.containerView)
+                self.bannerStackView.addArrangedSubview(banner)
                 print("Banner consumed for \(bannerZoneId)")
             case .failure(let error): print("Banner consume failed: \(error)")
             }
         }
+    }
+
+    @objc private func removeBannerTapped() {
+        guard let last = bannerStackView.arrangedSubviews.last else {
+            print("No banner to remove")
+            return
+        }
+        bannerStackView.removeArrangedSubview(last)
+        last.removeFromSuperview()
+        print("Removed banner from stack (count: \(bannerStackView.arrangedSubviews.count))")
     }
 
     @IBAction func backBtnPressed(_ sender: Any) {
