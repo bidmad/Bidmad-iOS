@@ -268,20 +268,24 @@ final class BannerAd: UIView, BIDMADOpenBiddingBannerDelegate,
     }
 }
 
-final class Consumable: @unchecked Sendable {
-    public static let shared = Consumable()
+final class Consumable: NSObject, @unchecked Sendable {
+    @objc public static let shared = Consumable()
 
-    private init() {}
+    private override init() { super.init() }
 
     var fullscreenAds: [String: [FullscreenAd]] = [:]
     var bannerAds: [String: [BannerAd]] = [:]
 
-    func load(
-        fullscreenAdZoneIds: [String] = [],
-        bannerAdZoneIds: [String] = []
+    private var hasLoaded = false
+
+    @objc func load(
+        fullscreenAdZoneIds: [String],
+        bannerAdZoneIds: [String]
     ) {
         onMain { [weak self] in
             guard let self = self else { return }
+            if self.hasLoaded { return }
+            self.hasLoaded = true
             let tasks: [(isFullscreen: Bool, zoneId: String)] =
                 fullscreenAdZoneIds.map { (true, $0) }
                 + bannerAdZoneIds.map { (false, $0) }
@@ -388,12 +392,6 @@ final class Consumable: @unchecked Sendable {
                 return
             }
             bannerAds[zoneId, default: []].append(wrapper)
-            NSLog(
-                "Consumable.loadBannerAd[%@] pool=%d (after append %p)",
-                zoneId,
-                bannerAds[zoneId]?.count ?? 0,
-                wrapper
-            )
             wrapper.load(completionHandler: completionHandler)
         }
     }
@@ -413,12 +411,6 @@ final class Consumable: @unchecked Sendable {
             if let index = pickedIndex {
                 let wrapper = pool.remove(at: index)
                 bannerAds[zoneId] = pool
-                NSLog(
-                    "Consumable.consumeBannerAd[%@] picked %p, pool now=%d",
-                    zoneId,
-                    wrapper,
-                    pool.count
-                )
                 wrapper.show { result in
                     switch result {
                     case .success: completionHandler(.success(wrapper))
@@ -485,28 +477,8 @@ final class Consumable: @unchecked Sendable {
 
 class ConsumableExampleViewController: UIViewController {
 
-    private let fullscreenZoneIds = [
-        "dcd42036-e54c-4b63-bdce-295bbfdc2ed6",
-        "dcd42036-e54c-4b63-bdce-295bbfdc2ed6",
-        "dcd42036-e54c-4b63-bdce-295bbfdc2ed6",
-        "dcd42036-e54c-4b63-bdce-295bbfdc2ed6",
-    ]
-    private let bannerZoneIds = [
-        "1c3e3085-333f-45af-8427-2810c26a72fc",
-        "1c3e3085-333f-45af-8427-2810c26a72fc",
-        "1c3e3085-333f-45af-8427-2810c26a72fc",
-        "1c3e3085-333f-45af-8427-2810c26a72fc",
-    ]
-
-    private let startButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("Start", for: .normal)
-        button.backgroundColor = .systemTeal
-        button.setTitleColor(.label, for: .normal)
-        button.layer.cornerRadius = 5
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
+    private let fullscreenZoneId = "dcd42036-e54c-4b63-bdce-295bbfdc2ed6"
+    private let bannerZoneId = "1c3e3085-333f-45af-8427-2810c26a72fc"
 
     private let fullscreenConsumeButton: UIButton = {
         let button = UIButton(type: .system)
@@ -550,17 +522,11 @@ class ConsumableExampleViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.addSubview(startButton)
         view.addSubview(fullscreenConsumeButton)
         view.addSubview(bannerConsumeButton)
         view.addSubview(bannerRemoveButton)
         view.addSubview(bannerStackView)
 
-        startButton.addTarget(
-            self,
-            action: #selector(startTapped),
-            for: .touchUpInside
-        )
         fullscreenConsumeButton.addTarget(
             self,
             action: #selector(consumeFullscreenTapped),
@@ -578,20 +544,12 @@ class ConsumableExampleViewController: UIViewController {
         )
 
         NSLayoutConstraint.activate([
-            startButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            startButton.topAnchor.constraint(
-                equalTo: view.safeAreaLayoutGuide.topAnchor,
-                constant: 20
-            ),
-            startButton.widthAnchor.constraint(equalToConstant: 220),
-            startButton.heightAnchor.constraint(equalToConstant: 40),
-
             fullscreenConsumeButton.centerXAnchor.constraint(
                 equalTo: view.centerXAnchor
             ),
             fullscreenConsumeButton.topAnchor.constraint(
-                equalTo: startButton.bottomAnchor,
-                constant: 12
+                equalTo: view.safeAreaLayoutGuide.topAnchor,
+                constant: 20
             ),
             fullscreenConsumeButton.widthAnchor.constraint(
                 equalToConstant: 220
@@ -638,22 +596,12 @@ class ConsumableExampleViewController: UIViewController {
         ])
     }
 
-    @objc private func startTapped() {
-        Consumable.shared.load(
-            fullscreenAdZoneIds: fullscreenZoneIds,
-            bannerAdZoneIds: bannerZoneIds
-        )
-        print(
-            "Started loading \(fullscreenZoneIds.count) fullscreen and \(bannerZoneIds.count) banner ads"
-        )
-    }
-
     @objc private func consumeFullscreenTapped() {
-        guard let fullscreenZoneId = fullscreenZoneIds.first else { return }
-        Consumable.shared.consumeFullscreenAd(for: fullscreenZoneId, on: self) {
+        let zoneId = fullscreenZoneId
+        Consumable.shared.consumeFullscreenAd(for: zoneId, on: self) {
             result in
             switch result {
-            case .success: print("Fullscreen consumed for \(fullscreenZoneId)")
+            case .success: print("Fullscreen consumed for \(zoneId)")
             case .failure(let error):
                 print("Fullscreen consume failed: \(error)")
             }
@@ -661,14 +609,14 @@ class ConsumableExampleViewController: UIViewController {
     }
 
     @objc private func consumeBannerTapped() {
-        guard let bannerZoneId = bannerZoneIds.first else { return }
-        Consumable.shared.consumeBannerAd(for: bannerZoneId) {
+        let zoneId = bannerZoneId
+        Consumable.shared.consumeBannerAd(for: zoneId) {
             [weak self] result in
             guard let self = self else { return }
             switch result {
             case .success(let banner):
                 self.bannerStackView.addArrangedSubview(banner)
-                print("Banner consumed for \(bannerZoneId)")
+                print("Banner consumed for \(zoneId)")
             case .failure(let error): print("Banner consume failed: \(error)")
             }
         }

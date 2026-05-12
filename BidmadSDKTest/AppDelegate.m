@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "BidmadSimTest-Swift.h"
 #import <AppTrackingTransparency/AppTrackingTransparency.h>
 @import OpenBiddingHelper;
 @import BidmadSDK;
@@ -26,6 +27,20 @@
     didRequestATTPopup = NO;
     [BidmadCommon initializeSdkWithCompletionHandler:^(BOOL isInitialized) {
         NSLog(@"Bidmad Sample App: Initialized %@", isInitialized ? @"YES" : @"NO");
+        if (isInitialized) {
+            [[Consumable shared] loadWithFullscreenAdZoneIds:@[
+                @"dcd42036-e54c-4b63-bdce-295bbfdc2ed6",
+                @"dcd42036-e54c-4b63-bdce-295bbfdc2ed6",
+                @"dcd42036-e54c-4b63-bdce-295bbfdc2ed6",
+                @"dcd42036-e54c-4b63-bdce-295bbfdc2ed6",
+            ]
+                                            bannerAdZoneIds:@[
+                @"1c3e3085-333f-45af-8427-2810c26a72fc",
+                @"1c3e3085-333f-45af-8427-2810c26a72fc",
+                @"1c3e3085-333f-45af-8427-2810c26a72fc",
+                @"1c3e3085-333f-45af-8427-2810c26a72fc",
+            ]];
+        }
     }];
 
     [BidmadCommon setIsChildDirectedAds:YES];
