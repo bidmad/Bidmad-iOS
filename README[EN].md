@@ -58,7 +58,7 @@ target "BidmadSDKTest" do
   pod "BidmadTeadsAdapter", "6.1.0.14.0"
   pod "BidmadUnityAdsAdapter", "4.17.0.14.0"
   pod "BidmadVungleAdapter", "7.7.2.14.0"
-  pod "BidmadPartners/AdMobBidding", "1.0.9"
+  pod "BidmadPartners/AdMobBidding", "1.0.10"
 
 end
 

@@ -10,9 +10,6 @@ PODS:
     - Ads-Global/TikTokBusinessSDK
   - Ads-Global/PangleSDK (7.9.0.8)
   - Ads-Global/TikTokBusinessSDK (7.9.0.8)
-  - AppLovinMediationGoogleAdapter (13.2.0.0):
-    - AppLovinSDK (>= 13.0.0)
-    - Google-Mobile-Ads-SDK (= 13.2.0)
   - AppLovinSDK (13.6.2)
   - BidmadAdFitAdapter (3.18.3.14.0):
     - AdFitSDK (= 3.18.3)
@@ -42,8 +39,8 @@ PODS:
   - BidmadPangleAdapter (7.9.0.8.14.0):
     - Ads-Global (= 7.9.0.8)
     - BidmadSDK (< 7.1.0, >= 7.0.0)
-  - BidmadPartners/AdMobBidding (1.0.9):
-    - AppLovinMediationGoogleAdapter (= 13.2.0.0)
+  - BidmadPartners/AdMobBidding (1.0.10):
+    - GoogleMobileAdsMediationAppLovin (= 13.6.2.0)
     - GoogleMobileAdsMediationFacebook (= 6.21.1.0)
     - GoogleMobileAdsMediationFyber (= 8.4.6.0)
     - GoogleMobileAdsMediationInMobi (= 11.2.0.0)
@@ -69,6 +66,9 @@ PODS:
   - Fyber_Marketplace_SDK (8.4.6)
   - Google-Mobile-Ads-SDK (13.2.0):
     - GoogleUserMessagingPlatform (>= 1.1)
+  - GoogleMobileAdsMediationAppLovin (13.6.2.0):
+    - AppLovinSDK (= 13.6.2)
+    - Google-Mobile-Ads-SDK (~> 13.0)
   - GoogleMobileAdsMediationFacebook (6.21.1.0):
     - FBAudienceNetwork (= 6.21.1)
     - Google-Mobile-Ads-SDK (~> 13.0)
@@ -141,7 +141,7 @@ DEPENDENCIES:
   - BidmadMobwithAdapter (= 2.0.0.14.0)
   - BidmadORTBAdapter (= 1.0.0.14.0)
   - BidmadPangleAdapter (= 7.9.0.8.14.0)
-  - BidmadPartners/AdMobBidding (= 1.0.9)
+  - BidmadPartners/AdMobBidding (= 1.0.10)
   - BidmadSDK (= 7.0.0)
   - BidmadTaboolaAdapter (= 3.9.12.14.0)
   - BidmadTeadsAdapter (= 6.1.0.14.0)
@@ -155,7 +155,6 @@ SPEC REPOS:
     - AdMixer
     - AdMixerMediation
     - Ads-Global
-    - AppLovinMediationGoogleAdapter
     - AppLovinSDK
     - BidmadAdFitAdapter
     - BidmadAdmixerAdapter
@@ -176,6 +175,7 @@ SPEC REPOS:
     - FBAudienceNetwork
     - Fyber_Marketplace_SDK
     - Google-Mobile-Ads-SDK
+    - GoogleMobileAdsMediationAppLovin
     - GoogleMobileAdsMediationFacebook
     - GoogleMobileAdsMediationFyber
     - GoogleMobileAdsMediationInMobi
@@ -199,7 +199,6 @@ SPEC CHECKSUMS:
   AdMixer: 54794be2662044147414e6e714b5c8201d59e804
   AdMixerMediation: 34ce6be36bc88f701cd064aa53187cbd33fe2864
   Ads-Global: b21f686881cc572879a107860aaab40c811e60a0
-  AppLovinMediationGoogleAdapter: fea0cb088ca9795d299b899453d926f1b6dc3d48
   AppLovinSDK: 91a47db42b6c0e2b83224006aa46b0b88c62c16f
   BidmadAdFitAdapter: 0d8f7032f11d33e868d65978dfcc3845d2a3242f
   BidmadAdmixerAdapter: 4a5b8a35ebb93005323894c78d042557e328b9d5
@@ -211,7 +210,7 @@ SPEC CHECKSUMS:
   BidmadMobwithAdapter: 92dc33884fe953ba915f7daaaab790424abd7032
   BidmadORTBAdapter: 747963a0ba505d730328acbdc2588b44ca90a965
   BidmadPangleAdapter: 8e0ea601f8d6ca612b007fa91e61ca1c7ab6f43d
-  BidmadPartners: 1db7543129da3be5d850448d86ea1a3c6df8eb17
+  BidmadPartners: 12a7f9d663611912752fe15ef5f6f10925dc9249
   BidmadSDK: 57e4b84b5bbbd975998accb8620d577c101325b4
   BidmadTaboolaAdapter: c89f513782447b2bd31267755c630efa0c06ff13
   BidmadTeadsAdapter: ef9fbe42eec805d86921fbd5467bbcf75e23fe7d
@@ -220,6 +219,7 @@ SPEC CHECKSUMS:
   FBAudienceNetwork: 85d18a65c9e35bc426bd4664cf3ae2a1172d7b60
   Fyber_Marketplace_SDK: cedfa90cc2da9e549de1b8134965abb63bb8cf67
   Google-Mobile-Ads-SDK: f0365e190d66539c65cea8ded43e2c367abb5477
+  GoogleMobileAdsMediationAppLovin: b32db78894088699b8261c2050228c603c7236c5
   GoogleMobileAdsMediationFacebook: c28fe93a3e6ba02c3a7e09fa9c45682ad9b1e9c6
   GoogleMobileAdsMediationFyber: bdaa82e3d1ff6b926b58cb8c533d0db959a3d1ef
   GoogleMobileAdsMediationInMobi: 8f9ba1e28443db50f07ff032741394470f93a3a5
@@ -238,6 +238,6 @@ SPEC CHECKSUMS:
   UnityAds: adbe0d522fd14b8298c5e159164fc43396165843
   VungleAds: 03d93126f39d6056055a8b9edca701c6a3391d8b
 
-PODFILE CHECKSUM: 13c9bfc49b85c71a2953636e79e401e4bb5bb64c
+PODFILE CHECKSUM: 69f35f74b41da933415f5f1deb35a309d574444c
 
 COCOAPODS: 1.16.2
