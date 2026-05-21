@@ -1,3 +1,33 @@
+#### Version 7.0.0 (Breaking Changes)
+iOS 최소 지원 버전 상향 및 광고 네트워크 SDK 대규모 업데이트. <7.0.0 에서 마이그레이션 시 다음 사항을 확인하십시오. BidmadSDK / OpenBiddingHelper / 어댑터의 공개 API는 변경되지 않았지만 빌드 환경과 의존 SDK 버전이 변경되었으므로 앱 측 설정 점검이 필요합니다.
+
+- **빌드 환경**
+  - iOS Deployment Target: **13.0 → 14.0** (Podfile / Xcode 프로젝트 모두 14.0 이상으로 상향 필요)
+  - 어댑터 podspec 세대 (suffix): `.13.0` → **`.14.0`** (iOS 14 floor)
+- **신규 광고 네트워크 어댑터**
+  - `BidmadAppLovinMAXAdapter` 신규 pod 추가 — AppLovin MAX 미디에이션 사용 시 `BidmadAppLovinAdapter`와 별개로 의존성을 추가
+- **제거된 어댑터**
+  - `BidmadPubmaticAdapter`, `BidmadTargetPickAdapter` 더 이상 빌드되지 않음 (Podfile 에서 제거 필요)
+- **광고 네트워크 SDK 버전 업데이트**
+  - Google Mobile Ads SDK: 12.6.0 → **13.2.0** (AdMob / Ad Manager 어댑터)
+  - AppLovinSDK: 13.3.1 → **13.6.2** (AppLovin / AppLovin MAX 어댑터)
+  - Pangle (Ads-Global): 7.2.0.5 → **7.9.0.8**
+  - VungleAds: 7.5.1 → **7.7.2**
+  - TeadsSDK: 5.2.0 → **6.1.0** (메이저 업그레이드)
+  - AdFitSDK: 3.12.7 → **3.18.3**
+  - UnityAds: 4.15.0 → **4.17.0**
+  - Fyber Marketplace SDK: 8.3.7 → **8.4.6**
+  - TaboolaSDK: 3.8.33 → **3.9.12**
+  - AdPieSDK: 1.6.1 → **1.6.16**
+  - AdMixer: 1.0.8 → **1.1.6** (AdMixerMediation 2.0.2 → 2.3.2)
+  - GoogleUserMessagingPlatform: 3.0.0 → **3.1.0**
+- **마이그레이션 가이드**
+  - Podfile 의 `platform :ios, "13.0"` 을 `"14.0"` 으로 변경하고 `post_install`의 `IPHONEOS_DEPLOYMENT_TARGET` 도 14.0 으로 갱신
+  - 모든 `Bidmad*` 의존성 버전을 본 저장소 Podfile/README 의 7.0.0 예시 그대로 갱신
+  - `pod repo update && pod install` 실행
+
+`<6.14.0` 에서 7.0.0 으로 한 번에 마이그레이션하는 경우, 6.14.0 의 델리게이트 API 변경 사항도 함께 적용해야 합니다(아래 6.14.0 항목 참고).
+
 #### Version 6.14.0 (Breaking Changes)
 Banner / AppOpen / NativeAd 델리게이트 인터페이스 정리. <6.14.0 에서 마이그레이션 시 다음 변경사항을 반드시 적용해야 합니다. 광고 클래스(`BidmadBannerAd`, `BidmadAppOpenAd`, `BidmadNativeAd`) 자체는 동일하며, 델리게이트 프로토콜과 콜백 메서드 시그니처만 변경되었습니다.
 

@@ -3,6 +3,7 @@
 > AppDomain is not compatible with existing Appkeys, so you must obtain a new AppDomain to initialize BidmadSDK.<br>
 > If you are updating to BidmadSDK-iOS v6.11.0, please contact Techlabs Platform Operations Team.
 > Starting with BidmadSDK-iOS v6.12.4, the iOS deployment target is 13.0
+> Starting with BidmadSDK-iOS v7.0.0, the iOS deployment target is 14.0
 
 # BidmadSDK
 ### Shortcuts
@@ -27,7 +28,7 @@
 #### Development Environment
 - Xcode minimum version of 16.4 required
 - BASE SDK : iOS
-- iOS Deployment Target : 13.0
+- iOS Deployment Target : 14.0
 #### Installation Guide
 1. Add the following code inside the Podfile
 
@@ -36,28 +37,28 @@
 
 ```
 # Please set the minimum iOS version here
-platform :ios, "13.0"
+platform :ios, "14.0"
 
 target "BidmadSDKTest" do
 
   use_frameworks!
-  pod "BidmadSDK", "6.14.0"
-  pod "BidmadGoogleGDPRAdapter", "6.14.0"
-  pod "OpenBiddingHelper", "6.14.0"
-  pod "BidmadAdFitAdapter", "3.12.7.13.0"
-  pod "BidmadAdmixerAdapter", "2.0.2.13.0"
-  pod "BidmadAppLovinAdapter", "13.3.1.13.0"
-  pod "BidmadFyberAdapter", "8.3.7.13.0"
-  pod "BidmadGoogleAdManagerAdapter", "12.6.0.13.0"
-  pod "BidmadGoogleAdMobAdapter", "12.6.0.13.0"
-  pod "BidmadMobwithAdapter", "2.0.0.13.0"
-  pod "BidmadORTBAdapter", "1.0.0.13.0"
-  pod "BidmadPangleAdapter", "7.2.0.5.13.0"
-  pod "BidmadTaboolaAdapter", "3.8.33.13.0"
-  pod "BidmadTeadsAdapter", "5.2.0.13.0"
-  pod "BidmadUnityAdsAdapter", "4.15.0.13.0"
-  pod "BidmadVungleAdapter", "7.5.1.13.0"
-  pod "BidmadPartners/AdMobBidding", "1.0.8"
+  pod "BidmadSDK", "7.0.0"
+  pod "BidmadGoogleGDPRAdapter", "7.0.0"
+  pod "OpenBiddingHelper", "7.0.0"
+  pod "BidmadAdFitAdapter", "3.18.3.14.0"
+  pod "BidmadAdmixerAdapter", "2.3.2.14.0"
+  pod "BidmadAppLovinAdapter", "13.6.2.14.0"
+  pod "BidmadFyberAdapter", "8.4.6.14.0"
+  pod "BidmadGoogleAdManagerAdapter", "13.2.0.14.0"
+  pod "BidmadGoogleAdMobAdapter", "13.2.0.14.0"
+  pod "BidmadMobwithAdapter", "2.0.0.14.0"
+  pod "BidmadORTBAdapter", "1.0.0.14.0"
+  pod "BidmadPangleAdapter", "7.9.0.8.14.0"
+  pod "BidmadTaboolaAdapter", "3.9.12.14.0"
+  pod "BidmadTeadsAdapter", "6.1.0.14.0"
+  pod "BidmadUnityAdsAdapter", "4.17.0.14.0"
+  pod "BidmadVungleAdapter", "7.7.2.14.0"
+  pod "BidmadPartners/AdMobBidding", "1.0.9"
 
 end
 
@@ -65,7 +66,7 @@ post_install do |installer|
   installer.pods_project.targets.each do |target|
     target.build_configurations.each do |config|
       # Please set the minimum iOS version here
-      config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '12.0'
+      config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '14.0'
     end
   end
 end
@@ -95,6 +96,8 @@ Prior to the initial configuration of the app, when updating from version 4.6.0.
 For users of native ad interface updating from v5.3.0 or lower to v6.0.0 or higher, please refer to [NativeAd Migration Guide 6.0.0](https://github.com/bidmad/Bidmad-iOS/wiki/Native-Ad-Migration-to-v6.0.0%5BENG%5D) for your app updates. 
 
 For users of app open ad and native ad interface updating from v6.3.5 or lower to v6.4.0 or higher, please refer to [AppOpen and NativeAd Migration Guide for 6.4.0](https://github.com/bidmad/Bidmad-iOS/wiki/AppOpen-and-NativeAd-Migration-Guide-for-6.4.0-%5BKOR%5D) for your app updates.
+
+When updating to 7.0.0, the iOS deployment target has been raised to 14.0, all ad network SDK versions have been refreshed, and a new `BidmadAppLovinMAXAdapter` pod has been added for AppLovin MAX mediation. See the 7.0.0 entry in [CHANGELOG.md](./CHANGELOG.md) for the full list of changes.
 
 When updating from a version below 6.14.0 to 6.14.0 or higher, the Banner / AppOpen / NativeAd delegate protocols and callback method signatures have changed. Refer to [CHANGELOG.md](./CHANGELOG.md) for the full breakdown and migration steps before updating your app.
 

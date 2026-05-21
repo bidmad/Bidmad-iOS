@@ -1,35 +1,35 @@
 # Uncomment the next line to define a global platform for your project
-platform :ios, '13.0'
+platform :ios, '14.0'
 
 target 'BidmadSDKTest' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
-  pod "BidmadSDK", "6.14.0"
-  pod "BidmadGoogleGDPRAdapter", "6.14.0"
-  pod "OpenBiddingHelper", "6.14.0"
+  pod "BidmadSDK", "7.0.0"
+  pod "BidmadGoogleGDPRAdapter", "7.0.0"
+  pod "OpenBiddingHelper", "7.0.0"
 
-  pod "BidmadAdFitAdapter", "3.12.7.13.0"
-  pod "BidmadAdmixerAdapter", "2.0.2.13.0"
-  pod "BidmadAppLovinAdapter", "13.3.1.13.0"
-  pod "BidmadFyberAdapter", "8.3.7.13.0"
-  pod "BidmadGoogleAdManagerAdapter", "12.6.0.13.0"
-  pod "BidmadGoogleAdMobAdapter", "12.6.0.13.0"
-  pod "BidmadMobwithAdapter", "2.0.0.13.0"
-  pod "BidmadORTBAdapter", "1.0.0.13.0"
-  pod "BidmadPangleAdapter", "7.2.0.5.13.0"
-  pod "BidmadTaboolaAdapter", "3.8.33.13.0"
-  pod "BidmadTeadsAdapter", "5.2.0.13.0"
-  pod "BidmadUnityAdsAdapter", "4.15.0.13.0"
-  pod "BidmadVungleAdapter", "7.5.1.13.0"
-  pod "BidmadPartners/AdMobBidding", "1.0.8"
+  pod "BidmadAdFitAdapter", "3.18.3.14.0"
+  pod "BidmadAdmixerAdapter", "2.3.2.14.0"
+  pod "BidmadAppLovinAdapter", "13.6.2.14.0"
+  pod "BidmadFyberAdapter", "8.4.6.14.0"
+  pod "BidmadGoogleAdManagerAdapter", "13.2.0.14.0"
+  pod "BidmadGoogleAdMobAdapter", "13.2.0.14.0"
+  pod "BidmadMobwithAdapter", "2.0.0.14.0"
+  pod "BidmadORTBAdapter", "1.0.0.14.0"
+  pod "BidmadPangleAdapter", "7.9.0.8.14.0"
+  pod "BidmadTaboolaAdapter", "3.9.12.14.0"
+  pod "BidmadTeadsAdapter", "6.1.0.14.0"
+  pod "BidmadUnityAdsAdapter", "4.17.0.14.0"
+  pod "BidmadVungleAdapter", "7.7.2.14.0"
+  pod "BidmadPartners/AdMobBidding", "1.0.9"
 
 end
 
 post_install do |installer|
   installer.pods_project.targets.each do |target|
     target.build_configurations.each do |config|
-      config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '13.0'
+      config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '14.0'
     end
   end
 end
