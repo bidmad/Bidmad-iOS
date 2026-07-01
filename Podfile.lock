@@ -39,7 +39,8 @@ PODS:
   - BidmadPangleAdapter (7.9.0.8.14.0):
     - Ads-Global (= 7.9.0.8)
     - BidmadSDK (< 7.1.0, >= 7.0.0)
-  - BidmadPartners/AdMobBidding (1.0.10):
+  - BidmadPartners/AdMobBidding (1.0.11):
+    - BidmadPremiumAdsGoogleAdapter (= 1.0.6.14.0)
     - GoogleMobileAdsMediationAppLovin (= 13.6.2.0)
     - GoogleMobileAdsMediationFacebook (= 6.21.1.0)
     - GoogleMobileAdsMediationFyber (= 8.4.6.0)
@@ -49,6 +50,9 @@ PODS:
     - GoogleMobileAdsMediationPangle (= 7.9.0.8.0)
     - GoogleMobileAdsMediationUnity (= 4.17.0.0)
     - GoogleMobileAdsMediationVungle (= 7.7.2.0)
+  - BidmadPremiumAdsGoogleAdapter (1.0.6.14.0):
+    - BidmadSDK (< 7.1.0, >= 7.0.0)
+    - PremiumAdsGoogleAdapter (= 1.0.6)
   - BidmadSDK (7.0.0)
   - BidmadTaboolaAdapter (3.9.12.14.0):
     - BidmadSDK (< 7.1.0, >= 7.0.0)
@@ -123,6 +127,8 @@ PODS:
   - MolocoSDKiOS (4.5.1)
   - OpenBiddingHelper (7.0.0):
     - BidmadSDK (< 7.1.0, >= 7.0.0)
+  - PremiumAdsGoogleAdapter (1.0.6):
+    - Google-Mobile-Ads-SDK (>= 13.0)
   - TaboolaSDK (3.9.12)
   - TeadsSDK (6.1.0):
     - TeadsSDK/Core (= 6.1.0)
@@ -141,7 +147,7 @@ DEPENDENCIES:
   - BidmadMobwithAdapter (= 2.0.0.14.0)
   - BidmadORTBAdapter (= 1.0.0.14.0)
   - BidmadPangleAdapter (= 7.9.0.8.14.0)
-  - BidmadPartners/AdMobBidding (= 1.0.10)
+  - BidmadPartners/AdMobBidding (= 1.0.11)
   - BidmadSDK (= 7.0.0)
   - BidmadTaboolaAdapter (= 3.9.12.14.0)
   - BidmadTeadsAdapter (= 6.1.0.14.0)
@@ -167,6 +173,7 @@ SPEC REPOS:
     - BidmadORTBAdapter
     - BidmadPangleAdapter
     - BidmadPartners
+    - BidmadPremiumAdsGoogleAdapter
     - BidmadSDK
     - BidmadTaboolaAdapter
     - BidmadTeadsAdapter
@@ -189,6 +196,7 @@ SPEC REPOS:
     - MintegralAdSDK
     - MolocoSDKiOS
     - OpenBiddingHelper
+    - PremiumAdsGoogleAdapter
     - TaboolaSDK
     - TeadsSDK
     - UnityAds
@@ -210,7 +218,8 @@ SPEC CHECKSUMS:
   BidmadMobwithAdapter: 92dc33884fe953ba915f7daaaab790424abd7032
   BidmadORTBAdapter: 747963a0ba505d730328acbdc2588b44ca90a965
   BidmadPangleAdapter: 8e0ea601f8d6ca612b007fa91e61ca1c7ab6f43d
-  BidmadPartners: 12a7f9d663611912752fe15ef5f6f10925dc9249
+  BidmadPartners: 2393f21e405986601681ee6b22eec6750e0d25c5
+  BidmadPremiumAdsGoogleAdapter: 8dcf263746d2f57881893410545e3f9ef2b51997
   BidmadSDK: 57e4b84b5bbbd975998accb8620d577c101325b4
   BidmadTaboolaAdapter: c89f513782447b2bd31267755c630efa0c06ff13
   BidmadTeadsAdapter: ef9fbe42eec805d86921fbd5467bbcf75e23fe7d
@@ -233,11 +242,12 @@ SPEC CHECKSUMS:
   MintegralAdSDK: 0837d1b17ecc09f1fa73b5f4825fb666c91d8515
   MolocoSDKiOS: e13d9d8b147a51d3f6dadb4121aedb3f2f53ca68
   OpenBiddingHelper: fa81237bfbf9ca861b7da2f1fab5f4000fd7efbc
+  PremiumAdsGoogleAdapter: 714aa6b3de602025e15b6e73fe5d254baf180d35
   TaboolaSDK: 3d48382df8f015d93999fd64bed1aee96ca94f2f
   TeadsSDK: f40f06e4fe189801819163a830b3d75c291b8362
   UnityAds: adbe0d522fd14b8298c5e159164fc43396165843
   VungleAds: 03d93126f39d6056055a8b9edca701c6a3391d8b
 
-PODFILE CHECKSUM: 69f35f74b41da933415f5f1deb35a309d574444c
+PODFILE CHECKSUM: fba65ceaca1b33f19ff1fbc52bc5965a2147168b
 
 COCOAPODS: 1.16.2
