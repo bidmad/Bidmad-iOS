@@ -26,7 +26,7 @@
 ## BidmadSDK Installation Guide
 
 #### Development Environment
-- Xcode minimum version of 16.4 required
+- Xcode minimum version of 26.0 required
 - BASE SDK : iOS
 - iOS Deployment Target : 14.0
 #### Installation Guide
