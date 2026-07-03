@@ -27,7 +27,6 @@
 
 #### 개발 환경
 - Xcode 최소 사양 26.0
-- BASE SDK : iOS
 - iOS Deployment Target : 14.0
 #### SDK 설치 방법
 1. Podfile 내부에 다음 코드 추가

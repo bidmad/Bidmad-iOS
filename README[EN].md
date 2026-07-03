@@ -27,7 +27,6 @@
 
 #### Development Environment
 - Xcode minimum version of 26.0 required
-- BASE SDK : iOS
 - iOS Deployment Target : 14.0
 #### Installation Guide
 1. Add the following code inside the Podfile
