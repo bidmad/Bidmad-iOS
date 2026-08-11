@@ -43,17 +43,17 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)onClickAd:(BidmadNativeAd *)bidmadAd info:(BidmadInfo *)info {
+- (void)onClickNativeAd:(BidmadNativeAd *)nativeAd info:(BidmadInfo *)info {
     [self.callbackLabel setText:@"CLICK"];
 }
 
-- (void)onLoadAd:(BidmadNativeAd *)bidmadAd info:(BidmadInfo *)info {
+- (void)onLoadNativeAd:(BidmadNativeAd *)nativeAd info:(BidmadInfo *)info {
     self.adsCount += 1;
     [self.tableView reloadData];
     [self.callbackLabel setText:@"LOAD"];
 }
 
-- (void)onLoadFailAd:(BidmadNativeAd *)bidmadAd error:(NSError *)error {
+- (void)onLoadFailNativeAd:(BidmadNativeAd *)nativeAd error:(NSError *)error {
     [self.callbackLabel setText:[NSString stringWithFormat:@"FAIL (%@)", error.localizedDescription]];
 }
 
