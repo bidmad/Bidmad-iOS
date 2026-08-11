@@ -81,13 +81,6 @@
     }
 }
 
-- (void)cancelAppOpenAd {
-}
-
-- (void)reloadAppOpenAd {
-    bidmadAppOpenAd = [[BidmadAppOpenAd alloc] initWithZoneID:@"0ddd6401-0f19-49ee-b1f9-63e910f92e77"];
-}
-
 - (void)onLoadFailAppOpenAd:(BidmadAppOpenAd *)appOpenAd error:(NSError *)error {
     NSLog(@"BidmadSDK App Open Ad Callback → AllFail");
     [self callbackLabelViewShow: @"App Open Ad Callback → AllFail"];

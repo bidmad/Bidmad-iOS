@@ -24,41 +24,6 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="AV7-ua-w5K">
                                 <rect key="frame" x="16" y="20" width="343" height="647"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tNa-er-LLL">
-                                        <rect key="frame" x="0.0" y="0.0" width="343" height="74"/>
-                                        <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="2N4-7k-0eI">
-                                                <rect key="frame" x="0.0" y="0.0" width="343" height="74"/>
-                                                <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lLy-zZ-XbV">
-                                                        <rect key="frame" x="0.0" y="22.5" width="171.5" height="29"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <state key="normal" title="Cancel AppOpenAd"/>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="titleLabel.adjustsFontSizeToFitWidth" value="YES"/>
-                                                        </userDefinedRuntimeAttributes>
-                                                        <connections>
-                                                            <action selector="cancelAppOpenAdButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3m2-IA-Ukv"/>
-                                                        </connections>
-                                                    </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EMi-X7-uk1">
-                                                        <rect key="frame" x="171.5" y="22" width="171.5" height="30"/>
-                                                        <state key="normal" title="Reload AppOpenAd"/>
-                                                        <connections>
-                                                            <action selector="reloadAppOpenAdButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jUU-Xs-ByW"/>
-                                                        </connections>
-                                                    </button>
-                                                </subviews>
-                                            </stackView>
-                                        </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                        <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="2N4-7k-0eI" secondAttribute="trailing" id="5ds-5e-jqB"/>
-                                            <constraint firstAttribute="bottom" secondItem="2N4-7k-0eI" secondAttribute="bottom" id="Hv3-6P-mUr"/>
-                                            <constraint firstItem="2N4-7k-0eI" firstAttribute="leading" secondItem="tNa-er-LLL" secondAttribute="leading" id="Ihw-9Z-84x"/>
-                                            <constraint firstItem="2N4-7k-0eI" firstAttribute="top" secondItem="tNa-er-LLL" secondAttribute="top" id="sJn-LE-8Nr"/>
-                                        </constraints>
-                                    </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3d0-9p-Dc6">
                                         <rect key="frame" x="0.0" y="82" width="343" height="74"/>
                                         <state key="normal" title="BannerView"/>
@@ -611,36 +576,6 @@
                                         <constraints>
                                             <constraint firstItem="035-xf-OXv" firstAttribute="centerY" secondItem="ZCo-WM-FB7" secondAttribute="centerY" id="a2l-Eg-XWG"/>
                                             <constraint firstItem="035-xf-OXv" firstAttribute="centerX" secondItem="ZCo-WM-FB7" secondAttribute="centerX" id="aPf-L4-smm"/>
-                                        </constraints>
-                                    </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WPt-m4-ssL">
-                                        <rect key="frame" x="0.0" y="431.5" width="343" height="107.5"/>
-                                        <subviews>
-                                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oga-cX-hZp">
-                                                <rect key="frame" x="96.5" y="34" width="150" height="40"/>
-                                                <color key="backgroundColor" systemColor="linkColor"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="40" id="87f-uO-5sR"/>
-                                                    <constraint firstAttribute="width" constant="150" id="RW4-OX-8Qu"/>
-                                                </constraints>
-                                                <color key="tintColor" systemColor="systemBackgroundColor"/>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" title="Deregister"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                        <integer key="value" value="10"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <action selector="buttonPressAction:" destination="eQV-A6-rto" eventType="touchUpInside" id="IZY-nJ-i7g"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                        <constraints>
-                                            <constraint firstItem="Oga-cX-hZp" firstAttribute="centerX" secondItem="WPt-m4-ssL" secondAttribute="centerX" id="NS5-RA-zD7"/>
-                                            <constraint firstItem="Oga-cX-hZp" firstAttribute="centerY" secondItem="WPt-m4-ssL" secondAttribute="centerY" id="aSk-Xb-D5h"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hJE-TS-4cn">
