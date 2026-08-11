@@ -48,8 +48,24 @@
     return YES;
 }
 
+- (UIWindow * _Nonnull)keyWindow {
+    UIWindow *fallback = nil;
+    for (UIScene *scene in UIApplication.sharedApplication.connectedScenes) {
+        if (![scene isKindOfClass:UIWindowScene.class]) continue;
+        for (UIWindow *window in ((UIWindowScene *)scene).windows) {
+            if (!window.isKeyWindow) continue;
+            if (scene.activationState == UISceneActivationStateForegroundActive) return window;
+            if (!fallback) fallback = window;
+        }
+    }
+    return fallback;
+}
+
 - (void)requestGDPR {
-    gdpr = [[BIDMADGDPRforGoogle alloc] initWith:[[[[UIApplication sharedApplication] windows] firstObject] rootViewController]];
+    UIWindow *keyWindow = [self keyWindow];
+    UIViewController *rootVC = keyWindow.rootViewController;
+
+    gdpr = [[BIDMADGDPRforGoogle alloc] initWith:rootVC];
     gdpr.consentStatusDelegate = self;
     [gdpr setDebug:@"D701554C-B328-4581-B7D0-B7B509ABFB84" isTestEurope:YES];
     [gdpr reset];
