@@ -315,8 +315,6 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-BidmadSDKTest/Pods-BidmadSDKTest-frameworks.sh",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/AdFitSDK/AdFitSDK.framework/AdFitSDK",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/AdMixer/AdMixer.framework/AdMixer",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/AdMixerMediation/AdMixerMediation.framework/AdMixerMediation",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/AppLovinSDK/AppLovinSDK.framework/AppLovinSDK",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/BidmadAppLovinAdapter/BidmadAppLovinAdapter.framework/BidmadAppLovinAdapter",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/BidmadMobwithAdapter/BidmadMobwithAdapter.framework/BidmadMobwithAdapter",
@@ -334,8 +332,6 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AdFitSDK.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AdMixer.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AdMixerMediation.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AppLovinSDK.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BidmadAppLovinAdapter.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BidmadMobwithAdapter.framework",

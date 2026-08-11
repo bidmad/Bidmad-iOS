@@ -1,3 +1,17 @@
+#### Version 7.0.1
+AdPopcorn / Admixer 미디에이션 지원이 종료되었습니다. 두 네트워크를 사용 중이라면 Podfile 에서 해당 pod 을 제거하십시오. 그 외 공개 API 변경은 없습니다.
+
+- **지원 종료된 어댑터**
+  - `BidmadAdPopcornAdapter`, `BidmadAdmixerAdapter` — SDK 코어에서 두 네트워크의 UUID 매핑이 제거되어 더 이상 서빙되지 않습니다. Podfile 에서 제거해 주십시오.
+- **버전**
+  - BidmadSDK / OpenBiddingHelper / BidmadFlutterBridge / BidmadGoogleGDPRAdapter: 7.0.0 → **7.0.1**
+  - 어댑터 17종: `.14.0` → **`.14.1`** (광고 네트워크 SDK 버전 변경 없음)
+  - 어댑터의 BidmadSDK 의존성 하한이 `>=7.0.1` 로 상향되었습니다. 어댑터를 갱신하면 BidmadSDK 도 7.0.1 로 함께 올라갑니다.
+- **BidmadPartners 1.0.13**
+  - `BidmadPartners/AdMobBidding` 에서 `BidmadPremiumAdsGoogleAdapter` 의존성이 제거되었습니다. 해당 어댑터가 필요하면 Podfile 에 직접 추가하십시오 (예제 Podfile 에는 `1.0.6.14.1` 로 명시해 두었습니다).
+- **수정**
+  - `BidmadGoogleGDPRAdapter` 가 `GoogleUserMessagingPlatform` 을 명시적으로 의존하도록 수정. 이전에는 정적 프레임워크임에도 의존성 선언이 없어, AdMob 어댑터를 함께 사용하지 않는 앱에서 링크 오류가 발생할 수 있었습니다.
+
 #### Version 7.0.0 (Breaking Changes)
 iOS 최소 지원 버전 상향 및 광고 네트워크 SDK 대규모 업데이트. <7.0.0 에서 마이그레이션 시 다음 사항을 확인하십시오. BidmadSDK / OpenBiddingHelper / 어댑터의 공개 API는 변경되지 않았지만 빌드 환경과 의존 SDK 버전이 변경되었으므로 앱 측 설정 점검이 필요합니다.
 

@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# The platform line as the Podfile declares it, normalised to double quotes.
+podfile_platform() {
+    grep -m1 "^platform :ios" "Podfile" | tr "'" '"'
+}
+
 # Function to extract Podfile content between target and end
 extract_podfile_content() {
     # Extract content between 'target' and 'end' lines
@@ -16,7 +21,10 @@ extract_podfile_content() {
 update_readme() {
     local readme_file=$1
     local start_marker="# 사용하시는 최소 iOS 버전을 아래 라인에 기입해주세요"
-    local end_marker="end"
+    # Anchored: a bare "end" also matches prose like "depend"/"extend", which in
+    # the English README appears before the Podfile block and made the tail
+    # splice start too early, duplicating the whole section.
+    local end_marker="^end$"
     
     # Create a temporary file
     local temp_file=$(mktemp)
@@ -24,8 +32,10 @@ update_readme() {
     # Extract content before the Podfile section
     sed -n "1,/$start_marker/p" "$readme_file" > "$temp_file"
     
-    # Add platform line
-    echo 'platform :ios, "12.0"' >> "$temp_file"
+    # Add platform line, taken from the Podfile rather than hardcoded: the
+    # documented minimum must track the podspecs (currently iOS 14.0), and a
+    # stale literal here silently tells users an unsupported floor works.
+    echo "$(podfile_platform)" >> "$temp_file"
     echo "" >> "$temp_file"
     
     # Add target line
@@ -50,7 +60,10 @@ update_readme() {
 update_readme_en() {
     local readme_file=$1
     local start_marker="# Please set the minimum iOS version here"
-    local end_marker="end"
+    # Anchored: a bare "end" also matches prose like "depend"/"extend", which in
+    # the English README appears before the Podfile block and made the tail
+    # splice start too early, duplicating the whole section.
+    local end_marker="^end$"
     
     # Create a temporary file
     local temp_file=$(mktemp)
@@ -58,8 +71,10 @@ update_readme_en() {
     # Extract content before the Podfile section
     sed -n "1,/$start_marker/p" "$readme_file" > "$temp_file"
     
-    # Add platform line
-    echo 'platform :ios, "12.0"' >> "$temp_file"
+    # Add platform line, taken from the Podfile rather than hardcoded: the
+    # documented minimum must track the podspecs (currently iOS 14.0), and a
+    # stale literal here silently tells users an unsupported floor works.
+    echo "$(podfile_platform)" >> "$temp_file"
     echo "" >> "$temp_file"
     
     # Add target line
