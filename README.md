@@ -16,6 +16,7 @@
     - [배너 광고](#배너-광고)
     - [전면 광고](#전면-광고)
     - [보상형 비디오 광고](#보상형-비디오-광고)
+    - [전체화면 광고](#전체화면-광고)
     - [App Open 광고](#app-open-광고)
     - [Native Ad 광고](#native-ad-광고)
     - [구글 애드네트워크 테스트 디바이스 설정](#구글-애드네트워크-테스트-디바이스-설정)
@@ -41,22 +42,22 @@ platform :ios, "14.0"
 target "BidmadSDKTest" do
 
   use_frameworks!
-  pod "BidmadSDK", "7.0.1"
-  pod "BidmadGoogleGDPRAdapter", "7.0.1"
-  pod "OpenBiddingHelper", "7.0.1"
-  pod "BidmadAdFitAdapter", "3.18.3.14.1"
-  pod "BidmadAppLovinAdapter", "13.6.2.14.1"
-  pod "BidmadFyberAdapter", "8.4.6.14.1"
-  pod "BidmadGoogleAdManagerAdapter", "13.2.0.14.1"
-  pod "BidmadGoogleAdMobAdapter", "13.2.0.14.1"
-  pod "BidmadMobwithAdapter", "2.0.0.14.1"
-  pod "BidmadORTBAdapter", "1.0.0.14.1"
-  pod "BidmadPangleAdapter", "7.9.0.8.14.1"
-  pod "BidmadPremiumAdsGoogleAdapter", "1.0.6.14.1"
-  pod "BidmadTaboolaAdapter", "3.9.12.14.1"
-  pod "BidmadTeadsAdapter", "6.1.0.14.1"
-  pod "BidmadUnityAdsAdapter", "4.17.0.14.1"
-  pod "BidmadVungleAdapter", "7.7.2.14.1"
+  pod "BidmadSDK", "7.1.0"
+  pod "BidmadGoogleGDPRAdapter", "7.1.0"
+  pod "OpenBiddingHelper", "7.1.0"
+  pod "BidmadAdFitAdapter", "3.18.3.15.0"
+  pod "BidmadAppLovinAdapter", "13.6.2.15.0"
+  pod "BidmadFyberAdapter", "8.4.6.15.0"
+  pod "BidmadGoogleAdManagerAdapter", "13.2.0.15.0"
+  pod "BidmadGoogleAdMobAdapter", "13.2.0.15.0"
+  pod "BidmadMobwithAdapter", "2.0.0.15.0"
+  pod "BidmadORTBAdapter", "1.0.0.15.0"
+  pod "BidmadPangleAdapter", "7.9.0.8.15.0"
+  pod "BidmadPremiumAdsGoogleAdapter", "1.0.6.15.0"
+  pod "BidmadTaboolaAdapter", "3.9.12.15.0"
+  pod "BidmadTeadsAdapter", "6.1.0.15.0"
+  pod "BidmadUnityAdsAdapter", "4.17.0.15.0"
+  pod "BidmadVungleAdapter", "7.7.2.15.0"
   pod "BidmadPartners/AdMobBidding", "1.0.13"
 
 end
@@ -494,6 +495,157 @@ func onCloseAd(_ bidmadAd: OpenBiddingRewardVideo, info: BidmadInfo) {
 // onShowFailAd:error: 콜백은 v6.6.0 이상에서만 사용할 수 있습니다.
 func onShowFailAd(_ bidmadAd: OpenBiddingRewardVideo, info: BidmadInfo, error: Error) {
     print("ad display failed")
+}
+```
+</details>
+
+### 전체화면 광고
+전면 광고와 보상형 광고를 하나의 클래스(`BidmadFullscreenAd`)로 사용할 수 있는 광고 형식입니다. v7.1.0 이상에서 사용할 수 있습니다.
+
+1. 광고를 노출시키기 전, load 메서드를 호출합니다.
+2. bidmadFullscreenLoad 콜백 수신 이후, show(on:) 메서드를 호출해 미리 로드된 광고를 디스플레이 합니다.
+3. bidmadFullscreenComplete (사용자가 보상 지급 자격을 받음) 혹은 bidmadFullscreenSkip (사용자가 광고를 스킵함) 콜백에 따라 사용자에게 보상을 지급합니다.
+
+`isAutoReload` 프로퍼티를 통해 광고 노출 이후의 자동 재로드 여부를 설정할 수 있습니다. 기본값은 `true` 입니다.
+
+<details markdown="1">
+<summary>Sample Code (Load)</summary>
+<br>
+
+```
+// Objective C
+
+#import <OpenBiddingHelper/OpenBiddingHelper.h>
+
+@interface FullscreenAdViewController () <BidmadFullscreenAdDelegate>
+@property (nonatomic, strong) BidmadFullscreenAd *ad;
+@end
+
+@implementation FullscreenAdViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+
+    NSString *zoneID = @"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx";
+    self.ad = [[BidmadFullscreenAd alloc] initWithZoneID:zoneID];
+    [self.ad setDelegate:self];
+
+    // 광고 노출 이후 자동 재로드를 사용하지 않으려면 NO 로 설정합니다. (기본값 YES)
+    [self.ad setIsAutoReload:YES];
+}
+
+- (void)loadAd {
+    [self.ad load];
+}
+
+- (void)showAd {
+    [self.ad showOn:self];
+}
+
+@end
+
+// -- SWIFT --
+
+import OpenBiddingHelper
+
+class FullscreenAdViewController: UIViewController, BidmadFullscreenAdDelegate {
+    let fullscreenZoneID = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+    var ad: BidmadFullscreenAd!
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        ad = BidmadFullscreenAd(zoneID: fullscreenZoneID)
+        ad.delegate = self
+
+        // 광고 노출 이후 자동 재로드를 사용하지 않으려면 false 로 설정합니다. (기본값 true)
+        ad.isAutoReload = true
+    }
+
+    func loadAd() {
+        ad.load()
+    }
+
+    func showAd() {
+        ad.show(on: self)
+    }
+}
+```
+</details>
+
+<details markdown="1">
+<summary>Sample Code (Callback)</summary>
+<br>
+
+```
+// Objective C
+
+- (void)bidmadFullscreenLoadWithAd:(BidmadFullscreenAd *)ad info:(BidmadInfo *)info {
+    NSLog(@"Load");
+}
+
+- (void)bidmadFullscreenLoadFailWithAd:(BidmadFullscreenAd *)ad error:(NSError *)error {
+    NSLog(@"Load Fail");
+}
+
+- (void)bidmadFullscreenShowWithAd:(BidmadFullscreenAd *)ad info:(BidmadInfo *)info {
+    NSLog(@"Show");
+}
+
+- (void)bidmadFullscreenShowFailWithAd:(BidmadFullscreenAd *)ad info:(BidmadInfo *)info error:(NSError *)error {
+    NSLog(@"Show Fail");
+}
+
+- (void)bidmadFullscreenClickWithAd:(BidmadFullscreenAd *)ad info:(BidmadInfo *)info {
+    NSLog(@"Click");
+}
+
+- (void)bidmadFullscreenSkipWithAd:(BidmadFullscreenAd *)ad info:(BidmadInfo *)info {
+    NSLog(@"Skip");
+}
+
+- (void)bidmadFullscreenCompleteWithAd:(BidmadFullscreenAd *)ad info:(BidmadInfo *)info {
+    // 보상형 광고에서는 보상 조건 충족 시, 전면 광고에서는 광고가 닫힐 때 호출됩니다.
+    NSLog(@"Complete");
+}
+
+- (void)bidmadFullscreenCloseWithAd:(BidmadFullscreenAd *)ad info:(BidmadInfo *)info {
+    NSLog(@"Close");
+}
+
+// -- SWIFT --
+
+func bidmadFullscreenLoad(ad: BidmadFullscreenAd, info: BidmadInfo) {
+    print("ad is loaded")
+}
+
+func bidmadFullscreenLoadFail(ad: BidmadFullscreenAd, error: any Error) {
+    print("ad failed to load with error \(error.localizedDescription)")
+}
+
+func bidmadFullscreenShow(ad: BidmadFullscreenAd, info: BidmadInfo) {
+    print("ad is shown")
+}
+
+func bidmadFullscreenShowFail(ad: BidmadFullscreenAd, info: BidmadInfo?, error: any Error) {
+    print("ad display failed")
+}
+
+func bidmadFullscreenClick(ad: BidmadFullscreenAd, info: BidmadInfo) {
+    print("ad is clicked")
+}
+
+func bidmadFullscreenSkip(ad: BidmadFullscreenAd, info: BidmadInfo) {
+    print("ad reward is skipped")
+}
+
+func bidmadFullscreenComplete(ad: BidmadFullscreenAd, info: BidmadInfo) {
+    // 보상형 광고에서는 보상 조건 충족 시, 전면 광고에서는 광고가 닫힐 때 호출됩니다.
+    print("ad reward is completed")
+}
+
+func bidmadFullscreenClose(ad: BidmadFullscreenAd, info: BidmadInfo) {
+    print("ad is closed")
 }
 ```
 </details>

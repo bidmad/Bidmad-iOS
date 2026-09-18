@@ -1,3 +1,14 @@
+#### Version 7.1.0
+전면/보상형 광고를 하나의 클래스로 다루는 `BidmadFullscreenAd` 가 정식 지원되며, 전체화면광고의 로드·노출 상태 관리 결함이 수정되었습니다. 공개 API 변경은 없으므로 Podfile 의 Bidmad 의존성 버전만 갱신하면 됩니다.
+
+- **`BidmadFullscreenAd` 정식 지원**
+  - `OpenBiddingHelper` 의 `BidmadFullscreenAd` / `BidmadFullscreenAdDelegate` 로 전면광고와 보상형광고를 동일한 인터페이스로 사용할 수 있습니다. 기존 `BidmadInterstitialAd` / `BidmadRewardAd` 도 그대로 사용 가능합니다.
+- **버전**
+  - BidmadSDK / OpenBiddingHelper / BidmadFlutterBridge / BidmadGoogleGDPRAdapter: 7.0.1 → **7.1.0**
+  - 어댑터: `.14.1` → **`.15.0`** (광고 네트워크 SDK 버전 변경 없음)
+  - 모든 podspec 의 의존성이 `BidmadSDK >=7.1.0, <7.2.0` 으로 조정되었습니다. `OpenBiddingHelper` 7.0.x 와 `BidmadSDK` 7.1.0 을 섞어 쓸 수 없으므로 Podfile 의 Bidmad 의존성을 모두 함께 갱신하십시오.
+  - `BidmadPartners/AdMobBidding` 은 1.0.13 으로 변경 없습니다.
+
 #### Version 7.0.1
 AdPopcorn / Admixer 미디에이션 지원이 종료되었습니다. 두 네트워크를 사용 중이라면 Podfile 에서 해당 pod 을 제거하십시오. 그 외 공개 API 변경은 없습니다.
 

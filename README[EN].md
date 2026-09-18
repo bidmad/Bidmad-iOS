@@ -16,6 +16,7 @@
     - [Banner Ad](#banner-ad)
     - [Interstitial Ad](#interstitial-ad)
     - [Rewarded Video Ads](#rewarded-video-ads)
+    - [Fullscreen Ad](#fullscreen-ad)
     - [App Open Ad](#app-open-ad)
     - [Native Ad](#native-ad)
     - [Google Ad Network Test Device Setting](#google-ad-network-test-device-setting)
@@ -41,22 +42,22 @@ platform :ios, "14.0"
 target "BidmadSDKTest" do
 
   use_frameworks!
-  pod "BidmadSDK", "7.0.1"
-  pod "BidmadGoogleGDPRAdapter", "7.0.1"
-  pod "OpenBiddingHelper", "7.0.1"
-  pod "BidmadAdFitAdapter", "3.18.3.14.1"
-  pod "BidmadAppLovinAdapter", "13.6.2.14.1"
-  pod "BidmadFyberAdapter", "8.4.6.14.1"
-  pod "BidmadGoogleAdManagerAdapter", "13.2.0.14.1"
-  pod "BidmadGoogleAdMobAdapter", "13.2.0.14.1"
-  pod "BidmadMobwithAdapter", "2.0.0.14.1"
-  pod "BidmadORTBAdapter", "1.0.0.14.1"
-  pod "BidmadPangleAdapter", "7.9.0.8.14.1"
-  pod "BidmadPremiumAdsGoogleAdapter", "1.0.6.14.1"
-  pod "BidmadTaboolaAdapter", "3.9.12.14.1"
-  pod "BidmadTeadsAdapter", "6.1.0.14.1"
-  pod "BidmadUnityAdsAdapter", "4.17.0.14.1"
-  pod "BidmadVungleAdapter", "7.7.2.14.1"
+  pod "BidmadSDK", "7.1.0"
+  pod "BidmadGoogleGDPRAdapter", "7.1.0"
+  pod "OpenBiddingHelper", "7.1.0"
+  pod "BidmadAdFitAdapter", "3.18.3.15.0"
+  pod "BidmadAppLovinAdapter", "13.6.2.15.0"
+  pod "BidmadFyberAdapter", "8.4.6.15.0"
+  pod "BidmadGoogleAdManagerAdapter", "13.2.0.15.0"
+  pod "BidmadGoogleAdMobAdapter", "13.2.0.15.0"
+  pod "BidmadMobwithAdapter", "2.0.0.15.0"
+  pod "BidmadORTBAdapter", "1.0.0.15.0"
+  pod "BidmadPangleAdapter", "7.9.0.8.15.0"
+  pod "BidmadPremiumAdsGoogleAdapter", "1.0.6.15.0"
+  pod "BidmadTaboolaAdapter", "3.9.12.15.0"
+  pod "BidmadTeadsAdapter", "6.1.0.15.0"
+  pod "BidmadUnityAdsAdapter", "4.17.0.15.0"
+  pod "BidmadVungleAdapter", "7.7.2.15.0"
   pod "BidmadPartners/AdMobBidding", "1.0.13"
 
 end
@@ -494,6 +495,157 @@ func onCloseAd(_ bidmadAd: OpenBiddingRewardVideo, info: BidmadInfo) {
 // onShowFailAd:error: callback can only be used for versions 6.6.0 or higher.
 func onShowFailAd(_ bidmadAd: OpenBiddingRewardVideo, info: BidmadInfo, error: Error) {
     print("ad display failed")
+}
+```
+</details>
+
+### Fullscreen Ad
+An ad format that lets you handle both interstitial and rewarded ads through a single class, `BidmadFullscreenAd`. Available on v7.1.0 or higher.
+
+1. Call the load method before displaying the ad.
+2. After receiving the bidmadFullscreenLoad callback, call the show(on:) method to display the preloaded ad.
+3. Grant the reward to the user according to the bidmadFullscreenComplete (the user has earned the reward) or bidmadFullscreenSkip (the user skipped the ad) callback.
+
+The `isAutoReload` property configures whether the ad is reloaded automatically after being shown. The default value is `true`.
+
+<details markdown="1">
+<summary>Sample Code (Load)</summary>
+<br>
+
+```
+// Objective C
+
+#import <OpenBiddingHelper/OpenBiddingHelper.h>
+
+@interface FullscreenAdViewController () <BidmadFullscreenAdDelegate>
+@property (nonatomic, strong) BidmadFullscreenAd *ad;
+@end
+
+@implementation FullscreenAdViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+
+    NSString *zoneID = @"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx";
+    self.ad = [[BidmadFullscreenAd alloc] initWithZoneID:zoneID];
+    [self.ad setDelegate:self];
+
+    // Set to NO to disable automatic reloading after the ad is shown. (Default YES)
+    [self.ad setIsAutoReload:YES];
+}
+
+- (void)loadAd {
+    [self.ad load];
+}
+
+- (void)showAd {
+    [self.ad showOn:self];
+}
+
+@end
+
+// -- SWIFT --
+
+import OpenBiddingHelper
+
+class FullscreenAdViewController: UIViewController, BidmadFullscreenAdDelegate {
+    let fullscreenZoneID = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+    var ad: BidmadFullscreenAd!
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        ad = BidmadFullscreenAd(zoneID: fullscreenZoneID)
+        ad.delegate = self
+
+        // Set to false to disable automatic reloading after the ad is shown. (Default true)
+        ad.isAutoReload = true
+    }
+
+    func loadAd() {
+        ad.load()
+    }
+
+    func showAd() {
+        ad.show(on: self)
+    }
+}
+```
+</details>
+
+<details markdown="1">
+<summary>Sample Code (Callback)</summary>
+<br>
+
+```
+// Objective C
+
+- (void)bidmadFullscreenLoadWithAd:(BidmadFullscreenAd *)ad info:(BidmadInfo *)info {
+    NSLog(@"Load");
+}
+
+- (void)bidmadFullscreenLoadFailWithAd:(BidmadFullscreenAd *)ad error:(NSError *)error {
+    NSLog(@"Load Fail");
+}
+
+- (void)bidmadFullscreenShowWithAd:(BidmadFullscreenAd *)ad info:(BidmadInfo *)info {
+    NSLog(@"Show");
+}
+
+- (void)bidmadFullscreenShowFailWithAd:(BidmadFullscreenAd *)ad info:(BidmadInfo *)info error:(NSError *)error {
+    NSLog(@"Show Fail");
+}
+
+- (void)bidmadFullscreenClickWithAd:(BidmadFullscreenAd *)ad info:(BidmadInfo *)info {
+    NSLog(@"Click");
+}
+
+- (void)bidmadFullscreenSkipWithAd:(BidmadFullscreenAd *)ad info:(BidmadInfo *)info {
+    NSLog(@"Skip");
+}
+
+- (void)bidmadFullscreenCompleteWithAd:(BidmadFullscreenAd *)ad info:(BidmadInfo *)info {
+    // Called when the reward condition is met for rewarded ads, and when the ad is closed for interstitial ads.
+    NSLog(@"Complete");
+}
+
+- (void)bidmadFullscreenCloseWithAd:(BidmadFullscreenAd *)ad info:(BidmadInfo *)info {
+    NSLog(@"Close");
+}
+
+// -- SWIFT --
+
+func bidmadFullscreenLoad(ad: BidmadFullscreenAd, info: BidmadInfo) {
+    print("ad is loaded")
+}
+
+func bidmadFullscreenLoadFail(ad: BidmadFullscreenAd, error: any Error) {
+    print("ad failed to load with error \(error.localizedDescription)")
+}
+
+func bidmadFullscreenShow(ad: BidmadFullscreenAd, info: BidmadInfo) {
+    print("ad is shown")
+}
+
+func bidmadFullscreenShowFail(ad: BidmadFullscreenAd, info: BidmadInfo?, error: any Error) {
+    print("ad display failed")
+}
+
+func bidmadFullscreenClick(ad: BidmadFullscreenAd, info: BidmadInfo) {
+    print("ad is clicked")
+}
+
+func bidmadFullscreenSkip(ad: BidmadFullscreenAd, info: BidmadInfo) {
+    print("ad reward is skipped")
+}
+
+func bidmadFullscreenComplete(ad: BidmadFullscreenAd, info: BidmadInfo) {
+    // Called when the reward condition is met for rewarded ads, and when the ad is closed for interstitial ads.
+    print("ad reward is completed")
+}
+
+func bidmadFullscreenClose(ad: BidmadFullscreenAd, info: BidmadInfo) {
+    print("ad is closed")
 }
 ```
 </details>
