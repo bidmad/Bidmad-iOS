@@ -1,4 +1,19 @@
 > [!IMPORTANT]
+> **AppLovin MAX mediation setup**
+>
+> This branch shows the configuration in which AppLovin MAX mediates the ad networks. Two pods carry it:
+> - `BidmadAppLovinMAXAdapter` — the adapter that connects Bidmad to AppLovin MAX
+> - `BidmadPartners/AppLovinMax` — the bundle of network adapters mediated by MAX (Google AdMob, DT Exchange, InMobi, Liftoff Monetize, Meta, Mintegral, Moloco, Pangle, Unity Ads)
+>
+> **Two rules that must be followed**
+> 1. **Exclude the AppLovin adapter that is not MAX (`BidmadAppLovinAdapter`).** Both adapters initialize the same AppLovin SDK instance and only the first configuration applies, so integrating both breaks MAX mediation.
+> 2. **Do not use the AdMob bidding partner subspec (`BidmadPartners/AdMobBidding`).** Do not integrate the network adapters mediated by AdMob together with the network adapters mediated by MAX in one app.
+>
+> Notes
+> - The MAX SDK key and MAX ad unit IDs are registered in the AppLovin MAX network settings of the Bidmad console. The app does not initialize the AppLovin SDK itself.
+> - Each MAX adapter in `BidmadPartners/AppLovinMax` wraps exactly the ad network SDK version used by the Bidmad adapters above, and only versions listed in AppLovin's official changelogs are used.
+
+> [!IMPORTANT]
 > Starting with BidmadSDK-iOS v6.11.0, the AppKey used in previous versions has been changed to AppDomain.<br>
 > AppDomain is not compatible with existing Appkeys, so you must obtain a new AppDomain to initialize BidmadSDK.<br>
 > If you are updating to BidmadSDK-iOS v6.11.0, please contact Techlabs Platform Operations Team.
@@ -46,7 +61,7 @@ target "BidmadSDKTest" do
   pod "BidmadGoogleGDPRAdapter", "7.1.0"
   pod "OpenBiddingHelper", "7.1.0"
   pod "BidmadAdFitAdapter", "3.18.3.15.0"
-  pod "BidmadAppLovinAdapter", "13.6.2.15.0"
+  pod "BidmadAppLovinMAXAdapter", "13.6.2.15.1"
   pod "BidmadFyberAdapter", "8.4.6.15.0"
   pod "BidmadGoogleAdManagerAdapter", "13.2.0.15.0"
   pod "BidmadGoogleAdMobAdapter", "13.2.0.15.0"
@@ -58,7 +73,7 @@ target "BidmadSDKTest" do
   pod "BidmadTeadsAdapter", "6.1.0.15.0"
   pod "BidmadUnityAdsAdapter", "4.17.0.15.0"
   pod "BidmadVungleAdapter", "7.7.2.15.0"
-  pod "BidmadPartners/AdMobBidding", "1.0.13"
+  pod "BidmadPartners/AppLovinMax", "1.0.14"
 
 end
 
@@ -72,6 +87,7 @@ post_install do |installer|
 end
 
 ```
+
 
   * From version 6.4.0 onwards, BidmadAdapterFNC, BidmadAdapterFC, and BidmadAdapterDynamic are not supported. Users who wish to update from version 6.3.X or below to version 6.4.0 or above should remove the dependencies for "BidmadAdapterFNC, BidmadAdapterFC, BidmadAdapterDynamic" and add the adapter by including the dependencies mentioned above.
 

@@ -10,7 +10,7 @@ target 'BidmadSDKTest' do
   pod "OpenBiddingHelper", "7.1.0"
 
   pod "BidmadAdFitAdapter", "3.18.3.15.0"
-  pod "BidmadAppLovinAdapter", "13.6.2.15.0"
+  pod "BidmadAppLovinMAXAdapter", "13.6.2.15.1"   # AppLovin MAX adapter (replaces the AppLovin adapter that is not MAX)
   pod "BidmadFyberAdapter", "8.4.6.15.0"
   pod "BidmadGoogleAdManagerAdapter", "13.2.0.15.0"
   pod "BidmadGoogleAdMobAdapter", "13.2.0.15.0"
@@ -22,7 +22,7 @@ target 'BidmadSDKTest' do
   pod "BidmadTeadsAdapter", "6.1.0.15.0"
   pod "BidmadUnityAdsAdapter", "4.17.0.15.0"
   pod "BidmadVungleAdapter", "7.7.2.15.0"
-  pod "BidmadPartners/AdMobBidding", "1.0.13"
+  pod "BidmadPartners/AppLovinMax", "1.0.14"       # MAX network adapter bundle (replaces the AdMob bidding partner subspec)
 
 end
 

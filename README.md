@@ -1,4 +1,19 @@
 > [!IMPORTANT]
+> **AppLovin MAX 미디에이션 구성**
+>
+> 이 브랜치는 AppLovin MAX 가 광고 네트워크를 미디에이션하는 구성을 보여줍니다. 다음 두 pod 이 핵심입니다.
+> - `BidmadAppLovinMAXAdapter` — Bidmad 와 AppLovin MAX 를 연결하는 어댑터
+> - `BidmadPartners/AppLovinMax` — MAX 가 미디에이션하는 네트워크 어댑터 번들 (Google AdMob, DT Exchange, InMobi, Liftoff Monetize, Meta, Mintegral, Moloco, Pangle, Unity Ads)
+>
+> **반드시 지켜야 하는 두 가지**
+> 1. **MAX 가 아닌 AppLovin 어댑터(`BidmadAppLovinAdapter`)는 제외해야 합니다.** 두 어댑터는 동일한 AppLovin SDK 인스턴스를 초기화하며 먼저 초기화한 쪽의 설정만 적용되므로, 함께 통합하면 MAX 미디에이션이 동작하지 않습니다.
+> 2. **AdMob 비딩 파트너 서브스펙(`BidmadPartners/AdMobBidding`)은 사용하지 않아야 합니다.** AdMob 이 미디에이션하는 네트워크 어댑터와 MAX 가 미디에이션하는 네트워크 어댑터를 한 앱에 함께 통합하지 마십시오.
+>
+> 참고
+> - MAX SDK Key 와 MAX 광고 단위 ID 는 Bidmad 콘솔의 AppLovin MAX 네트워크 설정에 등록합니다. 앱 코드에서 AppLovin SDK 를 직접 초기화하지 않습니다.
+> - `BidmadPartners/AppLovinMax` 의 각 MAX 어댑터는 위 Bidmad 어댑터들이 사용하는 광고 네트워크 SDK 와 정확히 같은 버전을 감싸며, AppLovin 공식 체인지로그에 기재된 버전만 사용합니다.
+
+> [!IMPORTANT]
 > BidmadSDK-iOS v6.11.0 부터, 이전 버전에서 사용되던 AppKey는 AppDomain으로 변경되었습니다.<br>
 > **AppDomain은 기존 Appkeys와 호환되지 않으므로 BidmadSDK를 초기화하기 위해선 새로운 AppDomain을 발급받아야 합니다.**<br>
 > BidmadSDK-iOS v6.11.0 으로 업데이트하는 경우 **Techlabs 플랫폼 운영팀**에 문의해주세요.
@@ -46,7 +61,7 @@ target "BidmadSDKTest" do
   pod "BidmadGoogleGDPRAdapter", "7.1.0"
   pod "OpenBiddingHelper", "7.1.0"
   pod "BidmadAdFitAdapter", "3.18.3.15.0"
-  pod "BidmadAppLovinAdapter", "13.6.2.15.0"
+  pod "BidmadAppLovinMAXAdapter", "13.6.2.15.1"
   pod "BidmadFyberAdapter", "8.4.6.15.0"
   pod "BidmadGoogleAdManagerAdapter", "13.2.0.15.0"
   pod "BidmadGoogleAdMobAdapter", "13.2.0.15.0"
@@ -58,7 +73,7 @@ target "BidmadSDKTest" do
   pod "BidmadTeadsAdapter", "6.1.0.15.0"
   pod "BidmadUnityAdsAdapter", "4.17.0.15.0"
   pod "BidmadVungleAdapter", "7.7.2.15.0"
-  pod "BidmadPartners/AdMobBidding", "1.0.13"
+  pod "BidmadPartners/AppLovinMax", "1.0.14"
 
 end
 
@@ -72,6 +87,7 @@ post_install do |installer|
 end
 
 ```
+
 
   * 6.4.0 이상 버전부터 BidmadAdapterFNC, BidmadAdapterFC, BidmadAdapterDynamic 을 지원하지 않습니다. 6.3.X 이하 버전에서 6.4.0 이상 버전으로 업데이트를 원하시는 사용자는 "BidmadAdapterFNC, BidmadAdapterFC, BidmadAdapterDynamic" 의존성을 제거하고, 위에 기재된 의존성을 추가해 어댑터를 추가해주세요.
 
