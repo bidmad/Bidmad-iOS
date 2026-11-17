@@ -1,3 +1,14 @@
+#### Version 7.1.1
+태블릿 · 아이폰 듀오처럼 가로가 긴 화면에서 Mobwith / Taboola 전면 광고를 닫을 수 없던 문제가 수정되었습니다.
+
+- **변경 사항**
+  - Mobwith 전면 광고: 가로가 긴 화면에서 광고 이미지가 닫기(✕) 버튼을 가리던 문제 수정, 이미지와 상세 정보를 좌우로 배치
+  - Taboola 전면 광고: 가로가 긴 화면에서 닫기(✕) 버튼이 화면 밖으로 밀려나던 문제 수정
+- **버전**
+  - BidmadSDK / OpenBiddingHelper / BidmadFlutterBridge / BidmadGoogleGDPRAdapter: 7.1.0 → **7.1.1**
+  - BidmadMobwithAdapter: 2.0.0.15.0 → **2.0.0.15.1**
+  - BidmadTaboolaAdapter: 3.9.12.15.0 → **3.9.12.15.1**
+
 #### Version 7.1.0
 전면/보상형 광고를 하나의 클래스로 다루는 `BidmadFullscreenAd` 가 정식 지원되며, 전체화면광고의 로드·노출 상태 관리 결함이 수정되었습니다. 공개 API 변경은 없으므로 Podfile 의 Bidmad 의존성 버전만 갱신하면 됩니다.
 
