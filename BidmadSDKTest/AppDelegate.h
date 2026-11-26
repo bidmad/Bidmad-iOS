@@ -10,7 +10,7 @@
 #import <UIKit/UIKit.h>
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
-@property (strong, nonatomic) UIWindow *window;
-
+/// Asks for App Tracking Transparency once, when the first scene becomes active.
+- (void)requestTrackingAuthorizationIfNeeded;
 
 @end

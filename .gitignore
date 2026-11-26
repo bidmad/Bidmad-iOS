@@ -61,3 +61,7 @@ build/
 xcuserdata/
 *.xcuserstate
 
+
+# Swift Package Manager
+.build/
+.swiftpm/

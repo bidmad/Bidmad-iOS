@@ -1,15 +1,15 @@
 > [!IMPORTANT]
-> Starting with BidmadSDK-iOS v6.11.0, the AppKey used in previous versions has been changed to AppDomain.<br>
-> AppDomain is not compatible with existing Appkeys, so you must obtain a new AppDomain to initialize BidmadSDK.<br>
-> If you are updating to BidmadSDK-iOS v6.11.0, please contact Techlabs Platform Operations Team.
-> Starting with BidmadSDK-iOS v6.12.4, the iOS deployment target is 13.0
-> Starting with BidmadSDK-iOS v7.0.0, the iOS deployment target is 14.0
+> From v6.11.0, AppKey is replaced by AppDomain.<br>
+> **Get a new AppDomain to initialize BidmadSDK.**<br>
+> From v7.2.0, BidmadSDK uses **Swift Package Manager** only.<br>
+> From v7.2.0, BidmadSDK requires iOS 15.0 or later.
 
 # BidmadSDK
 ### Shortcuts
 1. [SDK Installation Guide](#bidmadsdk-installation-guide)
     - [Development Environment](#development-environment)
     - [SDK Installation Guide](#installation-guide)
+    - [Updating Versions](#updating-versions)
 2. [BidmadSDK Interface Guide](#bidmadsdk-interface-guide)
     - [App Configuration and Migration](#app-configuration-and-migration)
     - [BidmadSDK Initialization](#bidmadsdk-initialization)
@@ -21,69 +21,91 @@
     - [Native Ad](#native-ad)
     - [Google Ad Network Test Device Setting](#google-ad-network-test-device-setting)
 3. [References](#references)
-4. [Download the Lastest Bidmad Sample](https://github.com/bidmad/Bidmad-iOS/archive/refs/heads/main.zip)
+4. [Download the Latest Bidmad Sample](https://github.com/bidmad/Bidmad-iOS/archive/refs/heads/main.zip)
 ---
 
 ## BidmadSDK Installation Guide
 
 #### Development Environment
 - Xcode minimum version of 26.0 required
-- iOS Deployment Target : 14.0
+- iOS Deployment Target : 15.0
+
 #### Installation Guide
-1. Add the following code inside the Podfile
+From 7.2.0, BidmadSDK ships through **Swift Package Manager (SPM)** only.<br>
+The following steps add every dependency you need at once. You may also copy the [`BidmadPackages`](./BidmadPackages) folder from this sample repository.
 
-> [!WARNING]
-> Starting from 6.14.0, the `BidmadSDK/core` subspec has been removed. Use `pod "BidmadSDK", "version"` and add `BidmadGoogleGDPRAdapter` as a separate dependency.
+> [!NOTE]
+> Remove any CocoaPods installation of Bidmad before the SPM integration.
 
-```
-# Please set the minimum iOS version here
-platform :ios, "14.0"
+1. Create the folders and files as in the following image.
+    - `BidmadPackages` > `Package.swift`
+    - `BidmadPackages` > `Sources` > `BidmadPackages` > `BidmadPackages.swift`
 
-target "BidmadSDKTest" do
+    ![BidmadPackages folder structure](./images/spm/00-folder-structure.png)
 
-  use_frameworks!
-  pod "BidmadSDK", "7.1.1"
-  pod "BidmadGoogleGDPRAdapter", "7.1.1"
-  pod "OpenBiddingHelper", "7.1.1"
-  pod "BidmadAdFitAdapter", "3.18.3.15.0"
-  pod "BidmadAppLovinAdapter", "13.6.2.15.0"
-  pod "BidmadFyberAdapter", "8.4.6.15.0"
-  pod "BidmadGoogleAdManagerAdapter", "13.2.0.15.0"
-  pod "BidmadGoogleAdMobAdapter", "13.2.0.15.0"
-  pod "BidmadMobwithAdapter", "2.0.0.15.1"
-  pod "BidmadORTBAdapter", "1.0.0.15.0"
-  pod "BidmadPangleAdapter", "7.9.0.8.15.0"
-  pod "BidmadPremiumAdsGoogleAdapter", "1.0.6.15.0"
-  pod "BidmadTaboolaAdapter", "3.9.12.15.1"
-  pod "BidmadTeadsAdapter", "6.1.0.15.0"
-  pod "BidmadUnityAdsAdapter", "4.17.0.15.0"
-  pod "BidmadVungleAdapter", "7.7.2.15.0"
-  pod "BidmadPartners/AdMobBidding", "1.0.13"
+    - `BidmadPackages.swift` can be left empty, but the file must exist. **Do not add these files to the app target.**<br>
+      ![Target Membership empty](./images/spm/09-target-membership.png)
 
-end
+2. Write the following in `Package.swift`.
 
-post_install do |installer|
-  installer.pods_project.targets.each do |target|
-    target.build_configurations.each do |config|
-      # Please set the minimum iOS version here
-      config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '14.0'
-    end
-  end
-end
+    ```swift
+    // swift-tools-version:5.9
+    import PackageDescription
 
-```
+    let bidmad: [(repository: String, version: Version, products: [String])] = [
+        ("BidmadSDK-SPM",                     "7.2.0",                 ["BidmadSDK", "OpenBiddingHelper", "BidmadGoogleGDPRAdapter"]),
+        ("BidmadGoogleAdMobAdapter-SPM",      "7.2.0+13.11.0",         ["BidmadGoogleAdMobAdapter"]),
+        ("BidmadGoogleAdManagerAdapter-SPM",  "7.2.0+13.11.0",         ["BidmadGoogleAdManagerAdapter"]),
+        ("BidmadAppLovinAdapter-SPM",         "7.2.0+13.7.0",          ["BidmadAppLovinAdapter"]),
+        ("BidmadUnityAdsAdapter-SPM",         "7.2.0+4.21.0",          ["BidmadUnityAdsAdapter"]),
+        ("BidmadPangleAdapter-SPM",           "7.2.0+8.4.0-release.7", ["BidmadPangleAdapter"]),
+        ("BidmadFyberAdapter-SPM",            "7.2.0+8.5.1",           ["BidmadFyberAdapter"]),
+        ("BidmadVungleAdapter-SPM",           "7.2.0+7.7.8",           ["BidmadVungleAdapter"]),
+        ("BidmadTeadsAdapter-SPM",            "7.2.0+6.1.0",           ["BidmadTeadsAdapter"]),
+        ("BidmadAdFitAdapter-SPM",            "7.2.0+3.18.3",          ["BidmadAdFitAdapter"]),
+        ("BidmadAdpieAdapter-SPM",            "7.2.0+1.6.16",          ["BidmadAdpieAdapter"]),
+        ("BidmadTaboolaAdapter-SPM",          "7.2.0+3.9.12",          ["BidmadTaboolaAdapter"]),
+        ("BidmadPremiumAdsGoogleAdapter-SPM", "7.2.0+1.0.6",           ["BidmadPremiumAdsGoogleAdapter"]),
+        ("BidmadMobwithAdapter-SPM",          "7.2.0",                 ["BidmadMobwithAdapter"]),
+        ("BidmadORTBAdapter-SPM",             "7.2.0",                 ["BidmadORTBAdapter"]),
+        ("BidmadPartnersAdMobBidding-SPM",    "7.2.0",                 ["BidmadPartnersAdMobBidding", "BidmadPartnersAdMobBiddingDynamicSDKs"]),
+    ]
 
-  * From version 6.4.0 onwards, BidmadAdapterFNC, BidmadAdapterFC, and BidmadAdapterDynamic are not supported. Users who wish to update from version 6.3.X or below to version 6.4.0 or above should remove the dependencies for "BidmadAdapterFNC, BidmadAdapterFC, BidmadAdapterDynamic" and add the adapter by including the dependencies mentioned above.
+    let package = Package(
+        name: "BidmadPackages",
+        platforms: [.iOS(.v15)],
+        products: [.library(name: "BidmadPackages", targets: ["BidmadPackages"])],
+        dependencies: bidmad.map { .package(url: "https://github.com/bidmad/\($0.repository).git", exact: $0.version) },
+        targets: [
+            .target(
+                name: "BidmadPackages",
+                dependencies: bidmad.flatMap { entry in entry.products.map { .product(name: $0, package: entry.repository) } }
+            )
+        ]
+    )
+    ```
 
-2. Enter the following command in Terminal
+3. In Xcode, choose **File › Add Package Dependencies…**.<br>
+    ![Add Package Dependencies](./images/spm/01-add-package-menu.png)
 
-```
-pod install
-```
-    
-3. Build Settings ( Target → Build Settings ) <br>
-    - Set Enable Bitcode to NO<br>
-        ![Enable_Bitcode](https://i.imgur.com/aXOBmr1.png)<br>
+4. Click **Add Local…** at the bottom of the window and choose the `BidmadPackages` folder.<br>
+    ![Add Local](./images/spm/02-add-local.png)<br>
+    ![Choose the BidmadPackages folder](./images/spm/03-choose-folder.png)
+
+5. Add the `BidmadPackages` product to your app target (choose the app target under **Add to Target**, then **Add Package**).<br>
+    ![Choose the product](./images/spm/04-choose-product.png)<br>
+    `BidmadPackages` then appears in the target's **General › Frameworks, Libraries, and Embedded Content**.<br>
+    ![Frameworks, Libraries, and Embedded Content](./images/spm/05-frameworks.png)
+
+6. Add `-ObjC` to **Build Settings › Other Linker Flags**.<br>
+    ![Other Linker Flags](./images/spm/06-other-linker-flags.png)
+
+7. Build. Under **Package Dependencies** in the project navigator you can check that every package was fetched at the version you set.<br>
+    <img src="./images/spm/07-package-dependencies.png" alt="Package Dependencies" width="360">
+
+#### Updating Versions
+Change only the version of the package to update in `BidmadPackages/Package.swift`, then run **File › Packages › Resolve Package Versions**. See [CHANGELOG.md](./CHANGELOG.md) for what each release changes.<br>
+![Resolve Package Versions](./images/spm/08-resolve-package-versions.png)
 
 #### App Submission & Privacy Survey
 When submitting your application to App Store, please refer to the following guide to properly set privacy manifest & survey: [Guide for Privacy Manifest & Privacy Survey](https://github.com/bidmad/Bidmad-iOS/wiki/Guide-for-Privacy-Manifest-&-Privacy-Survey-%5BEN%5D)
@@ -91,15 +113,16 @@ When submitting your application to App Store, please refer to the following gui
 ## BidmadSDK Interface Guide
 
 ### App Configuration and Migration<br>
-Prior to the initial configuration of the app, when updating from version 4.6.0.1 or lower to version 5.0.0 [API Migration Guide](https://github.com/bidmad/Bidmad-iOS/wiki/v5.0.0-API-Migration-Guide-%5BEN%5D) to update the app. After that, go through the process of adding BidmadAppKey and initializeSdk method inside info.plist as guided below.<br>
+If you are updating from an earlier version, check the rows that apply.
 
-For users of native ad interface updating from v5.3.0 or lower to v6.0.0 or higher, please refer to [NativeAd Migration Guide 6.0.0](https://github.com/bidmad/Bidmad-iOS/wiki/Native-Ad-Migration-to-v6.0.0%5BENG%5D) for your app updates. 
-
-For users of app open ad and native ad interface updating from v6.3.5 or lower to v6.4.0 or higher, please refer to [AppOpen and NativeAd Migration Guide for 6.4.0](https://github.com/bidmad/Bidmad-iOS/wiki/AppOpen-and-NativeAd-Migration-Guide-for-6.4.0-%5BKOR%5D) for your app updates.
-
-When updating to 7.0.0, the iOS deployment target has been raised to 14.0, all ad network SDK versions have been refreshed, and a new `BidmadAppLovinMAXAdapter` pod has been added for AppLovin MAX mediation. See the 7.0.0 entry in [CHANGELOG.md](./CHANGELOG.md) for the full list of changes.
-
-When updating from a version below 6.14.0 to 6.14.0 or higher, the Banner / AppOpen / NativeAd delegate protocols and callback method signatures have changed. Refer to [CHANGELOG.md](./CHANGELOG.md) for the full breakdown and migration steps before updating your app.
+| Update | Changes | See |
+|---|---|---|
+| 7.2.0 | CocoaPods → Swift Package Manager, iOS 15.0 or later | [Installation Guide](#installation-guide) |
+| 7.0.0 | iOS 14.0 or later, ad network SDKs updated | [CHANGELOG.md](./CHANGELOG.md) |
+| below 6.14.0 → 6.14.0 or later | Banner / AppOpen / NativeAd delegate signatures changed | [CHANGELOG.md](./CHANGELOG.md) |
+| 6.3.5 or earlier → 6.4.0 or later | App open / native ad interfaces changed | [Migration Guide](https://github.com/bidmad/Bidmad-iOS/wiki/AppOpen-and-NativeAd-Migration-Guide-for-6.4.0-%5BENG%5D) |
+| 5.3.0 or earlier → 6.0.0 or later | Native ad interface changed | [Migration Guide](https://github.com/bidmad/Bidmad-iOS/wiki/Native-Ad-Migration-to-v6.0.0%5BENG%5D) |
+| 4.6.0.1 or earlier → 5.0.0 | API changed | [Migration Guide](https://github.com/bidmad/Bidmad-iOS/wiki/v5.0.0-API-Migration-Guide-%5BEN%5D) |
 
 1. Enter the AppDomain value received from the Techlabs Operations Team in info.plist as follows.<br>
 
@@ -140,7 +163,7 @@ It is recommended to initialize only once when the app is launched. The followin
 BidmadCommon.initializeSdk()
 ```
 
-Also, you can be receiving the initialization success or failure callback w ith the following interface.<br>
+Also, you can be receiving the initialization success or failure callback with the following interface.<br>
 
 ```
 // Objective C
@@ -771,7 +794,7 @@ func onShowFail(appOpenAd: BidmadAppOpenAd, info: BidmadInfo, error: Error) {
 </details>
 
 ### Native Ad
-Native ads are ads that are designed and produced in a way unique to the application. Before calling an ad, set the ad UI according to the [Layout Guide](https://github.com/bidmad/Bidmad-iOS/wiki/Native-Ad-Layout-Setting-Guide-%5BENG%5D). After setting the ad UI, execute the setAdView:adView: method.
+Native ads are ads that are designed and produced in a way unique to the application. Before calling an ad, set the ad UI according to the [Layout Guide](https://github.com/bidmad/Bidmad-iOS/wiki/Native-Ad-Layout-Setting-Guide-%5BENG%5D). After setting the ad UI, load a BIDMADNativeAd containing the ad data, then execute the setAdView:adView: method.
 
 *For users of native ad interface updating from v5.3.0 or lower to v6.0.0 or higher, please refer to [NativeAd Migration Guide 6.0.0](https://github.com/bidmad/Bidmad-iOS/wiki/Native-Ad-Migration-to-v6.0.0%5BENG%5D) for your app updates.
 
@@ -840,7 +863,7 @@ func onClick(nativeAd: BidmadNativeAd, info: BidmadInfo) {
     print("Native Ad Click")
 }
 
-func onLoadFail(nativeAd: BidmadNativeAd, error: Error) {
+func onLoadFail(nativeAd: BidmadNativeAd, error: any Error) {
     print("Native Ad Fail")
 }
 ```
@@ -877,8 +900,10 @@ BidmadCommon.setTestDeviceId("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
 <br>
 
 - [Class Reference for BidmadSDK-iOS](https://github.com/bidmad/Bidmad-iOS/wiki/README-ClassReference)
+- CocoaPods Installation Guide (7.1.1 and earlier) ([[ENG]](https://github.com/bidmad/Bidmad-iOS/wiki/CocoaPods-Installation-Guide-%5BENG%5D) | [[KOR]](https://github.com/bidmad/Bidmad-iOS/wiki/CocoaPods-Installation-Guide-%5BKOR%5D))
 - Apple privacy survey ([[ENG]](https://github.com/bidmad/Bidmad-iOS/wiki/Apple-privacy-survey%5BENG%5D) | [[KOR]](https://github.com/bidmad/Bidmad-iOS/wiki/Apple-privacy-survey%5BKOR%5D))
 - iOS GDPR Guide ([[ENG]](https://github.com/bidmad/Bidmad-iOS/wiki/iOS-GDPR-Guide-%5BENG%5D) | [[KOR]](https://github.com/bidmad/Bidmad-iOS/wiki/iOS-GDPR-Guide-%5BKOR%5D))
 - Preparing for iOS 14 ([[ENG]](https://github.com/bidmad/Bidmad-iOS/wiki/Preparing-for-iOS-14%5BENG%5D) | [[KOR]](https://github.com/bidmad/Bidmad-iOS/wiki/Preparing-for-iOS-14%5BKOR%5D))
+- [Coupang network ad blocking interface guide (Korean)](https://github.com/bidmad/Bidmad-iOS/wiki/쿠팡-네트워크-광고-차단-인터페이스-가이드)
 </details>
 

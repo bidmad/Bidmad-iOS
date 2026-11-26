@@ -1,3 +1,28 @@
+#### Version 7.2.0
+Swift Package Manager 로만 배포됩니다. CocoaPods 배포는 7.1.1 에서 종료되었으며, 공개 API 변경은 없습니다. 설치 방법은 [README](./README.md#sdk-설치-방법) 를 참고하십시오.
+
+- **변경 사항**
+  - 배포 방식: CocoaPods → Swift Package Manager (`https://github.com/bidmad/<이름>-SPM`). 어댑터 버전은 `7.2.N+<광고 네트워크 SDK 버전>` 형식으로 바뀌었습니다.
+  - iOS Deployment Target: 14.0 → **15.0**
+  - 앱 타깃의 Other Linker Flags 에 `-ObjC` 가 필요합니다 (CocoaPods 는 자동으로 추가했습니다).
+  - `BidmadPartners/AdMobBidding` pod 은 `BidmadPartnersAdMobBidding` 패키지로 바뀌었습니다.
+- **버전**
+  - BidmadSDK / OpenBiddingHelper / BidmadGoogleGDPRAdapter: 7.1.1 → **7.2.0**
+  - BidmadGoogleAdMobAdapter / BidmadGoogleAdManagerAdapter: 13.2.0.15.0 → **7.2.0+13.11.0**
+  - BidmadAppLovinAdapter: 13.6.2.15.0 → **7.2.0+13.7.0**
+  - BidmadUnityAdsAdapter: 4.17.0.15.0 → **7.2.0+4.21.0**
+  - BidmadPangleAdapter: 7.9.0.8.15.0 → **7.2.0+8.4.0-release.7**
+  - BidmadFyberAdapter: 8.4.6.15.0 → **7.2.0+8.5.1**
+  - BidmadVungleAdapter: 7.7.2.15.0 → **7.2.0+7.7.8**
+  - BidmadTeadsAdapter: 6.1.0.15.0 → **7.2.0+6.1.0**
+  - BidmadAdFitAdapter: 3.18.3.15.0 → **7.2.0+3.18.3**
+  - BidmadAdpieAdapter: 1.6.16.15.0 → **7.2.0+1.6.16**
+  - BidmadTaboolaAdapter: 3.9.12.15.1 → **7.2.0+3.9.12**
+  - BidmadPremiumAdsGoogleAdapter: 1.0.6.15.0 → **7.2.0+1.0.6**
+  - BidmadMobwithAdapter: 2.0.0.15.1 → **7.2.0**
+  - BidmadORTBAdapter: 1.0.0.15.0 → **7.2.0**
+  - BidmadPartners/AdMobBidding 1.0.13 → BidmadPartnersAdMobBidding **7.2.0**
+
 #### Version 7.1.1
 태블릿 · 아이폰 듀오처럼 가로가 긴 화면에서 Mobwith / Taboola 전면 광고를 닫을 수 없던 문제가 수정되었습니다.
 

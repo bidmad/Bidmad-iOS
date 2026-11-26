@@ -1,15 +1,15 @@
 > [!IMPORTANT]
-> BidmadSDK-iOS v6.11.0 부터, 이전 버전에서 사용되던 AppKey는 AppDomain으로 변경되었습니다.<br>
-> **AppDomain은 기존 Appkeys와 호환되지 않으므로 BidmadSDK를 초기화하기 위해선 새로운 AppDomain을 발급받아야 합니다.**<br>
-> BidmadSDK-iOS v6.11.0 으로 업데이트하는 경우 **Techlabs 플랫폼 운영팀**에 문의해주세요.
-> BidmadSDK-iOS v6.12.4 부터, iOS 13.0 이상을 요구합니다.
-> BidmadSDK-iOS v7.0.0 부터, iOS 14.0 이상을 요구합니다.
+> BidmadSDK-iOS v6.11.0 부터 AppKey가 AppDomain으로 바뀌었습니다.<br>
+> **SDK를 초기화하려면 새 AppDomain을 발급받아야 합니다.**<br>
+> BidmadSDK-iOS v7.2.0 부터 **Swift Package Manager** 로만 배포됩니다.<br>
+> BidmadSDK-iOS v7.2.0 부터 iOS 15.0 이상을 요구합니다.
 
 # BidmadSDK
 ### 바로가기
 1. [SDK 세팅](#bidmadsdk-installation-guide)
     - [개발 환경](#개발-환경)
     - [SDK 설치 방법](#sdk-설치-방법)
+    - [버전 업데이트](#버전-업데이트)
 2. [SDK 인터페이스 가이드](#bidmadsdk-interface-guide)
     - [앱 초기 구성 및 Migration](#앱-초기-구성-및-migration)
     - [BidmadSDK 초기화](#bidmadsdk-초기화)
@@ -28,62 +28,84 @@
 
 #### 개발 환경
 - Xcode 최소 사양 26.0
-- iOS Deployment Target : 14.0
+- iOS Deployment Target : 15.0
+
 #### SDK 설치 방법
-1. Podfile 내부에 다음 코드 추가
+BidmadSDK 7.2.0 부터 **Swift Package Manager(SPM)** 로만 배포됩니다.<br>
+아래 순서에 따라 필요한 의존성을 한 번에 추가할 수 있습니다. 샘플 저장소의 [`BidmadPackages`](./BidmadPackages) 폴더를 복사해 사용해도 됩니다.
 
-> [!WARNING]
-> 6.14.0 부터 `BidmadSDK/core` 서브스펙이 제거되었습니다. `pod "BidmadSDK", "version"` 형태로 선언하시고, 별도로 `BidmadGoogleGDPRAdapter` 의존성을 추가해주십시오.
+> [!NOTE]
+> SPM 연동 전에 Bidmad 의 CocoaPods 설치를 모두 제거해 주십시오.
 
-```
-# 사용하시는 최소 iOS 버전을 아래 라인에 기입해주세요
-platform :ios, "14.0"
+1. 다음 이미지처럼 폴더와 파일을 만듭니다.
+    - `BidmadPackages` > `Package.swift`
+    - `BidmadPackages` > `Sources` > `BidmadPackages` > `BidmadPackages.swift`
 
-target "BidmadSDKTest" do
+    ![BidmadPackages 폴더 구조](./images/spm/00-folder-structure.png)
 
-  use_frameworks!
-  pod "BidmadSDK", "7.1.1"
-  pod "BidmadGoogleGDPRAdapter", "7.1.1"
-  pod "OpenBiddingHelper", "7.1.1"
-  pod "BidmadAdFitAdapter", "3.18.3.15.0"
-  pod "BidmadAppLovinAdapter", "13.6.2.15.0"
-  pod "BidmadFyberAdapter", "8.4.6.15.0"
-  pod "BidmadGoogleAdManagerAdapter", "13.2.0.15.0"
-  pod "BidmadGoogleAdMobAdapter", "13.2.0.15.0"
-  pod "BidmadMobwithAdapter", "2.0.0.15.1"
-  pod "BidmadORTBAdapter", "1.0.0.15.0"
-  pod "BidmadPangleAdapter", "7.9.0.8.15.0"
-  pod "BidmadPremiumAdsGoogleAdapter", "1.0.6.15.0"
-  pod "BidmadTaboolaAdapter", "3.9.12.15.1"
-  pod "BidmadTeadsAdapter", "6.1.0.15.0"
-  pod "BidmadUnityAdsAdapter", "4.17.0.15.0"
-  pod "BidmadVungleAdapter", "7.7.2.15.0"
-  pod "BidmadPartners/AdMobBidding", "1.0.13"
+    - `BidmadPackages.swift` 는 내용을 비워 두어도 되지만, 파일은 반드시 있어야 합니다. **이 파일들은 앱 타깃에 추가하지 마십시오.**<br>
+      ![Target Membership 비어 있음](./images/spm/09-target-membership.png)
 
-end
+2. `Package.swift` 에 다음 내용을 작성합니다.
 
-post_install do |installer|
-  installer.pods_project.targets.each do |target|
-    target.build_configurations.each do |config|
-      # 사용하시는 최소 iOS 버전을 아래 라인에 기입해주세요
-      config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '14.0'
-    end
-  end
-end
+    ```swift
+    // swift-tools-version:5.9
+    import PackageDescription
 
-```
+    let bidmad: [(repository: String, version: Version, products: [String])] = [
+        ("BidmadSDK-SPM",                     "7.2.0",                 ["BidmadSDK", "OpenBiddingHelper", "BidmadGoogleGDPRAdapter"]),
+        ("BidmadGoogleAdMobAdapter-SPM",      "7.2.0+13.11.0",         ["BidmadGoogleAdMobAdapter"]),
+        ("BidmadGoogleAdManagerAdapter-SPM",  "7.2.0+13.11.0",         ["BidmadGoogleAdManagerAdapter"]),
+        ("BidmadAppLovinAdapter-SPM",         "7.2.0+13.7.0",          ["BidmadAppLovinAdapter"]),
+        ("BidmadUnityAdsAdapter-SPM",         "7.2.0+4.21.0",          ["BidmadUnityAdsAdapter"]),
+        ("BidmadPangleAdapter-SPM",           "7.2.0+8.4.0-release.7", ["BidmadPangleAdapter"]),
+        ("BidmadFyberAdapter-SPM",            "7.2.0+8.5.1",           ["BidmadFyberAdapter"]),
+        ("BidmadVungleAdapter-SPM",           "7.2.0+7.7.8",           ["BidmadVungleAdapter"]),
+        ("BidmadTeadsAdapter-SPM",            "7.2.0+6.1.0",           ["BidmadTeadsAdapter"]),
+        ("BidmadAdFitAdapter-SPM",            "7.2.0+3.18.3",          ["BidmadAdFitAdapter"]),
+        ("BidmadAdpieAdapter-SPM",            "7.2.0+1.6.16",          ["BidmadAdpieAdapter"]),
+        ("BidmadTaboolaAdapter-SPM",          "7.2.0+3.9.12",          ["BidmadTaboolaAdapter"]),
+        ("BidmadPremiumAdsGoogleAdapter-SPM", "7.2.0+1.0.6",           ["BidmadPremiumAdsGoogleAdapter"]),
+        ("BidmadMobwithAdapter-SPM",          "7.2.0",                 ["BidmadMobwithAdapter"]),
+        ("BidmadORTBAdapter-SPM",             "7.2.0",                 ["BidmadORTBAdapter"]),
+        ("BidmadPartnersAdMobBidding-SPM",    "7.2.0",                 ["BidmadPartnersAdMobBidding", "BidmadPartnersAdMobBiddingDynamicSDKs"]),
+    ]
 
-  * 6.4.0 이상 버전부터 BidmadAdapterFNC, BidmadAdapterFC, BidmadAdapterDynamic 을 지원하지 않습니다. 6.3.X 이하 버전에서 6.4.0 이상 버전으로 업데이트를 원하시는 사용자는 "BidmadAdapterFNC, BidmadAdapterFC, BidmadAdapterDynamic" 의존성을 제거하고, 위에 기재된 의존성을 추가해 어댑터를 추가해주세요.
+    let package = Package(
+        name: "BidmadPackages",
+        platforms: [.iOS(.v15)],
+        products: [.library(name: "BidmadPackages", targets: ["BidmadPackages"])],
+        dependencies: bidmad.map { .package(url: "https://github.com/bidmad/\($0.repository).git", exact: $0.version) },
+        targets: [
+            .target(
+                name: "BidmadPackages",
+                dependencies: bidmad.flatMap { entry in entry.products.map { .product(name: $0, package: entry.repository) } }
+            )
+        ]
+    )
+    ```
 
-2. Terminal에서 다음 커맨드 입력
+3. Xcode 메뉴에서 **File › Add Package Dependencies…** 를 선택합니다.<br>
+    ![Add Package Dependencies](./images/spm/01-add-package-menu.png)
 
-```
-pod install
-```
-    
-3. Build Settings ( Target → Build Settings ) <br>
-    - Enable Bitcode 를 No로 설정<br>
-        ![Enable_Bitcode](https://i.imgur.com/aXOBmr1.png)<br>
+4. 창 아래의 **Add Local…** 을 누르고 `BidmadPackages` 폴더를 선택합니다.<br>
+    ![Add Local](./images/spm/02-add-local.png)<br>
+    ![BidmadPackages 폴더 선택](./images/spm/03-choose-folder.png)
+
+5. `BidmadPackages` 제품을 앱 타깃에 추가합니다 (**Add to Target** 에서 앱 타깃 선택 후 **Add Package**).<br>
+    ![제품 선택](./images/spm/04-choose-product.png)<br>
+    추가되면 타깃의 **General › Frameworks, Libraries, and Embedded Content** 에 `BidmadPackages` 가 보입니다.<br>
+    ![Frameworks, Libraries, and Embedded Content](./images/spm/05-frameworks.png)
+
+6. **Build Settings › Other Linker Flags** 에 `-ObjC` 를 추가합니다.<br>
+    ![Other Linker Flags](./images/spm/06-other-linker-flags.png)
+
+7. 빌드합니다. 프로젝트 네비게이터의 **Package Dependencies** 에서 각 패키지가 지정한 버전으로 받아졌는지 확인할 수 있습니다.<br>
+    <img src="./images/spm/07-package-dependencies.png" alt="Package Dependencies" width="360">
+
+#### 버전 업데이트
+`BidmadPackages/Package.swift` 에서 바꿀 패키지의 버전만 고친 뒤, **File › Packages › Resolve Package Versions** 를 실행합니다. 각 릴리스의 변경 내역은 [CHANGELOG.md](./CHANGELOG.md) 를 참고하십시오.<br>
+![Resolve Package Versions](./images/spm/08-resolve-package-versions.png)
 
 #### 앱 제출 및 개인정보 보호 설문조사
 App Store에 애플리케이션을 제출할 때 다음 가이드를 참고하여 개인 정보 보호 정책 및 설문조사를 올바르게 설정하세요. [Guide for Privacy Manifest & Privacy Survey](https://github.com/bidmad/Bidmad-iOS/wiki/Guide-for-Privacy-Manifest-&-Privacy-Survey-%5BKR%5D)
@@ -91,15 +113,16 @@ App Store에 애플리케이션을 제출할 때 다음 가이드를 참고하�
 ## BidmadSDK Interface Guide
 
 ### 앱 초기 구성 및 Migration<br>
-앱 초기 구성에 앞서, 4.6.0.1 이하 버전에서 5.0.0 버전으로 업데이트하는 경우 [API Migration Guide](https://github.com/bidmad/Bidmad-iOS/wiki/v5.0.0-API-Migration-Guide-%5BKR%5D) 를 참고해 앱 업데이트를 진행하십시오. 이후, 아래 info.plist 내부 BidmadAppKey 추가 및 initializeSdk 메서드 추가 과정도 거치십시오.<br>
+이전 버전에서 업데이트하는 경우, 해당하는 항목을 확인하십시오.
 
-5.3.0 버전 이하에서 6.0.0 버전 이상으로 업데이트하시는 네이티브 광고 인터페이스 사용자의 경우 [NativeAd Migration Guide 6.0.0](https://github.com/bidmad/Bidmad-iOS/wiki/Native-Ad-Migration-to-v6.0.0%5BKOR%5D) 를 참고해 앱 업데이트를 진행하십시오.
-
-6.3.5 버전 이하에서 6.4.0 버전 이상으로 업데이트하시는 앱오픈 광고 / 네이티브 광고 인터페이스 사용자의 경우 [AppOpen and NativeAd Migration Guide for 6.4.0](https://github.com/bidmad/Bidmad-iOS/wiki/AppOpen-and-NativeAd-Migration-Guide-for-6.4.0-%5BKOR%5D)를 참고해 앱 업데이트를 진행하십시오. 
-
-7.0.0 으로 업데이트하시는 경우 iOS Deployment Target 이 14.0 으로 상향되었고 모든 광고 네트워크 SDK 버전이 갱신되었으며, AppLovin MAX 미디에이션을 위한 `BidmadAppLovinMAXAdapter` 신규 pod 이 추가되었습니다. 자세한 변경 내역은 [CHANGELOG.md](./CHANGELOG.md) 의 7.0.0 항목을 참고하십시오.
-
-6.14.0 미만 버전에서 6.14.0 이상으로 업데이트하시는 경우 Banner / AppOpen / NativeAd 델리게이트 프로토콜과 콜백 메서드 시그니처가 변경되었습니다. 자세한 변경 내역과 마이그레이션 방법은 [CHANGELOG.md](./CHANGELOG.md)를 참고해 앱 업데이트를 진행하십시오.
+| 업데이트 | 변경 사항 | 참고 |
+|---|---|---|
+| 7.2.0 | CocoaPods → Swift Package Manager, iOS 15.0 이상 | [SDK 설치 방법](#sdk-설치-방법) |
+| 7.0.0 | iOS 14.0 이상, 광고 네트워크 SDK 갱신 | [CHANGELOG.md](./CHANGELOG.md) |
+| 6.14.0 미만 → 6.14.0 이상 | Banner / AppOpen / NativeAd 델리게이트 시그니처 변경 | [CHANGELOG.md](./CHANGELOG.md) |
+| 6.3.5 이하 → 6.4.0 이상 | 앱오픈 / 네이티브 광고 인터페이스 변경 | [Migration Guide](https://github.com/bidmad/Bidmad-iOS/wiki/AppOpen-and-NativeAd-Migration-Guide-for-6.4.0-%5BKOR%5D) |
+| 5.3.0 이하 → 6.0.0 이상 | 네이티브 광고 인터페이스 변경 | [Migration Guide](https://github.com/bidmad/Bidmad-iOS/wiki/Native-Ad-Migration-to-v6.0.0%5BKOR%5D) |
+| 4.6.0.1 이하 → 5.0.0 | API 변경 | [Migration Guide](https://github.com/bidmad/Bidmad-iOS/wiki/v5.0.0-API-Migration-Guide-%5BKR%5D) |
 
 1. Techlabs 운영팀으로부터 전달받은 AppDomain 값을 다음과 같이 info.plist에 기입하십시오.<br>
 
@@ -879,6 +902,7 @@ BidmadCommon.setTestDeviceId("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
 <br>
 
 - [Class Reference for BidmadSDK-iOS](https://github.com/bidmad/Bidmad-iOS/wiki/README-ClassReference%5BKOR%5D)
+- CocoaPods 설치 가이드 (7.1.1 이하) ([[ENG]](https://github.com/bidmad/Bidmad-iOS/wiki/CocoaPods-Installation-Guide-%5BENG%5D) | [[KOR]](https://github.com/bidmad/Bidmad-iOS/wiki/CocoaPods-Installation-Guide-%5BKOR%5D))
 - Apple privacy survey ([[ENG]](https://github.com/bidmad/Bidmad-iOS/wiki/Apple-privacy-survey%5BENG%5D) | [[KOR]](https://github.com/bidmad/Bidmad-iOS/wiki/Apple-privacy-survey%5BKOR%5D))
 - iOS GDPR Guide ([[ENG]](https://github.com/bidmad/Bidmad-iOS/wiki/iOS-GDPR-Guide-%5BENG%5D) | [[KOR]](https://github.com/bidmad/Bidmad-iOS/wiki/iOS-GDPR-Guide-%5BKOR%5D))
 - Preparing for iOS 14 ([[ENG]](https://github.com/bidmad/Bidmad-iOS/wiki/Preparing-for-iOS-14%5BENG%5D) | [[KOR]](https://github.com/bidmad/Bidmad-iOS/wiki/Preparing-for-iOS-14%5BKOR%5D))

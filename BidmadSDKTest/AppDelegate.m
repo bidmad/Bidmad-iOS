@@ -48,7 +48,14 @@
     return YES;
 }
 
-- (UIWindow * _Nonnull)keyWindow {
+#pragma mark - UISceneSession lifecycle
+
+- (UISceneConfiguration *)application:(UIApplication *)application configurationForConnectingSceneSession:(UISceneSession *)connectingSceneSession options:(UISceneConnectionOptions *)options {
+    // "Default Configuration" in Info.plist: SceneDelegate with Main.storyboard.
+    return [[UISceneConfiguration alloc] initWithName:@"Default Configuration" sessionRole:connectingSceneSession.role];
+}
+
+- (UIWindow * _Nullable)keyWindow {
     UIWindow *fallback = nil;
     for (UIScene *scene in UIApplication.sharedApplication.connectedScenes) {
         if (![scene isKindOfClass:UIWindowScene.class]) continue;
@@ -124,7 +131,7 @@
 
 - (void)callbackLabelViewShow: (NSString *)callbackText {
     dispatch_async(dispatch_get_main_queue(), ^{
-        UIViewController *topVC = self.window.rootViewController;
+        UIViewController *topVC = [self keyWindow].rootViewController;
         while (topVC.presentedViewController != nil) {
             topVC = topVC.presentedViewController;
         }
@@ -155,16 +162,7 @@
     });
 }
 
-- (void)applicationWillResignActive:(UIApplication *)application {}
-
-
-- (void)applicationDidEnterBackground:(UIApplication *)application {}
-
-
-- (void)applicationWillEnterForeground:(UIApplication *)application {}
-
-
-- (void)applicationDidBecomeActive:(UIApplication *)application {
+- (void)requestTrackingAuthorizationIfNeeded {
     if (!didRequestATTPopup) {
         bidmadWeakify(self)
         [BidmadCommon reqAdTrackingAuthorizationWith:^(BidmadTrackingAuthorizationStatus status) {
@@ -182,9 +180,5 @@
         }];
     }
 }
-
-
-- (void)applicationWillTerminate:(UIApplication *)application {}
-
 
 @end
